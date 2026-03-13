@@ -1,17 +1,33 @@
-# If you’d like to deploy this to GitHub pages, rename this
-# file to `gh-pages.yml` and read the mini-tutorial on
-# https://www.11ty.dev/docs/deployment/#deploy-an-eleventy-project-to-github-pages
+# If you’d like to deploy this project to GitHub pages:
+
+# 1. Remove the .sample file extension from this file so it ends with `.yml`
+#				e.g. `gh-pages.yml`
+
+# 2. Go to your repository’s Settings on GitHub and find the GitHub Pages subsection.
+#				Under the Build and Deployment on the GitHub Pages settings, find the Source
+#				option and select “GitHub Actions”
+
+# 3. In your project’s package.json, make sure the `build-ghpages` script has
+#				the `--pathprefix=` parameter set to your repository name.
+#				e.g.  "build-ghpages": "npx @11ty/eleventy --pathprefix=/YOUR_REPO_NAME/",
+#
+#				Exception: When using a Custom domain (example.com) with GitHub Pages, deploying
+#				to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to
+#				remove the `--pathprefix` parameter entirely.
+#				e.g.  "build-ghpages": "npx @11ty/eleventy",
+
+# 4. Commit this new `gh-pages.yml` file and push it upstream to GitHub
+
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     concurrency:
@@ -22,7 +38,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Cache npm
         uses: actions/cache@v3
@@ -36,13 +52,25 @@ jobs:
           path: ./.cache
           key: ${{ runner.os }}-eleventy-fetch-cache
 
-
-      - run: npm install
+      - run: npm ci
       - run: npm run build-ghpages
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          path: _site/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
