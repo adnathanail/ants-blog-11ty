@@ -10,30 +10,6 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family: 'ANTS Juni';
-	src: url('/fonts/ants-juni/ANTSJuni-Italic.woff') format('woff');
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'ANTS Juni';
-	src: url('/fonts/ants-juni/ANTSJuni-Bold.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'ANTS Juni';
-	src: url('/fonts/ants-juni/ANTSJuni-BoldItalic.woff') format('woff');
-	font-weight: 700;
-	font-style: italic;
-	font-display: swap;
-}
-
 $font-family-sans-serif: -apple-system, system-ui, sans-serif;
 $font-family-serif: 'ANTS Juni', Georgia, "Times New Roman", serif;
 $font-family-monospace: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono",
