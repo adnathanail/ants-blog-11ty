@@ -1,3 +1,6 @@
+import path from "node:path";
+import * as sass from "sass";
+
 import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
@@ -23,9 +26,32 @@ export default async function(eleventyConfig) {
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig
 		.addPassthroughCopy({
-			"./public/": "/"
+			"./public/": "/",
+			"./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
 		})
 		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
+
+	// Compile .scss files with Dart Sass (used for our Bootstrap build)
+	eleventyConfig.addTemplateFormats("scss");
+	eleventyConfig.addExtension("scss", {
+		outputFileExtension: "css",
+		compile: async function(inputContent, inputPath) {
+			let parsed = path.parse(inputPath);
+			// Skip Sass partials — they only exist to be @imported
+			if (parsed.name.startsWith("_")) {
+				return;
+			}
+
+			let result = sass.compileString(inputContent, {
+				loadPaths: [parsed.dir, "node_modules"],
+				style: "compressed",
+			});
+
+			this.addDependencies(inputPath, result.loadedUrls);
+
+			return async () => result.css;
+		},
+	});
 
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
