@@ -6,11 +6,8 @@
 	overflow: scroll;
 	text-align: center;
 }
-
-.post-content img {
-	max-height: 60vh;
-	width: auto;
-}
+/* .post-content img sizing lives in content/css/bootstrap.scss so it can use
+   Bootstrap breakpoint mixins. */
 
 /* SVGs without intrinsic dimensions default to 300×150; cap width so they don't
    overflow, but let sized SVGs stay at their natural size. */

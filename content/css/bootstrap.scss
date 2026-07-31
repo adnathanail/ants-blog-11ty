@@ -1,8 +1,3 @@
----
-permalink: /css/bootstrap.css
-eleventyExcludeFromCollections: true
----
-
 // Override Bootstrap defaults before importing the framework.
 // Full list of Sass variables: https://getbootstrap.com/docs/5.3/customize/sass/
 
@@ -13,3 +8,18 @@ $font-family-monospace: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono"
 	"Courier New", Courier, monospace;
 
 @import "bootstrap/scss/bootstrap";
+
+// Site-specific rules that need Bootstrap mixins/variables.
+
+.post-content img {
+	width: auto;
+	max-height: 40vh;
+
+	@include media-breakpoint-up(md) {
+		max-height: 50vh;
+	}
+
+	@include media-breakpoint-up(xl) {
+		max-height: 60vh;
+	}
+}

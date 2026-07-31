@@ -35,6 +35,7 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addTemplateFormats("scss");
 	eleventyConfig.addExtension("scss", {
 		outputFileExtension: "css",
+		getData: () => ({ eleventyExcludeFromCollections: true }),
 		compile: async function(inputContent, inputPath) {
 			let parsed = path.parse(inputPath);
 			// Skip Sass partials — they only exist to be @imported
