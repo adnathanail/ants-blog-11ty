@@ -61,6 +61,14 @@ pre:not([class*="language-"]) {
 	content: "−";
 }
 
+.post-content details > p:last-child {
+	margin-bottom: 0;
+}
+
+.post-content details > ol:last-child {
+	margin-bottom: 0.25rem;
+}
+
 /* Navbar links */
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
