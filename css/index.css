@@ -22,3 +22,41 @@ pre:not([class*="language-"]) {
 	white-space: pre;
 	overflow-x: auto;
 }
+
+/* Spoiler tags */
+.post-content details {
+	border: var(--bs-border-width) solid var(--bs-border-color);
+	border-radius: var(--bs-border-radius);
+	padding: 0.5rem 1rem;
+	margin-bottom: 1rem;
+}
+
+.post-content details > summary {
+	list-style: none;
+	cursor: pointer;
+	font-style: italic;
+}
+
+.post-content details > summary:hover,
+.post-content details[open] > summary {
+	text-decoration: underline;
+}
+
+.post-content details[open] > summary {
+	margin-bottom: 1rem;
+}
+
+.post-content details > summary::-webkit-details-marker {
+	display: none;
+}
+
+.post-content details > summary::before {
+	content: "+";
+	display: inline-block;
+	width: 1rem;
+	font-weight: bold;
+}
+
+.post-content details[open] > summary::before {
+	content: "−";
+}
