@@ -2,11 +2,22 @@
 	--syntax-tab-size: 2;
 }
 
-/* SVGs should fill their container rather than render at intrinsic size */
-img[src$=".svg"] {
-	width: 100%;
-	height: auto;
+.post-content p:has(img) {
+	overflow: scroll;
+	text-align: center;
 }
+
+.post-content img {
+	max-height: 60vh;
+	width: auto;
+}
+
+/* SVGs without intrinsic dimensions default to 300×150; cap width so they don't
+   overflow, but let sized SVGs stay at their natural size. */
+/* img[src$=".svg"] {
+	max-width: 100%;
+	height: auto;
+} */
 
 /* Preserve whitespace/scroll behaviour for non-Prism code blocks */
 pre:not([class*="language-"]) {
