@@ -60,3 +60,9 @@ pre:not([class*="language-"]) {
 .post-content details[open] > summary::before {
 	content: "−";
 }
+
+/* Navbar links */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+	text-decoration: underline;
+}
