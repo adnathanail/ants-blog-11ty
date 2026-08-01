@@ -83,6 +83,11 @@ $font-family-monospace: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono"
 
 $headings-font-family: $font-family-serif;
 
+$primary: #AD00AD;
+$secondary: #00AD00;
+$code-color: $primary;
+$link-color: $secondary;
+
 @import "bootstrap/scss/bootstrap";
 
 // ################
