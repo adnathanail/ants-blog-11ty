@@ -111,7 +111,7 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 // ################
 // (Using Bootstrap mixins/variables)
 
-.post-content img {
+.post-content img, .post-content video {
 	width: auto;
 	max-height: 40vh;
 

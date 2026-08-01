@@ -9,6 +9,7 @@ import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownItAttrs from "markdown-it-attrs";
 import admonitions from "./plugins/admonitions.js";
+import videoMedia from "./plugins/video-media.js";
 import "./plugins/prism-typst.js";
 
 import pluginFilters from "./_config/filters.js";
@@ -35,7 +36,8 @@ export default async function(eleventyConfig) {
 			"./node_modules/bootstrap-icons/font/fonts/": "/fonts/bootstrap-icons/",
 			"./content/authors/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/authors/",
 		})
-		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
+		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl")
+		.addPassthroughCopy("./content/**/*.{mov,mp4,webm,m4v}");
 
 	// Compile .scss files with Dart Sass (used for our Bootstrap build)
 	eleventyConfig.addTemplateFormats("scss");
@@ -165,6 +167,7 @@ export default async function(eleventyConfig) {
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);
+	eleventyConfig.amendLibrary("md", videoMedia);
 	eleventyConfig.amendLibrary("md", md => md.use(markdownItAttrs));
 	const { katex } = (await import("@mdit/plugin-katex"));
 	eleventyConfig.amendLibrary("md", md => md.use(katex, {output: "mathml"}));
