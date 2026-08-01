@@ -86,23 +86,17 @@ Firstly, we can see that each line is symmetrical, i.e. the first and last items
 
 $$g(n, a) = g(n, n - a)$$
 
----
-
 When we have no *outs* and all *outs*, any puzzle piece with any number of sides will be entirely rotatable because none of the sides are distinguishable.
 
 #### Lemma 2
 
 $$g(n, 0) = g(n, n) = 1$$
 
----
-
 Similarly, when we have 1 *out* and all-but-one *outs* (which is the same as just 1 *in*), all pieces can be rotated onto each other.
 
 #### Lemma 3
 
 $$g(n, 1) = g(n, n - 1) = 1$$
-
----
 
 There seems to be some structure to the middle terms, but I think we need more cases; it's time to bust out some Python.
 
@@ -156,8 +150,6 @@ So when $n=4$ the third value is 2, when $n=9$ the third value is 7.
 #### Lemma 4
 
 $$g(n, 3) = g(n, n - 3) = \left \lfloor{\frac{n}{2}}\right \rfloor$$
-
----
 
 ## Lost in the fourth item
 

@@ -123,6 +123,16 @@ li:not(.katex-block) > span.katex > math {
 	margin-top: 0.25rem;
 	margin-bottom: 0.25rem;
 }
+:not(.katex-block):has( > span.katex) {
+	list-style-position: inside;
+	overflow: scroll;
+}
+.katex-block {
+	--bs-bg-opacity: 1;
+	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
 
 /* Links */
 a {
