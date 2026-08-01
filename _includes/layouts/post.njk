@@ -5,25 +5,48 @@ layout: layouts/base.njk
 <style>{% include "node_modules/prismjs/themes/prism-okaidia.css" %}</style>
 <style>{% include "css/prism-diff.css" %}</style>
 
-<h1>{{ title }}</h1>
-
-{%- set authorData = authors[author] %}
-{%- if authorData %}
-<div class="d-flex align-items-center gap-2 mb-2">
-	{%- if authorData.avatar %}
-	<img src="{{ authorData.avatar }}" alt="" width="32" height="32" class="rounded-circle" eleventy:ignore>
-	{%- endif %}
-	<span class="text-body-secondary">{{ authorData.name }}</span>
+<div class="row">
+	<div class="col">
+		<h1>{{ title }}</h1>
+	</div>
+	<div class="col-auto d-none d-md-flex">
+		{%- set authorData = authors[author] %}
+		{%- if authorData %}
+		<div class="d-flex align-items-center gap-2 mb-2">
+			<span class="text-body-secondary mt-1">{{ authorData.name }}</span>
+			{%- if authorData.avatar %}
+			<img src="{{ authorData.avatar }}" alt="" width="32" height="32" class="rounded-circle" eleventy:ignore>
+			{%- endif %}
+		</div>
+		{%- endif %}
+	</div>
 </div>
-{%- endif %}
 
-<ul class="list-inline text-body-secondary mb-4">
-	<li class="list-inline-item me-3"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></li>
+<div class="row mb-2">
+	<div class="col d-flex align-items-center">
+		<span class="text-body-secondary"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></span>
+	</div>
+	<div class="col-auto d-flex d-md-none">
+		{%- set authorData = authors[author] %}
+		{%- if authorData %}
+		<div class="d-flex align-items-center gap-2">
+			<span class="text-body-secondary mt-1">{{ authorData.name }}</span>
+			{%- if authorData.avatar %}
+			<img src="{{ authorData.avatar }}" alt="" width="32" height="32" class="rounded-circle" eleventy:ignore>
+			{%- endif %}
+		</div>
+		{%- endif %}
+	</div>
+</div>
+
+<ul class="list-inline text-body-secondary">
 	{%- for tag in tags | filterTagList %}
 	{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-	<li class="list-inline-item"><a href="{{ tagUrl }}" class="badge text-bg-secondary text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
+	<li class="list-inline-item"><a href="{{ tagUrl }}" class="badge text-muted bg-primary-subtle border border-primary text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
 	{%- endfor %}
 </ul>
+
+<hr>
 
 <div class="post-content">
 	{{ content | safe }}
