@@ -77,8 +77,20 @@ pre:not([class*="language-"]) {
 	border: 1px solid var(--bs-primary-bg-subtle);
 }
 
+/* Links */
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:hover img {
+	opacity: 0.7;
+}
+
 /* Navbar links */
-.navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
 	text-decoration: underline;
 }
