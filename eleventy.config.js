@@ -1,5 +1,6 @@
 import path from "node:path";
 import * as sass from "sass";
+import nunjucks from "nunjucks";
 
 import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
@@ -150,6 +151,14 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
 	});
+
+	// Component shortcodes: each component is a .njk file in _includes/components/
+	const componentEnv = new nunjucks.Environment(
+		new nunjucks.FileSystemLoader("_includes/components")
+	);
+	eleventyConfig.addShortcode("gistEmbed", (src) =>
+		componentEnv.render("gist-embed.njk", { src })
+	);
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);

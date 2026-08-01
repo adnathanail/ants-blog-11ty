@@ -82,7 +82,7 @@ It's looking a bit neater!
 
 Firstly, we can see that each line is symmetrical, i.e. the first and last items the same, second and second to last, etc.
 
-### Lemma 1
+#### Lemma 1
 
 $$g(n, a) = g(n, n - a)$$
 
@@ -90,7 +90,7 @@ $$g(n, a) = g(n, n - a)$$
 
 When we have no *outs* and all *outs*, any puzzle piece with any number of sides will be entirely rotatable because none of the sides are distinguishable.
 
-### Lemma 2
+#### Lemma 2
 
 $$g(n, 0) = g(n, n) = 1$$
 
@@ -98,7 +98,7 @@ $$g(n, 0) = g(n, n) = 1$$
 
 Similarly, when we have 1 *out* and all-but-one *outs* (which is the same as just 1 *in*), all pieces can be rotated onto each other.
 
-### Lemma 3
+#### Lemma 3
 
 $$g(n, 1) = g(n, n - 1) = 1$$
 
@@ -121,9 +121,9 @@ Again interpreting the strings as binary, we can define that the string that enc
 
 Putting this together I produced the following script:
 
-<GistEmbed src={"https://gist.github.com/adnathanail/475df2e48c004e3abef598090e47c14b.js"} />
+{% gistEmbed "https://gist.github.com/adnathanail/475df2e48c004e3abef598090e47c14b.js" %}
 
-*V1 couldn't get past about 11 sides without taking far too long, but, thanks to the optimisations from the insights above, V2 can easily reach 20 sides in about 10 seconds.*
+V1 couldn't get past about 11 sides without taking far too long, but, thanks to the optimisations from the insights above, V2 can easily reach 20 sides in about 10 seconds.
 
 This produced the following output
 
@@ -153,7 +153,7 @@ This produced the following output
 Now we can clearly see that the third items (and third to last), form a pattern of numbers increasing by 1 for every 2 increases of $n$.
 So when $n=4$ the third value is 2, when $n=9$ the third value is 7.
 
-### Lemma 4
+#### Lemma 4
 
 $$g(n, 3) = g(n, n - 3) = \left \lfloor{\frac{n}{2}}\right \rfloor$$
 
@@ -486,7 +486,7 @@ Further reading:
 
 I implemented this formula in Python, and the results agree with our earlier calculations!
 
-<GistEmbed src={"https://gist.github.com/adnathanail/f3402dfa5525d6e46e49b49fa9e48d25.js"} />
+{% gistEmbed "https://gist.github.com/adnathanail/f3402dfa5525d6e46e49b49fa9e48d25.js" %}
 
 This version can calculate the first 10,000 items in 12 seconds!
 
