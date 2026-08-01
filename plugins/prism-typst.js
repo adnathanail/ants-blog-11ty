@@ -60,7 +60,7 @@ Prism.languages["typst-math"] = {
 
 const math = [
   {
-    pattern: /\$(?:\\.|[^\\$])*?\$/,
+    pattern: /\$(?:\\[\s\S]|[^\\$])*?\$/,
     inside: Prism.languages["typst-math"],
     // greedy: true,
   },

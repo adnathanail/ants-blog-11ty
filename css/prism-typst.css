@@ -6,10 +6,11 @@
 .token.symbol { color: #caa8ff; }
 .token.label,
 .token.reference,
-.token.escaped { color: #d9f8f4; }
 .token.raw { color: #caccd6; }
 .token.heading,
 .token.bold { font-weight: bold; }
-.token.heading { color: #66d9ef; } /* Keyword color */
 .token.italic { font-style: italic; }
 .token.boltalic { font-weight: bold; font-style: italic; }
+
+.token.heading { color: #66d9ef; } /* Keyword color */
+.token.escaped { color: #fd971f; } /* Regex color */
