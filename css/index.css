@@ -9,6 +9,25 @@
 /* .post-content img sizing lives in content/css/bootstrap.scss so it can use
    Bootstrap breakpoint mixins. */
 
+
+.post-content p:has(img.no-center) {
+	text-align: left;
+}
+
+.post-content img.no-center {
+	margin-left: 1.5%;
+}
+
+.post-content p:has(img.img-w-25) {
+	font-size: 0;
+}
+.post-content img.img-w-25 {
+	width: 22% !important;
+	margin-left: 1.5%;
+	margin-right: 1.5%;
+	height: auto;
+}
+
 /* SVGs without intrinsic dimensions default to 300×150; cap width so they don't
    overflow, but let sized SVGs stay at their natural size. */
 /* img[src$=".svg"] {

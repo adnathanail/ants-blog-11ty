@@ -6,6 +6,7 @@ import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import markdownItAttrs from "markdown-it-attrs";
 import admonitions from "./plugins/admonitions.js";
 
 import pluginFilters from "./_config/filters.js";
@@ -151,6 +152,7 @@ export default async function(eleventyConfig) {
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);
+	eleventyConfig.amendLibrary("md", md => md.use(markdownItAttrs));
 
 	// Features to make your build faster (when you need them)
 
