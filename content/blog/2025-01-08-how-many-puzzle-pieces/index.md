@@ -296,9 +296,11 @@ I.e. the difference between those two operations must be in the **stabilizer** o
 
 $$r1(x) = r2(x) \quad \rightarrow \quad \left( r2^{-1} \circ r1 \right) \in G_{x}$$
 
-<Spoiler title_text={"What is the ∘ symbol?"}>
-    The ∘ symbol means function composition, AKA the effect of applying 1 function then the other. For example 180° ∘ 90° means rotate 90 degrees then rotate 180 degrees, which is equivalent to the single function rotating 270 degrees.
-</Spoiler>
+<details>
+<summary>What is the ∘ symbol?</summary>
+
+The ∘ symbol means function composition, AKA the effect of applying 1 function then the other. For example 180° ∘ 90° means rotate 90 degrees then rotate 180 degrees, which is equivalent to the single function rotating 270 degrees.
+</details>
 
 E.g.
 $$
@@ -339,8 +341,8 @@ $$|G| = |G_{x}| \times |O_{x}|$$
 
 This is the **Orbit-stabilizer Theorem**!
 
-Further reading:
-- [Orbit-stabilizer Theorem (Brilliant)](https://brilliant.org/wiki/group-actions/#orbit-stabilizer-theorem)
+> [!note]
+> Further reading: [Orbit-stabilizer Theorem (Brilliant)](https://brilliant.org/wiki/group-actions/#orbit-stabilizer-theorem)
 
 ### Burnside's Lemma
 
@@ -368,9 +370,10 @@ A formula for the number of unique puzzle pieces!
 
 This is **Burnside's Lemma**!
 
-Further reading:
-- [Burnside's Lemma (Brilliant)](https://brilliant.org/wiki/burnsides-lemma/)
-- [Burnside's Lemma (Wikipedia)](https://en.wikipedia.org/wiki/Burnside%27s_lemma)
+> [!note]
+> Further reading:
+> - [Burnside's Lemma (Brilliant)](https://brilliant.org/wiki/burnsides-lemma/)
+> - [Burnside's Lemma (Wikipedia)](https://en.wikipedia.org/wiki/Burnside%27s_lemma)
 
 ### Restructuring Burnside's Lemma
 
@@ -477,10 +480,11 @@ The general necklace polynomial works for any number of colours of bead, not jus
 $$f(n, a) = \frac{1}{n} \sum_{i = 1}^{n} a^{gcd(n, i)}$$
 </details>
 
-Further reading:
-- [Necklace (combinatorics) - Wikipedia](https://en.wikipedia.org/wiki/Necklace_(combinatorics)#Number_of_necklaces)
-- [Necklace polynomial - Wikipedia](https://en.wikipedia.org/wiki/Necklace_polynomial)
-- [Necklace (Wolfram MathWorld)](https://mathworld.wolfram.com/Necklace.html)
+> [!note]
+> Further reading:
+> - [Necklace (combinatorics) - Wikipedia](https://en.wikipedia.org/wiki/Necklace_(combinatorics)#Number_of_necklaces)
+> - [Necklace polynomial - Wikipedia](https://en.wikipedia.org/wiki/Necklace_polynomial)
+> - [Necklace (Wolfram MathWorld)](https://mathworld.wolfram.com/Necklace.html)
 
 ## Grand finale
 

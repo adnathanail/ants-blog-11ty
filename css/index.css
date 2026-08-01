@@ -131,13 +131,24 @@ a:hover img {
 	opacity: 0.7;
 }
 
+/* Tables */
+table {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+table th, td {
+	border: 1px solid var(--bs-primary-bg-subtle);
+	padding: 0.25rem 0.5rem;
+}
+
 /* Navbar links */
 .navbar-nav .nav-link.active {
 	text-decoration: underline;
 }
 
 /* Admonitions */
-.card-admonition p, .card-blockquote p {
+.card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
 	margin-bottom: 0.5rem;
 }
 
