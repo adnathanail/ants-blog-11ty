@@ -6,6 +6,7 @@ const admonitionTypeColors = {
 	info: 'info',
 	warning: 'warning',
 	danger: 'danger',
+	question: 'primary',
 };
 
 const admonitionTypeBootstrapIcons = {
@@ -14,6 +15,7 @@ const admonitionTypeBootstrapIcons = {
 	info: 'info-circle',
 	warning: 'exclamation-diamond',
 	danger: 'radioactive',
+	question: 'question-circle',
 }
 
 function cardShellClasses(color) {
