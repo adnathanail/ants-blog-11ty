@@ -133,7 +133,7 @@ a:hover img {
 }
 
 /* Admonitions */
-.card-admonition p {
+.card-admonition p, .card-blockquote p {
 	margin-bottom: 0.5rem;
 }
 
