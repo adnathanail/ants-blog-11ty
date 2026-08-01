@@ -221,7 +221,7 @@ If you click the _Shunt_ button (without clicking _Unfold_) it is evidently the 
 If you then click _Unfold_ and _Shunt_ you can see the same operation occurring.
 Moving a bit from the start to the end of the string still represents the same puzzle piece.
 
-<NecklaceSimulator this_field_is_useless={""}/>
+{% necklaceSimulator %}
 
 _The bit-string starts from the red outlined circle_
 

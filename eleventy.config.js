@@ -159,6 +159,9 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addShortcode("gistEmbed", (src) =>
 		componentEnv.render("gist-embed.njk", { src })
 	);
+	eleventyConfig.addShortcode("necklaceSimulator", () =>
+		componentEnv.render("necklace-simulator.njk")
+	);
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);
