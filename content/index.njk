@@ -6,6 +6,10 @@ const eleventyNavigation = {
 
 const numberOfLatestPostsToShow = 3;
 ---
+
+<h1>Alex Nathanail Tech Services</h1>
+<p>Full-stack technology consultancy for modernizing businesses</p>
+
 {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
 <h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>

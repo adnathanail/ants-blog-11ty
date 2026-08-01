@@ -1,3 +1,29 @@
+<div class="row">
+	{%- for post in postslist | reverse %}
+		<div class="col-12 col-xl-6">
+			<div class="card">
+				<div class="row g-0">
+					<div class="col">
+						<div class="card-header">
+							<a href="{{ post.url }}"><h4 class="card-title">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</h5></a>
+						</div>
+						<div class="card-body">
+							{% if post.data.description %}<p class="card-text text-muted">{{ post.data.description }}</p>{% endif %}
+							{# <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> #}
+							{%- set author = post.data.author %}
+							{% include "author.njk" %}
+							<p class="card-text"><time class="text-body-secondary small" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate("LLLL yyyy") }}</time></p>
+						</div>
+					</div>
+					<div class="col-5 col-lg-3">
+						<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid rounded-end h-100 object-fit-cover" alt="...">
+					</div>
+				</div>
+			</div>
+		</div>
+	{%- endfor %}
+</div>
+
 <ol reversed class="list-group list-group-numbered list-group-flush">
 {%- for post in postslist | reverse %}
 	<li class="list-group-item d-flex justify-content-between align-items-center gap-3{% if post.url == url %} active{% endif %}">
