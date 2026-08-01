@@ -99,3 +99,30 @@ a:hover img {
 .navbar-nav .nav-link.active {
 	text-decoration: underline;
 }
+
+/* Admonitions */
+.card-admonition p {
+	margin-bottom: 0.5rem;
+}
+
+/* https://kizu.dev/rotated-text/ */
+.rotated-text-container {
+    display: inline-block;
+    overflow: hidden;
+
+    width: 1.5em;
+    line-height: 1.5;
+}
+.rotated-text {
+    display: inline-block;
+    white-space: nowrap;
+
+    transform: translate(0,100%) rotate(-90deg);
+    transform-origin: 0 0;
+}
+
+.rotated-text:after {
+    content: "";
+    float: left;
+    margin-top: 100%;
+}

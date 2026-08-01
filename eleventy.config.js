@@ -6,6 +6,7 @@ import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import admonitions from "./plugins/admonitions.js";
 
 import pluginFilters from "./_config/filters.js";
 
@@ -28,6 +29,7 @@ export default async function(eleventyConfig) {
 		.addPassthroughCopy({
 			"./public/": "/",
 			"./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+			"./node_modules/bootstrap-icons/font/fonts/": "/fonts/bootstrap-icons/",
 			"./content/authors/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/authors/",
 		})
 		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
@@ -146,6 +148,9 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
 	});
+
+	// markdown-it plugins
+	eleventyConfig.amendLibrary("md", admonitions);
 
 	// Features to make your build faster (when you need them)
 

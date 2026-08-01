@@ -8,6 +8,7 @@ date: 2026-07-18
 
 I've just come back from [EMF camp 2026](https://emfcamp.org)!
 
+> [!note]
 > Check out my [post about shaders](/posts/_2022-06-12-shaders) from EMF camp 2022
 
 One fun thing they often have is a [capture the flag](https://ctf101.org/intro/what-is-a-ctf/) (CTF), which can take many formats but the basic shape is that you complete a series of challenges which each result in a string (the 'flag') that can be automatically checked.
@@ -249,6 +250,7 @@ The first comparison done is on the length of the returned value, which is the 3
 So we want the address 24 bytes after the stack pointer, which is `0x18` in Hexadecimal, hence why the `cmp` instruction is comparing `0x18(%rsp)`
 </details>
 
+> [!tip]
 > [GDB x command reference](https://visualgdb.com/gdbreference/commands/x)
 
 We can ask the debugger to read this value:

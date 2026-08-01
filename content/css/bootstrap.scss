@@ -101,6 +101,12 @@ $link-color: $secondary;
 @import "bootstrap/scss/bootstrap";
 
 // ################
+// Bootstrap Icons
+// ################
+$bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+// ################
 // Custom CSS
 // ################
 // (Using Bootstrap mixins/variables)
