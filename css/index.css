@@ -21,10 +21,18 @@
 	text-align: left;
 }
 
-.post-content p:has(.img-w-20), .post-content p:has(.img-w-25), .post-content p:has(.img-w-30), .post-content p:has(.img-w-40) {
+.post-content p:has(.img-w-20),
+.post-content p:has(.img-w-25),
+.post-content p:has(.img-w-30),
+.post-content p:has(.img-w-60),
+.post-content p:has(.img-w-40) {
 	font-size: 0;
 }
-.post-content .img-w-20, .post-content .img-w-25, .post-content .img-w-30, .post-content .img-w-40 {
+.post-content .img-w-20,
+.post-content .img-w-25,
+.post-content .img-w-30,
+.post-content .img-w-40,
+.post-content .img-w-60 {
 	margin-left: 1.5%;
 	margin-right: 1.5%;
 	height: auto;
@@ -39,6 +47,9 @@
 	max-width: 27% !important;
 }
 .post-content .img-w-40 {
+	max-width: 37% !important;
+}
+.post-content .img-w-60 {
 	max-width: 37% !important;
 }
 
