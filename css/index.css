@@ -23,6 +23,11 @@ pre:not([class*="language-"]) {
 	overflow-x: auto;
 }
 
+code[class*="language-"],
+pre[class*="language-"] {
+	font-family: var(--bs-font-monospace) !important;
+}
+
 /* Spoiler tags */
 .post-content details {
 	border: var(--bs-border-width) solid var(--bs-border-color);
