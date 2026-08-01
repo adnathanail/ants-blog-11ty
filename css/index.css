@@ -55,7 +55,7 @@ pre[class*="language-"] {
 	font-family: var(--bs-font-monospace) !important;
 }
 
-pre:has( + p) {
+pre:has( + p), pre:has( + h1), pre:has( + h2), pre:has( + h3), pre:has( + h4), pre:has( + h5), pre:has( + h6) {
 	margin-bottom: 1rem !important;  /* Add margin between code blocks and text */
 }
 
