@@ -1,16 +1,15 @@
 ---
 title: How many puzzle pieces are there?
-heroImg: /uploads/posts/2025-01-08-how-many-puzzle-pieces/05_necklace.png
-excerpt: |
-  There's 6
-author: content/authors/alex.md
+heroImg: ./05_necklace.png
+description: There's 6
+author: alex
 date: 2025-01-08
 recommend_no_rss: true
 ---
 
 *We picked at a mathematical thread and unravelled a whole jumper*
 
-<CustomImage src={"https://imgs.xkcd.com/comics/nerd_sniping.png"} width_str={"75%"}/>
+![](https://imgs.xkcd.com/comics/nerd_sniping.png)
 
 *[XKCD 356: Nerd sniping](https://xkcd.com/356/)*
 
@@ -19,7 +18,7 @@ recommend_no_rss: true
 Just before new year I started a rather tricky, but rather beautiful, puzzle of a map of the lake district with a friend.
 A week or so later I finished it with 2 friends **P** and **C**.
 
-<CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/01_map_puzzle.png"} width_str={"60%"} />
+![](./01_map_puzzle.png)
 
 It was about 01:30 by this point, we'd been going since about 20:00, so a sensible person would have gone to bed.
 Unfortunately, **P** turned to me and asked
@@ -28,13 +27,13 @@ Unfortunately, **P** turned to me and asked
 
 We quickly defined that they weren't interested in corner or edge pieces, and were assuming each piece had exactly four sides, and each side had either an *in* or an *out*.
 
-**P**'s first thought was combinatorics, and said it was something like <La Tex="1 + 2 + 3 + 4" /> or <La Tex="1 \times 2 \times 3 \times 4" />.
+**P**'s first thought was combinatorics, and said it was something like $1 + 2 + 3 + 4$ or $1 \times 2 \times 3 \times 4$.
 
-I said it definitely wasn't that, it was <La Tex="2^{4}" />, because you have 4 sides, each with 2 possible states. But it wasn't that either.
+I said it definitely wasn't that, it was $2^{4}$, because you have 4 sides, each with 2 possible states. But it wasn't that either.
 
-**C** pointed out that I'd forgotten about rotational symmetry, and that a piece could only have 0, 1, 2, 3, or 4 *outs* and therefore the answer was <La Tex="5" />.
+**C** pointed out that I'd forgotten about rotational symmetry, and that a piece could only have 0, 1, 2, 3, or 4 *outs* and therefore the answer was $5$.
 
-But a quick scribble determined that the case with 2 *outs* had 2 options that couldn't be rotated to each other, so the answer was <La Tex="6" />!
+But a quick scribble determined that the case with 2 *outs* had 2 options that couldn't be rotated to each other, so the answer was $6$!
 
 <CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/02_four_case.png"} width_str={"40%"} inline={true} />
 
@@ -42,7 +41,7 @@ That could have been the end of it, but **P** then had to ask
 
 > "Why?"
 
-Was it <La Tex="1 + 2 + 3" />? That's a neat-ish sum, maybe its <La Tex="\sum_{x=1}^{4 - 1} x" />?
+Was it $1 + 2 + 3$? That's a neat-ish sum, maybe its $\sum_{x=1}^{4 - 1} x$?
 
 ## Other cases
 
@@ -51,33 +50,33 @@ We needed to work out some other cases (ignoring the fact that you can't tessell
 <CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/03_my_scribbles_1.png"} width_str={"30%"} inline={true} />
 <CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/04_my_scribbles_2.png"} width_str={"30%"} inline={true} />
 
-By hand, we calculated cases <La Tex="n=1 \ldots 9" /> (and got it right for <La Tex="n=1 \ldots 7"/>) (where <La Tex="n" /> is the number of sides the shape has).
+By hand, we calculated cases $n=1 \ldots 9$ (and got it right for $n=1 \ldots 7$) (where $n$ is the number of sides the shape has).
 
-Letting <La Tex="f(n)" /> be a function which gives the number of arrangements of *ins* and *outs*, unique under rotation, of an <La Tex="n" />-sided shape, we found:
+Letting $f(n)$ be a function which gives the number of arrangements of *ins* and *outs*, unique under rotation, of an $n$-sided shape, we found:
 
-- <La Tex="f(1) = 2" />
-- <La Tex="f(2) = 3" />
-- <La Tex="f(3) = 4" />
-- <La Tex="f(4) = 6" />
-- <La Tex="f(5) = 8" />
-- <La Tex="f(6) = 14" />
-- <La Tex="f(7) = 20" />
+- $f(1) = 2$
+- $f(2) = 3$
+- $f(3) = 4$
+- $f(4) = 6$
+- $f(5) = 8$
+- $f(6) = 14$
+- $f(7) = 20$
 
-It's not <La Tex="\sum_{x=1}^{n - 1} x" />.
-But there's something vaguely approaching a pattern here, which is that the differences between each term is <La Tex="1, 1, 2, 2, 6, 6" />; not quite enough information to determine anything yet though.
+It's not $\sum_{x=1}^{n - 1} x$.
+But there's something vaguely approaching a pattern here, which is that the differences between each term is $1, 1, 2, 2, 6, 6$; not quite enough information to determine anything yet though.
 
-At this point it was at least clear that the first stage of the calculation was to work out <La Tex="n + 1" /> sub-cases, which are the number of *outs* (or *ins*, it doesn't matter) from <La Tex="0" /> to <La Tex="n" />.
+At this point it was at least clear that the first stage of the calculation was to work out $n + 1$ sub-cases, which are the number of *outs* (or *ins*, it doesn't matter) from $0$ to $n$.
 
-So can we see any patterns if we break it down like this? Let <La Tex="g(n, o)" /> be the number of rotationally unique arrangements of <La Tex="o" /> *outs* of an <La Tex="n" />-sided shape
+So can we see any patterns if we break it down like this? Let $g(n, o)$ be the number of rotationally unique arrangements of $o$ *outs* of an $n$-sided shape
 
-- <La Tex="f(n) = \sum_{o=0}^{n} g(n, o)" />
-- <La Tex="f(1) = g(1, 0) + g(1, 1) = 1 + 1" />
-- <La Tex="f(2) = g(2, 0) + g(2, 1) + g(2, 2) = 1 + 1 + 1" />
-- <La Tex="f(3) = 1 + 1 + 1 + 1" />
-- <La Tex="f(4) = 1 + 1 + 2 + 1 + 1" />
-- <La Tex="f(5) = 1 + 1 + 2 + 2 + 1 + 1" />
-- <La Tex="f(6) = 1 + 1 + 3 + 4 + 3 + 1 + 1" />
-- <La Tex="f(7) = 1 + 1 + 3 + 5 + 5 + 3 + 1 + 1" />
+- $f(n) = \sum_{o=0}^{n} g(n, o)$
+- $f(1) = g(1, 0) + g(1, 1) = 1 + 1$
+- $f(2) = g(2, 0) + g(2, 1) + g(2, 2) = 1 + 1 + 1$
+- $f(3) = 1 + 1 + 1 + 1$
+- $f(4) = 1 + 1 + 2 + 1 + 1$
+- $f(5) = 1 + 1 + 2 + 2 + 1 + 1$
+- $f(6) = 1 + 1 + 3 + 4 + 3 + 1 + 1$
+- $f(7) = 1 + 1 + 3 + 5 + 5 + 3 + 1 + 1$
 
 It's looking a bit neater!
 
@@ -109,13 +108,13 @@ There seems to be some structure to the middle terms, but I think we need more c
 
 ## Scripting
 
-We can model a possible arrangement as a binary string. E.g. a 4-sided piece with all *ins* would be <La Tex="0000" />, and one arrangement of a 6-sided piece with 3 *outs* would be <La Tex="001011" />.
-For our purposes, that 6-sided shape is also equally validly represented as <La Tex="100101" />, <La Tex="110010" />, <La Tex="011001" />, <La Tex="101100" />, and <La Tex="010110" />.
+We can model a possible arrangement as a binary string. E.g. a 4-sided piece with all *ins* would be $0000$, and one arrangement of a 6-sided piece with 3 *outs* would be $001011$.
+For our purposes, that 6-sided shape is also equally validly represented as $100101$, $110010$, $011001$, $101100$, and $010110$.
 
-Initially I took a given <La Tex="n" /> and <La Tex="o" />, and generated a base string; e.g. for <La Tex="n = 3, o = 2" /> the string would be <La Tex="111000" />.
+Initially I took a given $n$ and $o$, and generated a base string; e.g. for $n = 3, o = 2$ the string would be $111000$.
 I then found all the permutations of the string.
-This worked, but it was very slow, as it sees each character in the string as unique and therefore tries all 3 <La Tex="1" />s in the first spot, and then the second, etc., when they are actually identical.
-Interpreting the strings as binary, we can just count <La Tex="000001" />, <La Tex="000010" />, etc. and find all the strings with 3 <La Tex="1" />s.
+This worked, but it was very slow, as it sees each character in the string as unique and therefore tries all 3 $1$s in the first spot, and then the second, etc., when they are actually identical.
+Interpreting the strings as binary, we can just count $000001$, $000010$, etc. and find all the strings with 3 $1$s.
 
 To easily determine when we have duplicate strings, it's helpful to have a consistent normalisation function, so any given shape has a unique "authoritative representation".
 Again interpreting the strings as binary, we can define that the string that encodes the smallest binary number is the normalised one.
@@ -151,8 +150,8 @@ This produced the following output
 1  1  10  57  245  776  1944  3876  6310  8398  9252  8398  6310  3876  1944  776  245  57  10  1  1   # 20 sides 52488 combinations
 ```
 
-Now we can clearly see that the third items (and third to last), form a pattern of numbers increasing by 1 for every 2 increases of <La Tex="n" />.
-So when <La Tex="n=4" /> the third value is 2, when <La Tex="n=9" /> the third value is 7.
+Now we can clearly see that the third items (and third to last), form a pattern of numbers increasing by 1 for every 2 increases of $n$.
+So when $n=4$ the third value is 2, when $n=9$ the third value is 7.
 
 ### Lemma 4
 
@@ -170,18 +169,18 @@ The next pattern is a little less clear, but if we look at the differences betwe
      -    +    +    -    +    +    -    +    +    -    +
 ```
 
-But, to my knowledge, that's not a simple polynomial of the form <La Tex="a + bn + cn^{2} + \dots" />, because of the repeating nature of the 2nd order (and all higher) nth term(s).
+But, to my knowledge, that's not a simple polynomial of the form $a + bn + cn^{2} + \dots$, because of the repeating nature of the 2nd order (and all higher) nth term(s).
 
-Entering [that sequence in the OEIS](https://oeis.org/search?q=7+10+12+15+19+22+26+31+35+40+46+51+57&language=english&go=Search) (<La Tex="g(n, 4), n > 7" />) gives 3 results:
+Entering [that sequence in the OEIS](https://oeis.org/search?q=7+10+12+15+19+22+26+31+35+40+46+51+57&language=english&go=Search) ($g(n, 4), n > 7$) gives 3 results:
 
-- <La Tex="a(n) = \left \lceil{\frac{(n-3)(n-4)}{6}}\right \rceil" />
-- <La Tex="a(n) = 1 + \left \lfloor{\frac{n(n-3)}{6}}\right \rfloor" />
+- $a(n) = \left \lceil{\frac{(n-3)(n-4)}{6}}\right \rceil$
+- $a(n) = 1 + \left \lfloor{\frac{n(n-3)}{6}}\right \rfloor$
 - Maximal number of points that can be placed on a triangular grid of side n so that there is no pair of adjacent points.
 
-Both of the first sequences are identical except the second has an extra <La Tex="0" /> at the start, and they also match the earlier terms of the sequence which I ignored in case they messed up the results (<La Tex="1 1 2 4 5" />).
-All 3 sequences are identical from <La Tex="7" /> onwards.
+Both of the first sequences are identical except the second has an extra $0$ at the start, and they also match the earlier terms of the sequence which I ignored in case they messed up the results ($1 1 2 4 5$).
+All 3 sequences are identical from $7$ onwards.
 
-Entering the [fifth term into the OEIS](https://oeis.org/search?q=22+30+43+55+73+91+116+140+172+204+245&language=english&go=Search), starting from <La Tex="22" /> to avoid the centering issue (<La Tex="g(n, 5), n > 9" />), gives just 1 result:
+Entering the [fifth term into the OEIS](https://oeis.org/search?q=22+30+43+55+73+91+116+140+172+204+245&language=english&go=Search), starting from $22$ to avoid the centering issue ($g(n, 5), n > 9$), gives just 1 result:
 
 - Molien series of 4-dimensional representation of cyclic group of order 4 over GF(2) (not Cohen-Macaulay).
 
@@ -205,12 +204,12 @@ We take a 2D object, whose relevant properties are held in a rotatable ordered l
 
 Formally
 
-> "An <La Tex="a" />-ary necklace of length <La Tex="n" /> is a string of <La Tex="n" /> characters, each of <La Tex="a" /> possible types. Rotation is ignored, in the sense that <La Tex="b_{1} b_{2} \ldots b_{n}" /> is equivalent to <La Tex="b_{k} b_{k + 1} \ldots b_{n} b_{1} b_{2} \ldots b_{k - 1}" /> for any <La Tex="k" />."
+> "An $a$-ary necklace of length $n$ is a string of $n$ characters, each of $a$ possible types. Rotation is ignored, in the sense that $b_{1} b_{2} \ldots b_{n}$ is equivalent to $b_{k} b_{k + 1} \ldots b_{n} b_{1} b_{2} \ldots b_{k - 1}$ for any $k$."
 
 _[Wolfram Alpha](https://mathworld.wolfram.com/Necklace.html)_
 
 There are 2 types of necklace: *fixed*, and *free*.
-For *free* necklaces, mirror images are seen as equivalent, so <La Tex="011010" /> and <La Tex="010110" /> would be equivalent.
+For *free* necklaces, mirror images are seen as equivalent, so $011010$ and $010110$ would be equivalent.
 For a *fixed* necklace, we imagine it laid on a table, able to be rotated, but not flipped over (it may not be taken "out of the plane").
 
 In our case, if you flip over a puzzle piece it has nothing on the other side, so our necklaces must be *fixed*.
@@ -228,17 +227,17 @@ _The bit-string starts from the red outlined circle_
 
 ## Lots of maths
 
-Now we have a foothold in established maths, we can work towards a better formula for <La Tex="f(n)" />
+Now we have a foothold in established maths, we can work towards a better formula for $f(n)$
 
 ### Definitions
 
 We need to do some organisation, and give some things names.
 
-Let <La Tex="G" /> be our set of rotation operations
+Let $G$ be our set of rotation operations
 
 <LaTexBlock content="G = \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\}" />
 
-For each bit string <La Tex="x" /> let's consider the operations that have no effect on it
+For each bit string $x$ let's consider the operations that have no effect on it
 
 | x    |  90° | 180° | 270° | 360° |
 | ---- | --- | --- | --- | --- |
@@ -259,7 +258,7 @@ For each bit string <La Tex="x" /> let's consider the operations that have no ef
 | 1110 |     |     |     |  ✅  |
 | 1111 |  ✅  |  ✅  | ✅ |  ✅  |
 
-For a given <La Tex="x" />, we call the set of operations that have no effect on it <La Tex="G_{x}" /> the **stabilizer**
+For a given $x$, we call the set of operations that have no effect on it $G_{x}$ the **stabilizer**
 
 E.g.
 <LaTexBlock content="\begin{aligned}
@@ -270,14 +269,14 @@ E.g.
 
 We can also group our bitstrings, into ones which can be transformed into each other by our rotation operations
 
-- <La Tex="0000" />
-- <La Tex="0001, 0010, 0100, 1000" />
-- <La Tex="0011, 0110, 1100, 1001" />
-- <La Tex="0101, 1010" />
-- <La Tex="0111, 1110, 1101, 1011" />
-- <La Tex="1111" />
+- $0000$
+- $0001, 0010, 0100, 1000$
+- $0011, 0110, 1100, 1001$
+- $0101, 1010$
+- $0111, 1110, 1101, 1011$
+- $1111$
 
-For a given <La Tex="x" />, we call the set of other bitstrings into which it can be transformed <La Tex="O_{x}" /> the **orbit**
+For a given $x$, we call the set of other bitstrings into which it can be transformed $O_{x}$ the **orbit**
 
 E.g.
 <LaTexBlock content="\begin{aligned}
@@ -288,8 +287,8 @@ E.g.
 
 ### Orbit-stabilizer Theorem
 
-For a given <La Tex="x" />, if two operations give the same result (<La Tex="r1(x) = r2(x)" /> e.g. <La Tex="90^{\circ}(0101) = 270^{\circ}(0101) = 1010" />) then the difference between those two operations must have no effect on <La Tex="x" />.
-I.e. the difference between those two operations must be in the **stabilizer** of <La Tex="x" />
+For a given $x$, if two operations give the same result ($r1(x) = r2(x)$ e.g. $90^{\circ}(0101) = 270^{\circ}(0101) = 1010$) then the difference between those two operations must have no effect on $x$.
+I.e. the difference between those two operations must be in the **stabilizer** of $x$
 
 <LaTexBlock content="r1(x) = r2(x) \quad \rightarrow \quad \left( r2^{-1} \circ r1 \right) \in G_{x}" />
 
@@ -308,25 +307,25 @@ E.g.
     -270° ∘ 90° = -180° which is the same operation as 180°, just a different notation
 </Spoiler>
 
-So, for a given <La Tex="x" />, we can split our set of operations <La Tex="G" /> into "equivalence" classes
+So, for a given $x$, we can split our set of operations $G$ into "equivalence" classes
 
-E.g. for <La Tex="x = 0101" /> we have 2 classes (with 2 operations per class):
+E.g. for $x = 0101$ we have 2 classes (with 2 operations per class):
 
-- <La Tex="180^{\circ}(0101) = 360^{\circ}(0101) = 0101" />
-- <La Tex="90^{\circ}(0101) = 270^{\circ}(0101) = 1010" />
+- $180^{\circ}(0101) = 360^{\circ}(0101) = 0101$
+- $90^{\circ}(0101) = 270^{\circ}(0101) = 1010$
 
-Whereas for <La Tex="x = 0001" /> we have 4 classes (with 1 operations per class):
+Whereas for $x = 0001$ we have 4 classes (with 1 operations per class):
 
-- <La Tex="90^{\circ}(0001) = 0010" />
-- <La Tex="180^{\circ}(0001) = 0100" />
-- <La Tex="270^{\circ}(0001) = 1000" />
-- <La Tex="360^{\circ}(0001) = 0001" />
+- $90^{\circ}(0001) = 0010$
+- $180^{\circ}(0001) = 0100$
+- $270^{\circ}(0001) = 1000$
+- $360^{\circ}(0001) = 0001$
 
 Each equivalence class maps to an element of the **orbit**.
 One of the equivalence classes will be the **stabilizer**.
 All the equivalence classes are the same size.
 
-Therefore, for a given <La Tex="x" />, we can say that the number of bit strings it's possible to rotate it to (**orbit**), multiplied by the number of operations which have no effect on it (**stabilizer**), gives the total number of operations.
+Therefore, for a given $x$, we can say that the number of bit strings it's possible to rotate it to (**orbit**), multiplied by the number of operations which have no effect on it (**stabilizer**), gives the total number of operations.
 
 <LaTexBlock content="|G| = |G_{x}| \times |O_{x}|" />
 
@@ -337,7 +336,7 @@ Further reading:
 
 ### Burnside's Lemma
 
-Let's now consider the sum of the size of the **stabilizers** for all our bitstrings <La Tex="\sum_{x \in X} |G_{x}|" />.
+Let's now consider the sum of the size of the **stabilizers** for all our bitstrings $\sum_{x \in X} |G_{x}|$.
 Using the **Orbit-stabilizer Theorem** above, we can write this as:
 
 <LaTexBlock content="\begin{aligned}
@@ -345,12 +344,12 @@ Using the **Orbit-stabilizer Theorem** above, we can write this as:
     &= |G| \sum_{x \in X} \frac{1}{|O_{x}|} \\
 \end{aligned}" />
 
-For a given orbit <La Tex="O_{x}" />, each <La Tex="x \in O_{x}" /> will contribute <La Tex="\frac{1}{|O|}" /> to the sum, and there are exactly <La Tex="|O|" /> elements in <La Tex="O" />, so each orbit contributes <La Tex="|O| \times \frac{1}{|O|} = 1" /> to the sum.
+For a given orbit $O_{x}$, each $x \in O_{x}$ will contribute $\frac{1}{|O|}$ to the sum, and there are exactly $|O|$ elements in $O$, so each orbit contributes $|O| \times \frac{1}{|O|} = 1$ to the sum.
 
 So
 <LaTexBlock content="\sum_{x \in X} |G_{x}| = |G| \times |X / G|" />
 
-Where <La Tex="|X / G|" /> is the number of **orbits** of <La Tex="X" /> under <La Tex="G" /> (AKA the number of sets of bitstrings that can be rotated onto each other AKA the number of unique puzzle pieces!)
+Where $|X / G|$ is the number of **orbits** of $X$ under $G$ (AKA the number of sets of bitstrings that can be rotated onto each other AKA the number of unique puzzle pieces!)
 
 Rearranging this we find
 <LaTexBlock content="|X / G| = \frac{1}{|G|} \sum_{x \in X} |G_{x}|" />
@@ -367,7 +366,7 @@ Further reading:
 
 To make it easier to use in the next section, we need 1 more definition in order to restructure Burnside's Lemma into something more usable.
 
-For an operation <La Tex="g \in G" />, a **fixed point** of <La Tex="X" /> is an element <La Tex="x \in X" /> such that <La Tex="g.x = x" />
+For an operation $g \in G$, a **fixed point** of $X$ is an element $x \in X$ such that $g.x = x$
 E.g.
 <LaTexBlock content="\begin{aligned}
 g &= 180^{\circ} \\
@@ -376,18 +375,18 @@ g . x &= 1010 \\
 &= x
 \end{aligned}" />
 
-So for the operation <La Tex="180^{\circ}" />, <La Tex="1010" /> is a **fixed point**
+So for the operation $180^{\circ}$, $1010$ is a **fixed point**
 
-The set of all **fixed points** of <La Tex="X" /> with respect to <La Tex="g" /> is often denoted <La Tex="X^{g}" />
+The set of all **fixed points** of $X$ with respect to $g$ is often denoted $X^{g}$
 
 <LaTexBlock content="X^{g} = \{x \in X : g . x = x\}" />
 
-- <La Tex="X^{90^{\circ}} = \{0000, 1111\}" />
-- <La Tex="X^{180^{\circ}} = \{0000, 0101, 1010, 1111\}" />
-- <La Tex="X^{270^{\circ}} = \{0000, 1111\}" />
-- <La Tex="X^{360^{\circ}} = X = \{0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111\}" />
+- $X^{90^{\circ}} = \{0000, 1111\}$
+- $X^{180^{\circ}} = \{0000, 0101, 1010, 1111\}$
+- $X^{270^{\circ}} = \{0000, 1111\}$
+- $X^{360^{\circ}} = X = \{0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111\}$
 
-The sum of the sizes of the sets of all **fixed** points of <La Tex="X" /> for each operation <La Tex="g \in G" /> is the same as the sum of the sizes of the sets of the **stabilizers** for each item <La Tex="x \in X" />
+The sum of the sizes of the sets of all **fixed** points of $X$ for each operation $g \in G$ is the same as the sum of the sizes of the sets of the **stabilizers** for each item $x \in X$
 
 <LaTexBlock content="\sum_{g \in G} |X^{g}| = \sum_{x \in X} |G_{x}|" />
 
@@ -404,45 +403,45 @@ So we can restate Burnside's Lemma as
 
 Where
 
-- <La Tex="|X / G|" /> is the number of **orbits** of <La Tex="X" /> (number of unique puzzle pieces)
-- <La Tex="|G|" /> is the number of operations we have (in our case 4: 90°, 180°, 270°, 360°), and
-- <La Tex="|X^{g}|" /> is the number of bitstrings unchanged under a given operation <La Tex="g" />
+- $|X / G|$ is the number of **orbits** of $X$ (number of unique puzzle pieces)
+- $|G|$ is the number of operations we have (in our case 4: 90°, 180°, 270°, 360°), and
+- $|X^{g}|$ is the number of bitstrings unchanged under a given operation $g$
 
 ### The General necklace polynomial
 
 We've got a formula, but we've lost all the variables we knew.
-How do we get this in terms of <La Tex="n" />?
+How do we get this in terms of $n$?
 
 Here's some easy wins:
-- <La Tex="|X / G|" /> is equivalent to our <La Tex="f(n)" />
-- <La Tex="|G|" /> is the size of the set of operations, in the square puzzle-piece case we have been considering this is <La Tex="4" />, in general for an <La Tex="n" />-sided puzzle piece there are <La Tex="n" /> possible rotations. So <La Tex="|G| = n" />
+- $|X / G|$ is equivalent to our $f(n)$
+- $|G|$ is the size of the set of operations, in the square puzzle-piece case we have been considering this is $4$, in general for an $n$-sided puzzle piece there are $n$ possible rotations. So $|G| = n$
 
-We originally defined our set of operations <La Tex="G" /> as rotations <La Tex="G = \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\}" />.
+We originally defined our set of operations $G$ as rotations $G = \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\}$.
 This intuitively maps onto puzzle pieces.
 
 This same "rotation" is equivalent to moving a certain number of bits.
-E.g. the operation <La Tex="180^{\circ}" /> is the same as moving 2 bits from the start to the end.
+E.g. the operation $180^{\circ}$ is the same as moving 2 bits from the start to the end.
 
-So, without changing its meaning, we can also define <La Tex="G" /> as
+So, without changing its meaning, we can also define $G$ as
 
 <LaTexBlock content="G = \{r_{1}, r_{2}, r_{3}, r_{4}\}" />
 
 For a string we can define its **period**.
 This is the length of its largest repeating pattern.
-E.g. the period of <La Tex="0101" /> is 2, because <La Tex="01" /> repeats twice. The period of <La Tex="0000" /> is 4, and the period of <La Tex="0111" /> is 1.
+E.g. the period of $0101$ is 2, because $01$ repeats twice. The period of $0000$ is 4, and the period of $0111$ is 1.
 
-For a given bitstring to be unchanged over a rotation <La Tex="r_{i}" />, its period must be divisible by <La Tex="i" />, otherwise the rotation will cut the repeating string somewhere in the middle of its pattern.
+For a given bitstring to be unchanged over a rotation $r_{i}$, its period must be divisible by $i$, otherwise the rotation will cut the repeating string somewhere in the middle of its pattern.
 
 Also, its period must be divisible by the length of the string, otherwise it's not possible for it to be a repeating pattern.
-If we have a period of 3, with the periodic substring being <La Tex="001" />, we couldn't then have a full string of length 5 because the last <La Tex="1" /> would be cut off.
+If we have a period of 3, with the periodic substring being $001$, we couldn't then have a full string of length 5 because the last $1$ would be cut off.
 
-Therefore, the largest possible period for a string of length <La Tex="n" />, and a rotation <La Tex="r_{i}" />, can be found by the greatest common divisor of <La Tex="n" /> and <La Tex="i" />.
-E.g. for <La Tex="n = 4" /> and <La Tex="i = 2" /> the largest possible period is <La Tex="gcd(4, 2) = 2" />.
+Therefore, the largest possible period for a string of length $n$, and a rotation $r_{i}$, can be found by the greatest common divisor of $n$ and $i$.
+E.g. for $n = 4$ and $i = 2$ the largest possible period is $gcd(4, 2) = 2$.
 Any repeating 2-element substring will be unchanged by a rotation of 2.
-<La Tex="r_{2}(0000) = 0000" />, <La Tex="r_{2}(0101) = 0101" />, but <La Tex="r_{2}(0001) = 0100" />
+$r_{2}(0000) = 0000$, $r_{2}(0101) = 0101$, but $r_{2}(0001) = 0100$
 
-Now we know the maximum period of our substring for a given <La Tex="r_{i} \in G" />, we can find how many there are using the approach I suggested right back at the start.
-The number of possible 2-bit strings of length <La Tex="gcd(n, i)" /> is <La Tex="2^{gcd(n, i)}" />
+Now we know the maximum period of our substring for a given $r_{i} \in G$, we can find how many there are using the approach I suggested right back at the start.
+The number of possible 2-bit strings of length $gcd(n, i)$ is $2^{gcd(n, i)}$
 
 <LaTexBlock content="|X^{g}| = 2^{gcd(n, i)}" />
 

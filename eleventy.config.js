@@ -154,6 +154,8 @@ export default async function(eleventyConfig) {
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);
 	eleventyConfig.amendLibrary("md", md => md.use(markdownItAttrs));
+	const { katex } = (await import("@mdit/plugin-katex"));
+	eleventyConfig.amendLibrary("md", md => md.use(katex, {output: "mathml"}));
 
 	// Features to make your build faster (when you need them)
 
