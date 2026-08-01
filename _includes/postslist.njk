@@ -13,7 +13,11 @@
 							{% if post.data.description %}<p class="card-text text-muted">{{ post.data.description }}</p>{% endif %}
 							{%- set author = post.data.author %}
 							{% include "author.njk" %}
-							<p class="card-text"><time class="text-body-secondary small" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time></p>
+							<p class="card-text text-body-secondary small d-flex justify-content-between">
+								{%- set date = post.date %}
+								{%- set updatedDate = post.data.updatedDate %}
+								{% include "post-date.njk" %}
+							</p>
 						</div>
 					</div>
 					<div class="col-5 col-lg-3">

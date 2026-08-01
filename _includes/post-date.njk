@@ -1,0 +1,4 @@
+<time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+{%- if updatedDate %}
+<span class="ms-2 fst-italic">(updated <time datetime="{{ updatedDate | htmlDateString }}">{{ updatedDate | readableDate }}</time>)</span>
+{%- endif %}

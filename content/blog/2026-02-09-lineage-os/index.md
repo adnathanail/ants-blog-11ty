@@ -4,7 +4,7 @@ heroImg: ./lineageos-logo.jpeg
 description: App store region locks, and OS version requirements
 author: alex
 date: 2026-02-09
-updated_date: 2026-03-04
+updatedDate: 2026-03-04
 ---
 
 ## I hate region locks and banking apps

@@ -16,7 +16,10 @@ layout: layouts/base.njk
 
 <div class="row mb-1">
 	<div class="col d-flex align-items-center">
-		<span class="text-body-secondary my-1"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></span>
+		<span class="text-body-secondary my-1">
+			{%- set date = page.date %}
+			{% include "post-date.njk" %}
+		</span>
 	</div>
 	<div class="col-auto d-flex d-md-none">
 		{% include "author.njk" %}
