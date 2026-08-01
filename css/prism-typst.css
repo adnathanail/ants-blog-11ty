@@ -1,0 +1,15 @@
+/*
+ * Overrides for Typst-specific Prism tokens on top of prism-okaidia.
+ * Colors adapted from Mc-Zen/prism-typst's dark theme (MIT License).
+ * Only tokens that okaidia doesn't already style are set here.
+ */
+.token.symbol { color: #caa8ff; }
+.token.label,
+.token.reference,
+.token.escaped { color: #d9f8f4; }
+.token.raw { color: #caccd6; }
+.token.heading,
+.token.bold { font-weight: bold; }
+.token.heading { color: #66d9ef; } /* Keyword color */
+.token.italic { font-style: italic; }
+.token.boltalic { font-weight: bold; font-style: italic; }

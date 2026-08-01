@@ -8,6 +8,7 @@ import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownItAttrs from "markdown-it-attrs";
 import admonitions from "./plugins/admonitions.js";
+import "./plugins/prism-typst.js";
 
 import pluginFilters from "./_config/filters.js";
 
