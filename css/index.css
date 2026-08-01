@@ -107,15 +107,21 @@ pre:has( + p) {
 }
 
 /* Inline code */
-.post-content :not(pre) > code, :not(.katex-block) > span.katex {
-	padding: 0.15em 0.35em;
+.post-content :not(pre) > code, :not(.katex-block) > span.katex > math {
 	background-color: var(--bs-tertiary-bg);
 	border-radius: var(--bs-border-radius-sm);
 	border: 1px solid var(--bs-primary-bg-subtle);
 }
-
-:not(.katex-block) > span.katex {
+.post-content :not(pre) > code {
+	padding: 0.15em 0.35em;
+}
+:not(.katex-block) > span.katex > math {
+	padding: 0.35rem;
 	color: var(--bs-code-color);
+}
+li:not(.katex-block) > span.katex > math {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
 }
 
 /* Links */

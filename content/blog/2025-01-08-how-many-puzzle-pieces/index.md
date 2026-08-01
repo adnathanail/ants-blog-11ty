@@ -163,7 +163,7 @@ $$g(n, 3) = g(n, n - 3) = \left \lfloor{\frac{n}{2}}\right \rfloor$$
 
 The next pattern is a little less clear, but if we look at the differences between the values for the fourth item (starting with 8 sides, as I'm not certain that the third value being across the center line won't break things), there is something there.
 
-```
+```bash
 7   10   12   15   19   22   26   31   35   40   46   51   57
   3    2    3    4    3    4    5    4    5    6    5    6
      -    +    +    -    +    +    -    +    +    -    +
