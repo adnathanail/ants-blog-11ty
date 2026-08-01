@@ -107,14 +107,14 @@ pre:has( + p) {
 }
 
 /* Inline code */
-.post-content :not(pre) > code, span.katex {
+.post-content :not(pre) > code, :not(.katex-block) > span.katex {
 	padding: 0.15em 0.35em;
 	background-color: var(--bs-tertiary-bg);
 	border-radius: var(--bs-border-radius-sm);
 	border: 1px solid var(--bs-primary-bg-subtle);
 }
 
-span.katex {
+:not(.katex-block) > span.katex {
 	color: var(--bs-code-color);
 }
 

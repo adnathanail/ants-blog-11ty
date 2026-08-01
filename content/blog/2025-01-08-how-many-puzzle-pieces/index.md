@@ -35,7 +35,7 @@ I said it definitely wasn't that, it was $2^{4}$, because you have 4 sides, each
 
 But a quick scribble determined that the case with 2 *outs* had 2 options that couldn't be rotated to each other, so the answer was $6$!
 
-<CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/02_four_case.png"} width_str={"40%"} inline={true} />
+![](./02_four_case.png){.img-w-40}
 
 That could have been the end of it, but **P** then had to ask
 
@@ -47,8 +47,8 @@ Was it $1 + 2 + 3$? That's a neat-ish sum, maybe its $\sum_{x=1}^{4 - 1} x$?
 
 We needed to work out some other cases (ignoring the fact that you can't tessellate 2D shapes which aren't triangles, squares, or hexagons).
 
-<CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/03_my_scribbles_1.png"} width_str={"30%"} inline={true} />
-<CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/04_my_scribbles_2.png"} width_str={"30%"} inline={true} />
+![](./03_my_scribbles_1.png){.img-w-30}
+![](./04_my_scribbles_2.png){.img-w-30}
 
 By hand, we calculated cases $n=1 \ldots 9$ (and got it right for $n=1 \ldots 7$) (where $n$ is the number of sides the shape has).
 
@@ -84,7 +84,7 @@ Firstly, we can see that each line is symmetrical, i.e. the first and last items
 
 ### Lemma 1
 
-<LaTexBlock content="g(n, a) = g(n, n - a)"/>
+$$g(n, a) = g(n, n - a)$$
 
 ---
 
@@ -92,7 +92,7 @@ When we have no *outs* and all *outs*, any puzzle piece with any number of sides
 
 ### Lemma 2
 
-<LaTexBlock content="g(n, 0) = g(n, n) = 1"/>
+$$g(n, 0) = g(n, n) = 1$$
 
 ---
 
@@ -100,7 +100,7 @@ Similarly, when we have 1 *out* and all-but-one *outs* (which is the same as jus
 
 ### Lemma 3
 
-<LaTexBlock content="g(n, 1) = g(n, n - 1) = 1"/>
+$$g(n, 1) = g(n, n - 1) = 1$$
 
 ---
 
@@ -127,7 +127,7 @@ Putting this together I produced the following script:
 
 This produced the following output
 
-```
+```bash
 1  1                                                                                                   # 1 sides 2 combinations
 1  1  1                                                                                                # 2 sides 3 combinations
 1  1  1  1                                                                                             # 3 sides 4 combinations
@@ -155,7 +155,7 @@ So when $n=4$ the third value is 2, when $n=9$ the third value is 7.
 
 ### Lemma 4
 
-<LaTexBlock content="g(n, 3) = g(n, n - 3) = \left \lfloor{\frac{n}{2}}\right \rfloor"/>
+$$g(n, 3) = g(n, n - 3) = \left \lfloor{\frac{n}{2}}\right \rfloor$$
 
 ---
 
@@ -194,7 +194,7 @@ Why is it talking about necklaces?
 
 ## Necklace numbers
 
-<CustomImage src={"/uploads/posts/2025-01-08-how-many-puzzle-pieces/05_necklace.png"} width_str={"50%"} />
+![](./05_necklace.png){.img-w-40}
 
 The mathematical study of **necklaces** looks at how many ways there are to order different coloured beads on a string.
 If we imagine a four-sided puzzle piece with *in*, *out*, *in*, *out* this is equivalent to a 2-coloured necklace with four beads: white, black, white, black.
@@ -235,7 +235,7 @@ We need to do some organisation, and give some things names.
 
 Let $G$ be our set of rotation operations
 
-<LaTexBlock content="G = \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\}" />
+$$G = \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\}$$
 
 For each bit string $x$ let's consider the operations that have no effect on it
 
@@ -261,11 +261,13 @@ For each bit string $x$ let's consider the operations that have no effect on it
 For a given $x$, we call the set of operations that have no effect on it $G_{x}$ the **stabilizer**
 
 E.g.
-<LaTexBlock content="\begin{aligned}
+$$
+\begin{aligned}
     G_{0000} &= \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\} \\
     G_{0101} &= \{180^{\circ}, 360^{\circ}\} \\
     G_{1101} &= \{360^{\circ}\}
-\end{aligned}" />
+\end{aligned}
+$$
 
 We can also group our bitstrings, into ones which can be transformed into each other by our rotation operations
 
@@ -279,33 +281,39 @@ We can also group our bitstrings, into ones which can be transformed into each o
 For a given $x$, we call the set of other bitstrings into which it can be transformed $O_{x}$ the **orbit**
 
 E.g.
-<LaTexBlock content="\begin{aligned}
+$$
+\begin{aligned}
     O_{0000} &= \{0000\} \\
     O_{0001} &= \{0001, 0010, 0100, 1000\} \\
     O_{0101} &= \{0101, 1010\}
-\end{aligned}" />
+\end{aligned}
+$$
 
 ### Orbit-stabilizer Theorem
 
 For a given $x$, if two operations give the same result ($r1(x) = r2(x)$ e.g. $90^{\circ}(0101) = 270^{\circ}(0101) = 1010$) then the difference between those two operations must have no effect on $x$.
 I.e. the difference between those two operations must be in the **stabilizer** of $x$
 
-<LaTexBlock content="r1(x) = r2(x) \quad \rightarrow \quad \left( r2^{-1} \circ r1 \right) \in G_{x}" />
+$$r1(x) = r2(x) \quad \rightarrow \quad \left( r2^{-1} \circ r1 \right) \in G_{x}$$
 
 <Spoiler title_text={"What is the ∘ symbol?"}>
     The ∘ symbol means function composition, AKA the effect of applying 1 function then the other. For example 180° ∘ 90° means rotate 90 degrees then rotate 180 degrees, which is equivalent to the single function rotating 270 degrees.
 </Spoiler>
 
 E.g.
-<LaTexBlock content="\begin{aligned}
+$$
+\begin{aligned}
     x &= 0101 \\
     90^{\circ}(x) &= 270^{\circ}(x) \\
     \therefore 180^{\circ} &\in G_{0101}
-\end{aligned}" />
+\end{aligned}
+$$
 
-<Spoiler title_text={"Composing rotations"}>
-    -270° ∘ 90° = -180° which is the same operation as 180°, just a different notation
-</Spoiler>
+<details>
+<summary>Composing rotations</summary>
+
+-270° ∘ 90° = -180° which is the same operation as 180°, just a different notation
+</details>
 
 So, for a given $x$, we can split our set of operations $G$ into "equivalence" classes
 
@@ -327,7 +335,7 @@ All the equivalence classes are the same size.
 
 Therefore, for a given $x$, we can say that the number of bit strings it's possible to rotate it to (**orbit**), multiplied by the number of operations which have no effect on it (**stabilizer**), gives the total number of operations.
 
-<LaTexBlock content="|G| = |G_{x}| \times |O_{x}|" />
+$$|G| = |G_{x}| \times |O_{x}|$$
 
 This is the **Orbit-stabilizer Theorem**!
 
@@ -339,20 +347,22 @@ Further reading:
 Let's now consider the sum of the size of the **stabilizers** for all our bitstrings $\sum_{x \in X} |G_{x}|$.
 Using the **Orbit-stabilizer Theorem** above, we can write this as:
 
-<LaTexBlock content="\begin{aligned}
+$$
+\begin{aligned}
     \sum_{x \in X} |G_{x}| &= \sum_{x \in X} \frac{|G|}{|O_{x}|} \\
     &= |G| \sum_{x \in X} \frac{1}{|O_{x}|} \\
-\end{aligned}" />
+\end{aligned}
+$$
 
 For a given orbit $O_{x}$, each $x \in O_{x}$ will contribute $\frac{1}{|O|}$ to the sum, and there are exactly $|O|$ elements in $O$, so each orbit contributes $|O| \times \frac{1}{|O|} = 1$ to the sum.
 
 So
-<LaTexBlock content="\sum_{x \in X} |G_{x}| = |G| \times |X / G|" />
+$$\sum_{x \in X} |G_{x}| = |G| \times |X / G|$$
 
 Where $|X / G|$ is the number of **orbits** of $X$ under $G$ (AKA the number of sets of bitstrings that can be rotated onto each other AKA the number of unique puzzle pieces!)
 
 Rearranging this we find
-<LaTexBlock content="|X / G| = \frac{1}{|G|} \sum_{x \in X} |G_{x}|" />
+$$|X / G| = \frac{1}{|G|} \sum_{x \in X} |G_{x}|$$
 
 A formula for the number of unique puzzle pieces!
 
@@ -368,18 +378,20 @@ To make it easier to use in the next section, we need 1 more definition in order
 
 For an operation $g \in G$, a **fixed point** of $X$ is an element $x \in X$ such that $g.x = x$
 E.g.
-<LaTexBlock content="\begin{aligned}
+$$
+\begin{aligned}
 g &= 180^{\circ} \\
 x &= 1010 \\
 g . x &= 1010 \\
 &= x
-\end{aligned}" />
+\end{aligned}
+$$
 
 So for the operation $180^{\circ}$, $1010$ is a **fixed point**
 
 The set of all **fixed points** of $X$ with respect to $g$ is often denoted $X^{g}$
 
-<LaTexBlock content="X^{g} = \{x \in X : g . x = x\}" />
+$$X^{g} = \{x \in X : g . x = x\}$$
 
 - $X^{90^{\circ}} = \{0000, 1111\}$
 - $X^{180^{\circ}} = \{0000, 0101, 1010, 1111\}$
@@ -388,18 +400,24 @@ The set of all **fixed points** of $X$ with respect to $g$ is often denoted $X^{
 
 The sum of the sizes of the sets of all **fixed** points of $X$ for each operation $g \in G$ is the same as the sum of the sizes of the sets of the **stabilizers** for each item $x \in X$
 
-<LaTexBlock content="\sum_{g \in G} |X^{g}| = \sum_{x \in X} |G_{x}|" />
+$$\sum_{g \in G} |X^{g}| = \sum_{x \in X} |G_{x}|$$
 
-<LaTexSpoiler title_text={"Proof"} content="\begin{aligned}
+<details>
+<summary>Proof</summary>
+
+$$
+\begin{aligned}
     \sum_{g \in G} |X^{g}| &= \sum_{g \in G} | \{ x \in X : g \cdot x = x\} | \\
     &= | \{ (g, x) : g \in G, x \in X, g \cdot x = x\} | \\
     &= \sum_{x \in X} | \{ g \in G : g \cdot x = x\} | \\
     &= \sum_{x \in X} |G_{x}|
-\end{aligned}" />
+\end{aligned}
+$$
+</details>
 
 So we can restate Burnside's Lemma as
 
-<LaTexBlock content="|X / G| = \frac{1}{|G|} \sum_{g \in G} |X^{g}|" />
+$$|X / G| = \frac{1}{|G|} \sum_{g \in G} |X^{g}|$$
 
 Where
 
@@ -424,7 +442,7 @@ E.g. the operation $180^{\circ}$ is the same as moving 2 bits from the start to 
 
 So, without changing its meaning, we can also define $G$ as
 
-<LaTexBlock content="G = \{r_{1}, r_{2}, r_{3}, r_{4}\}" />
+$$G = \{r_{1}, r_{2}, r_{3}, r_{4}\}$$
 
 For a string we can define its **period**.
 This is the length of its largest repeating pattern.
@@ -443,15 +461,21 @@ $r_{2}(0000) = 0000$, $r_{2}(0101) = 0101$, but $r_{2}(0001) = 0100$
 Now we know the maximum period of our substring for a given $r_{i} \in G$, we can find how many there are using the approach I suggested right back at the start.
 The number of possible 2-bit strings of length $gcd(n, i)$ is $2^{gcd(n, i)}$
 
-<LaTexBlock content="|X^{g}| = 2^{gcd(n, i)}" />
+$$|X^{g}| = 2^{gcd(n, i)}$$
 
 Putting this into Burnside's Lemma gives us
 
-<LaTexBlock content="f(n) = \frac{1}{n} \sum_{i = 1}^{n} 2^{gcd(n, i)}" />
+$$f(n) = \frac{1}{n} \sum_{i = 1}^{n} 2^{gcd(n, i)}$$
 
 This is (almost) the **General necklace polynomial**!
 
-<LaTexSpoiler title_text={"General necklace polynomial"} pre_content_text="The general necklace polynomial works for any number of colours of bead, not just 2, so we replace the 2 with a:" content="f(n, a) = \frac{1}{n} \sum_{i = 1}^{n} a^{gcd(n, i)}" />
+<details>
+<summary>General necklace polynomial</summary>
+
+The general necklace polynomial works for any number of colours of bead, not just 2, so we replace the $2$ with $a$:
+
+$$f(n, a) = \frac{1}{n} \sum_{i = 1}^{n} a^{gcd(n, i)}$$
+</details>
 
 Further reading:
 - [Necklace (combinatorics) - Wikipedia](https://en.wikipedia.org/wiki/Necklace_(combinatorics)#Number_of_necklaces)
