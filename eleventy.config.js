@@ -28,6 +28,7 @@ export default async function(eleventyConfig) {
 		.addPassthroughCopy({
 			"./public/": "/",
 			"./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+			"./content/authors/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/authors/",
 		})
 		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
 

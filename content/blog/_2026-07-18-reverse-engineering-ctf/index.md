@@ -1,7 +1,7 @@
 ---
 title: "Reverse engineering CTF"
 description: Another thing I learned at EMF camp!
-author: content/authors/alex.md
+author: alex
 heroImg: ./01_test_run.png
 date: 2026-07-18
 ---
