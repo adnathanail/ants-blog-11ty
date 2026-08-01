@@ -123,3 +123,14 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 		max-height: 60vh;
 	}
 }
+
+iframe.youtube-video {
+	width: 100%;
+	@include media-breakpoint-up(md) {
+		width: 80%;
+	}
+
+	@include media-breakpoint-up(xl) {
+		width: 60%;
+	}
+}
