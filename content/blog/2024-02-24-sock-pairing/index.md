@@ -31,11 +31,9 @@ What is the most socks I could have to look at (including sock A) before I find 
 <details>
 <summary>Spoiler</summary>
 
-Say we have 5 pairs of socks, with patterns A, B, C, D, E.
+Say we have 5 pairs of socks, with patterns $A$, $B$, $C$, $D$, and $E$.
 
-If I pick up socks in the following order: `A, B, B, C, C, D, D, E, E, A`
-
-I will have to go through all 10 socks before I find a pair.
+If I pick up socks in the order $A, B, B, C, C, D, D, E, E, A$, I will have to go through all 10 socks before I find a pair.
 
 > [!note]
 > This is not necessarily the most efficient algorithm.
@@ -151,7 +149,8 @@ $$
 
 ### Sanity check
 
-$n$ is necessarily less than or equal to $N$, because you can't pair more socks than you have, so the worst case is when $n = N$. If we sub this in, we find
+$n$ is necessarily less than or equal to $N$, because you can't pair more socks than you have, so the worst case is when $n = N$.
+If we sub this in, we find:
 
 $$
 \begin{aligned}

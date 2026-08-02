@@ -123,22 +123,20 @@ pre:has( + p), pre:has( + h1), pre:has( + h2), pre:has( + h3), pre:has( + h4), p
 	border: 1px solid var(--bs-primary-bg-subtle);
 	padding: 0.15em 0.35em;
 }
-:not(.katex-block) > span.katex > math {
+:not(.katex-display) > span.katex-html {
 	background-color: var(--bs-tertiary-bg);
 	padding: 0.35rem;
 }
-:not(.katex-block):has( > span.katex) {
-	list-style-position: inside;
-	overflow: scroll;
-}
+:not(.katex-display) > .katex { font-size: 1em !important; }
 .katex-block {
 	--bs-bg-opacity: 1;
 	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
-
-.katex { font-size: 1em !important; }
+.katex-display {
+	margin: 0 !important;
+}
 
 /* Links */
 a {

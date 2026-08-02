@@ -175,7 +175,7 @@ export default async function(eleventyConfig) {
 	eleventyConfig.amendLibrary("md", videoMedia);
 	eleventyConfig.amendLibrary("md", md => md.use(markdownItAttrs));
 	const { katex } = (await import("@mdit/plugin-katex"));
-	eleventyConfig.amendLibrary("md", md => md.use(katex, {output: "mathml", macros: {
+	eleventyConfig.amendLibrary("md", md => md.use(katex, {output: "htmlAndMathml", macros: {
   "\\nicefrac": "\\raisebox{.5ex}{\\footnotesize #1}/\\raisebox{-.25ex}{\\footnotesize #2}"
 }}));
 
