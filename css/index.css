@@ -138,6 +138,8 @@ pre:has( + p), pre:has( + h1), pre:has( + h2), pre:has( + h3), pre:has( + h4), p
 	padding-bottom: 0.5rem;
 }
 
+.katex { font-size: 1em !important; }
+
 /* Links */
 a {
 	text-decoration: none;
