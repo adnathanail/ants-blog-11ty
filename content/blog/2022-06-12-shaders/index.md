@@ -16,9 +16,7 @@ This may seem like an odd way to generate an image on a screen, but it means tha
 
 There is a handy website called [Shadertoy](shadertoy.com) which allows you to write and share shaders online in a consistent format.
 
-This is a demo provided by the person running the workshop
-
-[https://www.shadertoy.com/view/sdVczz](https://www.shadertoy.com/view/sdVczz)
+[This is a demo provided by the person running the workshop](https://www.shadertoy.com/view/sdVczz).
 
 ## How to write 2D shaders
 

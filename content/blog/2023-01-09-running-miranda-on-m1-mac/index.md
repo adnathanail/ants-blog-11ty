@@ -54,7 +54,10 @@ Miranda
 
 If this step failed then something is up with `make`.
 
-Firstly, is it installed? [Relevant StackOverflow](https://stackoverflow.com/a/10265766/9261263 "How to install 'make' and GCC on a Mac")
+Firstly, is it installed?
+
+> [!tip]
+> Relevant StackOverflow: [How to install 'make' and GCC on a Mac](https://stackoverflow.com/a/10265766/9261263)
 
 Beyond that? Google it!
 
@@ -77,13 +80,13 @@ all: mira miralib/menudriver exfiles
 ...
 ```
 
-Then run
+Then run:
 
 ```shell
 make install
-````
+```
 
-Reopen your terminal and run
+Reopen your terminal and run:
 
 ```shell
 mira
@@ -93,4 +96,6 @@ And you should see the same startup screen from earlier!
 
 ## IntelliJ plugin
 
-I also put together a very basic plugin for IntelliJ editors for the Miranda language. I did publish it to the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/20871-miranda-language-support), but I haven't updated it for the latest IDE's. However it may still compile [from source](https://github.com/adnathanail/miranda-intellij-plugin)
+I also put together a very basic plugin for IntelliJ editors for the Miranda language.
+I did publish it to the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/20871-miranda-language-support), but I haven't updated it for the latest IDE's.
+However it may still compile [from source](https://github.com/adnathanail/miranda-intellij-plugin).

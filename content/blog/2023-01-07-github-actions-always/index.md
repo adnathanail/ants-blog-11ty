@@ -12,13 +12,13 @@ One way to do this is to create separate jobs on GitHub Actions, which will all 
 
 But what if one of these steps fails? What if my first step (e.g. a lint) fails? Then the rest of the steps won't be run. So I fix the lint, and then the build fails, and the whole CI has to run again. Wouldn't it be handy if all the steps would run, even if a previous step failed?
 
-A quick Google search will bring up [this](https://stackoverflow.com/a/58859404/9261263) StackOverflow post, which give the headline to add `if: always()` to your steps, meaning a step will always run even if a previous step fails
+A quick Google search will bring up [this](https://stackoverflow.com/a/58859404/9261263) StackOverflow post, which give the headline to add `if: always()` to your steps, meaning a step will always run even if a previous step fails.
 
 I have been blindly doing this for several months.
 
 Entirely separately (to the point that I didn't put it together until I was cancelling 20 or so jobs in a row) I started noticing that jobs wouldn't cancel properly.
 
-Scrolling down to the bottom of that StackOverflow answer I then found
+Scrolling down to the bottom of that StackOverflow answer I then found:
 
 > Additionally, as pointed out below, putting always() will cause the function to run even if the build is canceled.
 
@@ -28,7 +28,7 @@ I think my use-case is quite common, as discussed in [this GitHub community disc
 
 I'm not sure why `always()` is still at the top of that accepted answer (with 256 upvotes) on StackOverflow!
 
-Here is a quick example of a full Rust CI suite in GitHub actions
+Here is a quick example of a full Rust CI suite in GitHub actions:
 
 {% raw %}
 ```yaml

@@ -9,7 +9,7 @@ date: 2026-07-18
 I've just come back from [EMF camp 2026](https://emfcamp.org)!
 
 > [!note]
-> Check out my [post about shaders](/posts/_2022-06-12-shaders) from EMF camp 2022
+> Check out my [post about shaders](/blog/2022-06-12-shaders) from EMF camp 2022
 
 One fun thing they often have is a [capture the flag](https://ctf101.org/intro/what-is-a-ctf/) (CTF), which can take many formats but the basic shape is that you complete a series of challenges which each result in a string (the 'flag') that can be automatically checked.
 This year I tried a software reverse engineering CTF, involving decompiling binaries to find flags.
