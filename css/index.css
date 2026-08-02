@@ -25,7 +25,8 @@
 .post-content p:has(.img-w-25),
 .post-content p:has(.img-w-30),
 .post-content p:has(.img-w-60),
-.post-content p:has(.img-w-40) {
+.post-content p:has(.img-w-40),
+.post-content p:has(.no-center) {
 	font-size: 0;
 }
 .post-content .img-w-20,
@@ -33,24 +34,47 @@
 .post-content .img-w-30,
 .post-content .img-w-40,
 .post-content .img-w-60 {
-	margin-left: 1.5%;
-	margin-right: 1.5%;
 	height: auto;
 }
+.post-content picture:not(:first-child) .img-w-20,
+.post-content picture:not(:first-child) .img-w-25,
+.post-content picture:not(:first-child) .img-w-30,
+.post-content picture:not(:first-child) .img-w-40,
+.post-content picture:not(:first-child) .img-w-60,
+.post-content video.img-w-20:not(:first-child),
+.post-content video.img-w-25:not(:first-child),
+.post-content video.img-w-30:not(:first-child),
+.post-content video.img-w-40:not(:first-child),
+.post-content video.img-w-60:not(:first-child) {
+	margin-left: 0.5rem;
+}
+.post-content picture:not(:last-child) .img-w-20,
+.post-content picture:not(:last-child) .img-w-25,
+.post-content picture:not(:last-child) .img-w-30,
+.post-content picture:not(:last-child) .img-w-40,
+.post-content picture:not(:last-child) .img-w-60,
+.post-content video.img-w-20:not(:last-child),
+.post-content video.img-w-25:not(:last-child),
+.post-content video.img-w-30:not(:last-child),
+.post-content video.img-w-40:not(:last-child),
+.post-content video.img-w-60:not(:last-child) {
+	margin-right: 0.5rem;
+}
+/* (100/width_perc - 1)*(width_perc/100) */
 .post-content .img-w-20 {
-	max-width: 17% !important;
+	max-width: calc(20% - 0.8rem) !important;
 }
 .post-content .img-w-25 {
-	max-width: 22% !important;
+	max-width: calc(25% - 0.75rem) !important;
 }
 .post-content .img-w-30 {
-	max-width: 27% !important;
+	max-width: calc(30% - 0.7rem) !important;
 }
 .post-content .img-w-40 {
-	max-width: 37% !important;
+	max-width: calc(40% - 0.6rem) !important;
 }
 .post-content .img-w-60 {
-	max-width: 37% !important;
+	max-width: calc(60% - 0.4rem) !important;
 }
 
 /* Code blocks */
