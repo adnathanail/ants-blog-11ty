@@ -52,7 +52,8 @@ And, through the magic of patience, it happily loaded the bootloader screen.
 
 ![](recovery.jpg){.no-center}
 
-_This is not the bootloader, this is the LineageOS recovery screen, I just think it looks cool_
+> [!note]
+> This is not the bootloader, this is the LineageOS recovery screen, I just think it looks cool
 
 Step 7 "Installing Add-Ons" is optional, but, if you want your device to be able to download apps from the Play Store you need to do it.
 

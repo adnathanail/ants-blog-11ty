@@ -18,7 +18,10 @@ But I've just started an [MSc in Quantum Computer Science at UvA](https://www.uv
 
 So I've built a very over-engineered solution, which packages up a LaTeX installation with the quantikz library into a Docker container, accepts a `.tex` file containing just a quantikz diagram as input, puts that into a barebones document template, and generates a PNG of the resulting quantikz circuit..!
 
-> [LaTeX](https://www.latex-project.org/) is a type-setting system, which lets you write complex documents as code. It is especially useful (in my opinion) for laying out mathematical formulas neatly. [Docker](https://www.docker.com/) is a tool which allows you to wrap up (virtually) any command line code/tools into a container which can then be run on Mac/Windows/Linux "easily".
+> [!info]
+> [LaTeX](https://www.latex-project.org/) is a type-setting system, which lets you write complex documents as code. It is especially useful (in my opinion) for laying out mathematical formulas neatly.
+>
+> [Docker](https://www.docker.com/) is a tool which allows you to wrap up (virtually) any command line code/tools into a container which can then be run on Mac/Windows/Linux "easily".
 
 ### Size
 

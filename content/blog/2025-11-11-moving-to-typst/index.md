@@ -144,7 +144,7 @@ So, I'm giving it a try.
 
 ## Quantum circuits
 
-I'm putting this at the bottom because it's kind of long, but look how much neater this Typst code is
+I'm putting this at the bottom because it's kind of long, but look how much neater this Typst code is:
 
 ```typst
 #align(center)[
@@ -174,7 +174,7 @@ I'm putting this at the bottom because it's kind of long, but look how much neat
 ]
 ```
 
-Compared to LaTeX
+Compared to LaTeX:
 ```latex
 \begin{quantikz}
     \lstick{$\ket{0}$} &

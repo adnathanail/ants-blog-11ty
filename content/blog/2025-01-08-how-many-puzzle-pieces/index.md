@@ -29,7 +29,7 @@ We quickly defined that they weren't interested in corner or edge pieces, and we
 
 **P**'s first thought was combinatorics, and said it was something like $1 + 2 + 3 + 4$ or $1 \times 2 \times 3 \times 4$.
 
-I said it definitely wasn't that, it was $2^{4}$, because you have 4 sides, each with 2 possible states. But it wasn't that either.
+I said it wasn't that, it was $2^{4}$, because you have 4 sides, each with 2 possible states. But it wasn't that either.
 
 **C** pointed out that I'd forgotten about rotational symmetry, and that a piece could only have 0, 1, 2, 3, or 4 *outs* and therefore the answer was $5$.
 
@@ -107,8 +107,8 @@ For our purposes, that 6-sided shape is also equally validly represented as $100
 
 Initially I took a given $n$ and $o$, and generated a base string; e.g. for $n = 3, o = 2$ the string would be $111000$.
 I then found all the permutations of the string.
-This worked, but it was very slow, as it sees each character in the string as unique and therefore tries all 3 $1$s in the first spot, and then the second, etc., when they are actually identical.
-Interpreting the strings as binary, we can just count $000001$, $000010$, etc. and find all the strings with 3 $1$s.
+This worked, but it was very slow, as it sees each character in the string as unique and therefore tries all 3 $1$ s in the first spot, and then the second, etc., when they are actually identical.
+Interpreting the strings as binary, we can just count $000001$, $000010$, etc. and find all the strings with 3 $1$ s.
 
 To easily determine when we have duplicate strings, it's helpful to have a consistent normalisation function, so any given shape has a unique "authoritative representation".
 Again interpreting the strings as binary, we can define that the string that encodes the smallest binary number is the normalised one.
@@ -119,7 +119,7 @@ Putting this together I produced the following script:
 
 V1 couldn't get past about 11 sides without taking far too long, but, thanks to the optimisations from the insights above, V2 can easily reach 20 sides in about 10 seconds.
 
-This produced the following output
+This produced the following output:
 
 ```bash
 1  1                                                                                                   # 1 sides 2 combinations
@@ -291,7 +291,7 @@ $$r1(x) = r2(x) \quad \rightarrow \quad \left( r2^{-1} \circ r1 \right) \in G_{x
 <details>
 <summary>What is the ∘ symbol?</summary>
 
-The ∘ symbol means function composition, AKA the effect of applying 1 function then the other. For example 180° ∘ 90° means rotate 90 degrees then rotate 180 degrees, which is equivalent to the single function rotating 270 degrees.
+The $\circ$ symbol means function composition, AKA the effect of applying 1 function then the other. For example $180^{\circ} \circ 90^{\circ}$ means rotate 90 degrees then rotate 180 degrees, which is equivalent to the single function rotating 270 degrees.
 </details>
 
 E.g.
@@ -304,12 +304,14 @@ $$
 $$
 
 <details>
-<summary>Composing rotations</summary>
+<summary>What did we do there?</summary>
 
--270° ∘ 90° = -180° which is the same operation as 180°, just a different notation
+Similar to regular algebra, to move the $270^{\circ}$ from the right to the left side, we do its inverse, $-270^{\circ}$, to both sides.
+
+$-270^{\circ} \circ 90^{\circ} = -180^{\circ}$ which is the same operation as $180^{\circ}$, just a different notation.
 </details>
 
-So, for a given $x$, we can split our set of operations $G$ into "equivalence" classes
+So, for a given $x$, we can split our set of operations $G$ into "equivalence" classes.
 
 E.g. for $x = 0101$ we have 2 classes (with 2 operations per class):
 
@@ -348,7 +350,7 @@ $$
 \end{aligned}
 $$
 
-For a given orbit $O_{x}$, each $x \in O_{x}$ will contribute $\frac{1}{|O|}$ to the sum, and there are exactly $|O|$ elements in $O$, so each orbit contributes $|O| \times \frac{1}{|O|} = 1$ to the sum.
+For a given orbit $O_{x}$, each $x \in O_{x}$ will contribute $\nicefrac{1}{|O|}$ to the sum, and there are exactly $|O|$ elements in $O$, so each orbit contributes $|O| \times \nicefrac{1}{|O|} = 1$ to the sum.
 
 So
 $$\sum_{x \in X} |G_{x}| = |G| \times |X / G|$$
@@ -371,7 +373,8 @@ This is **Burnside's Lemma**!
 
 To make it easier to use in the next section, we need 1 more definition in order to restructure Burnside's Lemma into something more usable.
 
-For an operation $g \in G$, a **fixed point** of $X$ is an element $x \in X$ such that $g.x = x$
+For an operation $g \in G$, a **fixed point** of $X$ is an element $x \in X$ such that $g.x = x$.
+
 E.g.
 $$
 \begin{aligned}
@@ -382,18 +385,18 @@ g . x &= 1010 \\
 \end{aligned}
 $$
 
-So for the operation $180^{\circ}$, $1010$ is a **fixed point**
+So for the operation $180^{\circ}$, $1010$ is a **fixed point**.
 
-The set of all **fixed points** of $X$ with respect to $g$ is often denoted $X^{g}$
+The set of all **fixed points** of $X$ with respect to $g$ is often denoted $X^{g}$:
 
 $$X^{g} = \{x \in X : g . x = x\}$$
 
 - $X^{90^{\circ}} = \{0000, 1111\}$
 - $X^{180^{\circ}} = \{0000, 0101, 1010, 1111\}$
 - $X^{270^{\circ}} = \{0000, 1111\}$
-- $X^{360^{\circ}} = X = \{0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111\}$
+- $X^{360^{\circ}} = X = \{0000, 0001, 0010, \ldots, 1111\}$
 
-The sum of the sizes of the sets of all **fixed** points of $X$ for each operation $g \in G$ is the same as the sum of the sizes of the sets of the **stabilizers** for each item $x \in X$
+The sum of the sizes of the sets of all **fixed** points of $X$ for each operation $g \in G$ is the same as the sum of the sizes of the sets of the **stabilizers** for each item $x \in X$:
 
 $$\sum_{g \in G} |X^{g}| = \sum_{x \in X} |G_{x}|$$
 
@@ -414,7 +417,7 @@ So we can restate Burnside's Lemma as
 
 $$|X / G| = \frac{1}{|G|} \sum_{g \in G} |X^{g}|$$
 
-Where
+Where:
 
 - $|X / G|$ is the number of **orbits** of $X$ (number of unique puzzle pieces)
 - $|G|$ is the number of operations we have (in our case 4: 90°, 180°, 270°, 360°), and
@@ -451,14 +454,14 @@ If we have a period of 3, with the periodic substring being $001$, we couldn't t
 Therefore, the largest possible period for a string of length $n$, and a rotation $r_{i}$, can be found by the greatest common divisor of $n$ and $i$.
 E.g. for $n = 4$ and $i = 2$ the largest possible period is $gcd(4, 2) = 2$.
 Any repeating 2-element substring will be unchanged by a rotation of 2.
-$r_{2}(0000) = 0000$, $r_{2}(0101) = 0101$, but $r_{2}(0001) = 0100$
+$r_{2}(0000) = 0000$, $r_{2}(0101) = 0101$, but $r_{2}(0001) = 0100$.
 
 Now we know the maximum period of our substring for a given $r_{i} \in G$, we can find how many there are using the approach I suggested right back at the start.
-The number of possible 2-bit strings of length $gcd(n, i)$ is $2^{gcd(n, i)}$
+The number of possible 2-bit strings of length $gcd(n, i)$ is $2^{gcd(n, i)}$:
 
 $$|X^{g}| = 2^{gcd(n, i)}$$
 
-Putting this into Burnside's Lemma gives us
+Putting this into Burnside's Lemma gives us:
 
 $$f(n) = \frac{1}{n} \sum_{i = 1}^{n} 2^{gcd(n, i)}$$
 

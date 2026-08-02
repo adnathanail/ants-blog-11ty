@@ -49,30 +49,32 @@ Lastly, loading the page took maybe a second, which is just annoying for a new t
 
 ## How to host it yourself
 
-In the Raindrop app, create a group called "New Tab" (or whatever you like, as long as it matches the `RAINDROP_GROUP_NAME` env var)
+1. In the Raindrop app, create a group called "New Tab" (or whatever you like, as long as it matches the `RAINDROP_GROUP_NAME` env var)
 
 ![](./01_create_group.png){.no-center}
 
-And another one called "Autocomplete URLs" (or matching `RAINDROP_AUTOCOMPLETE_GROUP_NAME`)
+2. And another one called "Autocomplete URLs" (or matching `RAINDROP_AUTOCOMPLETE_GROUP_NAME`)
 
-Create a Raindrop integration in the [integrations page](https://app.raindrop.io/settings/integrations)
+3. Create a Raindrop integration in the [integrations page](https://app.raindrop.io/settings/integrations)
 
 ![](./02a_create_new_app.png){.img-w-25}
 ![](./02b_give_app_name.png){.img-w-25}
 ![](./02c_set_app_settings.png){.img-w-25}
 
-Set Site to wherever your app will be hosted, and the Redirect URI to
+4. Set Site to wherever your app will be hosted, and the Redirect URI to
 ```html
 https://blahblah.com/.netlify/functions/auth-callback
 ```
 
-Save the Client ID and Client secret
+5. Save the Client ID and Client secret
 
-Clone the [git repo](https://github.com/adnathanail/raindrop-new-tab-page) and deploy it to Netlify
+6. Clone the [git repo](https://github.com/adnathanail/raindrop-new-tab-page) and deploy it to Netlify
 
-I added a deploy to Netlify button (at the top of the README) which should automatically create a copy of the repo for you and start the process of deploying to Netlify, but I haven't tested it so YMMV
+> [!tip]
+> I added a deploy to Netlify button (at the top of the README) which should automatically create a copy of the repo for you and start the process of deploying to Netlify, but I haven't tested it so YMMV..!
 
-Set the environment variables
+7. Set the environment variables
+
 ```properties
 RAINDROP_CLIENT_ID=YOUR_CLIENT_ID
 RAINDROP_CLIENT_SECRET=YOUR_CLIENT_SECRET
@@ -81,6 +83,7 @@ RAINDROP_GROUP_NAME=New Tab
 RAINDROP_AUTOCOMPLETE_GROUP_NAME=Autocomplete URLs
 ```
 
-You can change the name of the groups it pulls from with the `RAINDROP_GROUP_NAME` and `RAINDROP_AUTOCOMPLETE_GROUP_NAME` variables if you like
+> [!tip] 
+> You can change the name of the groups it pulls from with the `RAINDROP_GROUP_NAME` and `RAINDROP_AUTOCOMPLETE_GROUP_NAME` variables if you like
 
-Then visit the page, login with Raindrop, and it should pull through your bookmarks from your `New Tab` group, split out by folder!
+8. Then visit the page, login with Raindrop, and it should pull through your bookmarks from your `New Tab` group, split out by folder!
