@@ -9,7 +9,7 @@ layout: layouts/base.njk
 
 <div class="row">
 	<div class="col">
-		<h1>{{ title }}</h1>
+		<h1 id="post-title">{{ title }}</h1>
 	</div>
 	<div class="col-auto d-none d-md-flex">
 		{% include "author.njk" %}
@@ -58,3 +58,22 @@ layout: layouts/base.njk
 </nav>
 {%- endif %}
 {%- endif %}
+
+<script>
+(() => {
+	const heading = document.getElementById("post-title");
+	const navTitle = document.getElementById("navbar-scroll-title");
+	const navbar = document.querySelector("nav.navbar");
+	if (!heading || !navTitle || !navbar) return;
+	navTitle.textContent = heading.textContent;
+	const navbarHeight = navbar.offsetHeight;
+	const observer = new IntersectionObserver(
+		([entry]) => {
+			const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < navbarHeight;
+			navTitle.classList.toggle("is-visible", scrolledPast);
+		},
+		{ rootMargin: `-${navbarHeight}px 0px 0px 0px` }
+	);
+	observer.observe(heading);
+})();
+</script>

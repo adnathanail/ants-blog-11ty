@@ -191,6 +191,26 @@ table th, td {
 	text-decoration: underline;
 }
 
+/* Navbar scroll-in post title (wipes in when the post h1 is scrolled past) */
+.navbar-scroll-title-wrap {
+	pointer-events: none;
+	max-width: 50%;
+	justify-content: center;
+}
+.navbar-scroll-title {
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	font-weight: 500;
+	clip-path: inset(0 100% 0 0);
+	transition: clip-path 0.5s ease-out;
+}
+.navbar-scroll-title.is-visible {
+	clip-path: inset(0 0 0 0);
+}
+
 /* Admonitions */
 .card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
 	margin-bottom: 0.5rem;
