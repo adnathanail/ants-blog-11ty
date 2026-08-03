@@ -193,18 +193,23 @@ table th, td {
 
 /* Navbar scroll-in post title (wipes in when the post h1 is scrolled past) */
 .navbar-scroll-title-wrap {
-	pointer-events: none;
 	max-width: 50%;
 	justify-content: center;
 }
 .navbar-scroll-title {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	max-width: 100%;
+	font-weight: 500;
+	text-decoration: none;
+	clip-path: inset(0 100% 0 0);
+}
+.navbar-scroll-title-text {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 100%;
-	font-weight: 500;
-	clip-path: inset(0 100% 0 0);
+	min-width: 0;
 }
 .navbar-scroll-title.is-visible {
 	animation: navbar-title-wipe-in 0.5s ease-out forwards;

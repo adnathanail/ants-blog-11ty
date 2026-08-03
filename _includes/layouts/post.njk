@@ -63,9 +63,14 @@ layout: layouts/base.njk
 (() => {
 	const heading = document.getElementById("post-title");
 	const navTitle = document.getElementById("navbar-scroll-title");
+	const navTitleText = navTitle?.querySelector(".navbar-scroll-title-text");
 	const navbar = document.querySelector("nav.navbar");
-	if (!heading || !navTitle || !navbar) return;
-	navTitle.textContent = heading.textContent;
+	if (!heading || !navTitle || !navTitleText || !navbar) return;
+	navTitleText.textContent = heading.textContent;
+	navTitle.addEventListener("click", (e) => {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
 	const navbarHeight = navbar.offsetHeight;
 	const observer = new IntersectionObserver(
 		([entry]) => {
