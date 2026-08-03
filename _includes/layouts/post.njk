@@ -9,7 +9,7 @@ layout: layouts/base.njk
 
 <div class="row">
 	<div class="col">
-		<h1 id="post-title">{{ title }}</h1>
+		<h1>{{ title }}</h1>
 	</div>
 	<div class="col-auto d-none d-md-flex">
 		{% include "author.njk" %}
@@ -58,32 +58,3 @@ layout: layouts/base.njk
 </nav>
 {%- endif %}
 {%- endif %}
-
-<script>
-(() => {
-	const heading = document.getElementById("post-title");
-	const navTitle = document.getElementById("navbar-scroll-title");
-	const navTitleText = navTitle?.querySelector(".navbar-scroll-title-text");
-	const navbar = document.querySelector("nav.navbar");
-	if (!heading || !navTitle || !navTitleText || !navbar) return;
-	navTitleText.textContent = heading.textContent;
-	navTitle.addEventListener("click", (e) => {
-		e.preventDefault();
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	});
-	new bootstrap.Tooltip(navTitle);
-	const navbarHeight = navbar.offsetHeight;
-	const observer = new IntersectionObserver(
-		([entry]) => {
-			const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < navbarHeight;
-			if (scrolledPast) {
-				navTitle.classList.add("is-visible", "was-visible");
-			} else {
-				navTitle.classList.remove("is-visible");
-			}
-		},
-		{ rootMargin: `-${navbarHeight}px 0px 0px 0px` }
-	);
-	observer.observe(heading);
-})();
-</script>
