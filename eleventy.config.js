@@ -155,6 +155,9 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
 	});
+	eleventyConfig.addShortcode("currentYear", () => {
+		return (new Date()).getFullYear();
+	});
 
 	// Component shortcodes: each component is a .njk file in _includes/components/
 	const componentEnv = new nunjucks.Environment(

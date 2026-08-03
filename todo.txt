@@ -1,0 +1,4 @@
+Sticky navbar
+Home page
+Links page
+Navbar logo background
