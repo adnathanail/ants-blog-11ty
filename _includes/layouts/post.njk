@@ -71,6 +71,7 @@ layout: layouts/base.njk
 		e.preventDefault();
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	});
+	new bootstrap.Tooltip(navTitle);
 	const navbarHeight = navbar.offsetHeight;
 	const observer = new IntersectionObserver(
 		([entry]) => {
