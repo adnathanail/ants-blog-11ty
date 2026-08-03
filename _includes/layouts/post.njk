@@ -70,7 +70,11 @@ layout: layouts/base.njk
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < navbarHeight;
-			navTitle.classList.toggle("is-visible", scrolledPast);
+			if (scrolledPast) {
+				navTitle.classList.add("is-visible", "was-visible");
+			} else {
+				navTitle.classList.remove("is-visible");
+			}
 		},
 		{ rootMargin: `-${navbarHeight}px 0px 0px 0px` }
 	);

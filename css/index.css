@@ -205,10 +205,22 @@ table th, td {
 	max-width: 100%;
 	font-weight: 500;
 	clip-path: inset(0 100% 0 0);
-	transition: clip-path 0.5s ease-out;
 }
 .navbar-scroll-title.is-visible {
-	clip-path: inset(0 0 0 0);
+	animation: navbar-title-wipe-in 0.5s ease-out forwards;
+}
+/* .was-visible is only added after the first show, so no wipe-out plays on
+   initial page load. */
+.navbar-scroll-title.was-visible:not(.is-visible) {
+	animation: navbar-title-wipe-out 0.5s ease-out forwards;
+}
+@keyframes navbar-title-wipe-in {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+@keyframes navbar-title-wipe-out {
+	from { clip-path: inset(0 0 0 0); }
+	to { clip-path: inset(0 0 0 100%); }
 }
 /* On <md the brand text would collide with the centered scroll title, so hide
    it when the scroll title is showing — the logo stays for site navigation. */
