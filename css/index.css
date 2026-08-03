@@ -210,6 +210,13 @@ table th, td {
 .navbar-scroll-title.is-visible {
 	clip-path: inset(0 0 0 0);
 }
+/* On <md the brand text would collide with the centered scroll title, so hide
+   it when the scroll title is showing — the logo stays for site navigation. */
+@media (max-width: 767.98px) {
+	nav.navbar:has(.navbar-scroll-title.is-visible) .navbar-brand > p {
+		display: none;
+	}
+}
 
 /* Admonitions */
 .card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
