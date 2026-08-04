@@ -4,7 +4,7 @@ heroImg: ./05_necklace.png
 description: There's 6
 author: alex
 date: 2025-01-08
-recommend_no_rss: true
+recommendNoRSS: true
 ---
 
 *We picked at a mathematical thread and unravelled a whole jumper*
