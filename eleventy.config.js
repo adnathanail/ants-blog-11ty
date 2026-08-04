@@ -106,8 +106,8 @@ export default async function(eleventyConfig) {
 
 	eleventyConfig.addPlugin(feedPlugin, {
 		type: "atom", // or "rss", "json"
-		outputPath: "/feed/feed.xml",
-		stylesheet: "pretty-atom-feed.xsl",
+		outputPath: "rss.xml",
+		stylesheet: "feed/pretty-atom-feed.xsl",
 		templateData: {
 			eleventyNavigation: {
 				key: "Feed",
@@ -120,11 +120,11 @@ export default async function(eleventyConfig) {
 		},
 		metadata: {
 			language: "en",
-			title: "Blog Title",
-			subtitle: "This is a longer description about your blog.",
+			title: "A.N.T.S. Blog",
+			subtitle: "Things that have captivated me at various points",
 			base: "https://example.com/",
 			author: {
-				name: "Your Name"
+				name: "Alex Nathanail"
 			}
 		}
 	});
