@@ -33,6 +33,7 @@ export default async function(eleventyConfig) {
 		.addPassthroughCopy({
 			"./public/": "/",
 			"./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+			"./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map": "/js/bootstrap.bundle.min.js.map",
 			"./node_modules/bootstrap-icons/font/fonts/": "/fonts/bootstrap-icons/",
 			"./node_modules/katex/dist/katex.min.css": "/css/katex.min.css",
 			"./node_modules/katex/dist/fonts/": "/css/fonts/",
