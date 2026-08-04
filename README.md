@@ -114,3 +114,21 @@ If your site enforces a [Content Security Policy](https://developer.mozilla.org/
 
 1. In `base.njk`, remove `<style>{% getBundle "css" %}</style>` and uncomment `<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">`
 2. Configure the server with the CSP directive `style-src: 'unsafe-inline'` (less secure).
+
+## Testing
+### Playwright visual regression testing
+
+Test against current baseline and fail on diff
+```bash
+npm run test:visual
+```
+
+Open HTML report with side by side diff
+```bash
+npm run test:visual:report
+```
+
+Accept current output as new baseline
+```bash
+npm run test:visual:update
+```

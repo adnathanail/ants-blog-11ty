@@ -3,3 +3,4 @@ Links page
 RSS feed
 Analytics
 Nest CSS
+Playwright testing in CI/prek
