@@ -1,3 +1,4 @@
+import matter from "gray-matter";
 import { z } from "zod";
 
 const baseSchema = z.object({
@@ -6,7 +7,9 @@ const baseSchema = z.object({
 	draft: z.coerce.boolean().default(false),
 });
 
-const postSchema = baseSchema.extend({
+// Strict schema validated against the raw post frontmatter (not the merged
+// cascade, which is stuffed with page/collections/layout/etc from Eleventy).
+const postFrontMatterSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(1),
 	author: z.string().min(1),
@@ -14,25 +17,31 @@ const postSchema = baseSchema.extend({
 	date: z.union([z.string().min(1), z.date()]),
 	heroImg: z.string().min(1),
 	updatedDate: z.union([z.string().min(1), z.date()]).optional(),
-	recommendNoRSS: z.boolean().default(false),
-});
+	recommendNoRSS: z.boolean().optional(),
+	draft: z.boolean().optional(),
+}).strict();
 
 export default function() {
 	return function(data) {
-		const isPost = Array.isArray(data.tags) && data.tags.includes("posts");
-		const schema = isPost ? postSchema : baseSchema;
-		const result = schema.safeParse(data);
-
-		if (!result.success) {
+		// Check 'draft' key is Boolean on all objects
+		const baseResult = baseSchema.safeParse(data);
+		if (!baseResult.success) {
 			const where = data.page?.inputPath ? ` in ${data.page.inputPath}` : "";
-			throw new Error(`Invalid front matter${where}: ${z.prettifyError(result.error)}`);
+			throw new Error(`Invalid front matter${where}: ${z.prettifyError(baseResult.error)}`);
 		}
 
-		// Check specified author exists
-		if (isPost && !(result.data.author in (data.authors ?? {}))) {
-			const where = data.page?.inputPath ? ` in ${data.page.inputPath}` : "";
+		// Check post schema strictly
+		const isPost = Array.isArray(data.tags) && data.tags.includes("posts");
+		if (!isPost) return;
+		const { data: frontMatter } = matter.read(data.page.inputPath);
+		const result = postFrontMatterSchema.safeParse(frontMatter);
+		if (!result.success) {
+			throw new Error(`Invalid front matter in ${data.page.inputPath}: ${z.prettifyError(result.error)}`);
+		}
+		// Check author exists
+		if (!(result.data.author in (data.authors ?? {}))) {
 			const known = Object.keys(data.authors ?? {}).join(", ");
-			throw new Error(`Unknown author "${result.data.author}"${where}. Known authors: ${known}`);
+			throw new Error(`Unknown author "${result.data.author}" in ${data.page.inputPath}. Known authors: ${known}`);
 		}
 	};
 }

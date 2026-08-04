@@ -9,7 +9,7 @@ const AVATAR_URL_PREFIX = "/img/authors";
 const authorSchema = z.object({
 	name: z.string().min(1),
 	avatar: z.string().min(1),
-});
+}).strict();
 
 export default function() {
 	const files = fs.readdirSync(AUTHORS_DIR).filter(f => f.endsWith(".md"));
