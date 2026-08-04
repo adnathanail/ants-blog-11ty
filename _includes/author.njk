@@ -1,9 +1,8 @@
-{%- set authorData = authors[author] %}
-{%- if authorData %}
+{%- if author %}
 <div class="d-flex align-items-center gap-2 mb-2">
-    <span class="text-body-secondary mt-1">{{ authorData.name }}</span>
-    {%- if authorData.avatar %}
-    <img src="{{ authorData.avatar }}" alt="" width="32" height="32" class="rounded-circle" eleventy:ignore>
+    <span class="text-body-secondary mt-1">{{ author.name }}</span>
+    {%- if author.avatar %}
+    <img src="{{ author.avatar }}" alt="" width="32" height="32" class="rounded-circle" eleventy:ignore>
     {%- endif %}
 </div>
 {%- endif %}
