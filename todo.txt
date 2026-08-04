@@ -1,6 +1,5 @@
-Home page
-
 Update README
+Update license
 Analytics
 Push to GitHub
 - Swap dependabot for renovate

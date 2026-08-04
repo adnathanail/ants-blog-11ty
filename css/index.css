@@ -61,3 +61,8 @@ a:hover img {
 		display: none;
 	}
 }
+
+/* Admonitions */
+.card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
+	margin-bottom: 0.5rem;
+}

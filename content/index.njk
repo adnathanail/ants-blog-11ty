@@ -3,31 +3,66 @@ const eleventyNavigation = {
 	key: "Home",
 	order: 1
 };
-
-const numberOfLatestPostsToShow = 3;
 ---
 
-<h1>Alex Nathanail Tech Services</h1>
-<p>Full-stack technology consultancy for modernizing businesses</p>
+<div class="row">
+	<div class="col-12 col-md">
+		<h1>Alex Nathanail Technology Services</h1>
+		<p class="text-muted">Full-stack technology consultancy</p>
+	</div>
+	<div class="col-12 col-md-auto d-flex align-items-center">
+		<a href="/blog" class="btn btn-outline-primary w-100">Check out my blog <i class="bi bi-rocket-takeoff"></i></a>
+	</div>
+</div>
 
-{% set postsCount = collections.posts | length %}
-{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
-<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+<div class="card border-top-0 border-end-0 border-bottom-0 border-5 border-info mb-3 bg-info-subtle card-admonition card-admonition-info">
+	<div class="row g-0">
+		<div class="col-auto d-flex align-items-center ms-1 py-2">
+			<i class="bi bi-info-circle fs-2 ms-2"></i>
+		</div>
+		<div class="col d-flex align-items-center">
+			<div>
+				<div class="card-body pb-0 pt-2">
+					<p>I'm not currently accepting new clients whilst I complete my MSc in Quantum Computer Science. If you have a very urgent request, or are thinking about a future project, feel free to reach out on LinkedIn to discuss.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-{% set postslist = collections.posts | reverse | head(numberOfLatestPostsToShow) %}
-{% set postslistCounter = postsCount %}
-{% include "postslist.njk" %}
+<div class="row my-4">
+	<div class="col-12 col-xl-10 offset-xl-1">
+		<div class="card">
+			<div class="row g-0 py-md-3 px-3 px-md-0">
+				<div class="col-12 col-md-4">
+					<div class="h-100 p-2 border-md-end border-bottom border-bottom-md-0 text-center">
+						<h3 class="fs-1 text-primary" data-ha-exclude><i class="bi bi-stack"></i></h3>
+						<h4 class="fs-5 mb-4" data-ha-exclude>(Genuine) full-stack</h4>
+						<p class="text-muted">10+ years of experience building production software, adapting to any language or framework</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="h-100 p-2 border-md-end border-bottom border-bottom-md-0 text-center">
+						<h3 class="fs-1 text-secondary" data-ha-exclude><i class="bi bi-share-fill"></i></h3>
+						<h4 class="fs-5 mb-4" data-ha-exclude>Missing link</h4>
+						<p class="text-muted">Sitting at the interface of business and technical, synthesizing exactly what needs to be done, and how to do it</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="h-100 p-2 border-md-end border-bottom border-bottom-md-0 text-center">
+						<h3 class="fs-1 text-danger" data-ha-exclude><i class="bi bi-person-raised-hand"></i></h3>
+						<h4 class="fs-5 mb-4" data-ha-exclude>Domain depth</h4>
+						<p class="text-muted">Desire to learn anything and everything, including your niche problem domain</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-{% set morePosts = postsCount - numberOfLatestPostsToShow %}
-{% if morePosts > 0 %}
-<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
-{% endif %}
-
-{# List every content page in the project #}
-{#
-<ul>
-	{%- for entry in collections.all %}
-	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
-	{%- endfor %}
-</ul>
-#}
+<div class="d-flex justify-content-center mb-3">
+	<span class="btn btn-outline-dark disabled fs-5 text-decoration-line-through">
+		<i class="bi bi-envelope-at-fill"></i>
+		Get in touch
+	</span>
+</div>

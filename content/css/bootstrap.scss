@@ -134,3 +134,15 @@ iframe.youtube-video {
 		width: 60%;
 	}
 }
+
+.border-md-end {
+	@include media-breakpoint-up(md) {
+		border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+	}
+}
+
+.border-bottom-md-0 {
+	@include media-breakpoint-up(md) {
+		border-bottom: 0 !important;
+	}
+}
