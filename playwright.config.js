@@ -19,7 +19,7 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: "npm run build && python3 -m http.server 8080 --directory _site",
+		command: "npx @11ty/eleventy --output=_site_playwright && python3 -m http.server 8080 --directory _site_playwright",
 		url: "http://localhost:8080",
 		reuseExistingServer: !process.env.CI,
 		timeout: 120_000,
