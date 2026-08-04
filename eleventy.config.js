@@ -45,7 +45,7 @@ export default async function(eleventyConfig) {
 			"./node_modules/katex/dist/fonts/": "/css/fonts/",
 			"./content/authors/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/authors/",
 		})
-		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl")
+		.addPassthroughCopy("./content/rss/pretty-atom-feed.xsl")
 		.addPassthroughCopy("./content/**/*.{mov,mp4,webm,m4v}");
 
 	// Compile .scss files with Dart Sass (used for our Bootstrap build)

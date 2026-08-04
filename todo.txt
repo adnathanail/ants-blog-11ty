@@ -1,6 +1,5 @@
 Home page
 Links page
-Move feed link to bottom of blog page
 
 Analytics
 Push to GitHub
