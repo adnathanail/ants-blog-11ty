@@ -261,7 +261,3 @@ table th, td {
     float: left;
     margin-top: 100%;
 }
-
-.post-tags:not(:has(li)) {
-	display: none !important;
-}

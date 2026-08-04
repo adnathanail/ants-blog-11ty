@@ -9,6 +9,14 @@ layout: layouts/base.njk
 
 <h1>{{ title }}</h1>
 
+{%- set postTags = tags | filterTagList %}
+<ul class="list-inline text-body-secondary mb-0">
+	{%- for tag in postTags %}
+		{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+		<li class="list-inline-item"><a href="{{ tagUrl }}" class="badge text-muted bg-primary-subtle border border-primary text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
+	{%- endfor %}
+</ul>
+
 <div class="row mb-1">
 	<div class="col d-flex align-items-center">
 		<span class="text-body-secondary my-1">
@@ -20,14 +28,6 @@ layout: layouts/base.njk
 		{% include "author.njk" %}
 	</div>
 </div>
-
-{%- set postTags = tags | filterTagList %}
-<ul class="list-inline text-body-secondary post-tags">
-	{%- for tag in postTags %}
-		{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-		<li class="list-inline-item"><a href="{{ tagUrl }}" class="badge text-muted bg-primary-subtle border border-primary text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
-	{%- endfor %}
-</ul>
 
 <hr class="mt-2">
 
