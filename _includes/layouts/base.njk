@@ -79,6 +79,14 @@
 			const navbar = document.querySelector("nav.navbar");
 			if (!heading || !navTitle || !navTitleText || !navbar) return;
 			navTitleText.textContent = heading.textContent;
+			// Scale wipe animation duration with rendered title width so the
+			// wipe travels faster for longer titles.
+			const setWipeDuration = () => {
+				const width = navTitle.getBoundingClientRect().width;
+				navTitle.style.setProperty("--wipe-duration", `${Math.sqrt(width) / 25}s`);
+			};
+			setWipeDuration();
+			new ResizeObserver(setWipeDuration).observe(navTitle);
 			navTitle.addEventListener("click", (e) => {
 				e.preventDefault();
 				window.scrollTo({ top: 0, behavior: "smooth" });
