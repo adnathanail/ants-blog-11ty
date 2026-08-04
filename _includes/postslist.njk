@@ -3,21 +3,29 @@
 		<div class="col">
 			<div class="card h-100">
 				<div class="row g-0 h-100">
-					<div class="col">
+					<div class="col d-flex flex-column">
 						<div class="card-header">
 							<a href="{{ post.url }}">
-								<h4 class="card-title mb-0" data-ha-exclude>{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</h4>
+								<h4 class="card-title mb-0" data-ha-exclude>{{ post.data.title }}</h4>
 							</a>
 						</div>
-						<div class="card-body">
-							{% if post.data.description %}<p class="card-text text-muted">{{ post.data.description }}</p>{% endif %}
-							{%- set author = post.data.author %}
-							{% include "author.njk" %}
-							<p class="card-text text-body-secondary small d-flex justify-content-between">
-								{%- set date = post.date %}
-								{%- set updatedDate = post.data.updatedDate %}
-								{% include "post-date.njk" %}
-							</p>
+						<div class="card-body d-flex flex-column justify-content-between">
+							<div>
+								<p class="card-text text-muted mb-2">{{ post.data.description }}</p>
+								{%- set postTags = post.data.tags | filterTagList %}
+								<p class="mb-2">
+									{%- for tag in postTags %}{% include "tag.njk" %}{% endfor %}
+								</p>
+							</div>
+							<div>
+								{%- set author = post.data.author %}
+								{% include "author.njk" %}
+								<p class="card-text text-body-tertiary small d-flex justify-content-between">
+									{%- set date = post.date %}
+									{%- set updatedDate = post.data.updatedDate %}
+									{% include "post-date.njk" %}
+								</p>
+							</div>
 						</div>
 					</div>
 					<div class="col-5 col-lg-3">

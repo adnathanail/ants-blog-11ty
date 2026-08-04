@@ -9,6 +9,5 @@ Push to GitHub
 Move bootstrap out of content?
 
 Show tags on blog list
-Make Draft tag always first
 
 ANTS Juni italic font on bages
