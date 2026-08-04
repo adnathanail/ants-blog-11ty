@@ -1,6 +1,6 @@
-// Render public/img/ants.svg to public/img/ants.png with the brand color and
-// a transparent background. The SVG uses currentColor, so we substitute it
-// before rasterizing.
+// Render src/assets/img/ants.svg to src/assets/img/ants.png with the brand
+// color and a transparent background. The SVG uses currentColor, so we
+// substitute it before rasterizing.
 //
 // Run: node scripts/render-ants-png.mjs
 
@@ -10,8 +10,8 @@ import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
-const SVG_PATH = resolve(SCRIPT_DIR, "../public/img/ants.svg");
-const PNG_PATH = resolve(SCRIPT_DIR, "../public/img/ants.png");
+const SVG_PATH = resolve(SCRIPT_DIR, "../src/assets/img/ants.svg");
+const PNG_PATH = resolve(SCRIPT_DIR, "../src/assets/img/ants.png");
 const COLOR = "#AD00AD";
 const WIDTH = 680;
 

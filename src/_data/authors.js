@@ -3,7 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
 
-const AUTHORS_DIR = "./content/authors";
+const AUTHORS_DIR = "./src/content/authors";
 const AVATAR_URL_PREFIX = "/img/authors";
 
 const authorSchema = z.object({

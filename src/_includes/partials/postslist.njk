@@ -14,16 +14,16 @@
 								<p class="card-text text-muted mb-2">{{ post.data.description }}</p>
 								{%- set postTags = post.data.tags | filterTagList %}
 								<p class="mb-2">
-									{%- for tag in postTags %}{% include "tag.njk" %}{% endfor %}
+									{%- for tag in postTags %}{% include "partials/tag.njk" %}{% endfor %}
 								</p>
 							</div>
 							<div>
 								{%- set author = post.data.author %}
-								{% include "author.njk" %}
+								{% include "partials/author.njk" %}
 								<p class="card-text text-body-tertiary small d-flex justify-content-between">
 									{%- set date = post.date %}
 									{%- set updatedDate = post.data.updatedDate %}
-									{% include "post-date.njk" %}
+									{% include "partials/post-date.njk" %}
 								</p>
 							</div>
 						</div>

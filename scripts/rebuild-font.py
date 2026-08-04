@@ -1,6 +1,6 @@
 """Rebuild Junicode with a shrunk descender and a new family name.
 
-Reads public/fonts/junicode/*.woff, writes public/fonts/ants-juni/*.woff with:
+Reads src/assets/fonts/junicode/*.woff, writes src/assets/fonts/ants-juni/*.woff with:
 - OS/2.sTypoDescender, hhea.descent, OS/2.usWinDescent set to DESCENT_RATIO of em
 - fsSelection USE_TYPO_METRICS bit forced on (so browsers use the typo metrics)
 - Font family renamed to NEW_FAMILY (OFL requires Reserved Font Name "Junicode"
@@ -14,8 +14,8 @@ from fontTools.ttLib import TTFont
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-SRC_DIR = PROJECT_ROOT / "public" / "fonts" / "junicode"
-DST_DIR = PROJECT_ROOT / "public" / "fonts" / "ants-juni"
+SRC_DIR = PROJECT_ROOT / "src" / "assets" / "fonts" / "junicode"
+DST_DIR = PROJECT_ROOT / "src" / "assets" / "fonts" / "ants-juni"
 NEW_FAMILY = "ANTS Juni"
 NEW_POSTSCRIPT_FAMILY = "ANTSJuni"
 DESCENT_RATIO = 0  # This is what I modified!

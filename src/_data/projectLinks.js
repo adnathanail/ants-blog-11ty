@@ -3,7 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
 
-const PROJECT_LINKS_DIR = "./content/project_links";
+const PROJECT_LINKS_DIR = "./src/content/project_links";
 const THUMBNAIL_URL_PREFIX = "/img/project_links";
 
 const projectLinkSchema = z.object({

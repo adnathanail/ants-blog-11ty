@@ -2,6 +2,6 @@
 
 <ul>
 {% for tag in collections | getKeys | filterTagList | sortAlphabetically %}
-	<li>{% include "tag.njk" %}</li>
+	<li>{% include "partials/tag.njk" %}</li>
 {% endfor %}
 </ul>

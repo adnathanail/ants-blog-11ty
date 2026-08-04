@@ -1,11 +1,11 @@
 ---
 layout: layouts/base.njk
 ---
-<style>{% include "css/post.css" %}</style>
+<style>{% include "src/assets/scss/post.css" %}</style>
 {# Only include the syntax highlighter CSS on blog posts, included with the CSS per-page bundle #}
 <style>{% include "node_modules/prismjs/themes/prism-okaidia.css" %}</style>
-<style>{% include "css/prism-diff.css" %}</style>
-<style>{% include "css/prism-typst.css" %}</style>
+<style>{% include "src/assets/scss/prism-diff.css" %}</style>
+<style>{% include "src/assets/scss/prism-typst.css" %}</style>
 <link rel="stylesheet" href="/css/katex.min.css">
 
 <h1>{{ title }}</h1>
@@ -13,7 +13,7 @@ layout: layouts/base.njk
 {%- set postTags = tags | filterTagList %}
 <ul class="list-inline text-body-secondary mb-0">
 	{%- for tag in postTags %}
-		<li class="list-inline-item">{% include "tag.njk" %}</li>
+		<li class="list-inline-item">{% include "partials/tag.njk" %}</li>
 	{%- endfor %}
 </ul>
 
@@ -21,11 +21,11 @@ layout: layouts/base.njk
 	<div class="col d-flex align-items-center">
 		<span class="text-body-secondary my-1">
 			{%- set date = page.date %}
-			{% include "post-date.njk" %}
+			{% include "partials/post-date.njk" %}
 		</span>
 	</div>
 	<div class="col-auto d-flex">
-		{% include "author.njk" %}
+		{% include "partials/author.njk" %}
 	</div>
 </div>
 

@@ -5,7 +5,7 @@
 
 import Eleventy from "@11ty/eleventy";
 
-const eleventy = new Eleventy("content", "_site", {
+const eleventy = new Eleventy("src/content", "_site", {
 	configPath: "eleventy.config.js",
 	quietMode: true,
 	// Use serve mode so drafts aren't skipped — we want to see them in the count.
