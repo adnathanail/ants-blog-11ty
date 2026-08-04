@@ -1,0 +1,165 @@
+.post-content {
+	/* Admonitions */
+	.card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
+		margin-bottom: 0.5rem;
+	}
+
+	/* Images and videos */
+	img, video {
+		vertical-align: top;
+	}
+	p:has(img) {
+		overflow: scroll;
+		text-align: center;
+
+		--bs-bg-opacity: 1;
+		background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+		padding: 1rem !important;
+	}
+	/* .post-content img sizing lives in content/css/bootstrap.scss so it can use
+	Bootstrap breakpoint mixins. */
+
+	p:has(img.no-center) {
+		text-align: left;
+	}
+	p:has(.img-w-20),
+	p:has(.img-w-25),
+	p:has(.img-w-30),
+	p:has(.img-w-60),
+	p:has(.img-w-40),
+	p:has(.no-center) {
+		font-size: 0;
+	}
+	.img-w-20,
+	.img-w-25,
+	.img-w-30,
+	.img-w-40,
+	.img-w-60 {
+		height: auto;
+	}
+	picture:not(:first-child) .img-w-20,
+	picture:not(:first-child) .img-w-25,
+	picture:not(:first-child) .img-w-30,
+	picture:not(:first-child) .img-w-40,
+	picture:not(:first-child) .img-w-60,
+	video.img-w-20:not(:first-child),
+	video.img-w-25:not(:first-child),
+	video.img-w-30:not(:first-child),
+	video.img-w-40:not(:first-child),
+	video.img-w-60:not(:first-child) {
+		margin-left: 0.5rem;
+	}
+	picture:not(:last-child) .img-w-20,
+	picture:not(:last-child) .img-w-25,
+	picture:not(:last-child) .img-w-30,
+	picture:not(:last-child) .img-w-40,
+	picture:not(:last-child) .img-w-60,
+	video.img-w-20:not(:last-child),
+	video.img-w-25:not(:last-child),
+	video.img-w-30:not(:last-child),
+	video.img-w-40:not(:last-child),
+	video.img-w-60:not(:last-child) {
+		margin-right: 0.5rem;
+	}
+	/* (100/width_perc - 1)*(width_perc/100) */
+	.img-w-20 {
+		max-width: calc(20% - 0.8rem) !important;
+	}
+	.img-w-25 {
+		max-width: calc(25% - 0.75rem) !important;
+	}
+	.img-w-30 {
+		max-width: calc(30% - 0.7rem) !important;
+	}
+	.img-w-40 {
+		max-width: calc(40% - 0.6rem) !important;
+	}
+	.img-w-60 {
+		max-width: calc(60% - 0.4rem) !important;
+	}
+
+	/* Code blocks */
+	pre:not([class*="language-"]) {
+		/* Preserve whitespace/scroll behaviour for non-Prism code blocks */
+		tab-size: var(--syntax-tab-size);
+		white-space: pre;
+		overflow-x: auto;
+	}
+	code[class*="language-"],
+	pre[class*="language-"] {
+		font-family: var(--bs-font-monospace) !important;
+	}
+	pre:has( + p), pre:has( + h1), pre:has( + h2), pre:has( + h3), pre:has( + h4), pre:has( + h5), pre:has( + h6) {
+		margin-bottom: 1rem !important;  /* Add margin between code blocks and text */
+	}
+
+	/* Spoiler tags */
+	details {
+		border: var(--bs-border-width) solid var(--bs-border-color);
+		border-radius: var(--bs-border-radius);
+		padding: 0.5rem 1rem;
+		margin-bottom: 1rem;
+	}
+	details > summary {
+		list-style: none;
+		cursor: pointer;
+		font-style: italic;
+	}
+	details > summary:hover,
+	details[open] > summary {
+		text-decoration: underline;
+	}
+	details[open] > summary {
+		margin-bottom: 1rem;
+	}
+	details > summary::-webkit-details-marker {
+		display: none;
+	}
+	details > summary::before {
+		content: "+";
+		display: inline-block;
+		width: 1rem;
+		font-weight: bold;
+	}
+	details[open] > summary::before {
+		content: "−";
+	}
+	details > p:last-child {
+		margin-bottom: 0;
+	}
+	details > ol:last-child {
+		margin-bottom: 0.25rem;
+	}
+
+	/* Inline code */
+	:not(pre) > code {
+		background-color: var(--bs-tertiary-bg);
+		border-radius: var(--bs-border-radius-sm);
+		border: 1px solid var(--bs-primary-bg-subtle);
+		padding: 0.15em 0.35em;
+	}
+	:not(.katex-display) > span.katex-html {
+		background-color: var(--bs-tertiary-bg);
+		padding: 0.35rem;
+	}
+	:not(.katex-display) > .katex { font-size: 1em !important; }
+	.katex-block {
+		--bs-bg-opacity: 1;
+		background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+	.katex-display {
+		margin: 0 !important;
+	}
+
+	/* Tables */
+	table {
+		width: 100%;
+		margin-bottom: 1rem;
+	}
+	table th, td {
+		border: 1px solid var(--bs-primary-bg-subtle);
+		padding: 0.25rem 0.5rem;
+	}
+}
