@@ -1,6 +1,7 @@
 Home page
 Links page
-RSS feed
+RSS feed (recommend_no_rss)
 Analytics
 Nest CSS
 Playwright testing in CI/prek
+Draft tag different colour

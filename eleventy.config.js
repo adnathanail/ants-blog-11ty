@@ -18,14 +18,20 @@ import pluginFilters from "./_config/filters.js";
 export default async function(eleventyConfig) {
 	// Drafts, see also _data/eleventyDataSchema.js
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-		if (data.draft) {
-			data.title = `${data.title} (draft)`;
+		// Give draft posts a draft tag
+		if (data.draft && data.tags?.includes("posts")) {
+			data.tags = [...data.tags, "draft"];
 		}
-
+		// Don't list drafts in production builds
 		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
 		}
 	});
+
+	// Create draft collection, because dynamic 'draft' tag is added after auto collection creation
+	eleventyConfig.addCollection("draft", (collectionApi) =>
+		collectionApi.getFilteredByGlob("./content/blog/**/*.md").filter(item => item.data.draft)
+	);
 
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
