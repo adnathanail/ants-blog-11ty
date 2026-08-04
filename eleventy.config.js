@@ -18,9 +18,9 @@ import pluginFilters from "./_config/filters.js";
 export default async function(eleventyConfig) {
 	// Drafts, see also _data/eleventyDataSchema.js
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-		// Give draft posts a draft tag
+		// Give draft posts a draft tag (prepended so it renders first in the badge list)
 		if (data.draft && data.tags?.includes("posts")) {
-			data.tags = [...data.tags, "draft"];
+			data.tags = ["draft", ...data.tags];
 		}
 		// Don't list drafts in production builds
 		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {

@@ -7,7 +7,3 @@ Push to GitHub
 - Set up CI
     - Playwright testing in CI/prek
 Move bootstrap out of content?
-
-Show tags on blog list
-
-ANTS Juni italic font on bages
