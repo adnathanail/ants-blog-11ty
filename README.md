@@ -123,7 +123,7 @@ Test against current baseline and fail on diff
 npm run test:visual
 ```
 
-Open HTML report with side by side diff
+Open HTML report for previous run, with side by side diff
 ```bash
 npm run test:visual:report
 ```

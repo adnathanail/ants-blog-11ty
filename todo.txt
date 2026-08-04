@@ -5,3 +5,4 @@ Analytics
 Nest CSS
 Playwright testing in CI/prek
 Draft tag different colour
+Navbar scroll animation speed
