@@ -37,3 +37,9 @@ Accept current output as new baseline
 ```bash
 npm run test:visual:update
 ```
+
+## Licensing
+
+The software in this repo is licensed under the MIT License as listed in [LICENSE](./LICENSE).
+
+The content, including but not limited to all blog posts, is licensed under the the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
