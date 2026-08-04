@@ -19,7 +19,7 @@ const eleventyComputed = {
 <h1 class="mb-3">Tagged {% set noLink = true %}{% include "tag.njk" %}</h1>
 
 <div class="mb-3">
-	{% set postslist = collections[ tag ] %}
+	{% set postslist = collections[ tag ] | reverse %}
 	{% include "postslist.njk" %}
 </div>
 
