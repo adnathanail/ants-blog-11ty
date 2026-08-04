@@ -19,12 +19,13 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: "npm start",
+		command: "npm run build && python3 -m http.server 8080 --directory _site",
 		url: "http://localhost:8080",
 		reuseExistingServer: !process.env.CI,
-		timeout: 60_000,
+		timeout: 120_000,
 	},
 	expect: {
+		timeout: 15_000,
 		toHaveScreenshot: {
 			maxDiffPixelRatio: 0.01,
 			animations: "disabled",

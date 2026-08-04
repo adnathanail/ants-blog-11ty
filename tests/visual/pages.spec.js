@@ -13,7 +13,30 @@ const pages = [
 
 for (const { name, path } of pages) {
 	test(name, async ({ page }) => {
-		await page.goto(path, { waitUntil: "networkidle" });
+		test.setTimeout(90_000);
+		await page.goto(path);
+		await page.evaluate(() => {
+			for (const img of document.querySelectorAll('img[loading="lazy"]')) {
+				img.loading = "eager";
+			}
+		});
+		await page.waitForLoadState("networkidle");
+		await page.evaluate(async () => {
+			await document.fonts.ready;
+			await Promise.all(
+				Array.from(document.images).map(async (img) => {
+					if (!img.complete) {
+						await new Promise((resolve) => {
+							img.addEventListener("load", resolve, { once: true });
+							img.addEventListener("error", resolve, { once: true });
+						});
+					}
+					try {
+						await img.decode();
+					} catch {}
+				}),
+			);
+		});
 		await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: true });
 	});
 }
