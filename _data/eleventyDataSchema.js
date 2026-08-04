@@ -19,6 +19,7 @@ const postFrontMatterSchema = z.object({
 	updatedDate: z.union([z.string().min(1), z.date()]).optional(),
 	recommendNoRSS: z.boolean().optional(),
 	draft: z.boolean().optional(),
+	tags: z.array(z.string()).optional(),
 }).strict();
 
 export default function() {

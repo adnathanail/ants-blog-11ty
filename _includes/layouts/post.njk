@@ -22,14 +22,12 @@ layout: layouts/base.njk
 </div>
 
 {%- set postTags = tags | filterTagList %}
-{% if postTags|length %}
-	<ul class="list-inline text-body-secondary">
-		{%- for tag in postTags %}
+<ul class="list-inline text-body-secondary post-tags">
+	{%- for tag in postTags %}
 		{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
 		<li class="list-inline-item"><a href="{{ tagUrl }}" class="badge text-muted bg-primary-subtle border border-primary text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
-		{%- endfor %}
-	</ul>
-{% endif %}
+	{%- endfor %}
+</ul>
 
 <hr class="mt-2">
 
