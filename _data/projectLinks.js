@@ -12,6 +12,7 @@ const projectLinkSchema = z.object({
 	url: z.url(),
 	blurbText: z.string().min(1),
 	thumbnailImg: z.string().min(1),
+	broken: z.boolean().optional(),
 }).strict();
 
 export default function() {

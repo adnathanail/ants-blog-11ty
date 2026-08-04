@@ -1,5 +1,4 @@
 Home page
-Links page
 
 Update README
 Analytics
