@@ -44,6 +44,7 @@ export default async function(eleventyConfig) {
 			"./node_modules/katex/dist/katex.min.css": "/css/katex.min.css",
 			"./node_modules/katex/dist/fonts/": "/css/fonts/",
 			"./content/authors/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/authors/",
+			"./content/project_links/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/project_links/",
 		})
 		.addPassthroughCopy("./content/rss/pretty-atom-feed.xsl")
 		.addPassthroughCopy("./content/**/*.{mov,mp4,webm,m4v}");
