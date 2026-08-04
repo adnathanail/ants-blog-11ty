@@ -5,7 +5,7 @@ export default {
 	description: "Full-stack technology consultancy for modernizing businesses.",
 	author: {
 		name: "Alex Nathanail",
-		email: "youremailaddress@example.com",
-		url: "https://example.com/about-me/"
+		// email: "youremailaddress@example.com",
+		// url: "https://example.com/about-me/"
 	}
 }
