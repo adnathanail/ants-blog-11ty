@@ -1,9 +1,7 @@
-<h1>Tags</h1>
+<h1 class="mb-3">Tags</h1>
 
 <ul>
 {% for tag in collections | getKeys | filterTagList | sortAlphabetically %}
-	{% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-	{% set color = tagStyles[tag] or tagStyles.default %}
-	<li><a href="{{ tagUrl }}" class="badge text-bg-{{ color }} text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
+	<li>{% include "tag.njk" %}</li>
 {% endfor %}
 </ul>

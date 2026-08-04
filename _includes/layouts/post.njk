@@ -13,9 +13,7 @@ layout: layouts/base.njk
 {%- set postTags = tags | filterTagList %}
 <ul class="list-inline text-body-secondary mb-0">
 	{%- for tag in postTags %}
-		{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-		{%- set color = tagStyles[tag] or tagStyles.default %}
-		<li class="list-inline-item"><a href="{{ tagUrl }}" class="badge text-muted bg-{{ color }}-subtle border border-{{ color }} text-decoration-none text-capitalize fst-italic">{{ tag }}</a></li>
+		<li class="list-inline-item">{% include "tag.njk" %}</li>
 	{%- endfor %}
 </ul>
 
