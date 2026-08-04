@@ -3,7 +3,6 @@ Push to GitHub
 - Swap dependabot for renovate
 - Set up CI
     - Playwright testing in CI/prek
-Move bootstrap out of content?
 
 Do we hate the body font?
 
