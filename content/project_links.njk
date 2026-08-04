@@ -7,27 +7,28 @@ const eleventyNavigation = {
 
 <div class="row">
 	<div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-	{%- for link in projectLinks %}
-		<div class="card mb-3">
-			<div class="row">
-				<div class="col d-flex flex-column justify-content-center text-end">
-					<a href="{{ link.url }}" target="_blank" rel="noopener">
-						<h4 class="card-title mb-0" data-ha-exclude>{{ link.name }}</h4>
-					</a>
-					<p class="card-text text-muted mb-0 ps-2">{{ link.blurbText }}</p>
-					{% if link.broken %}
-						<p>
-							<span class="badge text-muted bg-danger-subtle border border-danger text-capitalize fst-italic" style="font-family: var(--bs-font-sans-serif);">Broken</span>
-						</p>
-					{% endif %}
-				</div>
-				<div class="col-6">
-					<a href="{{ link.url }}" target="_blank" rel="noopener">
-						<img src="{{ link.thumbnailImg }}" class="img-fluid rounded-end" alt="" eleventy:ignore>
-					</a>
+		<h1 class="mb-3">Links</h1>
+		{%- for link in projectLinks %}
+			<div class="card mb-3">
+				<div class="row">
+					<div class="col d-flex flex-column justify-content-center text-end">
+						<a href="{{ link.url }}" target="_blank" rel="noopener">
+							<h4 class="card-title mb-0" data-ha-exclude>{{ link.name }}</h4>
+						</a>
+						<p class="card-text text-muted mb-0 ps-2">{{ link.blurbText }}</p>
+						{% if link.broken %}
+							<p>
+								<span class="badge text-muted bg-danger-subtle border border-danger text-capitalize fst-italic" style="font-family: var(--bs-font-sans-serif);">Broken</span>
+							</p>
+						{% endif %}
+					</div>
+					<div class="col-6">
+						<a href="{{ link.url }}" target="_blank" rel="noopener">
+							<img src="{{ link.thumbnailImg }}" class="img-fluid rounded-end" alt="" eleventy:ignore>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	{%- endfor %}
+		{%- endfor %}
 	</div>
 </div>
