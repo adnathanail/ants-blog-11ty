@@ -1,0 +1,42 @@
+---
+permalink: /rss.xml
+layout: false
+eleventyExcludeFromCollections: ["posts"]
+eleventyImport:
+  collections: ["posts"]
+eleventyNavigation:
+  key: Feed
+  order: 4
+metadata:
+  language: en
+  title: "A.N.T.S. Blog"
+  subtitle: "Things that have captivated me at various points"
+  base: "https://adnathanail.dev/"
+  author:
+    name: "Alex Nathanail"
+limit: 10
+---
+{%- set metadataBase = metadata.base if eleventy.env.runMode == "build" else "http://localhost:8080/" -%}
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="rss/pretty-atom-feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
+	<title>{{ metadata.title }}</title>
+	<subtitle>{{ metadata.subtitle }}</subtitle>
+	<link href="{{ permalink | htmlBaseUrl(metadataBase) }}" rel="self" />
+	<link href="{{ metadataBase | addPathPrefixToFullUrl }}" />
+	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<id>{{ metadataBase | addPathPrefixToFullUrl }}</id>
+	<author>
+		<name>{{ metadata.author.name }}</name>
+	</author>
+	{%- for post in collections.posts | reverse | head(limit) %}
+	{%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadataBase) }}{% endset %}
+	<entry>
+		<title>{{ post.data.title }}</title>
+		<link href="{{ absolutePostUrl }}" />
+		<updated>{{ post.date | dateToRfc3339 }}</updated>
+		<id>{{ absolutePostUrl }}</id>
+		<description>{{ post.data.description }}{% if post.data.recommendNoRSS %}<br />This post contains complex layouts and is best <a href="{{ absolutePostUrl }}">viewed in browser</a>.{% endif %}</description>
+	</entry>
+	{%- endfor %}
+</feed>

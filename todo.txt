@@ -1,9 +1,13 @@
 Home page
 Links page
-RSS feed (recommend_no_rss)
+Move feed link to bottom of blog page
+
 Analytics
 Push to GitHub
 - Swap dependabot for renovate
 - Set up CI
     - Playwright testing in CI/prek
 Move bootstrap out of content?
+
+Hosting
+- Check RSS feed valid

@@ -3,7 +3,7 @@ import * as sass from "sass";
 import nunjucks from "nunjucks";
 
 import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
-import { feedPlugin } from "@11ty/eleventy-plugin-rss";
+import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
@@ -104,30 +104,8 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(HtmlBasePlugin);
 	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 
-	eleventyConfig.addPlugin(feedPlugin, {
-		type: "atom", // or "rss", "json"
-		outputPath: "rss.xml",
-		stylesheet: "feed/pretty-atom-feed.xsl",
-		templateData: {
-			eleventyNavigation: {
-				key: "Feed",
-				order: 4
-			}
-		},
-		collection: {
-			name: "posts",
-			limit: 10,
-		},
-		metadata: {
-			language: "en",
-			title: "A.N.T.S. Blog",
-			subtitle: "Things that have captivated me at various points",
-			base: process.env.ELEVENTY_RUN_MODE === "build" ? "https://adnathanail.dev/" : "http://localhost:8080/",
-			author: {
-				name: "Alex Nathanail"
-			}
-		}
-	});
+	// Registers date filters (dateToRfc3339, getNewestCollectionItemDate) used by content/feed/feed.njk
+	eleventyConfig.addPlugin(rssPlugin);
 
 	// Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
