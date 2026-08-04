@@ -122,7 +122,7 @@ export default async function(eleventyConfig) {
 			language: "en",
 			title: "A.N.T.S. Blog",
 			subtitle: "Things that have captivated me at various points",
-			base: "https://example.com/",
+			base: process.env.ELEVENTY_RUN_MODE === "build" ? "https://adnathanail.dev/" : "http://localhost:8080/",
 			author: {
 				name: "Alex Nathanail"
 			}
