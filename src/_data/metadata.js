@@ -1,6 +1,6 @@
 export default {
 	title: "A.N.T.S.",
-	url: "https://adnathanail.dev",
+	url: process.env.URL,
 	language: "en",
 	description: "Full-stack technology consultancy for modernizing businesses.",
 	author: {

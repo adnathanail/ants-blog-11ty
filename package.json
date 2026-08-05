@@ -6,9 +6,9 @@
 	"scripts": {
 		"build": "npx @11ty/eleventy",
 		"build-nocolor": "cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy",
-		"start": "npx @11ty/eleventy --serve --quiet",
+		"start": "cross-env NODE_OPTIONS=--env-file=.env.dev npx @11ty/eleventy --serve --quiet",
 		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
-		"debugstart": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
+		"debugstart": "cross-env DEBUG=Eleventy* NODE_OPTIONS=--env-file=.env.dev npx @11ty/eleventy --serve --quiet",
 		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
 		"test:visual": "playwright test",
 		"test:visual:update": "playwright test --update-snapshots",

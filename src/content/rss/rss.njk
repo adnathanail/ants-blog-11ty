@@ -4,21 +4,17 @@ layout: false
 eleventyExcludeFromCollections: ["posts"]
 eleventyImport:
   collections: ["posts"]
-metadata:
-  language: en
+feed:
   title: "A.N.T.S. Blog"
   subtitle: "Things that have captivated me at various points"
-  base: "https://adnathanail.dev/"
-  author:
-    name: "Alex Nathanail"
 limit: 10
 ---
-{%- set metadataBase = metadata.base if eleventy.env.runMode == "build" else "http://localhost:8080/" -%}
+{%- set metadataBase = metadata.url + "/" -%}
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="rss/pretty-atom-feed.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
-	<title>{{ metadata.title }}</title>
-	<subtitle>{{ metadata.subtitle }}</subtitle>
+	<title>{{ feed.title }}</title>
+	<subtitle>{{ feed.subtitle }}</subtitle>
 	<link href="{{ permalink | htmlBaseUrl(metadataBase) }}" rel="self" />
 	<link href="{{ metadataBase | addPathPrefixToFullUrl }}" />
 	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
