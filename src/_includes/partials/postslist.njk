@@ -1,10 +1,5 @@
-<style>
-	@media (scripting: enabled) {
-		.postslist-placeholder { visibility: visible !important; }
-		.postslist-img { visibility: hidden; }
-	}
-</style>
-<div class="row row-cols-1 row-cols-xl-2 g-3">
+{% include "partials/deferred_images.njk" %}
+<div class="row row-cols-1 row-cols-xl-2 g-3 deferred-img-batch">
 	{%- for post in postslist %}
 		<div class="col">
 			<div class="card h-100">
@@ -35,9 +30,9 @@
 						</div>
 					</div>
 					<div class="col-5 col-lg-3 position-relative placeholder-glow">
-						<span class="placeholder position-absolute top-0 start-0 w-100 h-100 rounded-end postslist-placeholder" style="visibility: hidden" aria-hidden="true"></span>
+						<span class="placeholder position-absolute top-0 start-0 w-100 h-100 rounded-end deferred-img-placeholder" style="visibility: hidden" aria-hidden="true"></span>
 						<a href="{{ post.url }}" class="d-block h-100 position-relative">
-							<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid rounded-end h-100 object-fit-cover postslist-img" alt="...">
+							<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid rounded-end h-100 object-fit-cover deferred-img" alt="...">
 						</a>
 					</div>
 				</div>
@@ -45,22 +40,3 @@
 		</div>
 	{%- endfor %}
 </div>
-<script>
-(() => {
-	const imgs = document.querySelectorAll(".postslist-img");
-	const waits = Array.from(imgs).map((img) => {
-		if (img.complete) return Promise.resolve();
-		return new Promise((resolve) => {
-			img.addEventListener("load", resolve, { once: true });
-			img.addEventListener("error", resolve, { once: true });
-		});
-	});
-	Promise.all(waits).then(() => {
-		document.querySelectorAll(".postslist-img").forEach((img) => {
-			img.style.visibility = "visible";
-			img.closest(".placeholder-glow")?.querySelector(".placeholder")?.remove();
-		});
-	});
-})();
-</script>
-<script>console.log(1)</script>

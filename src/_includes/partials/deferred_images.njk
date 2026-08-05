@@ -1,0 +1,26 @@
+<style>
+	@media (scripting: enabled) {
+		.deferred-img-placeholder { visibility: visible !important; }
+		.deferred-img { visibility: hidden; }
+	}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+	document.querySelectorAll(".deferred-img-batch").forEach((batch) => {
+		const imgs = batch.querySelectorAll(".deferred-img");
+		const waits = Array.from(imgs).map((img) => {
+			if (img.complete) return Promise.resolve();
+			return new Promise((resolve) => {
+				img.addEventListener("load", resolve, { once: true });
+				img.addEventListener("error", resolve, { once: true });
+			});
+		});
+		Promise.all(waits).then(() => {
+			imgs.forEach((img) => {
+				img.style.visibility = "visible";
+				img.closest(".placeholder-glow")?.querySelector(".deferred-img-placeholder")?.remove();
+			});
+		});
+	});
+});
+</script>

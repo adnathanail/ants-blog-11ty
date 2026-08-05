@@ -8,7 +8,8 @@ const eleventyNavigation = {
 <h1>Links</h1>
 <p class="text-muted">Other things of mine on the web</p>
 
-<div class="row row-cols-1 row-cols-xl-2 g-3">
+{% include "partials/deferred_images.njk" %}
+<div class="row row-cols-1 row-cols-xl-2 g-3 deferred-img-batch">
 	{%- for link in projectLinks %}
 		<div class="col">
 			<div class="card h-100">
@@ -24,9 +25,10 @@ const eleventyNavigation = {
 							</p>
 						{% endif %}
 					</div>
-					<div class="col-6">
-						<a href="{{ link.url }}" target="_blank" rel="noopener">
-							<img src="{{ link.thumbnailImg }}" class="img-fluid rounded-end" alt="" eleventy:ignore>
+					<div class="col-6 position-relative placeholder-glow">
+						<span class="placeholder position-absolute top-0 start-0 w-100 h-100 rounded-end deferred-img-placeholder" style="visibility: hidden" aria-hidden="true"></span>
+						<a href="{{ link.url }}" target="_blank" rel="noopener" class="d-block position-relative">
+							<img src="{{ link.thumbnailImg }}" class="img-fluid rounded-end deferred-img" alt="" eleventy:ignore>
 						</a>
 					</div>
 				</div>
