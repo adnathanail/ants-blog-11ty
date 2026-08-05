@@ -1,9 +1,8 @@
 {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
 {%- set color = tagStyles[tag] or tagStyles.default %}
 {%- set tagClass = "badge text-muted bg-" + color + "-subtle border border-" + color + " text-capitalize fst-italic" %}
-{%- set tagStyle = "font-family: var(--bs-font-sans-serif);" %}
 {%- if noLink %}
-<span class="{{ tagClass }}" style="{{ tagStyle }}">{{ tag }}</span>
+<span class="{{ tagClass }}">{{ tag }}</span>
 {%- else %}
-<a href="{{ tagUrl }}" class="{{ tagClass }} text-decoration-none" style="{{ tagStyle }}">{{ tag }}</a>
+<a href="{{ tagUrl }}" class="{{ tagClass }} text-decoration-none">{{ tag }}</a>
 {%- endif %}

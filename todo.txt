@@ -5,7 +5,6 @@ Analytics
 
 Image loaders
 
-Hosting
-- Check RSS feed valid
-
+Check RSS feed valid
 Decide on fonts
+Copy draft posts
