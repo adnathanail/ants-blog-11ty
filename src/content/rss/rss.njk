@@ -29,7 +29,7 @@ limit: 10
 		<link href="{{ absolutePostUrl }}" />
 		<updated>{{ post.date | dateToRfc3339 }}</updated>
 		<id>{{ absolutePostUrl }}</id>
-		<description>{{ post.data.description }}{% if post.data.recommendNoRSS %}<br />This post contains complex layouts and is best <a href="{{ absolutePostUrl }}">viewed in browser</a>.{% endif %}</description>
+		<summary>{{ post.data.description }}{% if post.data.recommendNoRSS %}<br />This post contains complex layouts and is best <a href="{{ absolutePostUrl }}">viewed in browser</a>.{% endif %}</summary>
 	</entry>
 	{%- endfor %}
 </feed>
