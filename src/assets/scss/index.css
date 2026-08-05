@@ -67,6 +67,11 @@ a:hover img {
 	margin-bottom: 0.5rem;
 }
 
+/* Aspect ratio */
+.aspect-ratio-3-over-2 {
+	aspect-ratio: 3/2;
+}
+
 /* Font switchers (footer dropdowns persist choice to localStorage) */
 html[data-body-font="literata"] body { --bs-body-font-family: 'Literata Book', -apple-system, system-ui, sans-serif; }
 html[data-body-font="piazzolla"] body { --bs-body-font-family: 'Piazzolla', -apple-system, system-ui, sans-serif; }

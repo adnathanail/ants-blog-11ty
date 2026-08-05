@@ -1,6 +1,4 @@
 Image loaders
-Set up CI
-- Playwright testing in CI/prek
 
 Decide on fonts
 Analytics
