@@ -76,6 +76,7 @@ export default async function(eleventyConfig) {
 			let result = sass.compileString(inputContent, {
 				loadPaths: [parsed.dir, "node_modules"],
 				style: "compressed",
+				quietDeps: true,
 			});
 
 			this.addDependencies(inputPath, result.loadedUrls);

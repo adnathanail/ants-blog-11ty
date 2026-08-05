@@ -4,24 +4,25 @@
 // @font-face declarations live in src/assets/scss/fonts.css (inlined by base.njk).
 // https://getbootstrap.com/docs/5.3/customize/sass/
 
-$font-family-sans-serif: 'Literata Book', -apple-system, system-ui, sans-serif;
-$font-family-serif: 'ANTS Juni', Georgia, "Times New Roman", serif;
-$font-family-monospace: "JetBrains Mono";
+$_primary: #AD00AD;
+$_secondary: #00AD00;
 
-$headings-font-family: $font-family-serif;
-
-$primary: #AD00AD;
-$secondary: #00AD00;
-$code-color: $primary;
-$link-color: $secondary;
-
-@import "bootstrap/scss/bootstrap";
+@use "bootstrap/scss/bootstrap" as * with (
+	$font-family-sans-serif: ('Literata Book', -apple-system, system-ui, sans-serif),
+	$font-family-monospace: "JetBrains Mono",
+	$headings-font-family: ('ANTS Juni', Georgia, "Times New Roman", serif),
+	$primary: $_primary,
+	$secondary: $_secondary,
+	$code-color: $_primary,
+	$link-color: $_secondary,
+);
 
 // ################
 // Bootstrap Icons
 // ################
-$bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
-@import "bootstrap-icons/font/bootstrap-icons";
+@use "bootstrap-icons/font/bootstrap-icons" with (
+	$bootstrap-icons-font-dir: "/fonts/bootstrap-icons",
+);
 
 // ################
 // Custom CSS
