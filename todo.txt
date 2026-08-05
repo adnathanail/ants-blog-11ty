@@ -1,10 +1,8 @@
-Analytics
-- Swap dependabot for renovate
-- Set up CI
-    - Playwright testing in CI/prek
-
 Image loaders
+Set up CI
+- Playwright testing in CI/prek
 
-Check RSS feed valid
 Decide on fonts
+Analytics
 Copy draft posts
+Check RSS feed valid with Thomas

@@ -15,6 +15,12 @@ $_secondary: #00AD00;
 	$secondary: $_secondary,
 	$code-color: $_primary,
 	$link-color: $_secondary,
+	$container-max-widths: (
+		sm: 540px,
+		md: 720px,
+		lg: 960px,
+		xl: 1140px,
+	),
 );
 
 // ################

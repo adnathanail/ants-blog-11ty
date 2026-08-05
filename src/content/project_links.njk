@@ -5,11 +5,13 @@ const eleventyNavigation = {
 };
 ---
 
-<div class="row">
-	<div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-		<h1 class="mb-3">Links</h1>
-		{%- for link in projectLinks %}
-			<div class="card mb-3">
+<h1>Links</h1>
+<p class="text-muted">Other things of mine on the web</p>
+
+<div class="row row-cols-1 row-cols-xl-2 g-3">
+	{%- for link in projectLinks %}
+		<div class="col">
+			<div class="card h-100">
 				<div class="row">
 					<div class="col d-flex flex-column justify-content-center text-end">
 						<a href="{{ link.url }}" target="_blank" rel="noopener">
@@ -29,6 +31,6 @@ const eleventyNavigation = {
 					</div>
 				</div>
 			</div>
-		{%- endfor %}
-	</div>
+		</div>
+	{%- endfor %}
 </div>
