@@ -205,4 +205,5 @@ They're not doing the same thing, but they're comparably complex circuits. And I
 
 ![](./typst_quantum_circuit.png){.img-w-30}
 ![](./latex_quantum_circuit.png){.img-w-30}
+
 Left: typst, right: LaTeX

@@ -2,6 +2,11 @@
 	--syntax-tab-size: 2;
 }
 
+/* Offset anchor-link scrolls so targets clear the sticky navbar. */
+html {
+	scroll-padding-top: 5rem;
+}
+
 /* Links */
 a {
 	text-decoration: none;

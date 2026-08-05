@@ -30,7 +30,6 @@ I've marked my favourites with a little star ⭐️, and add some additional not
 
 ![](./day%202/day%202.jpg){.no-center .img-w-20}
 
-
 ## ⭐️ Day 3: Mull It Over [Problem](https://adventofcode.com/2024/day/3) [Solution](https://github.com/adnathanail/aoc/tree/master/2024/day03)
 
 Pleased my memory of my undergrad compilers module is strong enough to still hand-roll a really simple parser.
