@@ -1,28 +1,49 @@
+---js
+const layout = false;
+const eleventyExcludeFromCollections = ["posts"];
+const eleventyImport = { collections: ["posts"] };
+
+const pagination = {
+	data: "collections.posts",
+	size: 10,
+	alias: "postslist",
+	reverse: true,
+};
+
+const eleventyComputed = {
+	permalink: (data) =>
+		data.pagination.pageNumber === 0
+			? "/rss.xml"
+			: `/rss/page/${data.pagination.pageNumber + 1}.xml`,
+};
 ---
-permalink: /rss.xml
-layout: false
-eleventyExcludeFromCollections: ["posts"]
-eleventyImport:
-  collections: ["posts"]
-feed:
-  title: "A.N.T.S. Blog"
-  subtitle: "Things that have captivated me at various points"
-limit: 10
----
+{%- set feedTitle = "A.N.T.S. Blog" -%}
+{%- set feedSubtitle = "Things that have captivated me at various points" -%}
 {%- set metadataBase = metadata.url + "/" -%}
+{%- set selfUrl = permalink | htmlBaseUrl(metadataBase) -%}
+{%- set firstUrl = "/rss.xml" | htmlBaseUrl(metadataBase) -%}
+{%- set lastUrl = ("/rss/page/" + pagination.pages.length + ".xml") | htmlBaseUrl(metadataBase) if pagination.pages.length > 1 else firstUrl -%}
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="rss/pretty-atom-feed.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
-	<title>{{ feed.title }}</title>
-	<subtitle>{{ feed.subtitle }}</subtitle>
-	<link href="{{ permalink | htmlBaseUrl(metadataBase) }}" rel="self" type="application/atom+xml" />
+	<title>{{ feedTitle }}</title>
+	<subtitle>{{ feedSubtitle }}</subtitle>
+	<link href="{{ selfUrl }}" rel="self" type="application/atom+xml" />
 	<link href="{{ metadataBase | addPathPrefixToFullUrl }}" rel="alternate" type="text/html" />
-	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<link href="{{ firstUrl }}" rel="first" type="application/atom+xml" />
+	<link href="{{ lastUrl }}" rel="last" type="application/atom+xml" />
+	{%- if pagination.href.previous %}
+	<link href="{{ pagination.href.previous | htmlBaseUrl(metadataBase) }}" rel="previous" type="application/atom+xml" />
+	{%- endif %}
+	{%- if pagination.href.next %}
+	<link href="{{ pagination.href.next | htmlBaseUrl(metadataBase) }}" rel="next" type="application/atom+xml" />
+	{%- endif %}
+	<updated>{{ postslist | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
 	<id>{{ metadataBase | addPathPrefixToFullUrl }}</id>
 	<author>
 		<name>{{ metadata.author.name }}</name>
 	</author>
-	{%- for post in collections.posts | reverse | head(limit) %}
+	{%- for post in postslist %}
 	{%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadataBase) }}{% endset %}
 	<entry>
 		<title>{{ post.data.title }}</title>
