@@ -23,6 +23,14 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Edge';
+	src: url('/fonts/edge/EdgeL-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
 /* Literata Book */
 @font-face {
 	font-family: 'Literata Book';

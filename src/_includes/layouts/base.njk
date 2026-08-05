@@ -16,6 +16,7 @@
 		(() => {
 			const HEADING = {
 				"edge-sans": ["/fonts/edge-sans/EdgeSansL-Regular.woff2", "font/woff2"],
+				"edge": ["/fonts/edge/EdgeL-Regular.woff2", "font/woff2"],
 				"plotter": ["/fonts/plotter-liner-mono-stencil/PlotterLinerMonoStencilStd-Regular.woff2", "font/woff2"],
 				"ants-juni": ["/fonts/ants-juni/ANTSJuni.woff", "font/woff"],
 			};
@@ -106,6 +107,7 @@
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="edge-sans" style="font-family: 'Edge Sans', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-heading-font-check></i><span>Edge Sans</span></button></li>
+								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="edge" style="font-family: 'Edge', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-heading-font-check></i><span>Edge</span></button></li>
 								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="plotter" style="font-family: 'Plotter Liner Mono Stencil', Georgia, 'Times New Roman', serif;"><i class="bi bi-check2" data-heading-font-check></i><span>Plotter Liner Mono Stencil</span></button></li>
 								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="ants-juni" style="font-family: 'ANTS Juni', Georgia, 'Times New Roman', serif;"><i class="bi bi-check2" data-heading-font-check></i><span>ANTS Juni</span></button></li>
 							</ul>
@@ -152,7 +154,7 @@
 					labelSelector: "[data-heading-font-label]",
 					fallbackLabel: "Heading",
 					default: "edge-sans",
-					labels: { plotter: "Plotter Liner Mono Stencil", "ants-juni": "ANTS Juni", "edge-sans": "Edge Sans" },
+					labels: { plotter: "Plotter Liner Mono Stencil", "ants-juni": "ANTS Juni", "edge-sans": "Edge Sans", edge: "Edge" },
 				},
 			];
 			SWITCHERS.forEach((cfg) => {
