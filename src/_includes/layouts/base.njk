@@ -10,6 +10,9 @@
 		<link rel="icon" href="/img/favicon.ico" sizes="any">
 		<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 
+		{#- @font-face definitions must be parsed before Bootstrap references the families #}
+		<style>{% include "src/assets/scss/fonts.css" %}</style>
+
 		<link href="/css/bootstrap.css" rel="stylesheet">
 
 		{#- Small amount of site-specific CSS on top of Bootstrap #}
