@@ -10,9 +10,9 @@
 		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
 		"debugstart": "env-cmd -f .env.dev cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
 		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
-		"test:visual": "playwright test",
-		"test:visual:update": "playwright test --update-snapshots",
-		"test:visual:report": "playwright show-report"
+		"test:visual": "env-cmd -f .env.dev playwright test",
+		"test:visual:update": "env-cmd -f .env.dev playwright test --update-snapshots",
+		"test:visual:report": "env-cmd -f .env.dev playwright show-report"
 	},
 	"repository": {
 		"type": "git",

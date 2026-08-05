@@ -23,6 +23,11 @@ npx @11ty/eleventy
 ## Testing
 ### Playwright visual regression testing
 
+Fetch the Playwright baseline screenshots (stored in Git LFS). Only needed once after cloning — requires [git-lfs](https://git-lfs.com/) to be installed.
+```bash
+git lfs pull
+```
+
 Test against current baseline and fail on diff
 ```bash
 npm run test:visual
