@@ -73,3 +73,135 @@
 	font-style: normal;
 	font-display: swap;
 }
+
+/* Piazzolla */
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-Regular.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-Italic.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-Italic.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-Medium.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-MediumItalic.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-MediumItalic.woff') format('woff');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-SemiBold.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-SemiBold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-SemiBoldItalic.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-SemiBoldItalic.woff') format('woff');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-Bold.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Piazzolla';
+	src: url('/fonts/piazzolla/woff2/Piazzolla-BoldItalic.woff2') format('woff2'),
+	     url('/fonts/piazzolla/woff/Piazzolla-BoldItalic.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Lato */
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-Regular.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-Italic.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-Italic.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-Medium.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-MediumItalic.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-MediumItalic.woff') format('woff');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-Semibold.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-Semibold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-SemiboldItalic.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-SemiboldItalic.woff') format('woff');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-Bold.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-latin/LatoLatin-BoldItalic.woff2') format('woff2'),
+	     url('/fonts/lato-latin/LatoLatin-BoldItalic.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}

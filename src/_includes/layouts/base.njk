@@ -78,9 +78,9 @@
 								<i class="bi bi-fonts"></i> <span data-body-font-label>Font</span>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
-								<li><button type="button" class="dropdown-item" data-set-body-font="literata">Literata Book</button></li>
-								<li><button type="button" class="dropdown-item" data-set-body-font="piazzolla">Piazzolla</button></li>
-								<li><button type="button" class="dropdown-item" data-set-body-font="lato">Lato</button></li>
+								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-body-font="literata" style="font-family: 'Literata Book', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-body-font-check></i><span>Literata Book</span></button></li>
+								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-body-font="piazzolla" style="font-family: 'Piazzolla', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-body-font-check></i><span>Piazzolla</span></button></li>
+								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-body-font="lato" style="font-family: 'Lato', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-body-font-check></i><span>Lato</span></button></li>
 							</ul>
 						</div>
 						<ul class="list-inline mb-0 d-flex gap-3">
@@ -101,14 +101,22 @@
 			const FONT_LABELS = { literata: "Literata Book", piazzolla: "Piazzolla", lato: "Lato" };
 			const DEFAULT_FONT = "literata";
 			const label = document.querySelector("[data-body-font-label]");
-			const setLabel = (key) => { if (label) label.textContent = FONT_LABELS[key] || "Font"; };
-			setLabel(document.documentElement.dataset.bodyFont || DEFAULT_FONT);
-			document.querySelectorAll("[data-set-body-font]").forEach((btn) => {
+			const items = document.querySelectorAll("[data-set-body-font]");
+			const sync = (key) => {
+				if (label) label.textContent = FONT_LABELS[key] || "Font";
+				items.forEach((btn) => {
+					const active = btn.dataset.setBodyFont === key;
+					if (active) btn.setAttribute("aria-current", "true");
+					else btn.removeAttribute("aria-current");
+				});
+			};
+			sync(document.documentElement.dataset.bodyFont || DEFAULT_FONT);
+			items.forEach((btn) => {
 				btn.addEventListener("click", () => {
 					const key = btn.dataset.setBodyFont;
 					document.documentElement.dataset.bodyFont = key;
 					try { localStorage.setItem("body-font", key); } catch (e) {}
-					setLabel(key);
+					sync(key);
 				});
 			});
 		})();
