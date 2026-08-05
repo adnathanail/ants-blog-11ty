@@ -30,6 +30,9 @@ limit: 10
 		<published>{{ post.date | dateToRfc3339 }}</published>
 		<updated>{{ post.date | dateToRfc3339 }}</updated>
 		<id>{{ absolutePostUrl }}</id>
+		{%- for tag in post.data.tags | filterTagList %}
+		<category term="{{ tag }}" />
+		{%- endfor %}
 		<summary type="html">{{ post.data.description }}{% if post.data.recommendNoRSS %}&lt;br /&gt;This post contains complex layouts and is best &lt;a href=&quot;{{ absolutePostUrl }}&quot;&gt;viewed in browser&lt;/a&gt;.{% endif %}</summary>
 	</entry>
 	{%- endfor %}
