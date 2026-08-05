@@ -66,3 +66,8 @@ a:hover img {
 .card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
 	margin-bottom: 0.5rem;
 }
+
+/* Body font switcher (footer dropdown persists choice to localStorage) */
+html[data-body-font="literata"] body { --bs-body-font-family: 'Literata Book', -apple-system, system-ui, sans-serif; }
+html[data-body-font="piazzolla"] body { --bs-body-font-family: 'Piazzolla', -apple-system, system-ui, sans-serif; }
+html[data-body-font="lato"] body { --bs-body-font-family: 'Lato', -apple-system, system-ui, sans-serif; }

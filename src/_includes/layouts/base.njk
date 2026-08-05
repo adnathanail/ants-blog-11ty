@@ -23,6 +23,16 @@
 
 		{#- Add the heading-anchors web component to the JavaScript bundle #}
 		<script type="module">{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}</script>
+
+		{#- Apply saved body-font choice before <body> renders to avoid FOUC #}
+		<script>
+		(() => {
+			try {
+				const saved = localStorage.getItem("body-font");
+				if (saved) document.documentElement.dataset.bodyFont = saved;
+			} catch (e) {}
+		})();
+		</script>
 	</head>
 	<body class="d-flex flex-column min-vh-100">
 		<a href="#main" id="skip-link" class="visually-hidden-focusable">Skip to main content</a>
@@ -62,11 +72,23 @@
 			<div class="container">
 				<div class="d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center gap-2 text-body-secondary">
 					<em>&copy; {% currentYear %} Alex Nathanail licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></em>
-					<ul class="list-inline mb-0 d-flex gap-3">
-						<li class="list-inline-item"><a href="https://github.com/adnathanail" aria-label="GitHub" class="text-body-secondary fs-5"><i class="bi bi-github"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.linkedin.com/in/adnathanail/" aria-label="LinkedIn" class="text-body-secondary fs-5"><i class="bi bi-linkedin"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.instagram.com/alex.doingstuff/" aria-label="Instagram" class="text-body-secondary fs-5"><i class="bi bi-instagram"></i></a></li>
-					</ul>
+					<div class="d-flex align-items-center gap-3">
+						<div class="dropup" id="body-font-switcher">
+							<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Change body font">
+								<i class="bi bi-fonts"></i> <span data-body-font-label>Font</span>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li><button type="button" class="dropdown-item" data-set-body-font="literata">Literata Book</button></li>
+								<li><button type="button" class="dropdown-item" data-set-body-font="piazzolla">Piazzolla</button></li>
+								<li><button type="button" class="dropdown-item" data-set-body-font="lato">Lato</button></li>
+							</ul>
+						</div>
+						<ul class="list-inline mb-0 d-flex gap-3">
+							<li class="list-inline-item"><a href="https://github.com/adnathanail" aria-label="GitHub" class="text-body-secondary fs-5"><i class="bi bi-github"></i></a></li>
+							<li class="list-inline-item"><a href="https://www.linkedin.com/in/adnathanail/" aria-label="LinkedIn" class="text-body-secondary fs-5"><i class="bi bi-linkedin"></i></a></li>
+							<li class="list-inline-item"><a href="https://www.instagram.com/alex.doingstuff/" aria-label="Instagram" class="text-body-secondary fs-5"><i class="bi bi-instagram"></i></a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</footer>
@@ -75,6 +97,21 @@
 		<script src="/js/bootstrap.bundle.min.js"></script>
 		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
 		<script>
+		(() => {
+			const FONT_LABELS = { literata: "Literata Book", piazzolla: "Piazzolla", lato: "Lato" };
+			const DEFAULT_FONT = "literata";
+			const label = document.querySelector("[data-body-font-label]");
+			const setLabel = (key) => { if (label) label.textContent = FONT_LABELS[key] || "Font"; };
+			setLabel(document.documentElement.dataset.bodyFont || DEFAULT_FONT);
+			document.querySelectorAll("[data-set-body-font]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const key = btn.dataset.setBodyFont;
+					document.documentElement.dataset.bodyFont = key;
+					try { localStorage.setItem("body-font", key); } catch (e) {}
+					setLabel(key);
+				});
+			});
+		})();
 		(() => {
 			const heading = document.querySelector("main h1");
 			const navTitle = document.getElementById("navbar-scroll-title");
