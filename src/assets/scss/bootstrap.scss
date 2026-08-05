@@ -8,9 +8,9 @@ $_primary: #AD00AD;
 $_secondary: #00AD00;
 
 @use "bootstrap/scss/bootstrap" as * with (
-	$font-family-sans-serif: ('Literata Book', -apple-system, system-ui, sans-serif),
+	$font-family-sans-serif: ('Lato', -apple-system, system-ui, sans-serif),
 	$font-family-monospace: "JetBrains Mono",
-	$headings-font-family: ('ANTS Juni', Georgia, "Times New Roman", serif),
+	$headings-font-family: var(--headings-font-family),
 	$primary: $_primary,
 	$secondary: $_secondary,
 	$code-color: $_primary,
