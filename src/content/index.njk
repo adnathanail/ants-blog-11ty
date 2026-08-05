@@ -30,14 +30,7 @@ const eleventyNavigation = {
 	</div>
 </div>
 
-<div class="mb-3 d-md-none">
-	<span class="btn btn-outline-dark disabled fs-5 text-decoration-line-through w-100">
-		<i class="bi bi-envelope-at-fill"></i>
-		Get in touch
-	</span>
-</div>
-
-<div class="card mb-4">
+<div class="card mb-3">
 	<div class="row g-0 py-md-3 px-3 px-md-0">
 		<div class="col-12 col-md-4">
 			<div class="h-100 p-3 p-md-2 border-md-end border-bottom border-bottom-md-0 text-center">
@@ -63,9 +56,16 @@ const eleventyNavigation = {
 	</div>
 </div>
 
-<div class="d-none d-md-flex justify-content-center mb-3">
-	<span class="btn btn-outline-dark disabled fs-5 text-decoration-line-through">
+<p class="d-none d-md-block btn btn-link disabled fs-5 text-decoration-line-through mb-2"><i class="bi bi-envelope-at-fill"></i>Get in touch</p>
+
+<div class="mb-3 d-md-none">
+	<span class="btn btn-outline-dark disabled fs-5 text-decoration-line-through w-100">
 		<i class="bi bi-envelope-at-fill"></i>
 		Get in touch
 	</span>
 </div>
+
+<h3>Latest blog posts</h3>
+
+{%- set postslist = collections.posts.slice(-2).reverse() %}
+{% include "partials/postslist.njk" %}
