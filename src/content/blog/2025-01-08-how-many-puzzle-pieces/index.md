@@ -115,7 +115,7 @@ Again interpreting the strings as binary, we can define that the string that enc
 
 Putting this together I produced the following script:
 
-{% gistEmbed "https://gist.github.com/adnathanail/475df2e48c004e3abef598090e47c14b.js" %}
+{% gistEmbed "https://gist.github.com/adnathanail/475df2e48c004e3abef598090e47c14b.js", "https://gist.github.com/adnathanail/f3402dfa5525d6e46e49b49fa9e48d25#file-necklace-py" %}
 
 V1 couldn't get past about 11 sides without taking far too long, but, thanks to the optimisations from the insights above, V2 can easily reach 20 sides in about 10 seconds.
 
@@ -485,7 +485,7 @@ $$f(n, a) = \frac{1}{n} \sum_{i = 1}^{n} a^{gcd(n, i)}$$
 
 I implemented this formula in Python, and the results agree with our earlier calculations!
 
-{% gistEmbed "https://gist.github.com/adnathanail/f3402dfa5525d6e46e49b49fa9e48d25.js" %}
+{% gistEmbed "https://gist.github.com/adnathanail/f3402dfa5525d6e46e49b49fa9e48d25.js", "https://gist.github.com/adnathanail/475df2e48c004e3abef598090e47c14b#file-puzzle_pieces-py" %}
 
 This version can calculate the first 10,000 items in 12 seconds!
 
