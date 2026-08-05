@@ -25,10 +25,14 @@ export default function imagePlaceholders(eleventyConfig) {
 					const imgMatch = match.match(/<img\b([^>]*)>/);
 					if (!imgMatch) return match;
 					const [hoisted, newImgAttrs] = hoistClasses(imgMatch[1]);
+					// TEMP: skip placeholder wrapping for images with custom classes.
+					if (hoisted.length) return match;
 					return wrap(hoisted, match.replace(imgMatch[0], `<img${newImgAttrs}>`));
 				}
 
 				const [hoisted, newAttrs] = hoistClasses(videoOpenAttrs);
+				// TEMP: skip placeholder wrapping for videos with custom classes.
+				if (hoisted.length) return match;
 				return wrap(hoisted, `<video${newAttrs}>${videoInner}</video>`);
 			}
 		);

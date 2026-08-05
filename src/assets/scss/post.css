@@ -22,9 +22,20 @@
 	.img-w-20, .img-w-25, .img-w-30, .img-w-40, .img-w-60 {
 		height: auto;
 	}
+	picture:not(:first-child) img, video:not(:first-child) {
+        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
+            margin-left: 0.5rem;
+        }
+    }
+    picture:not(:last-child) img, video:not(:last-child) {
+        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
+            margin-right: 0.5rem;
+        }
+    }
+	/*  */
     /* Margins between adjacent width-limited items in a <p> — wrapper spans
        for <picture>, or bare <video> elements. */
-    p > *:not(:first-child) {
+    /* p > *:not(:first-child) {
         &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
             margin-left: 0.5rem;
         }
@@ -33,13 +44,14 @@
         &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
             margin-right: 0.5rem;
         }
-    }
+    } */
     /* Let the <img> fill its placeholder wrapper so sizing set on the wrapper
        (hoisted .img-w-X classes) actually constrains the image. */
-    .deferred-img-batch .deferred-img {
+    /* .deferred-img-batch .deferred-img {
         max-width: 100%;
         height: auto;
-    }
+    } */
+	/*  */
 	/* (100/width_perc - 1)*(width_perc/100) */
 	.img-w-20 {
 		max-width: calc(20% - 0.8rem) !important;
