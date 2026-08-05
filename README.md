@@ -1,6 +1,6 @@
 # A.N.T.S. Blog 11ty
 
-Personal blog of Alex Nathanail, based on [this 11ty template](https://github.com/11ty/eleventy-base-blog), directory structure inspired by [this blog post](https://www.webstoemp.com/blog/eleventy-projects-structure/)
+Website for Alex Nathanail Technology Services, based on [this 11ty template](https://github.com/11ty/eleventy-base-blog), directory structure inspired by [this blog post](https://www.webstoemp.com/blog/eleventy-projects-structure/)
 
 ## Dev setup
 
