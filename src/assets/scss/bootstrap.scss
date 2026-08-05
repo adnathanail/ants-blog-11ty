@@ -10,7 +10,7 @@ $_secondary: #00AD00;
 @use "bootstrap/scss/bootstrap" as * with (
 	$font-family-sans-serif: ('Lato', -apple-system, system-ui, sans-serif),
 	$font-family-monospace: "JetBrains Mono",
-	$headings-font-family: var(--headings-font-family),
+	$headings-font-family: ('Edge Sans Regular', -apple-system, system-ui, sans-serif),
 	$primary: $_primary,
 	$secondary: $_secondary,
 	$code-color: $_primary,

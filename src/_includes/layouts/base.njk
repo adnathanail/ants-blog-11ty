@@ -10,41 +10,9 @@
 		<link rel="icon" href="/img/favicon.ico" sizes="any">
 		<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 
-		{#- Apply saved font choices and preload the active fonts before CSS parses,
-		    so the browser starts fetching them immediately and swaps in with minimal flash. #}
-		<script>
-		(() => {
-			const HEADING = {
-				"edge-sans": ["/fonts/edge-sans/EdgeSansL-Regular.woff2", "font/woff2"],
-				"edge": ["/fonts/edge/EdgeL-Regular.woff2", "font/woff2"],
-				"plotter": ["/fonts/plotter-liner-mono-stencil/PlotterLinerMonoStencilStd-Regular.woff2", "font/woff2"],
-				"ants-juni": ["/fonts/ants-juni/ANTSJuni.woff", "font/woff"],
-			};
-			const BODY = {
-				"literata": ["/fonts/literata-book/LiterataBook.woff", "font/woff"],
-				"lato": ["/fonts/lato-latin/LatoLatin-Regular.woff2", "font/woff2"],
-				"piazzolla": ["/fonts/piazzolla/woff2/Piazzolla-Regular.woff2", "font/woff2"],
-			};
-			try {
-				const heading = localStorage.getItem("heading-font") || "edge-sans";
-				const body = localStorage.getItem("body-font") || "lato";
-				document.documentElement.dataset.headingFont = heading;
-				document.documentElement.dataset.bodyFont = body;
-				const preload = (entry) => {
-					if (!entry) return;
-					const link = document.createElement("link");
-					link.rel = "preload";
-					link.as = "font";
-					link.type = entry[1];
-					link.href = entry[0];
-					link.crossOrigin = "anonymous";
-					document.head.appendChild(link);
-				};
-				preload(HEADING[heading]);
-				preload(BODY[body]);
-			} catch (e) {}
-		})();
-		</script>
+		{#- Preload the active fonts so the browser starts fetching them before CSS parses. #}
+		<link rel="preload" href="/fonts/edge-sans/WF-049882-012706-001075.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+		<link rel="preload" href="/fonts/lato-latin/LatoLatin-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
 		{#- @font-face definitions must be parsed before Bootstrap references the families #}
 		<style>{% include "src/assets/scss/fonts.css" %}</style>
@@ -100,34 +68,11 @@
 			<div class="container">
 				<div class="d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center gap-2 text-body-secondary">
 					<em>&copy; {% currentYear %} Alex Nathanail licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></em>
-					<div class="d-flex align-items-center gap-3">
-						<div class="dropup" id="heading-font-switcher">
-							<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Change heading font">
-								<i class="bi bi-type-h1"></i> <span data-heading-font-label>Heading</span>
-							</button>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="edge-sans" style="font-family: 'Edge Sans', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-heading-font-check></i><span>Edge Sans</span></button></li>
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="edge" style="font-family: 'Edge', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-heading-font-check></i><span>Edge</span></button></li>
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="plotter" style="font-family: 'Plotter Liner Mono Stencil', Georgia, 'Times New Roman', serif;"><i class="bi bi-check2" data-heading-font-check></i><span>Plotter Liner Mono Stencil</span></button></li>
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-heading-font="ants-juni" style="font-family: 'ANTS Juni', Georgia, 'Times New Roman', serif;"><i class="bi bi-check2" data-heading-font-check></i><span>ANTS Juni</span></button></li>
-							</ul>
-						</div>
-						<div class="dropup" id="body-font-switcher">
-							<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Change body font">
-								<i class="bi bi-fonts"></i> <span data-body-font-label>Body</span>
-							</button>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-body-font="lato" style="font-family: 'Lato', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-body-font-check></i><span>Lato</span></button></li>
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-body-font="piazzolla" style="font-family: 'Piazzolla', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-body-font-check></i><span>Piazzolla</span></button></li>
-								<li><button type="button" class="dropdown-item d-flex align-items-center gap-2" data-set-body-font="literata" style="font-family: 'Literata Book', -apple-system, system-ui, sans-serif;"><i class="bi bi-check2" data-body-font-check></i><span>Literata Book</span></button></li>
-							</ul>
-						</div>
-						<ul class="list-inline mb-0 d-flex gap-3">
-							<li class="list-inline-item"><a href="https://github.com/adnathanail" aria-label="GitHub" class="text-body-secondary fs-5"><i class="bi bi-github"></i></a></li>
-							<li class="list-inline-item"><a href="https://www.linkedin.com/in/adnathanail/" aria-label="LinkedIn" class="text-body-secondary fs-5"><i class="bi bi-linkedin"></i></a></li>
-							<li class="list-inline-item"><a href="https://www.instagram.com/alex.doingstuff/" aria-label="Instagram" class="text-body-secondary fs-5"><i class="bi bi-instagram"></i></a></li>
-						</ul>
-					</div>
+					<ul class="list-inline mb-0 d-flex gap-3">
+						<li class="list-inline-item"><a href="https://github.com/adnathanail" aria-label="GitHub" class="text-body-secondary fs-5"><i class="bi bi-github"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.linkedin.com/in/adnathanail/" aria-label="LinkedIn" class="text-body-secondary fs-5"><i class="bi bi-linkedin"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.instagram.com/alex.doingstuff/" aria-label="Instagram" class="text-body-secondary fs-5"><i class="bi bi-instagram"></i></a></li>
+					</ul>
 				</div>
 			</div>
 		</footer>
@@ -136,49 +81,6 @@
 		<script src="/js/bootstrap.bundle.min.js"></script>
 		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
 		<script>
-		(() => {
-			const SWITCHERS = [
-				{
-					datasetKey: "bodyFont",
-					storageKey: "body-font",
-					attr: "data-set-body-font",
-					labelSelector: "[data-body-font-label]",
-					fallbackLabel: "Body",
-					default: "lato",
-					labels: { literata: "Literata Book", piazzolla: "Piazzolla", lato: "Lato" },
-				},
-				{
-					datasetKey: "headingFont",
-					storageKey: "heading-font",
-					attr: "data-set-heading-font",
-					labelSelector: "[data-heading-font-label]",
-					fallbackLabel: "Heading",
-					default: "edge-sans",
-					labels: { plotter: "Plotter Liner Mono Stencil", "ants-juni": "ANTS Juni", "edge-sans": "Edge Sans", edge: "Edge" },
-				},
-			];
-			SWITCHERS.forEach((cfg) => {
-				const label = document.querySelector(cfg.labelSelector);
-				const items = document.querySelectorAll(`[${cfg.attr}]`);
-				const sync = (key) => {
-					if (label) label.textContent = cfg.labels[key] || cfg.fallbackLabel;
-					items.forEach((btn) => {
-						const active = btn.getAttribute(cfg.attr) === key;
-						if (active) btn.setAttribute("aria-current", "true");
-						else btn.removeAttribute("aria-current");
-					});
-				};
-				sync(document.documentElement.dataset[cfg.datasetKey] || cfg.default);
-				items.forEach((btn) => {
-					btn.addEventListener("click", () => {
-						const key = btn.getAttribute(cfg.attr);
-						document.documentElement.dataset[cfg.datasetKey] = key;
-						try { localStorage.setItem(cfg.storageKey, key); } catch (e) {}
-						sync(key);
-					});
-				});
-			});
-		})();
 		(() => {
 			const heading = document.querySelector("main h1");
 			const navTitle = document.getElementById("navbar-scroll-title");

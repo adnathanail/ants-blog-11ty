@@ -1,6 +1,4 @@
 Image loaders
 
-Decide on fonts
 Analytics
-Copy draft posts
 Check RSS feed valid with Thomas

@@ -72,18 +72,3 @@ a:hover img {
 	aspect-ratio: 3/2;
 }
 
-/* Font switchers (footer dropdowns persist choice to localStorage) */
-html[data-body-font="literata"] body { --bs-body-font-family: 'Literata Book', -apple-system, system-ui, sans-serif; }
-html[data-body-font="piazzolla"] body { --bs-body-font-family: 'Piazzolla', -apple-system, system-ui, sans-serif; }
-html[data-body-font="lato"] body { --bs-body-font-family: 'Lato', -apple-system, system-ui, sans-serif; }
-
-:root { --headings-font-family: 'Edge Sans', -apple-system, system-ui, sans-serif; }
-html[data-heading-font="plotter"] { --headings-font-family: 'Plotter Liner Mono Stencil', Georgia, "Times New Roman", serif; }
-html[data-heading-font="ants-juni"] { --headings-font-family: 'ANTS Juni', Georgia, "Times New Roman", serif; }
-html[data-heading-font="edge-sans"] { --headings-font-family: 'Edge Sans', -apple-system, system-ui, sans-serif; }
-html[data-heading-font="edge"] { --headings-font-family: 'Edge', -apple-system, system-ui, sans-serif; }
-
-/* Check icon in the switcher dropdowns reserves space so labels align whether ticked or not */
-[data-body-font-check], [data-heading-font-check] { visibility: hidden; }
-.dropdown-item[aria-current="true"] [data-body-font-check],
-.dropdown-item[aria-current="true"] [data-heading-font-check] { visibility: visible; }
