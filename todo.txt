@@ -1,12 +1,11 @@
 Analytics
-Push to GitHub
 - Swap dependabot for renovate
 - Set up CI
     - Playwright testing in CI/prek
 
-Do we hate the body font?
-Font flash
 Image loaders
 
 Hosting
 - Check RSS feed valid
+
+Decide on fonts

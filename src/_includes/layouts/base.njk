@@ -10,6 +10,41 @@
 		<link rel="icon" href="/img/favicon.ico" sizes="any">
 		<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 
+		{#- Apply saved font choices and preload the active fonts before CSS parses,
+		    so the browser starts fetching them immediately and swaps in with minimal flash. #}
+		<script>
+		(() => {
+			const HEADING = {
+				"edge-sans": ["/fonts/edge-sans/EdgeSansL-Regular.woff2", "font/woff2"],
+				"plotter": ["/fonts/plotter-liner-mono-stencil/PlotterLinerMonoStencilStd-Regular.woff2", "font/woff2"],
+				"ants-juni": ["/fonts/ants-juni/ANTSJuni.woff", "font/woff"],
+			};
+			const BODY = {
+				"literata": ["/fonts/literata-book/LiterataBook.woff", "font/woff"],
+				"lato": ["/fonts/lato-latin/LatoLatin-Regular.woff2", "font/woff2"],
+				"piazzolla": ["/fonts/piazzolla/woff2/Piazzolla-Regular.woff2", "font/woff2"],
+			};
+			try {
+				const heading = localStorage.getItem("heading-font") || "edge-sans";
+				const body = localStorage.getItem("body-font") || "lato";
+				document.documentElement.dataset.headingFont = heading;
+				document.documentElement.dataset.bodyFont = body;
+				const preload = (entry) => {
+					if (!entry) return;
+					const link = document.createElement("link");
+					link.rel = "preload";
+					link.as = "font";
+					link.type = entry[1];
+					link.href = entry[0];
+					link.crossOrigin = "anonymous";
+					document.head.appendChild(link);
+				};
+				preload(HEADING[heading]);
+				preload(BODY[body]);
+			} catch (e) {}
+		})();
+		</script>
+
 		{#- @font-face definitions must be parsed before Bootstrap references the families #}
 		<style>{% include "src/assets/scss/fonts.css" %}</style>
 
@@ -23,18 +58,6 @@
 
 		{#- Add the heading-anchors web component to the JavaScript bundle #}
 		<script type="module">{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}</script>
-
-		{#- Apply saved font choices before <body> renders to avoid FOUC #}
-		<script>
-		(() => {
-			try {
-				const body = localStorage.getItem("body-font");
-				if (body) document.documentElement.dataset.bodyFont = body;
-				const heading = localStorage.getItem("heading-font");
-				if (heading) document.documentElement.dataset.headingFont = heading;
-			} catch (e) {}
-		})();
-		</script>
 	</head>
 	<body class="d-flex flex-column min-vh-100">
 		<a href="#main" id="skip-link" class="visually-hidden-focusable">Skip to main content</a>
