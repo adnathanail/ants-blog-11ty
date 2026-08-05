@@ -10,6 +10,7 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownItAttrs from "markdown-it-attrs";
 import admonitions from "./src/_11ty/utils/admonitions.js";
 import videoMedia from "./src/_11ty/utils/video-media.js";
+import imagePlaceholders from "./src/_11ty/utils/image-placeholders.js";
 import "./src/_11ty/utils/prism-typst.js";
 
 import pluginFilters from "./src/_11ty/filters/filters.js";
@@ -154,6 +155,9 @@ export default async function(eleventyConfig) {
 	// Shortcodes
 	eleventyConfig.addPlugin(dateShortcodes);
 	eleventyConfig.addPlugin(componentShortcodes);
+
+	// Wraps <picture> elements in blog posts with placeholder-glow markup.
+	eleventyConfig.addPlugin(imagePlaceholders);
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);

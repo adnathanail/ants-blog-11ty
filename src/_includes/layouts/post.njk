@@ -8,6 +8,8 @@ layout: layouts/base.njk
 <style>{% include "src/assets/scss/prism-typst.css" %}</style>
 <link rel="stylesheet" href="/css/katex.min.css">
 
+{% include "partials/deferred_images.njk" %}
+
 <h1>{{ title }}</h1>
 
 {%- set postTags = tags | filterTagList %}
