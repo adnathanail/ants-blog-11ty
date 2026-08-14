@@ -14,4 +14,13 @@ export default function(eleventyConfig) {
 	eleventyConfig.addShortcode("youtube", (id) =>
 		componentEnv.render("youtube.njk", { id })
 	);
+
+	let zxIdCounter = 0;
+	eleventyConfig.addPairedShortcode("zxDiagram", (content) => {
+		JSON.parse(content);
+		return componentEnv.render("zx-diagram.njk", {
+			id: `zx-${++zxIdCounter}`,
+			diagram: content,
+		});
+	});
 };

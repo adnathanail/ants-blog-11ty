@@ -56,6 +56,7 @@ export default async function(eleventyConfig) {
 			"./node_modules/bootstrap-icons/font/fonts/": "/fonts/bootstrap-icons/",
 			"./node_modules/katex/dist/katex.min.css": "/css/katex.min.css",
 			"./node_modules/katex/dist/fonts/": "/css/fonts/",
+			"./node_modules/@adnathanail/zxcc/dist/index.bundle.js": "/js/zxcc.bundle.js",
 			"./src/content/authors/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/authors/",
 			"./src/content/project_links/*.{png,jpg,jpeg,webp,avif,svg,gif}": "/img/project_links/",
 		})

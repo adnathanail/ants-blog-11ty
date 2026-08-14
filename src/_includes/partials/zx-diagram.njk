@@ -1,0 +1,10 @@
+<zx-diagram id="{{ id }}"></zx-diagram>
+<script src="/js/zxcc.bundle.js" type="module"></script>
+<script type="module" eleventy:ignore>
+	customElements.whenDefined('zx-diagram').then(() => {
+		document.getElementById('{{ id }}').diagram = {{ diagram | safe }};
+	});
+</script>
+<noscript>
+	<p class="text-danger fst-italic">You have JavaScript disabled so the ZX diagram cannot be rendered.</p>
+</noscript>
