@@ -19,7 +19,7 @@ layout: layouts/base.njk
 	{%- endfor %}
 </ul>
 
-<div class="row mb-1">
+<div class="row g-0 mb-3 pb-2 border-bottom">
 	<div class="col d-flex align-items-center">
 		<span class="text-body-secondary my-1">
 			{%- set date = page.date %}
@@ -30,8 +30,6 @@ layout: layouts/base.njk
 		{% include "partials/author.njk" %}
 	</div>
 </div>
-
-<hr class="mt-2">
 
 <div class="post-content">
 	{{ content | safe }}
