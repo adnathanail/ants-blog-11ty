@@ -49,6 +49,7 @@
 		"@adnathanail/zxcc": "^0.2.0",
 		"@zachleat/heading-anchors": "^1.0.5",
 		"markdown-it-admonitions": "^0.1.10",
-		"markdown-it-attrs": "^5.0.1"
+		"markdown-it-attrs": "^5.0.1",
+		"markdown-it-footnote": "^4.0.0"
 	}
 }
