@@ -4,6 +4,7 @@ heroImg: ./test1.png
 description: Docker image to quickly compile quantikz code into images
 author: alex
 date: 2025-09-16
+updatedDate: 2026-08-15
 ---
 
 I have a problem, which very well may be simply due to my old messy LaTeX installation, but I didn't want to reinstall everything on my laptop, so see below...
@@ -66,3 +67,9 @@ Breaking this down:
 ### Code
 
 Check out my [code on GitHub](https://github.com/adnathanail/qzfr)!
+
+### Update 2026 - ZX-calculus diagrams
+
+I just added functionality to process ZX-calculus diagrams created using [TikZit](https://tikzit.github.io)!
+
+![](./test2.png)
