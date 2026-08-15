@@ -1,10 +1,15 @@
+{#- The <style> and the bare `import` are identical for every diagram, so the bundle
+    plugin hoists them into this page's css/js bundles and de-duplicates them: one copy
+    per page, and none at all on pages with no diagrams. The per-diagram init script
+    below opts out with eleventy:ignore, since it has to stay next to its element. -#}
+<style>{{ css | safe }}</style>
+<script type="module">import "/js/zxcc.bundle.js";</script>
 <div class="zx-step">
 {%- if relation %}
 <div class="zx-rel">{{ relation | safe }}</div>
 {% endif -%}
 <div class="zx-diagram-box">
 <zx-diagram id="{{ id }}"></zx-diagram>
-<script src="/js/zxcc.bundle.js" type="module"></script>
 <script type="module" eleventy:ignore>
 	customElements.whenDefined('zx-diagram').then(() => {
 		document.getElementById('{{ id }}').diagram = {{ diagram | safe }};

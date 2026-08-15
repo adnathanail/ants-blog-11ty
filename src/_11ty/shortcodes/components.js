@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import nunjucks from "nunjucks";
 
 // Relation symbols a ZX rewrite step can be justified by. Keyed by what an author
@@ -6,6 +7,13 @@ const ZX_RELATIONS = {
 	"eq": "=",
 	"propto": "∝",
 };
+
+// markdown-it ends an HTML block at the first blank line, so component markup must not
+// contain one — otherwise the parser reopens partway through and renders the remainder
+// (inlined CSS included) as markdown.
+function collapseBlankLines(html) {
+	return html.replace(/\n\s*\n/g, "\n").trim();
+}
 
 function escapeHtml(str) {
 	return str.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -43,24 +51,27 @@ export default function(eleventyConfig) {
 		componentEnv.render("youtube.njk", { id })
 	);
 
+	// Read rather than {% include %}d, so the stylesheet is never parsed as a nunjucks
+	// template. Re-read per render so edits are picked up by the dev server's rebuild.
+	const zxCss = () => fs.readFileSync("src/assets/scss/zx.css", "utf8");
+
 	// `rel`/`rule` render a rewrite step's justification to the LEFT of the diagram,
 	// e.g. {% zxDiagram "eq", "sp" %}. Keeping it inside the diagram's own wrapper means
 	// a step never gets orphaned from its operator when the group wraps onto a new line.
 	let zxIdCounter = 0;
 	eleventyConfig.addPairedShortcode("zxDiagram", (content, rel, rule) => {
 		JSON.parse(content);
-		return componentEnv.render("zx-diagram.njk", {
+		return collapseBlankLines(componentEnv.render("zx-diagram.njk", {
 			id: `zx-${++zxIdCounter}`,
 			diagram: content,
 			relation: rel ? zxRelation(rel, rule) : null,
-		});
+			css: zxCss(),
+		}));
 	});
 
 	// Lays a run of {% zxDiagram %} blocks out as a centred, wrapping row instead
-	// of one full-width block each. Blank lines are collapsed so markdown-it keeps
-	// the whole group as a single HTML block rather than reopening the parser
-	// partway through.
+	// of one full-width block each.
 	eleventyConfig.addPairedShortcode("zxGroup", (content) =>
-		`<div class="zx-group">${content.replace(/\n\s*\n/g, "\n").trim()}</div>`
+		`<div class="zx-group">${collapseBlankLines(content)}</div>`
 	);
 };
