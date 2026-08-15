@@ -2,56 +2,22 @@
    Emitted by src/_includes/partials/zx-diagram.njk as an inline <style>, which the
    Eleventy bundle plugin hoists into the page's `css` bundle and de-duplicates, so
    this lands once on pages that use a diagram and not at all on pages that do not.
-   See "Component assets" in CLAUDE.md. */
+   See "Component assets" in CLAUDE.md.
 
-zx-diagram {
-	/* Beats the component's own :host { display: block } — outer page rules
-	   win over :host — so a diagram is only as wide as its SVG. */
-	display: inline-block;
-	vertical-align: middle;
-	/* min-width lets a too-wide diagram shrink as a flex item; the component's
-	   shadow container is overflow: auto, so it scrolls rather than clipping. */
-	min-width: 0;
-	max-width: 100%;
-}
-/* A step is one rewrite: its justification (if any) plus the diagram it produces.
-   Grouping them means a wrap never leaves an operator dangling at the end of a
-   line — it travels down with the diagram to its right, as in a broken align. */
-.zx-step {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	counter-increment: zx-step;
-}
-/* Flex rather than block so the inline-block diagram contributes no baseline
-   gap, which would otherwise throw off the step's vertical centring. */
-.zx-diagram-box {
-	position: relative;
-	display: flex;
-	min-width: 0;
-	max-width: 100%;
-}
-.zx-rel {
-	position: relative;
-	font-size: 1.4rem;
-	line-height: 1;
-}
-/* Out of flow, so the rule name adds no height and the relation symbol stays
-   centred on the diagram beside it. */
-.zx-rel-rule {
-	position: absolute;
-	bottom: calc(100% + 0.15em);
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 0.65em;
-	font-style: italic;
-	white-space: nowrap;
-	/* Only the abbreviation is bold — the parens stay regular weight, matching
-	   how the rules are written in prose: "spider fusion (**sp**)". */
-	> b {
-		font-weight: bold;
-	}
-}
+   The rules below are nested to mirror the markup:
+
+     .zx-group                 (optional) a sequence of rewrite steps
+       .zx-step                one rewrite: its justification, then the diagram
+         .zx-rel               the justification; absent on the opening diagram
+           .zx-rel-rule        rule abbreviation, e.g. "(sp)"
+             b                 the abbreviation itself, without its parens
+           .zx-rel-symbol      the relation, e.g. "=" or "∝"
+         .zx-diagram-box       ::before is the step number
+           zx-diagram          the zxcc custom element
+*/
+
+/* Optional — a lone diagram is a .zx-step with no .zx-group around it, which is why
+   the step is not nested in here. */
 .zx-group {
 	display: flex;
 	flex-wrap: wrap;
@@ -61,11 +27,16 @@ zx-diagram {
 	margin-bottom: 1rem;
 	counter-reset: zx-step;
 
-	/* Step number, in the empty band zxcc leaves above the top wire. Absolute so
-	   it costs no height, keeping the relation symbol on the diagram's midline.
-	   A CSS counter numbers the steps per group, which the shortcode cannot do
-	   itself: a zxDiagram renders before the enclosing zxGroup ever sees it. */
-	.zx-diagram-box::before {
+	--bs-bg-opacity: 1;
+	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+	padding: 1rem !important;
+
+	/* Step number, in the empty band zxcc leaves above the top wire. Absolute so it
+	   costs no height, keeping the relation symbol on the diagram's midline. A CSS
+	   counter numbers the steps, which the shortcode cannot do itself: a zxDiagram
+	   renders before the enclosing zxGroup ever sees it. Scoped to the group because
+	   numbering only means something within a sequence. */
+	> .zx-step > .zx-diagram-box::before {
 		content: counter(zx-step) ".";
 		position: absolute;
 		top: 0.4rem;
@@ -74,8 +45,58 @@ zx-diagram {
 		font-weight: bold;
 		line-height: 1;
 	}
+}
 
-	--bs-bg-opacity: 1;
-	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-	padding: 1rem !important;
+/* A step is one rewrite: its justification (if any) plus the diagram it produces.
+   Grouping them means a wrap never leaves an operator dangling at the end of a line
+   — it travels down with the diagram to its right, as in a broken align. */
+.zx-step {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	counter-increment: zx-step;
+
+	> .zx-rel {
+		position: relative;
+		font-size: 1.4rem;
+		line-height: 1;
+
+		/* Out of flow, so the rule name adds no height and the relation symbol
+		   stays centred on the diagram beside it. */
+		> .zx-rel-rule {
+			position: absolute;
+			bottom: calc(100% + 0.15em);
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 0.65em;
+			font-style: italic;
+			white-space: nowrap;
+
+			/* Only the abbreviation is bold — the parens stay regular weight,
+			   matching how the rules are written in prose: "spider fusion (**sp**)". */
+			> b {
+				font-weight: bold;
+			}
+		}
+	}
+
+	/* A flex container, so the diagram is a flex item that can shrink (see below) and
+	   adds no baseline gap the way an inline-level child of a block would — that gap
+	   would throw off the step's vertical centring. */
+	> .zx-diagram-box {
+		position: relative;
+		display: flex;
+		min-width: 0;
+		max-width: 100%;
+
+		/* Continues the shrink chain: a flex item defaults to min-width: auto, which
+		   would stop a diagram wider than the column from narrowing and make the page
+		   scroll sideways. The component's shadow container is overflow: auto, so it
+		   scrolls within itself instead. Its own display is left alone — the box is a
+		   flex container, so the element is blockified whatever :host asks for. */
+		> zx-diagram {
+			min-width: 0;
+			max-width: 100%;
+		}
+	}
 }
