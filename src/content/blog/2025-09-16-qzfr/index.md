@@ -1,10 +1,11 @@
 ---
 title: qzfr (quantikzifier)
-heroImg: ./test1.png
 description: Docker image to quickly compile quantikz code into images
 author: alex
+heroImg: ./test1.png
 date: 2025-09-16
 updatedDate: 2026-08-15
+tags: ['tooling', 'project']
 ---
 
 I have a problem, which very well may be simply due to my old messy LaTeX installation, but I didn't want to reinstall everything on my laptop, so see below...

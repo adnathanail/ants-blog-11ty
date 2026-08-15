@@ -1,9 +1,10 @@
 ---
 title: DRT Algorithms
-heroImg: ./Screenshot 2023-03-22 at 23.52.55.png
 description: Implementing practical route planning algorithms for demand responsive bus services
 author: alex
+heroImg: ./Screenshot 2023-03-22 at 23.52.55.png
 date: 2023-03-22
+tags: ['coding', 'project', 'theory']
 ---
 
 For my final year project of my BSc in Computer Science at UCL I created a Travelling Salesman Problem solver called Broute

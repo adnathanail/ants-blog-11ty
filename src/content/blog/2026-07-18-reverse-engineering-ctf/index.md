@@ -4,6 +4,7 @@ description: Another thing I learned at EMF camp!
 author: alex
 heroImg: ./01_test_run.png
 date: 2026-07-18
+tags: coding
 ---
 
 I've just come back from [EMF camp 2026](https://emfcamp.org)!

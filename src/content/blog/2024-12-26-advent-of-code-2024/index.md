@@ -1,9 +1,10 @@
 ---
 title: Advent of Code 2024
-heroImg: ./advent_of_code_hero.jpg
 description: The culmination of a 10-year problem solving journey
 author: alex
+heroImg: ./advent_of_code_hero.jpg
 date: 2024-12-26
+tags: ['coding', 'project', 'theory']
 ---
 
 [Advent of Code](https://adventofcode.com/) is an absolute festive treat, created by [Eric Wastl](https://was.tl/), providing daily coding problems throughout the lead-up to Christmas.

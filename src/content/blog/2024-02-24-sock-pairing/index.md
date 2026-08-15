@@ -1,9 +1,10 @@
 ---
 title: Why you should always pair your socks straight out of the wash
-heroImg: ./grid.png
 description: A mathematical explanation
 author: alex
+heroImg: ./grid.png
 date: 2024-02-24
+tags: theory
 ---
 
 Pairing your socks after washing them seems like an annoying and unnecessary task. You think you can just find pairs as and when you need them, you could either do all the work now, or just spread it out over the next couple of weeks.

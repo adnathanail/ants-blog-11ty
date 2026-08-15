@@ -1,9 +1,10 @@
 ---
 title: Code Fearlessly
-heroImg: ./01_nat_friedman.jpg
 description: Repost of an invaluable blog post that seems to have fallen off the internet
 author: camly
+heroImg: ./01_nat_friedman.jpg
 date: 2024-12-28
+tags: prose
 ---
 
 **This is not my content**

@@ -1,9 +1,10 @@
 ---
 title: Introduction to shaders
-heroImg: ./Screenshot_2022-06-12_at_01.34.08_wlolep.png
 description: What I learned in a workshop at EMF Camp 2022
 author: alex
+heroImg: ./Screenshot_2022-06-12_at_01.34.08_wlolep.png
 date: 2022-06-12
+tags: coding
 ---
 
 I've just come back from EMF camp 2022 and I went to a workshop about shaders. I thought I would document what I learned, and what I managed to discover from independent research afterwards.

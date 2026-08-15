@@ -1,8 +1,8 @@
 ---
 title: GitHub Actions always() isn't useful
-heroImg: ./44036562_xohc8h.png
 description: The `always()` expression on GitHub actions doesn't do what you think it does
 author: alex
+heroImg: ./44036562_xohc8h.png
 date: 2023-01-07
 tags: GitHub
 ---

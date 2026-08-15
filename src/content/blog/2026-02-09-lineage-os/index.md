@@ -1,10 +1,11 @@
 ---
 title: "LineageOS: circumventing my banks' device requirements, twice"
-heroImg: ./lineageos-logo.jpeg
 description: App store region locks, and OS version requirements
 author: alex
+heroImg: ./lineageos-logo.jpeg
 date: 2026-02-09
 updatedDate: 2026-03-04
+tags: ['tooling', 'project']
 ---
 
 ## I hate region locks and banking apps

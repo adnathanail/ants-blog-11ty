@@ -1,9 +1,10 @@
 ---
 title: Hilbert curve
-heroImg: ./part-1/screenshot-2022-05-01-at-17.22.49_yvddpy.png
 description: Hilbert curves and MIDI
 author: alex
+heroImg: ./part-1/screenshot-2022-05-01-at-17.22.49_yvddpy.png
 date: 2022-05-01
+tags: ['coding', 'project']
 ---
 
 > [!note]

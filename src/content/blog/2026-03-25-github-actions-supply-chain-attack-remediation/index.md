@@ -4,6 +4,7 @@ description: Quick remediation guide for the Trivy attack
 author: alex
 heroImg: ./dependency.png
 date: 2026-03-25
+tags: ['tooling', 'GitHub']
 ---
 
 A [recent supply chain attack](https://socket.dev/blog/trivy-under-attack-again-github-actions-compromise) rocked the open-source community.

@@ -1,9 +1,10 @@
 ---
 title: How many puzzle pieces are there?
-heroImg: ./05_necklace.png
 description: There's 6
 author: alex
+heroImg: ./05_necklace.png
 date: 2025-01-08
+tags: theory
 recommendNoRSS: true
 ---
 
