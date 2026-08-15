@@ -1,9 +1,10 @@
 ---
 title: Substi-fruit
-heroImg: ./substi-fruit-graph_b6jiwr.png
 description: A stupid drunk idea that I worked on until I was sober
 author: alex
+heroImg: ./substi-fruit-graph_b6jiwr.png
 date: 2022-06-10
+tags: project
 ---
 
 # Background

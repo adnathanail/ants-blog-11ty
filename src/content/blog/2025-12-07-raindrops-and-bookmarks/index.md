@@ -1,9 +1,10 @@
 ---
 title: Raindrops and Bookmarks
-heroImg: ./new_tab_page.png
 description: I sat down, took my meds to do some work, and ended up organising my bookmarks and making a custom New Tab page.
 author: alex
+heroImg: ./new_tab_page.png
 date: 2025-12-07
+tags: project
 ---
 
 ## Links

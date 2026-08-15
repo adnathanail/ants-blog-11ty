@@ -1,9 +1,10 @@
 ---
 title: Moving to Typst
-heroImg: ./more_latex_3.png
 description: I've loved LaTeX for a long time, but it's time for a change
 author: alex
+heroImg: ./more_latex_3.png
 date: 2025-11-11
+tags: ['tooling']
 ---
 
 As a youngster, I was mildly obsessed with stories I'd heard about MIT, and how they had these famous "p-sets", which everyone typed up in something called LaTex.
