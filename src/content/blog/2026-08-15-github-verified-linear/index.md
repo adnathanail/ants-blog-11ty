@@ -25,9 +25,11 @@ But it seems like a good industry practice, and I like the little green badge it
 
 ![](verified.png)
 
+It seems that, of these three desires, I can only choose two.
+
 ## GitHub Pull request merge options
 
-### Merge commits
+### Merge commits ⛔️✅✅
 
 The default merge button on a Pull request creates a merge commit.
 This takes the two separate git histories, and just makes sure they are consistent at their ends.
@@ -35,14 +37,14 @@ It maintains my exact commits which I pushed, keeping their Verified status, and
 
 But my history is messy.
 
-### Squash and merge
+### Squash and merge ✅⛔️✅
 
 This takes all of the commits from the branch and combines them into a single commit on the main branch.
 This commit is signed by GitHub, so it shows as verified, and the history is in a way linear.
 
 But I've lost the granularity.
 
-### Rebase and merge
+### Rebase and merge ✅✅⛔️
 
 This takes the commits from the branch, and sticks them linearly onto the end of the main branch.
 My history is linear, I've kept my story.
@@ -52,6 +54,8 @@ The [rationale in their docs](https://docs.github.com/en/repositories/configurin
 
 I don't follow this reasoning at all.
 In fact, I think that the act of creating commits in the merge and squash methods shouldn't be verified, because whose authority or identity is being invoked here?
+The rebase is the only operation where exactly what was verified on my machine is landing on main.
+
 Is it that the action was performed through GitHub's interface, through a logged in account, and therefore GitHub knows exactly who did it?
 Because so is a rebase!
 
@@ -64,14 +68,12 @@ This makes a lot of sense, because what is the point of having a merge commit wh
 For some unknown reason, GitHub's **Merge pull request** functionality is [explicitly set to run](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github) with the `--no-ff` option.
 
 There is years of discussion ([#4618](https://github.com/orgs/community/discussions/4618) [#5524](https://github.com/orgs/community/discussions/5524)) on GitHub's community forum asking for this to be implemented.
-
 There are [blog posts](https://v5.chriskrycho.com/notes/fast-forward-merges-on-github/), showing how you can do the fast-forward merge manually on your local machine, and then pushing to main.
-
 There are [multiple](https://github.com/marketplace/actions/merge-fast-forward-only) [GitHub actions](https://github.com/marketplace/actions/fast-forward-pr) allowing you to fast-forward merge through PR comments, or running them manually.
-
 There are [companies](https://docs.mergify.com/merge-queue/merge-strategies/#fast-forward) who offer fast-forward merging as a feature in their product.
 
 But all of these things require trusting something: your own usage of the command line, an obscure open-source project, a business.
+If there's one thing that I've learned in years of development, it's that you should _trust nothing_, especially not yourself.
 
 ## Rulesets
 
@@ -79,16 +81,21 @@ GitHub has a feature called [rulesets](https://docs.github.com/en/repositories/c
 
 ![](rulesets.png)
 
-There's loads of options, to enforce a beautiful clean workspace, and prevent error or malice.
+There's loads of options, to enforce a beautiful clean workspace, and prevent accident or malice.
 
 But, if you select `Require linear history` and `Require signed commits`, your only option is the squash commit.
 
 This belies a complete lack of product cohesion.
 
-> [!note]
-> As a slight sidenote, if you have any merge commits in your repository's history, you cannot push to a branch with `Require linear history`.
-> You might say that you only need that enabled on your main branch, but it's helpful for developers to discover as early as possible that they are making a problem.
-> If they have accidentally created a merge commit in their branch with some git mess-up, it's quite painful to only be told in 2 weeks time when you try to merge that your history is unacceptable.
+Squashing feels like the worst of the option in many ways.
+Of course, if you follow best practices, your PRs should be small enough to be a single commit anyway.
+But that feels like one of those aphorisms like _'functions should be 20 lines max'_ which just doesn't survive contact with reality.
+
+> [!tip]
+> Fun fact!
+> If you have any merge commits in your repository's history, you can **never** push to a new branch with `Require linear history`.
+> You might say that you only need that enabled on your main branch, but it's helpful for developers to discover as early as possible that they are creating a problem.
+> If they have accidentally created a merge commit in their branch with some git mess-up, it's quite painful to only be told when you try to merge in 2 weeks time that your history is unacceptable.
 
 ## A plea
 
