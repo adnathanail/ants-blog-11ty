@@ -2,6 +2,14 @@
 
 Project-specific conventions for this blog. See also `docs/` for topic notes.
 
+## Building
+
+Use the development build command which includes the `.env.dev` variables with
+
+```bash
+npm run build-dev
+```
+
 ## Footnotes
 
 Footnotes are provided by [`markdown-it-footnote`](https://github.com/markdown-it/markdown-it-footnote),
