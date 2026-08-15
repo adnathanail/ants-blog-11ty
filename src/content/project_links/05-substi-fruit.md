@@ -1,6 +1,6 @@
 ---
 name: Substi-fruit
-loc: 3
+loc: 5
 url: 'https://substifruit.adnathanail.dev/'
 blurbText: What fruit can you swap??
 thumbnailImg: ./substi-fruit.png
