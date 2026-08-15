@@ -16,19 +16,19 @@
 	p:has(.no-center) {
 		text-align: left;
 	}
-	p:has(.img-w-20), p:has(.img-w-25), p:has(.img-w-30), p:has(.img-w-60), p:has(.img-w-40), p:has(.no-center) {
+	p:has(.img-w-20), p:has(.img-w-25), p:has(.img-w-30), p:has(.img-w-40), p:has(.img-w-60), p:has(.img-w-100), p:has(.no-center) {
 		font-size: 0;
 	}
-	.img-w-20, .img-w-25, .img-w-30, .img-w-40, .img-w-60 {
+	.img-w-20, .img-w-25, .img-w-30, .img-w-40, .img-w-60, .img-w-100 {
 		height: auto;
 	}
 	picture:not(:first-child) img, video:not(:first-child) {
-        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
+        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60, &.img-w-100 {
             margin-left: 0.5rem;
         }
     }
     picture:not(:last-child) img, video:not(:last-child) {
-        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
+        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60, &.img-w-100 {
             margin-right: 0.5rem;
         }
     }
@@ -36,12 +36,12 @@
     /* Margins between adjacent width-limited items in a <p> — wrapper spans
        for <picture>, or bare <video> elements. */
     /* p > *:not(:first-child) {
-        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
+        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60, &.img-w-100 {
             margin-left: 0.5rem;
         }
     }
     p > *:not(:last-child) {
-        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60 {
+        &.img-w-20, &.img-w-25, &.img-w-30, &.img-w-40, &.img-w-60, &.img-w-100 {
             margin-right: 0.5rem;
         }
     } */
@@ -67,6 +67,9 @@
 	}
 	.img-w-60 {
 		max-width: calc(60% - 0.4rem) !important;
+	}
+	.img-w-100 {
+		max-width: calc(100% - 0.4rem) !important;
 	}
 
 	/* Code blocks */
