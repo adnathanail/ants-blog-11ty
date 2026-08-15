@@ -1,3 +1,8 @@
+<div class="zx-step">
+{%- if relation %}
+<div class="zx-rel">{{ relation | safe }}</div>
+{% endif -%}
+<div class="zx-diagram-box">
 <zx-diagram id="{{ id }}"></zx-diagram>
 <script src="/js/zxcc.bundle.js" type="module"></script>
 <script type="module" eleventy:ignore>
@@ -8,3 +13,5 @@
 <noscript>
 	<p class="text-danger fst-italic">You have JavaScript disabled so the ZX diagram cannot be rendered.</p>
 </noscript>
+</div>
+</div>

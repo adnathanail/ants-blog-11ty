@@ -88,3 +88,57 @@ first note the full citation and any later ones the short form, with the locator
 - **Verify metadata before citing** rather than writing it from memory — the arXiv abstract page
   for authors and title, and `https://api.crossref.org/works/<DOI>` to confirm the DOI, journal,
   volume, issue, and year resolve to the right paper.
+
+## Post styles
+
+`src/_includes/layouts/post.njk` inlines the post stylesheets with `{% include %}` (`post.css`,
+`prism-diff.css`, `prism-typst.css`). Nunjucks therefore **parses those files as templates**,
+comments included. Never write nunjucks tag or interpolation syntax in them, not even inside a
+`/* */` — naming a paired shortcode in a comment makes nunjucks hunt for its closing tag and fail
+every post with "unexpected end of file".
+
+## ZX-diagrams
+
+`{% zxDiagram %}` renders a [`zxcc`](https://github.com/adnathanail/zxcc) `<zx-diagram>` from a
+JSON body; both shortcodes are registered in `src/_11ty/shortcodes/components.js`, the markup
+lives in `src/_includes/partials/zx-diagram.njk`, and the styling under `/* ZX diagrams */` in
+`src/assets/scss/post.css`.
+
+### Rewrite sequences
+
+Wrap a derivation in `{% zxGroup %}`. The diagrams then flow side by side and wrap onto new lines
+as needed, centred, instead of taking a full-width block each.
+
+Give every diagram after the first the relation that justifies it, optionally with the rule
+abbreviation to stack above it:
+
+```markdown
+{% zxGroup %}
+  {% zxDiagram %}
+    { "nodes": [...], "edges": [...] }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq", "sp" %}
+    { "nodes": [...], "edges": [...] }
+  {% endzxDiagram %}
+
+  {% zxDiagram "propto", "eu" %}
+    { "nodes": [...], "edges": [...] }
+  {% endzxDiagram %}
+{% endzxGroup %}
+```
+
+Indent the diagrams inside the group — `zxGroup` strips the blank lines between them before
+handing the block to markdown-it, so the indentation is cosmetic and does not affect parsing.
+
+- **The relation belongs to the diagram on its right**, matching how a broken LaTeX `align` puts
+  the operator at the start of the new line. It is rendered inside that diagram's wrapper, so a
+  wrap can never orphan an operator at the end of a row.
+- **Steps are numbered automatically** (`1.`, `2.`, …) at the top left of each diagram, by a CSS
+  counter that resets per group, so prose can refer to "diagram 3". Diagrams outside a group are
+  not numbered.
+- **Relations are named, not typed as symbols** — `"eq"` renders `=` and `"propto"` renders `∝`.
+  They are plain characters in the output, not KaTeX. Add a key to `ZX_RELATIONS` in
+  `src/_11ty/shortcodes/components.js` to introduce another; an unknown name fails the build.
+- **The rule argument is a bare abbreviation** — `"sp"`, not `"(sp)"`. The parens and bold italic
+  are applied for you, matching `img/zx-rules.png`. Omit it for a step that is only a deformation.
