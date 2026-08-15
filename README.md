@@ -11,13 +11,18 @@ npm install
 
 Start dev server
 ```bash
-npx @11ty/eleventy --serve
+npm run start
+```
+
+Build locally (uses `.env.dev`)
+```bash
+npm run build-dev
 ```
 
 ## Production builds
 
 ```bash
-npx @11ty/eleventy
+npm run build
 ```
 
 ## Testing

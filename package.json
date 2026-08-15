@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
+		"build-dev": "env-cmd -f .env.dev npx @11ty/eleventy",
 		"build-nocolor": "cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy",
 		"start": "env-cmd -f .env.dev npx @11ty/eleventy --serve --quiet",
 		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
