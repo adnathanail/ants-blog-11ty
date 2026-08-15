@@ -128,18 +128,197 @@ Of course computers can do these operations very quickly, but eventually even th
 
 ## The ZX-calculus
 
-The ZX-calculus is the combination of a pair of commutative special dagger Frobenius algebras, forming a scaled bialgebra.
+The ZX-calculus is a pair of commutative special dagger Frobenius algebras, which together form a scaled bialgebra.[^coecke-duncan]
+
+[^coecke-duncan]: Bob Coecke and Ross Duncan, "Interacting Quantum Observables: Categorical Algebra and Diagrammatics," *New Journal of Physics* 13, no. 4 (2011): 043016, <https://doi.org/10.1088/1367-2630/13/4/043016>.
+
+I'm currently working through [Category Theory for Programmers](https://www.blurb.co.uk/b/9621951-category-theory-for-programmers-new-edition-hardco) ([free version on the author's blog](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)) to understand what on earth that means.
+I think it's basically saying that quantum observables happen to follow a bunch of symmetries and rules, which means we can work with them in beautiful ways.
+
+Luckily for us, we can happily use the ZX-calculus without any understanding of category theory.
+
+### ZX-diagrams
+
+<!-- TODO insert example diagram -->
+
+ZX-diagrams are the bread and butter of the ZX-calculus.
+They are composed (almost) entirely of red and green circles (called **spiders**), sometimes with numbers attached (**phases**), connected with various quantities of wires.
+
+Each spider, along with its phase, and number of wires, represents a matrix.[^linear-map-not-matrix]
+Wires can be joined together to make larger diagrams of spiders, again with a matrix representation.
+This system of composing building blocks turns out to be expressive enough to fully represent any quantum circuit!
+
+[^linear-map-not-matrix]: Technically it represents a linear map, which can be writted as a matrix in a given basis.[^tensor-not-linear-map]
+
+[^tensor-not-linear-map]: Technically technically it represents a tensor.
+
+Every element of a quantum circuit has a way to write it as a ZX-diagram.
+For example, the first circuit as a ZX-diagram would look like this:
+
+![](img/03-example-circuit-zx.png)
+
+This is all very fun, but to be honest this might be harder to read, what's the point?
+This is where the rules of the ZX-calculus comes in!
+
+It turns out that lots of different ZX-diagrams can represent the same quantum circuit, and the ZX-calculus provides rules which allow us to move between them.
+
+For example, in the diagram above, we can move the green spider with the $\pi$ in it through the spider to its left.
+If you compare the two diagrams, you'll see that what we did was move the Z gate to before the CNOT gate.
+And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
+
+That was an example of an application of the **spider fusion** (**sp**) rule. [^spider-unfusion]
+
+[^spider-unfusion]: And then applying it in reverse, colloquially 'unfusion'
+
+Below are 7 such rules (including spider fusion) which form the standard rules of the ZX-calculus.
+
+![](img/zx-rules.png)
 
 {% zxDiagram %}
 {
   "nodes": [
-    { "id": 0, "type": "input",  "ioId": 0 },
-    { "id": 1, "type": "spider", "color": "Z", "phase": "π/2" },
-    { "id": 2, "type": "output", "ioId": 0 }
+    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+    { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+    { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "Z" },
+    { "id": 4, "qubit": 0, "col": 4, "type": "output", "ioId": 1 },
+    { "id": 5, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+    { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+    { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
+    { "id": 8, "qubit": 1, "col": 3, "type": "spider", "color": "X" },
+    { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
   ],
   "edges": [
     { "src": 0, "tgt": 1 },
-    { "src": 1, "tgt": 2 }
+    { "src": 1, "tgt": 2 },
+    { "src": 2, "tgt": 3 },
+    { "src": 3, "tgt": 4 },
+
+    { "src": 5, "tgt": 6 },
+    { "src": 6, "tgt": 7 },
+    { "src": 7, "tgt": 8 },
+    { "src": 8, "tgt": 9 },
+
+    { "src": 1, "tgt": 6 },
+    { "src": 2, "tgt": 7 },
+    { "src": 3, "tgt": 8 }
+  ]
+}
+{% endzxDiagram %}
+
+{% zxDiagram %}
+{
+  "nodes": [
+    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+    { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+    { "id": 3, "qubit": 1, "col": 3, "type": "spider", "color": "Z" },
+    { "id": 4, "qubit": 0, "col": 4, "type": "output", "ioId": 1 },
+    { "id": 5, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+    { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+    { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
+    { "id": 8, "qubit": 0, "col": 3, "type": "spider", "color": "X" },
+    { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
+  ],
+  "edges": [
+    { "src": 0, "tgt": 1 },
+    { "src": 1, "tgt": 2 },
+    { "src": 2, "tgt": 3 },
+    { "src": 3, "tgt": 4 },
+
+    { "src": 5, "tgt": 6 },
+    { "src": 6, "tgt": 7 },
+    { "src": 7, "tgt": 8 },
+    { "src": 8, "tgt": 9 },
+
+    { "src": 1, "tgt": 6 },
+    { "src": 2, "tgt": 7 },
+    { "src": 3, "tgt": 8 }
+  ]
+}
+{% endzxDiagram %}
+
+{% zxDiagram %}
+{
+  "nodes": [
+    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+    { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
+    { "id": 3, "qubit": 0, "col": 3, "type": "output", "ioId": 1 },
+    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+    { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+    { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
+    { "id": 7, "qubit": 1, "col": 3, "type": "input",  "ioId": 3 }
+  ],
+  "edges": [
+    { "src": 0, "tgt": 1 },
+    { "src": 1, "tgt": 2 },
+    { "src": 2, "tgt": 7 },
+
+    { "src": 4, "tgt": 5 },
+    { "src": 5, "tgt": 6 },
+    { "src": 6, "tgt": 3 },
+
+    { "src": 1, "tgt": 5 },
+    { "src": 2, "tgt": 6 }
+  ]
+}
+{% endzxDiagram %}
+
+{% zxDiagram %}
+{
+  "nodes": [
+    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+    { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
+    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+    { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+    { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
+  ],
+  "edges": [
+    { "src": 0, "tgt": 1 },
+    { "src": 1, "tgt": 7 },
+
+    { "src": 4, "tgt": 5 },
+    { "src": 5, "tgt": 3 },
+
+    { "src": 1, "tgt": 5 },
+    { "src": 1, "tgt": 5 }
+  ]
+}
+{% endzxDiagram %}
+
+{% zxDiagram %}
+{
+  "nodes": [
+    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+    { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
+    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+    { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+    { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
+  ],
+  "edges": [
+    { "src": 0, "tgt": 1 },
+    { "src": 1, "tgt": 7 },
+
+    { "src": 4, "tgt": 5 },
+    { "src": 5, "tgt": 3 }
+  ]
+}
+{% endzxDiagram %}
+
+{% zxDiagram %}
+{
+  "nodes": [
+    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+    { "id": 3, "qubit": 0, "col": 1, "type": "output", "ioId": 1 },
+    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+    { "id": 7, "qubit": 1, "col": 1, "type": "input",  "ioId": 3 }
+  ],
+  "edges": [
+    { "src": 0, "tgt": 7 },
+    { "src": 4, "tgt": 3 }
   ]
 }
 {% endzxDiagram %}
