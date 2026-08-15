@@ -4,6 +4,7 @@ heroImg: ./44036562_xohc8h.png
 description: The `always()` expression on GitHub actions doesn't do what you think it does
 author: alex
 date: 2023-01-07
+tags: GitHub
 ---
 
 I use GitHub Actions quite a lot, for both personal and professional projects, and I often have multiple separate checks that I want to happen, such as linting, testing, building, and benchmarking.

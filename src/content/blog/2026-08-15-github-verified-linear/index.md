@@ -4,6 +4,7 @@ description: Pick any 2 of 3 best practices
 author: alex
 heroImg: ./messy_history.png
 date: 2026-08-15
+tags: GitHub
 ---
 
 I like linear git history.
