@@ -155,6 +155,30 @@
         }
 	}
 
+	/* ZX diagrams */
+	zx-diagram {
+		/* Beats the component's own :host { display: block } — outer page rules
+		   win over :host — so a diagram is only as wide as its SVG. */
+		display: inline-block;
+		vertical-align: middle;
+		/* min-width lets a too-wide diagram shrink as a flex item; the component's
+		   shadow container is overflow: auto, so it scrolls rather than clipping. */
+		min-width: 0;
+		max-width: 100%;
+	}
+	.zx-group {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem 1rem;
+		margin-bottom: 1rem;
+
+		--bs-bg-opacity: 1;
+		background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+		padding: 1rem !important;
+	}
+
 	/* Footnotes */
 	.footnote-ref > a {
 		font-weight: bold;

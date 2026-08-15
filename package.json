@@ -46,7 +46,7 @@
 		"zod": "^4.4.3"
 	},
 	"dependencies": {
-		"@adnathanail/zxcc": "^0.2.0",
+		"@adnathanail/zxcc": "^0.2.1",
 		"@zachleat/heading-anchors": "^1.0.5",
 		"markdown-it-admonitions": "^0.1.10",
 		"markdown-it-attrs": "^5.0.1",

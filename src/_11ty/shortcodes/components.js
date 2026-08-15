@@ -23,4 +23,12 @@ export default function(eleventyConfig) {
 			diagram: content,
 		});
 	});
+
+	// Lays a run of {% zxDiagram %} blocks out as a centred, wrapping row instead
+	// of one full-width block each. Blank lines are collapsed so markdown-it keeps
+	// the whole group as a single HTML block rather than reopening the parser
+	// partway through.
+	eleventyConfig.addPairedShortcode("zxGroup", (content) =>
+		`<div class="zx-group">${content.replace(/\n\s*\n/g, "\n").trim()}</div>`
+	);
 };
