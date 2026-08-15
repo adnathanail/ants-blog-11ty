@@ -97,12 +97,44 @@ comments included. Never write nunjucks tag or interpolation syntax in them, not
 `/* */` — naming a paired shortcode in a comment makes nunjucks hunt for its closing tag and fail
 every post with "unexpected end of file".
 
+## Component assets
+
+A component that needs its own CSS or JS **declares it inline, in its own partial** — do not add
+it to `post.css` or the base layout, which would ship it on every page. `eleventy.config.js`
+registers `css` and `js` bundles with `bundleHtmlContentFromSelector`, so Eleventy plucks every
+`<style>` and every `<script>` **that has inline content** out of the rendered page and into that
+page's bundle, emitted once by `{% getBundle "css" %}` / `{% getBundleFileUrl "js" %}` in
+`base.njk`. Buckets are a `Set` keyed per page, so **identical content is de-duplicated**: a
+partial used ten times contributes its assets once, and a page that never uses it gets nothing.
+This is the same idea as a Django widget's `Media` class.
+
+```njk
+{# in the partial #}
+<style>{{ css | safe }}</style>
+<script type="module">import "/js/some-lib.bundle.js";</script>
+```
+
+- **An external `<script src="...">` is left alone** — the plucker only takes elements with inline
+  content, so N copies of the component means N tags in the HTML. To load a library once, put a
+  bare `import` in an inline module script instead, as above.
+- **Opt a tag out with `eleventy:ignore`** when it must stay where it is — e.g. per-instance init
+  code that references the element next to it.
+- **Keep component CSS in its own file** under `src/assets/scss/` and read it in the shortcode
+  with `fs.readFileSync`, passing it to the template as a variable. Do not `{% include %}` it:
+  the partials render through a plain nunjucks environment whose loader is rooted at
+  `src/_includes/partials`, and an include would also parse the CSS as a template.
+- **Strip blank lines from a shortcode's output** (`collapseBlankLines` in
+  `src/_11ty/shortcodes/components.js`). Inlined CSS usually contains them, and markdown-it ends
+  an HTML block at the first blank line, which would render the rest of the component as markdown.
+
+`deferred_images.njk`, `gist-embed.njk`, and `zx-diagram.njk` all follow this.
+
 ## ZX-diagrams
 
 `{% zxDiagram %}` renders a [`zxcc`](https://github.com/adnathanail/zxcc) `<zx-diagram>` from a
 JSON body; both shortcodes are registered in `src/_11ty/shortcodes/components.js`, the markup
-lives in `src/_includes/partials/zx-diagram.njk`, and the styling under `/* ZX diagrams */` in
-`src/assets/scss/post.css`.
+lives in `src/_includes/partials/zx-diagram.njk`, and the styling in `src/assets/scss/zx.css`,
+which reaches the page as a component asset (see above) rather than via `post.css`.
 
 ### Rewrite sequences
 
