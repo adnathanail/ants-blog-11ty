@@ -2,7 +2,7 @@
 title: Hypergraphs and the ZX-calculus
 description: Combining two niche things I'd never heard of
 author: alex
-heroImg: ./
+heroImg: ./img/03-example-circuit-zx.png
 date: 2026-08-14
 recommendNoRSS: true
 draft: true
@@ -169,7 +169,7 @@ And, if you worked out the linear algebra, you'd see that those two circuits wer
 
 That was an example of an application of the **spider fusion** (**sp**) rule. [^spider-unfusion]
 
-[^spider-unfusion]: And then applying it in reverse, colloquially 'unfusion'
+[^spider-unfusion]: And then applying it in reverse, colloquially 'unfusion'.
 
 Below are 7 such rules (including spider fusion) which form the standard rules of the ZX-calculus.
 
@@ -191,4 +191,245 @@ But as an example, the second circuit from earlier showing 3 CNOTs equal SWAP is
 5. Use something called the Hopf rule, which allows us to remove a pair of links between the same two nodes. This is derived from strong complementarity, so we have just called it (sc) here.
 6. Apply the identity rule twice.
 
-These little diagrams are part of the first little stage of my thesis.
+<!-- TODO introduce H boxes -->
+
+### zxcc
+
+These little diagram viewers are part of the first little stage of my thesis, and actually the impetus for this blog post.
+
+They are based on the [interactive viewer](https://github.com/zxcalc/pyzx/blob/master/pyzx/js/zx_viewer.js) built into [pyzx](https://github.com/zxcalc/pyzx). I [embedded that](https://github.com/adnathanail/LeanSpider/tree/a2a6cb0f0c755194b394058b9231575589a0c69b/zx_view_widget) into a React component in a [project working with the ZX-calculus in Lean](https://github.com/adnathanail/LeanSpider). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [zxcc](https://github.com/adnathanail/zxcc).
+
+I wanted the ergonomics of components, without the bulk of something like React, so I rewrote it using a web components library called [lit](https://lit.dev). I then realised the bundle was 500KB because of the D3 dependency, so I rewrote the renderer using raw SVGs.
+
+In an effort to maintain visual and functional parity with the original viewer, I created a [Storybook](https://main--6a7e12985acc92e6ec37bdaa.chromatic.com/) displaying various types of diagrams. This is fed into a tool called [Chromatic](https://www.chromatic.com), which visually compares each part of the Storybook whenever I push no code, so I can confirm changes are working as intended, and no regressions are introduced.
+
+I'm doing all this, because I don't want to actually start working on my thesis.
+
+## Hypergraphs
+
+### Graphs
+
+The word [graph](https://adacomputerscience.org/concepts/struct_graph) means something very different to mathematicians than it does to most people.
+In mathland they are basically a way of showing relationships.
+
+You have a bunch of **nodes** which are often drawn as dots or circles, and **edges** which are lines between nodes.
+
+Essentially, a ZX-diagram looks exactly like a graph.
+Our spiders are the nodes, and our wires are the edges.
+
+It's been a while since I showed a pretty diagram so here's one:
+
+{% zxDiagram %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 2, "qubit": 0, "col": 2, "type": "hadamard" },
+      { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "X", "phase": "απ" },
+
+      { "id": 4, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+      { "id": 5, "qubit": 1, "col": 3, "type": "spider", "color": "X", "phase": "βπ" },
+
+      { "id": 6, "qubit": 2, "col": 2, "type": "spider", "color": "X", "phase": "βπ" },
+      { "id": 7, "qubit": 2, "col": 3, "type": "spider", "color": "Z", "phase": "απ" },
+      { "id": 8, "qubit": 2, "col": 4, "type": "output",  "ioId": 0 }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 1 },
+      { "src": 1, "tgt": 2 },
+      { "src": 2, "tgt": 3 },
+
+      { "src": 1, "tgt": 4 },
+      { "src": 4, "tgt": 5 },
+      
+      { "src": 4, "tgt": 6 },
+      { "src": 6, "tgt": 7 },
+      { "src": 7, "tgt": 8 }
+    ]
+  }
+{% endzxDiagram %}
+
+> [!question]
+> What famous quantum protocol does this diagram represent?
+
+That ones a bit complicated for my next example so here's another:
+
+{% zxDiagram %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+      { "id": 3, "qubit": 0, "col": 3, "type": "output",  "ioId": 0 }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 1 },
+      { "src": 1, "tgt": 2 },
+      { "src": 2, "tgt": 3 }
+    ]
+  }
+{% endzxDiagram %}
+
+A graph is nice visually for humans because we have eyes, but a computer needs a more ergonomic way to work with them.
+
+There are a two main ways a computer can represent a graph; **adjacency lists** make the most sense here. [^adjacency-matrixes]
+In this format, each of our nodes has an ID, and then each of our edges is represented by a pair of node IDs.
+
+For the example above, the adjacency list representation (ignoring the node types/phases) might look like this:
+
+```js
+{
+  "nodes": [0, 1, 2, 3],
+  "edges": [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+  ]
+}
+```
+
+[^adjacency-matrixes]: The other option is an adjacency matrix, where you have a sort of table, with each node having both a row and a column. If two nodes are connected, then you follow along their row and column to find the cell in both, and put a 1 there. Adjacency matrices are useful when you have a **dense** graph, i.e. lots of nodes are connected to lots of other nodes. In our diagrams, each node/spider is typically only connected to a few neighbours.
+
+### Hypergraphs
+
+In a hypergraph, an edge can be between more than 2 nodes.
+That might sound a little bit insane, but it can be a more ergonomic way to represent some types of relationships.
+
+Imagine a graph of people and their friendships.
+You can happily draw lines between pairs of people to accurately display all of the relationships between them.
+But you might then want to plan a party with a group of people where everyone knows each other.
+
+This information is absolutely contained within the graph, but it requires a bit of processing to find it.
+In fact this question is equivalent to the [clique problem](https://en.wikipedia.org/wiki/Clique_problem), which is NP-complete. [^np-complete]
+
+[^np-complete]: Computer science shorthand for 'we don't have a good algorithm for it'.
+
+If we instead stored our friendships in a hypergraph, where a hyperedge between several people means that they are all friends, then the answer to this question is readily available from our data structure.
+
+> [!note]
+> This setup might make other questions longer to answer; this is the fundamental trade-off in selecting the right data structure for the job!
+
+## Hypergraph representations of ZX-diagrams
+
+So why do we care about hypergraphs here?
+Clearly a ZX-diagram is laid out like a regular graph, each wire is only between two spiders.
+
+The idea here is to have the wires become the nodes, and the spiders become the hyperedges.
+Because each wire/node can necessarily only be connected to 2 spiders/hyperedges, we can visualize our ZX-diagrams as a funny sort of Venn diagram-looking structure.
+
+But why should we do this?
+That is essentially the point of this blog post, and it's sort of an attempt for me to coherently explain it to myself.
+
+<!-- TODO find out the proper explanation -->
+
+In my computer scientist brain, it's about which of spiders and wires should be 'first-class objects'; i.e. which should have unique identifiers, and which should be defined in relation to the first-class object.
+
+### Only connectivity matters
+
+This is the core mantra in the study of [string diagrams](https://zxcalc.github.io/book/html/main_htmlch2.html), of which the ZX-calculus is an example.
+
+It's basically saying that it doesn't matter _where_ your spiders are, so long as they are connected up identically; hence why the viewers let you drag them around.
+
+<!-- TODO don't show labels -->
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "hadamard" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "X", "phase": "απ" },
+
+        { "id": 4, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 5, "qubit": 1, "col": 3, "type": "spider", "color": "X", "phase": "βπ" },
+
+        { "id": 6, "qubit": 2, "col": 2, "type": "spider", "color": "X", "phase": "βπ" },
+        { "id": 7, "qubit": 2, "col": 3, "type": "spider", "color": "Z", "phase": "απ" },
+        { "id": 8, "qubit": 2, "col": 4, "type": "output",  "ioId": 0 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+
+        { "src": 1, "tgt": 4 },
+        { "src": 4, "tgt": 5 },
+        
+        { "src": 4, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 1, "col": 0, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 2, "col": 0, "type": "hadamard" },
+        { "id": 3, "qubit": 3, "col": 0, "type": "spider", "color": "X", "phase": "απ" },
+
+        { "id": 4, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 5, "qubit": 0, "col": 1, "type": "spider", "color": "X", "phase": "βπ" },
+
+        { "id": 6, "qubit": 1, "col": 3, "type": "spider", "color": "X", "phase": "βπ" },
+        { "id": 7, "qubit": 1, "col": 4, "type": "spider", "color": "Z", "phase": "απ" },
+        { "id": 8, "qubit": 2, "col": 4, "type": "output",  "ioId": 0 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+
+        { "src": 1, "tgt": 4 },
+        { "src": 4, "tgt": 5 },
+        
+        { "src": 4, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
+These two diagrams above are entirely equivalent to each other.
+We could move any of the spiders and H-boxes anywhere at all, and the diagrams mean the same thing.
+The only two nodes for which this is not true are the two black circles: the input and the ouput.
+
+'Input' and 'output' are different because they are the locations at which diagrams can be stuck together.
+In fact, implicitly, every spider (with a given number of wires), has implicit input and output nodes on their ends:
+{% zxDiagram %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input", "ioId": 0 },
+      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 2, "qubit": 0, "col": 2, "type": "output", "ioId": 0 },
+      { "id": 3, "qubit": 1, "col": 1, "type": "output",  "ioId": 0 }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 1 },
+      { "src": 1, "tgt": 2 },
+      { "src": 1, "tgt": 3 }
+    ]
+  }
+{% endzxDiagram %}
+<!-- TODO add: = the same diagram rotated, lightning arrow the diagram with spiders on the ends, = that diagram rotated -->
+
+However, because of the specifics of the linear maps that the spiders and H-boxes represent, these inputs/outputs are symmetric in how they are connected.
+
+Comparing this to IO on an arbitrary diagram, it is highly likely that the linear map represented is symmetric on its inputs and outputs.
+So we need a way of labelling our inputs and outputs.
+
+### Port graphs
+
+In a regular graph, our edges are anonymous objects.
+So the way that we might represent labelled 'ports' looks like:
+
+```js
+{
+  "nodes": [1, ..., 7],
+  "edges": [...],
+  "ports": [(0, 1), (1, 7)]  // (port_id, node_id)
+}
+```
