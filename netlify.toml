@@ -1,3 +1,10 @@
 [build]
 	publish = "_site"
 	command = "npm run build"
+
+# Cache Netlify images
+[[plugins]]
+	package = "netlify-plugin-cache"
+
+	[plugins.inputs]
+	paths = ["_site/img/optimized", ".cache"]
