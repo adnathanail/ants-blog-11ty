@@ -141,6 +141,8 @@ export default async function(eleventyConfig) {
 		sharpOptions: {
 			animated: true,
 		},
+
+		sharpAvifOptions: { effort: 1 },
 	});
 
 	// Filters
