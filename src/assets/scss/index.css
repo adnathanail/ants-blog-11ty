@@ -44,12 +44,12 @@ a:hover img {
 	min-width: 0;
 }
 .navbar-scroll-title.is-visible {
-	animation: navbar-title-wipe-in var(--wipe-duration, 0.5s) ease-out forwards;
+	animation: navbar-title-wipe-in var(--wipe-duration) ease-out forwards;
 }
 /* .was-visible is only added after the first show, so no wipe-out plays on
    initial page load. */
 .navbar-scroll-title.was-visible:not(.is-visible) {
-	animation: navbar-title-wipe-out var(--wipe-duration, 0.5s) ease-out forwards;
+	animation: navbar-title-wipe-out var(--wipe-duration) ease-out forwards;
 }
 @keyframes navbar-title-wipe-in {
 	from { clip-path: inset(0 100% 0 0); }
