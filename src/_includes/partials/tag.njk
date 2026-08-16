@@ -1,7 +1,7 @@
 {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-{%- set style = tagStyles[tag] or tagStyles.default %}
-{%- set tagClass = "badge text-muted bg-" + style.color + "-subtle border border-" + style.color + " text-capitalize fst-italic" %}
-{%- set tagBody %}{% if style.icon %}<i class="bi bi-{{ style.icon }}"></i> {% endif %}{{ tag }}{% endset %}
+{%- set style = tagStyles[tag] %}
+{%- set tagClass = "badge text-muted bg-" + style.color + "-subtle border border-" + style.color + " fst-italic" %}
+{%- set tagBody %}<i class="bi bi-{{ style.icon }}"></i> {{ style.label }}{% endset %}
 {%- if noLink %}
 <span class="{{ tagClass }}">{{ tagBody | safe }}</span>
 {%- else %}

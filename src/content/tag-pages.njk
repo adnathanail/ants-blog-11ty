@@ -10,8 +10,9 @@ const pagination = {
 const eleventyComputed = {
 	title: "Tagged '{{ tag }}'",
 	permalink: function(data) {
-		// If DuplicatePermalinkOutputError occurs, check that no tag occurs
-		// with differing case, e.g. "RSS" and "rss".
+		// Post tags must be defined in _data/tagStyles.js (see
+		// _data/eleventyDataSchema.js), whose keys are lowercased, so two tags
+		// differing only in case can't collide on this permalink.
 		return `/tags/${this.slugify(data.tag)}/`;
 	}
 };
