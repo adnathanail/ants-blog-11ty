@@ -142,7 +142,11 @@ export default async function(eleventyConfig) {
 			animated: true,
 		},
 
+		// Reduce AVIF compression strength to speed up builds
 		sharpAvifOptions: { effort: 1 },
+
+		outputDir: "./_site/img/optimized/",
+		urlPath: "/img/optimized/",
 	});
 
 	// Filters
