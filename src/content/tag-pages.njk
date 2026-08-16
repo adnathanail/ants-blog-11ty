@@ -17,7 +17,9 @@ const eleventyComputed = {
 	}
 };
 ---
+{% set noLink = true %}
 <h1 class="mb-3">Tagged {% include "partials/tag.njk" %}</h1>
+{% set noLink = false %}
 
 <div class="mb-3">
 	{% set postslist = collections[ tag ] | reverse %}
