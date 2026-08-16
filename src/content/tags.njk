@@ -4,6 +4,11 @@
 
 <ul>
 {% for tag in collections | getKeys | filterTagList | sortAlphabetically %}
+	{%- set postCount = collections[tag] | length %}
+	{#- Skip empty tags: `draft` always has a collection, but it's empty in
+	    production builds, where drafts are dropped in a preprocessor. -#}
+	{%- if postCount %}
 	<li>{% include "partials/tag.njk" %}</li>
+	{%- endif %}
 {% endfor %}
 </ul>

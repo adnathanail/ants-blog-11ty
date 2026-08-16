@@ -1,7 +1,8 @@
 {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
 {%- set style = tagStyles[tag] %}
 {%- set tagClass = "badge text-muted bg-" + style.color + "-subtle border border-" + style.color + " fst-italic" %}
-{%- set tagBody %}<i class="bi bi-{{ style.icon }}"></i> {{ style.label }}{% endset %}
+{#- `postCount` is optional: callers that have it (e.g. tags.njk) render as "Coding (5)". -#}
+{%- set tagBody %}<i class="bi bi-{{ style.icon }}"></i> {{ style.label }}{% if postCount %} ({{ postCount }}){% endif %}{% endset %}
 {%- if noLink %}
 <span class="{{ tagClass }}">{{ tagBody | safe }}</span>
 {%- else %}
