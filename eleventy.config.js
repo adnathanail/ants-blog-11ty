@@ -145,6 +145,7 @@ export default async function(eleventyConfig) {
 		// Reduce AVIF compression strength to speed up builds
 		sharpAvifOptions: { effort: 1 },
 
+		// Collect images together so Netlify can cache them
 		outputDir: "./_site/img/optimized/",
 		urlPath: "/img/optimized/",
 	});
