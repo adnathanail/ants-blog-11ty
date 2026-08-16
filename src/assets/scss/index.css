@@ -37,6 +37,10 @@ a:hover img {
 	text-decoration: none;
 	clip-path: inset(0 100% 0 0);
 }
+/* The arrow keeps its size; only the text gives way. */
+.navbar-scroll-title > .bi {
+	flex: none;
+}
 .navbar-scroll-title-text {
 	white-space: nowrap;
 	overflow: hidden;
