@@ -88,3 +88,14 @@ iframe.youtube-video {
 		border-bottom: 0 !important;
 	}
 }
+
+// Image corner rounding for blogs list, moves rounding for different desktop vs mobile
+.blog-post-img-rounding {
+	// Taking one off the border radius, so it stacks neatly with the card border
+	border-bottom-left-radius: calc(var(--bs-border-radius) - 1px);
+	border-bottom-right-radius: calc(var(--bs-border-radius) - 1px);
+	@include media-breakpoint-up(md) {
+		border-bottom-left-radius: 0;
+		border-top-right-radius: calc(var(--bs-border-radius) - 1px);
+	}
+}
