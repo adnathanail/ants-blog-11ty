@@ -33,21 +33,23 @@
 
 		<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
 			<div class="container position-relative">
-				<div class="navbar-scroll-title-wrap d-flex position-absolute top-50 start-50 translate-middle">
-					<a href="#" class="navbar-scroll-title text-body-secondary" id="navbar-scroll-title" aria-label="Scroll to top" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Scroll to top">
-						<h6 class="mb-0">
-							<i class="bi bi-arrow-90deg-up"></i>
-							<span class="navbar-scroll-title-text"></span>
-						</h6>
+				<div class="position-relative w-100 d-flex align-items-center justify-content-between">
+					<div class="navbar-scroll-title-wrap d-flex position-absolute top-50 start-50 translate-middle">
+						<a href="#" class="navbar-scroll-title text-body-secondary" id="navbar-scroll-title" aria-label="Scroll to top" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Scroll to top">
+							<h6 class="mb-0">
+								<i class="bi bi-arrow-90deg-up"></i>
+								<span class="navbar-scroll-title-text"></span>
+							</h6>
+						</a>
+					</div>
+					<a class="navbar-brand d-flex align-items-center gap-2" href="/">
+						<img src="/img/ants.png" alt="" height="32" eleventy:ignore>
+						<p class="h5 mb-0">{{ metadata.title }}</p>
 					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
 				</div>
-				<a class="navbar-brand d-flex align-items-center gap-2" href="/">
-					<img src="/img/ants.png" alt="" height="32" eleventy:ignore>
-					<p class="h5 mb-0">{{ metadata.title }}</p>
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-nav" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
 				<div class="collapse navbar-collapse" id="primary-nav">
 					<ul class="navbar-nav ms-auto">
 					{%- for entry in collections.all | eleventyNavigation %}
