@@ -1,11 +1,29 @@
 import matter from "gray-matter";
 import { z } from "zod";
 
+import tagStyles from "./tagStyles.js";
+
 const baseSchema = z.object({
 	// Note that drafts may be skipped in a preprocessor (see eleventy.config.js)
 	// when doing a standard build (not --serve or --watch)
 	draft: z.coerce.boolean().default(false),
 });
+
+// Every tag must be defined in _data/tagStyles.js, which supplies its colour,
+// icon and display capitalization. Checked on the union rather than each string,
+// so the message survives (union errors collapse to a bare "Invalid input").
+const knownTags = Object.keys(tagStyles());
+const tagsSchema = z.union([z.string().min(1), z.array(z.string().min(1))])
+	.superRefine((tags, ctx) => {
+		const unknown = [].concat(tags).filter(tag => !knownTags.includes(tag));
+		if (unknown.length) {
+			ctx.addIssue({
+				code: "custom",
+				message: `Unknown tag${unknown.length > 1 ? "s" : ""} ${unknown.map(tag => `"${tag}"`).join(", ")}. `
+					+ `Known tags: ${knownTags.join(", ")} (define new ones in _data/tagStyles.js)`,
+			});
+		}
+	});
 
 // Strict schema validated against the raw post frontmatter (not the merged
 // cascade, which is stuffed with page/collections/layout/etc from Eleventy).
@@ -19,7 +37,7 @@ const postFrontMatterSchema = z.object({
 	updatedDate: z.union([z.string().min(1), z.date()]).optional(),
 	recommendNoRSS: z.boolean().optional(),
 	draft: z.boolean().optional(),
-	tags: z.union([z.string().min(1), z.array(z.string())]).optional(),
+	tags: tagsSchema.optional(),
 }).strict();
 
 export default function() {
