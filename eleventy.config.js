@@ -127,7 +127,13 @@ export default async function(eleventyConfig) {
 		// Output formats for each image.
 		formats: ["avif", "webp", "auto"],
 
-		// widths: ["auto"],
+		// Responsive widths, capped at 1920 so phone photos don't ship at 4000px.
+		// Sources narrower than 1920 keep their own width as the largest candidate;
+		// minimumThreshold defaults to 1.25, which would drop e.g. a 740px original
+		// in favour of the 640 step. The browser picks from these via sizes="auto",
+		// which eleventy-img emits because loading="lazy" is set below.
+		widths: [640, 1280, 1920],
+		minimumThreshold: 1,
 
 		failOnError: false,
 		htmlOptions: {
