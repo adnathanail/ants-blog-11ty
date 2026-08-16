@@ -7,7 +7,6 @@ import { z } from "zod";
 // - `icon` is a Bootstrap Icons name minus the `bi-` prefix
 const styles = {
 	Draft: { color: "light", icon: "cone-striped" },
-	GitHub: { color: "dark", icon: "github" },
 	Coding: { color: "primary", icon: "laptop-fill" },
 	Project: { color: "secondary", icon: "box2-heart-fill" },
 	Prose: { color: "info", icon: "pen-fill" },
