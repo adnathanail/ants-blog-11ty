@@ -67,8 +67,13 @@ iframe.youtube-video {
 // Uses `visibility` rather than `display`, as a `display` transition out of `none`
 //   flips at the very start regardless of the delay.
 @include media-breakpoint-down(md) {
+	.navbar-brand > p {
+		transition: visibility 0s calc(var(--wipe-duration) / 4);
+	}
+
 	nav.navbar:has(.navbar-scroll-title.is-visible) .navbar-brand > p {
-		display: none;
+		visibility: hidden;
+		transition-delay: 0s;
 	}
 }
 

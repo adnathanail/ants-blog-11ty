@@ -94,10 +94,12 @@
 			if (!heading || !navTitle || !navTitleText || !navbar) return;
 			navTitleText.textContent = heading.textContent;
 			// Scale wipe animation duration with rendered title width so the
-			// wipe travels faster for longer titles.
+			//   wipe travels faster for longer titles.
+			// Also used to delay the reapparance of A.N.T.S. until 1/4 of
+			//   the animation is complete
 			const setWipeDuration = () => {
 				const width = navTitle.getBoundingClientRect().width;
-				navTitle.style.setProperty("--wipe-duration", `${Math.sqrt(width) / 25}s`);
+				navbar.style.setProperty("--wipe-duration", `${Math.sqrt(width) / 25}s`);
 			};
 			setWipeDuration();
 			new ResizeObserver(setWipeDuration).observe(navTitle);
