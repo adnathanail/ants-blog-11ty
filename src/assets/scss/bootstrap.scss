@@ -60,6 +60,18 @@ iframe.youtube-video {
 	}
 }
 
+// On small screens the brand text would collide with the centred scroll title, so
+//   hide it while the title is showing — the logo stays for site navigation.
+// Hiding is instant, reappearing waits for 1/4 of the animation time of the page
+//   page title's disappearance
+// Uses `visibility` rather than `display`, as a `display` transition out of `none`
+//   flips at the very start regardless of the delay.
+@include media-breakpoint-down(md) {
+	nav.navbar:has(.navbar-scroll-title.is-visible) .navbar-brand > p {
+		display: none;
+	}
+}
+
 .border-md-end {
 	@include media-breakpoint-up(md) {
 		border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;

@@ -23,7 +23,7 @@ a:hover img {
 	text-decoration: underline;
 }
 
-/* Navbar scroll-in post title (wipes in when the post h1 is scrolled past) */
+/* Navbar scroll-in post title (wipes in when the post h1 is scrolled past). */
 .navbar-scroll-title-wrap {
 	max-width: 50%;
 	justify-content: center;
@@ -58,13 +58,6 @@ a:hover img {
 @keyframes navbar-title-wipe-out {
 	from { clip-path: inset(0 0 0 0); }
 	to { clip-path: inset(0 0 0 100%); }
-}
-/* On <md the brand text would collide with the centered scroll title, so hide
-   it when the scroll title is showing — the logo stays for site navigation. */
-@media (max-width: 767.98px) {
-	nav.navbar:has(.navbar-scroll-title.is-visible) .navbar-brand > p {
-		display: none;
-	}
 }
 
 /* Admonitions */
