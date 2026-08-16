@@ -33,10 +33,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-5 col-lg-3 position-relative placeholder-glow">
-						<span class="placeholder position-absolute top-0 start-0 w-100 h-100 rounded-end deferred-img-placeholder" style="visibility: hidden" aria-hidden="true"></span>
-						<a href="{{ post.url }}" class="d-block h-100 position-relative">
-							<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid rounded-end h-100 object-fit-cover deferred-img" alt="...">
+					<div class="col-12 col-md-5 col-lg-6 col-xl-3 position-relative placeholder-glow">
+						{%- set imgClasses = "blog-post-img-rounding h-100 w-100 mh-30vh" %}
+						<span class="placeholder position-absolute top-0 start-0 {{ imgClasses }} deferred-img-placeholder" style="visibility: hidden" aria-hidden="true"></span>
+						<a href="{{ post.url }}">
+							<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid {{ imgClasses }} object-fit-cover deferred-img" alt="...">
 						</a>
 					</div>
 				</div>

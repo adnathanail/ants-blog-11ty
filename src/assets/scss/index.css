@@ -73,3 +73,8 @@ a:hover img {
 .aspect-ratio-3-over-2 {
 	aspect-ratio: 3/2;
 }
+
+/* Max height */
+.mh-30vh {
+	max-height: 30vh !important;
+}
