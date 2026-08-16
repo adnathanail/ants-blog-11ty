@@ -7,13 +7,13 @@ date: 2026-08-15
 tags: ['prose', 'tooling']
 ---
 
-I like linear git history.
+I like linear Git history.
 This proclivity grew out of working with teams, where lots of people touch lots of files, sometimes on very long running branches.
 Specifically, I like to be able to view the commit history on a file and step perfectly backwards through time, without jumping between different versions of a file as two histories interleave.
 
 ![](messy_history.png)
 
-I also like 'granular' commits, i.e. not squashing PR's.
+I also like 'granular' commits, i.e. not squashing PRs ([Pull Requests](https://docs.github.com/en/pull-requests/reference/pull-requests)).
 Sometimes a PR is necessarily quite large, and keeping the commit history of a piece of development before it hit main is quite handy.
 You see the story of how someone worked on an issue, you see how designs changed and decisions were made, you see pitfalls hit and worked around.
 
@@ -32,7 +32,7 @@ It seems that, of these three desires, I can only choose two.
 ### Merge commits ⛔️✅✅
 
 The default merge button on a Pull request creates a merge commit.
-This takes the two separate git histories, and just makes sure they are consistent at their ends.
+This takes the two separate Git histories, and just makes sure they are consistent at their ends.
 It maintains my exact commits which I pushed, keeping their Verified status, and GitHub even signs the merge commit for me.
 
 But my history is messy.
@@ -61,8 +61,8 @@ Because so is a rebase!
 
 ## A clear solution which GitHub are ignoring because they hate me
 
-The [fast-forward merge](https://docs.gitlab.com/user/project/merge_requests/methods/#fast-forward-merge) is a handy feature of git, which notices when the branch you are merging is already up to date with the main branch (i.e. there are no commits on main that don't exist on the branch).
-In this case, instead of creating a merge commit, git just sticks the commits onto main.
+The [fast-forward merge](https://docs.gitlab.com/user/project/merge_requests/methods/#fast-forward-merge) is a handy feature of Git, which notices when the branch you are merging is already up to date with the main branch (i.e. there are no commits on main that don't exist on the branch).
+In this case, instead of creating a merge commit, Git just sticks the commits onto main.
 This makes a lot of sense, because what is the point of having a merge commit when there are no divergent histories.
 
 For some unknown reason, GitHub's **Merge pull request** functionality is [explicitly set to run](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github) with the `--no-ff` option.
@@ -95,7 +95,7 @@ But that feels like one of those aphorisms like _'functions should be 20 lines m
 > Fun fact!
 > If you have any merge commits in your repository's history, you can **never** push to a new branch with `Require linear history`.
 > You might say that you only need that enabled on your main branch, but it's helpful for developers to discover as early as possible that they are creating a problem.
-> If they have accidentally created a merge commit in their branch with some git mess-up, it's quite painful to only be told when you try to merge in 2 weeks time that your history is unacceptable.
+> If they have accidentally created a merge commit in their branch with some Git mess-up, it's quite painful to only be told when you try to merge in 2 weeks time that your history is unacceptable.
 
 ## A plea
 
