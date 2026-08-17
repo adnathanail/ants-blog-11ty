@@ -152,7 +152,7 @@ export default async function(eleventyConfig) {
 		sharpAvifOptions: { effort: 1 },
 
 		// Collect images together so Netlify can cache them
-		outputDir: "./_site/img/optimized/",
+		outputDir: path.join(eleventyConfig.directories.output, "img/optimized/"),
 		urlPath: "/img/optimized/",
 	});
 
