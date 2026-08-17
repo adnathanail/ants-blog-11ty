@@ -1,0 +1,10 @@
+<div class="row">
+	<div class="col d-flex align-items-center">
+		<p class="mb-0" style="line-height: 1.7em;">
+			{%- for tag in postTags %}{% include "partials/tag.njk" %}{% endfor %}
+		</p>
+	</div>
+	<div class="col-auto d-flex align-items-center">
+		{% include "partials/author.njk" %}
+	</div>
+</div>
