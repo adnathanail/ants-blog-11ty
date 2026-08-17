@@ -178,7 +178,7 @@ Below are 7 such rules (including spider fusion) which form the standard rules o
 Understanding these rules properly requires a bit of effort, and isn't really the point of this blog post.
 But as an example, the second circuit from earlier showing 3 CNOTs equal SWAP is quite nice to see.
 
-{% include "./_three-cnot-swap.njk" %}
+{% include "./diag/_01-three-cnot-swap.njk" %}
 
 1. Draw out our circuit as a ZX diagram.
 2. Just drag the diagram around a bit so that it looks more like our (sc) rule.
@@ -219,56 +219,14 @@ Our spiders are the nodes, and our wires are the edges.
 
 It's been a while since I showed a pretty diagram so here's one:
 
-{% zxDiagram %}
-  {
-    "nodes": [
-      { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-      { "id": 2, "qubit": 0, "col": 2, "type": "hadamard" },
-      { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "X", "phase": "απ" },
-
-      { "id": 4, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-      { "id": 5, "qubit": 1, "col": 3, "type": "spider", "color": "X", "phase": "βπ" },
-
-      { "id": 6, "qubit": 2, "col": 2, "type": "spider", "color": "X", "phase": "βπ" },
-      { "id": 7, "qubit": 2, "col": 3, "type": "spider", "color": "Z", "phase": "απ" },
-      { "id": 8, "qubit": 2, "col": 4, "type": "output",  "ioId": 0 }
-    ],
-    "edges": [
-      { "src": 0, "tgt": 1 },
-      { "src": 1, "tgt": 2 },
-      { "src": 2, "tgt": 3 },
-
-      { "src": 1, "tgt": 4 },
-      { "src": 4, "tgt": 5 },
-      
-      { "src": 4, "tgt": 6 },
-      { "src": 6, "tgt": 7 },
-      { "src": 7, "tgt": 8 }
-    ]
-  }
-{% endzxDiagram %}
+{% include "./diag/_02-teleportation.njk" %}
 
 > [!question]
 > What famous quantum protocol does this diagram represent?
 
 That ones a bit complicated for my next example so here's another:
 
-{% zxDiagram %}
-  {
-    "nodes": [
-      { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-      { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" },
-      { "id": 3, "qubit": 0, "col": 3, "type": "output",  "ioId": 0 }
-    ],
-    "edges": [
-      { "src": 0, "tgt": 1 },
-      { "src": 1, "tgt": 2 },
-      { "src": 2, "tgt": 3 }
-    ]
-  }
-{% endzxDiagram %}
+{% include "./diag/_03-simple-diagram.njk" %}
 
 A graph is nice visually for humans because we have eyes, but a computer needs a more ergonomic way to work with them.
 
@@ -331,67 +289,7 @@ This is the core mantra in the study of [string diagrams](https://zxcalc.github.
 It's basically saying that it doesn't matter _where_ your spiders are, so long as they are connected up identically; hence why the viewers let you drag them around.
 
 <!-- TODO don't show labels -->
-{% zxGroup %}
-  {% zxDiagram %}
-    {
-      "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-        { "id": 2, "qubit": 0, "col": 2, "type": "hadamard" },
-        { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "X", "phase": "απ" },
-
-        { "id": 4, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-        { "id": 5, "qubit": 1, "col": 3, "type": "spider", "color": "X", "phase": "βπ" },
-
-        { "id": 6, "qubit": 2, "col": 2, "type": "spider", "color": "X", "phase": "βπ" },
-        { "id": 7, "qubit": 2, "col": 3, "type": "spider", "color": "Z", "phase": "απ" },
-        { "id": 8, "qubit": 2, "col": 4, "type": "output",  "ioId": 0 }
-      ],
-      "edges": [
-        { "src": 0, "tgt": 1 },
-        { "src": 1, "tgt": 2 },
-        { "src": 2, "tgt": 3 },
-
-        { "src": 1, "tgt": 4 },
-        { "src": 4, "tgt": 5 },
-        
-        { "src": 4, "tgt": 6 },
-        { "src": 6, "tgt": 7 },
-        { "src": 7, "tgt": 8 }
-      ]
-    }
-  {% endzxDiagram %}
-
-  {% zxDiagram "eq" %}
-    {
-      "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-        { "id": 1, "qubit": 1, "col": 0, "type": "spider", "color": "Z" },
-        { "id": 2, "qubit": 2, "col": 0, "type": "hadamard" },
-        { "id": 3, "qubit": 3, "col": 0, "type": "spider", "color": "X", "phase": "απ" },
-
-        { "id": 4, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-        { "id": 5, "qubit": 0, "col": 1, "type": "spider", "color": "X", "phase": "βπ" },
-
-        { "id": 6, "qubit": 1, "col": 3, "type": "spider", "color": "X", "phase": "βπ" },
-        { "id": 7, "qubit": 1, "col": 4, "type": "spider", "color": "Z", "phase": "απ" },
-        { "id": 8, "qubit": 2, "col": 4, "type": "output",  "ioId": 0 }
-      ],
-      "edges": [
-        { "src": 0, "tgt": 1 },
-        { "src": 1, "tgt": 2 },
-        { "src": 2, "tgt": 3 },
-
-        { "src": 1, "tgt": 4 },
-        { "src": 4, "tgt": 5 },
-        
-        { "src": 4, "tgt": 6 },
-        { "src": 6, "tgt": 7 },
-        { "src": 7, "tgt": 8 }
-      ]
-    }
-  {% endzxDiagram %}
-{% endzxGroup %}
+{% include "./diag/_04-teleportation-ocm.njk" %}
 
 These two diagrams above are entirely equivalent to each other.
 We could move any of the spiders and H-boxes anywhere at all, and the diagrams mean the same thing.
@@ -399,22 +297,9 @@ The only two nodes for which this is not true are the two black circles: the inp
 
 'Input' and 'output' are different because they are the locations at which diagrams can be stuck together.
 In fact, implicitly, every spider (with a given number of wires), has implicit input and output nodes on their ends:
-{% zxDiagram %}
-  {
-    "nodes": [
-      { "id": 0, "qubit": 0, "col": 0, "type": "input", "ioId": 0 },
-      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-      { "id": 2, "qubit": 0, "col": 2, "type": "output", "ioId": 0 },
-      { "id": 3, "qubit": 1, "col": 1, "type": "output",  "ioId": 0 }
-    ],
-    "edges": [
-      { "src": 0, "tgt": 1 },
-      { "src": 1, "tgt": 2 },
-      { "src": 1, "tgt": 3 }
-    ]
-  }
-{% endzxDiagram %}
+
 <!-- TODO add: = the same diagram rotated, lightning arrow the diagram with spiders on the ends, = that diagram rotated -->
+{% include "./diag/_05-simple-ocm.njk" %}
 
 However, because of the specifics of the linear maps that the spiders and H-boxes represent, these inputs/outputs are symmetric in how they are connected.
 
@@ -433,3 +318,7 @@ So the way that we might represent labelled 'ports' looks like:
   "ports": [(0, 1), (1, 7)]  // (port_id, node_id)
 }
 ```
+
+## ZX-calculus rules as hypergraphs
+
+{% include "./diag/_10-zx-calc-rules-hypergraphs.njk" %}

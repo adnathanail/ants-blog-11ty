@@ -1,0 +1,15 @@
+{% zxDiagram %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+      { "id": 3, "qubit": 0, "col": 3, "type": "output",  "ioId": 0 }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 1 },
+      { "src": 1, "tgt": 2 },
+      { "src": 2, "tgt": 3 }
+    ]
+  }
+{% endzxDiagram %}

@@ -1,0 +1,218 @@
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq", "sp" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 2, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 3 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "output" },
+
+        { "id": 4, "qubit": 1, "col": 0, "type": "input" },
+        { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 7, "qubit": 1, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+
+        { "src": 4, "tgt": 5 },
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+
+        { "src": 1, "tgt": 5 },
+        { "src": 2, "tgt": 6 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq", "sp" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0.5, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 2, "type": "output" },
+
+        { "id": 4, "qubit": 1, "col": 0, "type": "input" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 3, "tgt": 1 },
+        { "src": 4, "tgt": 1 },
+        { "src": 7, "tgt": 1 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0.5, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0.5, "col": 1, "type": "spider", "color": "X", "phase": "π" },
+        { "id": 2, "qubit": 0.5, "col": 2, "type": "spider", "color": "Z" },
+
+        { "id": 3, "qubit": 0, "col": 3, "type": "output" },
+        { "id": 4, "qubit": 0.5, "col": 3, "type": "output" },
+        { "id": 5, "qubit": 1, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+        { "src": 2, "tgt": 4 },
+        { "src": 2, "tgt": 5 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "propto", "π" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0.5, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0.5, "col": 1, "type": "spider", "color": "Z" },
+
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+        { "id": 3, "qubit": 0.5, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+        { "id": 4, "qubit": 1, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+
+        { "id": 5, "qubit": 0, "col": 3, "type": "output" },
+        { "id": 6, "qubit": 0.5, "col": 3, "type": "output" },
+        { "id": 7, "qubit": 1, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+
+        { "src": 1, "tgt": 2 },
+        { "src": 1, "tgt": 3 },
+        { "src": 1, "tgt": 4 },
+
+        { "src": 2, "tgt": 5 },
+        { "src": 3, "tgt": 6 },
+        { "src": 4, "tgt": 7 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "output" },
+
+        { "id": 4, "qubit": 1, "col": 0, "type": "input" },
+        { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
+        { "id": 7, "qubit": 1, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+
+        { "src": 4, "tgt": 5 },
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+
+        { "src": 1, "tgt": 6 },
+        { "src": 2, "tgt": 5 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "propto", "sc" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 1, "col": 0, "type": "input" },
+
+        { "id": 2, "qubit": 0.5, "col": 1, "type": "spider", "color": "X" },
+        { "id": 3, "qubit": 0.5, "col": 2, "type": "spider", "color": "Z" },
+
+        { "id": 4, "qubit": 0, "col": 3, "type": "output" },
+        { "id": 5, "qubit": 1, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 2 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+        { "src": 3, "tgt": 4 },
+        { "src": 3, "tgt": 5 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "propto", "sc" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 2, "tgt": 3 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
