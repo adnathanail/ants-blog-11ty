@@ -6,23 +6,48 @@
 </style>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+	const isVideo = (el) => el.tagName === "VIDEO";
+	const isReady = (el) => (isVideo(el) ? el.readyState >= 2 /* HAVE_CURRENT_DATA */ : el.complete);
+
+	const whenReady = (el) => isReady(el) ? Promise.resolve() : new Promise((resolve) => {
+		el.addEventListener(isVideo(el) ? "loadeddata" : "load", resolve, { once: true });
+		el.addEventListener("error", resolve, { once: true });
+	});
+
+	const reveal = (els) => els.forEach((el) => {
+		el.style.visibility = "visible";
+		el.closest(".placeholder-glow")?.querySelector(".deferred-img-placeholder")?.remove();
+	});
+
+	// Media the browser has not started fetching yet: eleventy-img sets
+	// loading="lazy" on every <img>, and Chrome likewise defers off-screen
+	// autoplay <video>. Neither fires its load event until it nears the
+	// viewport, which can be never — on a narrow viewport the post cards stack
+	// and everything past the first sits below the fold indefinitely.
+	// The margin is deliberately small: every browser starts fetching a lazy
+	// image well before it scrolls in (Chrome's threshold is over 1000px), so
+	// anything this counts as on-screen is genuinely already in flight.
+	const MARGIN = 200;
+	const nearViewport = (el) => {
+		const rect = el.getBoundingClientRect();
+		const height = window.innerHeight || document.documentElement.clientHeight;
+		return rect.top < height + MARGIN && rect.bottom > -MARGIN;
+	};
+
 	document.querySelectorAll(".deferred-img-batch").forEach((batch) => {
-		const media = batch.querySelectorAll(".deferred-img");
-		const waits = Array.from(media).map((el) => {
-			const isVideo = el.tagName === "VIDEO";
-			const isReady = isVideo ? el.readyState >= 2 /* HAVE_CURRENT_DATA */ : el.complete;
-			if (isReady) return Promise.resolve();
-			return new Promise((resolve) => {
-				el.addEventListener(isVideo ? "loadeddata" : "load", resolve, { once: true });
-				el.addEventListener("error", resolve, { once: true });
-			});
-		});
-		Promise.all(waits).then(() => {
-			media.forEach((el) => {
-				el.style.visibility = "visible";
-				el.closest(".placeholder-glow")?.querySelector(".deferred-img-placeholder")?.remove();
-			});
-		});
+		const media = Array.from(batch.querySelectorAll(".deferred-img"));
+
+		// Reveal everything that is loading now together, so a visible row of
+		// images appears in one go rather than popping in one by one. Anything
+		// still deferred is off-screen anyway, so it can wait for itself and
+		// reveal on its own once the browser gets round to fetching it.
+		const [pending, loading] = media.reduce(
+			(acc, el) => (acc[isReady(el) || nearViewport(el) ? 1 : 0].push(el), acc),
+			[[], []]
+		);
+
+		Promise.all(loading.map(whenReady)).then(() => reveal(loading));
+		pending.forEach((el) => whenReady(el).then(() => reveal([el])));
 	});
 });
 </script>
