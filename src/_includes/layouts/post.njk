@@ -12,25 +12,12 @@ layout: layouts/base.njk
 
 <h1>{{ title }}</h1>
 
-{%- set postTags = tags | filterTagList %}
-<ul class="list-inline text-body-secondary mb-0">
-	{%- for tag in postTags %}
-		<li class="list-inline-item">{% include "partials/tag.njk" %}</li>
-	{%- endfor %}
-</ul>
+{%- set date = page.date %}
+{% include "partials/post-date.njk" %}
 
-<div class="row g-0 mb-3 pb-2 border-bottom">
-	<div class="col d-flex align-items-center">
-		<span class="text-body-secondary my-1">
-			{%- set date = page.date %}
-			{% include "partials/post-date.njk" %}
-		</span>
-	</div>
-	<div class="col-auto d-flex">
-		<div class="mb-2">
-			{% include "partials/author.njk" %}
-		</div>
-	</div>
+<div class="g-0 mb-3 pb-3 border-bottom">
+	{%- set postTags = tags | filterTagList %}
+	{% include "partials/tags-and-author.njk" %}
 </div>
 
 <div class="post-content">
