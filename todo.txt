@@ -1,3 +1,6 @@
-Image loaders
+Image loaders on posts
+Multi-image layouts on posts
+Do 11ty image processing on things like the page icon
+Ability to click images in posts to zoom in
 
 Check RSS feed valid with Thomas
