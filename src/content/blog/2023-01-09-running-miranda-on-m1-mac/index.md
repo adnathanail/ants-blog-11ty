@@ -5,7 +5,7 @@ author: alex
 heroImg: ./27c18f97-5f54-4354-bccd-793f42171a8b_adlsnb.png
 date: 2023-01-09
 updatedDate: 2025-09-16
-tags: coding
+tags: ['tooling']
 ---
 
 Is [Miranda](https://www.cs.kent.ac.uk/people/staff/dat/miranda/ "Miranda homepage") a dead language? Who knows, but I have to use it for my university module!

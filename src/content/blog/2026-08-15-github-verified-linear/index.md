@@ -68,8 +68,8 @@ This makes a lot of sense, because what is the point of having a merge commit wh
 For some unknown reason, GitHub's **Merge pull request** functionality is [explicitly set to run](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github) with the `--no-ff` option.
 
 There is years of discussion ([#4618](https://github.com/orgs/community/discussions/4618) [#5524](https://github.com/orgs/community/discussions/5524)) on GitHub's community forum asking for this to be implemented.
-There are [blog posts](https://v5.chriskrycho.com/notes/fast-forward-merges-on-github/), showing how you can do the fast-forward merge manually on your local machine, and then pushing to main.
-There are [multiple](https://github.com/marketplace/actions/merge-fast-forward-only) [GitHub actions](https://github.com/marketplace/actions/fast-forward-pr) allowing you to fast-forward merge through PR comments, or running them manually.
+There are [blog posts](https://v5.chriskrycho.com/notes/fast-forward-merges-on-github/), showing how you can do the fast-forward merge manually on your local machine, and then push to main.
+There are [multiple](https://github.com/marketplace/actions/merge-fast-forward-only) [GitHub actions](https://github.com/marketplace/actions/fast-forward-pr) allowing you to fast-forward merge through PR comments, or run them manually.
 There are [companies](https://docs.mergify.com/merge-queue/merge-strategies/#fast-forward) who offer fast-forward merging as a feature in their product.
 
 But all of these things require trusting something: your own usage of the command line, an obscure open-source project, a business.
