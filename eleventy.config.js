@@ -22,13 +22,22 @@ import componentShortcodes from "./src/_11ty/shortcodes/components.js";
 export default async function(eleventyConfig) {
 	// Drafts, see also src/_data/eleventyDataSchema.js
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-		// Give draft posts a draft tag (prepended so it renders first in the badge list)
-		if (data.draft && data.tags?.includes("posts")) {
-			data.tags = ["draft", ...data.tags];
+		if (!data.draft) {
+			return;
 		}
-		// Don't list drafts in production builds
-		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+		// Don't build drafts at all in production builds
+		if (process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
+		}
+		if (data.tags?.includes("posts")) {
+			// Give draft posts a draft tag (prepended so it renders first in the badge list)
+			data.tags = ["draft", ...data.tags];
+			// Keep drafts out of every collection their tags would put them in — the
+			// blog list, the RSS feed, the home page and the tag pages all read those.
+			// `src/content/drafts.njk` lists them instead, from the `draft` collection,
+			// which is built from a glob and so is unaffected by this. The array form
+			// leaves them in `all`, which that glob and the nav both need.
+			data.eleventyExcludeFromCollections = [...data.tags];
 		}
 	});
 

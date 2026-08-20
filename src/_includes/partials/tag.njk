@@ -1,4 +1,5 @@
-{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+{#- `draft` has no tag page; its badge points at the local-only drafts list. -#}
+{%- set tagUrl %}{% if tag == "draft" %}/drafts/{% else %}/tags/{{ tag | slugify }}/{% endif %}{% endset %}
 {%- set style = tagStyles[tag] %}
 {%- set colorClass = "text-bg-" + style.color if style.solid else "text-muted bg-" + style.color + "-subtle border border-" + style.color %}
 {%- set tagClass = "badge fst-italic " + colorClass %}

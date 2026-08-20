@@ -1,0 +1,19 @@
+---js
+// Local-only page: `draft: true` makes the drafts preprocessor in eleventy.config.js
+// drop this page from production builds, the same way it drops the drafts themselves.
+// It is reached from the button at the top of the blog index, not the nav.
+const draft = true;
+---
+<h1>Drafts</h1>
+<p class="text-muted">Posts still in progress. This page is only built locally.</p>
+
+<div class="mb-3">
+	{%- set postslist = collections.draft | reverse %}
+	{% if postslist.length %}
+		{% include "partials/postslist.njk" %}
+	{% else %}
+		<p>Nothing in progress right now.</p>
+	{% endif %}
+</div>
+
+<p>See <a href="tags.njk">all tags</a>.</p>
