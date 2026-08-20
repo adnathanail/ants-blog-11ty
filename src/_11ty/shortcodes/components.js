@@ -1,3 +1,4 @@
+import { VIEW_MODES } from "@adnathanail/zxcc/constants";
 import fs from "node:fs";
 import nunjucks from "nunjucks";
 
@@ -36,6 +37,54 @@ function zxRelation(rel, rule) {
 	return `${label}<span class="zx-rel-symbol">${symbol}</span>`;
 }
 
+// Presentation options for a diagram, passed as nunjucks keyword arguments:
+// {% zxDiagram "eq", "sp", showLabels=true, scale=40 %}. They mirror zxcc's own
+// attributes and properties (see its README), so the names are its names.
+//
+// Each one becomes an attribute on the <zx-diagram> tag.
+//
+// The accepted viewMode values come from zxcc itself, so the list here cannot drift from
+// what the component supports. They arrive via its `constants` entry point rather than its
+// main one, which is a browser bundle that touches `window` at import time and so cannot
+// be loaded from a config file running in Node.
+function zxOptions(opts) {
+	const { showLabels, scale, viewMode, ...rest } = opts;
+
+	const unknown = Object.keys(rest).filter(k => k !== "__keywords");
+	if (unknown.length) {
+		throw new Error(
+			`zxDiagram: unknown option${unknown.length > 1 ? "s" : ""} ${unknown.join(", ")}. `
+			+ "Expected one of: showLabels, scale, viewMode"
+		);
+	}
+
+	const attrs = [];
+	if (showLabels !== undefined) {
+		if (typeof showLabels !== "boolean") {
+			throw new Error(`zxDiagram: showLabels must be true or false, got ${JSON.stringify(showLabels)}`);
+		}
+		// A boolean attribute: present means true, so false is simply left off.
+		if (showLabels) attrs.push("show-labels");
+	}
+	if (scale !== undefined) {
+		if (typeof scale !== "number" || !Number.isFinite(scale) || scale <= 0) {
+			throw new Error(`zxDiagram: scale must be a positive number, got ${JSON.stringify(scale)}`);
+		}
+		attrs.push(`scale="${scale}"`);
+	}
+	if (viewMode !== undefined) {
+		if (!VIEW_MODES.includes(viewMode)) {
+			throw new Error(
+				`zxDiagram: unknown viewMode ${JSON.stringify(viewMode)}. `
+				+ `Expected one of: ${VIEW_MODES.join(", ")}`
+			);
+		}
+		attrs.push(`view-mode="${viewMode}"`);
+	}
+
+	return attrs.length ? ` ${attrs.join(" ")}` : "";
+}
+
 export default function(eleventyConfig) {
 	// Component shortcodes: each component is a .njk file in src/_includes/partials/
 	const componentEnv = new nunjucks.Environment(
@@ -58,13 +107,25 @@ export default function(eleventyConfig) {
 	// `rel`/`rule` render a rewrite step's justification to the LEFT of the diagram,
 	// e.g. {% zxDiagram "eq", "sp" %}. Keeping it inside the diagram's own wrapper means
 	// a step never gets orphaned from its operator when the group wraps onto a new line.
+	//
+	// Presentation is set with keyword arguments after those, e.g.
+	// {% zxDiagram "eq", "sp", scale=40 %} or {% zxDiagram viewMode="hypergraph" %} —
+	// see zxOptions above.
 	let zxIdCounter = 0;
-	eleventyConfig.addPairedShortcode("zxDiagram", (content, rel, rule) => {
+	eleventyConfig.addPairedShortcode("zxDiagram", (content, ...args) => {
+		// Nunjucks hands keyword arguments over as a trailing object tagged __keywords,
+		// which lands in `rel` when a diagram is given options but no relation.
+		const last = args[args.length - 1];
+		const opts = last && typeof last === "object" && last.__keywords ? args.pop() : {};
+		const [rel, rule] = args;
+
 		JSON.parse(content);
+		const attrs = zxOptions(opts);
 		return collapseBlankLines(componentEnv.render("zx-diagram.njk", {
 			id: `zx-${++zxIdCounter}`,
 			diagram: content,
 			relation: rel ? zxRelation(rel, rule) : null,
+			attrs,
 			css: zxCss(),
 		}));
 	});

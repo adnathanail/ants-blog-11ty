@@ -2,6 +2,14 @@
 
 Project-specific conventions for this blog. See also `docs/` for topic notes.
 
+## Committing
+
+Sometimes this repository is managed with GitButler.
+Check whether you are on the `gitbutler/workspace` branch; if so, use the `but` CLI to interact with it.
+Make changes in new commits, as opposed to modifying existing commits, unless explicitly told to.
+
+**Do not add attributions to yourself in commit messages**
+
 ## Building
 
 Use the development build command which includes the `.env.dev` variables with
@@ -160,6 +168,36 @@ would land verbatim in the post.
 JSON body; both shortcodes are registered in `src/_11ty/shortcodes/components.js`, the markup
 lives in `src/_includes/partials/zx-diagram.njk`, and the styling in `src/assets/scss/zx.css`,
 which reaches the page as a component asset (see above) rather than via `post.css`.
+
+### Presentation options
+
+Anything that is presentation rather than graph structure is passed as nunjucks keyword
+arguments, after the relation arguments if there are any. The names are zxcc's own, so its
+README is the reference for what each one does:
+
+```markdown
+{% zxDiagram showLabels=true, scale=40 %}
+  { "nodes": [...], "edges": [...] }
+{% endzxDiagram %}
+
+{% zxDiagram "eq", "sp", viewMode="both-horizontal" %}
+  { "nodes": [...], "edges": [...] }
+{% endzxDiagram %}
+```
+
+| Option | Type | Effect |
+| --- | --- | --- |
+| `showLabels` | boolean | Draws node and wire IDs |
+| `scale` | number | Pixels per row/qubit; zxcc derives one if omitted |
+| `viewMode` | string | `graph` / `hypergraph` / `both-vertical` / `both-horizontal` |
+
+- **An unknown option name or `viewMode` value fails the build**, as does a value of the wrong
+  type — the same treatment as an unknown relation. The accepted `viewMode` values are imported
+  from zxcc (`VIEW_MODES` from `@adnathanail/zxcc/constants`) rather than restated, so the check
+  cannot drift from the component. That subpath exists because zxcc's main entry is a browser
+  bundle that touches `window` on import and cannot be loaded from the Eleventy config.
+- **Options are per-diagram**, so a `{% zxGroup %}` whose steps should match needs the same
+  arguments on each one.
 
 ### Rewrite sequences
 
