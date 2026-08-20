@@ -10,9 +10,15 @@
 {% endif -%}
 <div class="zx-diagram-box">
 <zx-diagram id="{{ id }}"{{ attrs | safe }}></zx-diagram>
+{#- `diagram` and `edgeColors` are JS properties with no attribute form, so they are
+    assigned here rather than written onto the tag above. -#}
 <script type="module" eleventy:ignore>
 	customElements.whenDefined('zx-diagram').then(() => {
-		document.getElementById('{{ id }}').diagram = {{ diagram | safe }};
+		const el = document.getElementById('{{ id }}');
+		{%- if edgeColors %}
+		el.edgeColors = {{ edgeColors | safe }};
+		{%- endif %}
+		el.diagram = {{ diagram | safe }};
 	});
 </script>
 <noscript>
