@@ -180,8 +180,8 @@ README is the reference for what each one does:
   { "nodes": [...], "edges": [...] }
 {% endzxDiagram %}
 
-{% zxDiagram "eq", "sp", viewMode="both-horizontal" %}
-  { "nodes": [...], "edges": [...] }
+{% zxDiagram "eq", "sp", viewMode="both-horizontal", edgeColors={ "control": "#00aa55" } %}
+  { "nodes": [...], "edges": [{ "src": 0, "tgt": 1, "kind": "control" }] }
 {% endzxDiagram %}
 ```
 
@@ -190,12 +190,19 @@ README is the reference for what each one does:
 | `showLabels` | boolean | Draws node and wire IDs |
 | `scale` | number | Pixels per row/qubit; zxcc derives one if omitted |
 | `viewMode` | string | `graph` / `hypergraph` / `both-vertical` / `both-horizontal` |
+| `edgeColors` | object | Maps an edge's `kind` to a colour, e.g. `{ "control": "#00aa55" }` |
 
 - **An unknown option name or `viewMode` value fails the build**, as does a value of the wrong
   type — the same treatment as an unknown relation. The accepted `viewMode` values are imported
   from zxcc (`VIEW_MODES` from `@adnathanail/zxcc/constants`) rather than restated, so the check
   cannot drift from the component. That subpath exists because zxcc's main entry is a browser
   bundle that touches `window` on import and cannot be loaded from the Eleventy config.
+- **`edgeColors` kinds are arbitrary strings.** A `kind` is only a colour to zxcc; nothing in the
+  layout reads it, so a diagram can invent `"control"` and colour it. A kind with no colour draws
+  as a plain wire.
+- **`edgeColors` is set as a JS property, not an attribute** — it has no attribute form in zxcc,
+  so `zx-diagram.njk` assigns it in the per-diagram init script alongside `diagram`. The other
+  three become attributes on the tag.
 - **Options are per-diagram**, so a `{% zxGroup %}` whose steps should match needs the same
   arguments on each one.
 

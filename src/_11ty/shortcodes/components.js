@@ -41,20 +41,21 @@ function zxRelation(rel, rule) {
 // {% zxDiagram "eq", "sp", showLabels=true, scale=40 %}. They mirror zxcc's own
 // attributes and properties (see its README), so the names are its names.
 //
-// Each one becomes an attribute on the <zx-diagram> tag.
+// showLabels / scale / viewMode become attributes; edgeColors has no attribute form
+// in zxcc, so it is assigned as a property by the diagram's init script.
 //
 // The accepted viewMode values come from zxcc itself, so the list here cannot drift from
 // what the component supports. They arrive via its `constants` entry point rather than its
 // main one, which is a browser bundle that touches `window` at import time and so cannot
 // be loaded from a config file running in Node.
 function zxOptions(opts) {
-	const { showLabels, scale, viewMode, ...rest } = opts;
+	const { showLabels, scale, viewMode, edgeColors, ...rest } = opts;
 
 	const unknown = Object.keys(rest).filter(k => k !== "__keywords");
 	if (unknown.length) {
 		throw new Error(
 			`zxDiagram: unknown option${unknown.length > 1 ? "s" : ""} ${unknown.join(", ")}. `
-			+ "Expected one of: showLabels, scale, viewMode"
+			+ "Expected one of: showLabels, scale, viewMode, edgeColors"
 		);
 	}
 
@@ -82,7 +83,22 @@ function zxOptions(opts) {
 		attrs.push(`view-mode="${viewMode}"`);
 	}
 
-	return attrs.length ? ` ${attrs.join(" ")}` : "";
+	if (edgeColors !== undefined) {
+		const bad = typeof edgeColors !== "object" || edgeColors === null || Array.isArray(edgeColors)
+			|| Object.values(edgeColors).some(v => typeof v !== "string");
+		if (bad) {
+			throw new Error(
+				"zxDiagram: edgeColors must be an object mapping edge kinds to colour strings, "
+				+ `got ${JSON.stringify(edgeColors)}`
+			);
+		}
+	}
+
+	return {
+		attrs: attrs.length ? ` ${attrs.join(" ")}` : "",
+		// Inlined into a <script>, so a closing tag in a colour string must not end it early.
+		edgeColors: edgeColors === undefined ? null : JSON.stringify(edgeColors).replace(/</g, "\\u003c"),
+	};
 }
 
 export default function(eleventyConfig) {
@@ -120,12 +136,13 @@ export default function(eleventyConfig) {
 		const [rel, rule] = args;
 
 		JSON.parse(content);
-		const attrs = zxOptions(opts);
+		const { attrs, edgeColors } = zxOptions(opts);
 		return collapseBlankLines(componentEnv.render("zx-diagram.njk", {
 			id: `zx-${++zxIdCounter}`,
 			diagram: content,
 			relation: rel ? zxRelation(rel, rule) : null,
 			attrs,
+			edgeColors,
 			css: zxCss(),
 		}));
 	});
