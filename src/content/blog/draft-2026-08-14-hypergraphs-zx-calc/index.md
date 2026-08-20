@@ -275,6 +275,11 @@ Clearly a ZX-diagram is laid out like a regular graph, each wire is only between
 The idea here is to have the wires become the nodes, and the spiders become the hyperedges.
 Because each wire/node can necessarily only be connected to 2 spiders/hyperedges, we can visualize our ZX-diagrams as a funny sort of Venn diagram-looking structure.
 
+<!-- TODO make diagram responsive, and rephrase para velow -->
+If you click the spiders on the left, you'll see the corresponding blobs (hyperedges) highlight on the right. Similarly, if you click in a blob (or at an intersection of multiple blobs) you'll see the corresponding spider(s) on the left highlight; and, if you click a node on the right, the corresponding wire on the left will highlight.
+
+{% include "./diag/_03a-zx-graph-vs-hyp.njk" %}
+
 But why should we do this?
 That is essentially the point of this blog post, and it's sort of an attempt for me to coherently explain it to myself.
 

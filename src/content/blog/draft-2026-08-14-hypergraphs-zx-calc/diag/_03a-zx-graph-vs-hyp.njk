@@ -1,0 +1,26 @@
+{% zxDiagram viewMode="both-horizontal" %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+      { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
+      { "id": 3, "qubit": 0, "col": 3, "type": "output" },
+      { "id": 4, "qubit": 1, "col": 0, "type": "input" },
+      { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
+      { "id": 7, "qubit": 1, "col": 3, "type": "output" }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 1 },
+      { "src": 1, "tgt": 2 },
+      { "src": 2, "tgt": 3 },
+
+      { "src": 4, "tgt": 5 },
+      { "src": 5, "tgt": 6 },
+      { "src": 6, "tgt": 7 },
+
+      { "src": 1, "tgt": 5 },
+      { "src": 2, "tgt": 6 }
+    ]
+  }
+{% endzxDiagram %}
