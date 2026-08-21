@@ -308,21 +308,102 @@ In fact, implicitly, every spider (with a given number of wires), has implicit i
 
 However, because of the specifics of the linear maps that the spiders and H-boxes represent, these inputs/outputs are symmetric in how they are connected.
 
-Comparing this to IO on an arbitrary diagram, it is highly likely that the linear map represented is symmetric on its inputs and outputs.
+Comparing this to IO on an arbitrary diagram, it is highly unlikely that the linear map represented is symmetric on its inputs and outputs.
 So we need a way of labelling our inputs and outputs.
 
 ### Port graphs
 
-In a regular graph, our edges are anonymous objects.
-So the way that we might represent labelled 'ports' looks like:
+In a regular graph, wires exist only in reference to spiders.
+The pink wire in the diagram below is represented as `(5, 6)`, i.e. _'this edge connects nodes 5 and 6`_, and that's all we know about the wire.
+
+{% zxDiagram edgeColors={ hadamard: '#ff00aa' }, showLabels=true %}
+  {
+    "nodes": [
+      { "id": 5, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+      { "id": 6, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" }
+    ],
+    "edges": [
+      { "src": 5, "tgt": 6, "kind": "hadamard" }
+    ]
+  }
+{% endzxDiagram %}
+
+If wanted to say that we have an input to node 5, and an output from node 6, there isn't a straightforward way to represent this.
+We could say that `(null, 5)` means _'node 5 accepts an input'_, but if we have multiple places accepting inputs/outputs in our diagram, we need a way to refer to them directly.
+
+We could do this by creating a separate list just for input/output, or creating special node types which represent an input/output (or probably several other subtly different structures):
 
 ```js
 {
-  "nodes": [1, ..., 7],
-  "edges": [...],
-  "ports": [(0, 1), (1, 7)]  // (port_id, node_id)
+  "nodes": [ { "id": 5, "type": "Z", "phase": "0" }, { "id": 6, "type": "X", "phase": "π" } ],
+  "edges": [ (5, 6) ],
+  "ports": { 0: 5, 1: 6 } // option 1: port 0 -> node 5, port 1 -> node 6
+}
+
+{
+  "nodes": [
+    { "id": 5, "type": "Z", "phase": "0" }, { "id": 6, "type": "X", "phase": "π" },
+    { "id": 0, "type": "in" }, { "id": 1, "type": "out" } // option 2
+  ],
+  "edges": [
+    (5, 6),
+    (0, 5), (1, 6) // option 2: node 0 (in) -> node 5, node 1 (out) -> node 6
+  ],
 }
 ```
+
+These are essentially just different memory representations for this:
+
+{% zxDiagram edgeColors={ hadamard: '#ff00aa' }, showLabels=true %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+      { "id": 5, "qubit": 0, "col": 1, "type": "spider", "color": "Z", "phase": "0" },
+      { "id": 6, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+      { "id": 1, "qubit": 0, "col": 3, "type": "output" }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 5 },
+      { "src": 5, "tgt": 6, "kind": "hadamard" },
+      { "src": 6, "tgt": 1 }
+    ]
+  }
+{% endzxDiagram %}
+
+This concept of defining inputs and outputs on a graph is known as a **port graph** with the inputs and outputs termed **ports**.
+This is a perfectly valid approach, but the data structure just isn't as _neat_.
+It gives me a feeling of hackiness, which would be nice to avoid.
+
+### Edges as first class objects
+
+The hypergraph representation of the same diagram looks like this:
+
+```js
+{
+  "nodes": [ { "id": 0 }, { "id": 1 }, { "id": 2 } ], // wires
+  "edges": [ (0, 1, "Z", "0"), (1, 2, "X", "π") ],
+}
+```
+
+{% zxDiagram edgeColors={ hadamard: '#ff00aa' }, showLabels=true, viewMode="both-horizontal" %}
+  {
+    "nodes": [
+      { "id": 0, "qubit": 0, "col": 0, "type": "input" },
+      { "id": 5, "qubit": 0, "col": 1, "type": "spider", "color": "Z", "phase": "0" },
+      { "id": 6, "qubit": 0, "col": 2, "type": "spider", "color": "X", "phase": "π" },
+      { "id": 1, "qubit": 0, "col": 3, "type": "output" }
+    ],
+    "edges": [
+      { "src": 0, "tgt": 5 },
+      { "src": 5, "tgt": 6, "kind": "hadamard" },
+      { "src": 6, "tgt": 1 }
+    ]
+  }
+{% endzxDiagram %}
+
+Here, the ports attached to the two spiders inherently have names.
+The spiders themselves do not, but this doesn't seem to matter.
+We still have a way to give them properties like what type of spider they are, or what their phase is.
 
 ## ZX-calculus rules as hypergraphs
 
