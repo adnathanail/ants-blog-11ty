@@ -4,7 +4,7 @@
 		vertical-align: top;
 	}
 	p:has(img) {
-		overflow: scroll;
+		overflow-x: auto;
 		text-align: center;
 
 		--bs-bg-opacity: 1;
@@ -150,6 +150,7 @@
 		background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
+		overflow-x: auto;
         .katex-display {
             margin: 0 !important;
         }

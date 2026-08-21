@@ -137,7 +137,6 @@ They're very general, powerful, and expressive structures, but we seem to just b
 
 In more complex circuits there will be a bit more variety, but there are fundamental rules that matrices must abide by in order to accurately describe the quantum world.
 
-<!-- TODO -->
 <details>
   <summary>Types of matrices used in quantum</summary>
 
@@ -191,8 +190,6 @@ And the term 'spider' is used because blobs with lines sort of look like little 
 Each spider, along with its phase and number of wires (**arity**), represents a matrix.[^linear-map-not-matrix]
 Wires can be joined together to make larger diagrams of spiders, and these larger diagrams have a matrix representation, which remains consistent with chunks that they were constructed from.
 This system of composing building blocks turns out to be expressive enough to fully represent any quantum circuit!
-
-<!-- TODO cite universality -->
 
 [^linear-map-not-matrix]: Technically it represents a linear map, which can be writted as a matrix in a given basis.[^tensor-not-linear-map]
 
