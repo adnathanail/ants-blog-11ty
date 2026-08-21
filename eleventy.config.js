@@ -99,6 +99,9 @@ export default async function(eleventyConfig) {
 				loadPaths: [parsed.dir, "node_modules"],
 				style: "compressed",
 				quietDeps: true,
+				// bootstrap.scss uses @import deliberately: Bootstrap 5.3 has no
+				// @use-based way to merge into its colour maps. See the comment there.
+				silenceDeprecations: ["import"],
 			});
 
 			this.addDependencies(inputPath, result.loadedUrls);

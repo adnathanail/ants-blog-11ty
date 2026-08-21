@@ -3,33 +3,125 @@
 // ################
 // @font-face declarations live in src/assets/scss/fonts.css (inlined by base.njk).
 // https://getbootstrap.com/docs/5.3/customize/sass/
+//
+// Bootstrap is pulled in with @import rather than `@use ... with` because adding
+//   a theme colour means merging into maps Bootstrap has already built, and
+//   `with` can only set a variable, never read its default. The staging below is
+//   the one Bootstrap's own docs prescribe:
+//   https://getbootstrap.com/docs/5.3/customize/color-modes/#adding-theme-colors
+//   The resulting @import deprecation warning is silenced in eleventy.config.js.
+@use "sass:map";
+
+// ################
+// Required
+// ################
+// Bootstrap's own bootstrap.scss emits its MIT licence banner here; importing
+//   the parts individually means emitting it ourselves.
+@import "bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+@import "bootstrap/scss/functions";
 
 $_primary: #AD00AD;
 $_secondary: #00AD00;
+$_fun: #FF6B00;
 
-@use "bootstrap/scss/bootstrap" as * with (
-	$font-family-sans-serif: ('Lato', -apple-system, system-ui, sans-serif),
-	$font-family-monospace: "JetBrains Mono",
-	$headings-font-family: ('Edge Sans Regular', -apple-system, system-ui, sans-serif),
-	$primary: $_primary,
-	$secondary: $_secondary,
-	$code-color: $_primary,
-	$link-color: $_secondary,
-	$container-max-widths: (
-		sm: 540px,
-		md: 720px,
-		lg: 960px,
-		xl: 1140px,
-		// Remove xxl
-	)
+$font-family-sans-serif: ('Lato', -apple-system, system-ui, sans-serif);
+$font-family-monospace: "JetBrains Mono";
+$headings-font-family: ('Edge Sans Regular', -apple-system, system-ui, sans-serif);
+$primary: $_primary;
+$secondary: $_secondary;
+$code-color: $_primary;
+$link-color: $_secondary;
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	// Remove xxl
 );
+
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+// ################
+// Theme colours
+// ################
+// Add "fun" alongside Bootstrap's eight defaults. Everything Bootstrap derives
+//   by looping — .btn-fun, .alert-fun, .list-group-item-fun, .text-bg-fun,
+//   .link-fun, .text-fun/.bg-fun/.border-fun and the --bs-fun* vars — follows
+//   from this one merge.
+$theme-colors: map.merge($theme-colors, ("fun": $_fun));
+
+@import "bootstrap/scss/maps";
+
+// The -text/-bg-subtle/-border-subtle maps are written out as literal lists of
+//   the eight default names rather than looped, so a ninth colour has to be
+//   named in each. The tint/shade percentages match the ones Bootstrap uses for
+//   its own colours in _variables.scss and _variables-dark.scss.
+$theme-colors-text:               map.merge($theme-colors-text,               ("fun": shade-color($_fun, 60%)));
+$theme-colors-bg-subtle:          map.merge($theme-colors-bg-subtle,          ("fun": tint-color($_fun, 80%)));
+$theme-colors-border-subtle:      map.merge($theme-colors-border-subtle,      ("fun": tint-color($_fun, 60%)));
+$theme-colors-text-dark:          map.merge($theme-colors-text-dark,          ("fun": tint-color($_fun, 40%)));
+$theme-colors-bg-subtle-dark:     map.merge($theme-colors-bg-subtle-dark,     ("fun": shade-color($_fun, 80%)));
+$theme-colors-border-subtle-dark: map.merge($theme-colors-border-subtle-dark, ("fun": shade-color($_fun, 40%)));
+
+// Beyond what the docs recipe covers: the three utility maps and the table
+//   variants are literal lists too. Without these there is no .text-fun-emphasis,
+//   .bg-fun-subtle, .border-fun-subtle or .table-fun. These must be merged
+//   before "utilities", which snapshots them into the $utilities map.
+$utilities-text-emphasis-colors: map.merge($utilities-text-emphasis-colors, ("fun-emphasis": var(--#{$prefix}fun-text-emphasis)));
+$utilities-bg-subtle:            map.merge($utilities-bg-subtle,            ("fun-subtle":   var(--#{$prefix}fun-bg-subtle)));
+$utilities-border-subtle:        map.merge($utilities-border-subtle,        ("fun-subtle":   var(--#{$prefix}fun-border-subtle)));
+$table-variants:                 map.merge($table-variants,                 ("fun": shift-color($_fun, $table-bg-scale)));
+
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// ################
+// Remainder of Bootstrap
+// ################
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
 
 // ################
 // Bootstrap Icons
 // ################
-@use "bootstrap-icons/font/bootstrap-icons" with (
-	$bootstrap-icons-font-dir: "/fonts/bootstrap-icons",
-);
+// @import, like Bootstrap above, so the icon CSS keeps its place in the cascade —
+//   a @use would have to sit at the top of the file, ahead of Bootstrap's output.
+$bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
+@import "bootstrap-icons/font/bootstrap-icons";
 
 // ################
 // Custom CSS
