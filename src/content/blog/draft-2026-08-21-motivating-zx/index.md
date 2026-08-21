@@ -59,7 +59,6 @@ You can sort of read them like sheet music.
 
 Here is an example (useless) quantum circuit:
 
-<!-- TODO move steps below -->
 ![](img/01-example-circuit.png)
 
 > [!note]
@@ -144,9 +143,13 @@ In more complex circuits there will be a bit more variety, but there are fundame
 <details>
   <summary>Types of matrices used in quantum</summary>
 
-  There are 2 very important types of matrix:
-  - Hermitian matrices are square matrices which equal their conjugate transpose ($H = H^\dagger$). These are guaranteed to have real eigenvalues, so they can accurately describe observables.
-  - Quantum gates must be Unitary: $U U^\dagger = I$, 
+  Most of the matrices (that I have come across) in quantum are [**normal**](https://mathworld.wolfram.com/NormalMatrix.html), which means that they have an orthonormal eigenbasis, which essentially means that the axes of the coordinates that they are built with are at right angles to each other.
+
+  Within normal matrices, different subcategories are used for different quantum objects:
+
+  - [**Unitary** matrices](https://mathworld.wolfram.com/UnitaryMatrix.html) are square complex matrices whose inverse equal their conjugate transpose ($U U^{\dagger} = I$). Applying them to a vector doesn't change its length, and quantum states must be length 1 (normalized), so operations on quantum states (i.e. gates) are described by unitaries.
+  - [**Hermitian** matrices](https://mathworld.wolfram.com/HermitianMatrix.html) are square matrices which equal their conjugate transpose ($H = H^\dagger$). These are guaranteed to have real eigenvalues, which allows them to accurately describe observables.
+  - [**Positive semi-definite** (**PSD**) matrices](https://mathworld.wolfram.com/PositiveSemidefiniteMatrix.html) are Hermitian matrices with positive eigenvalues. PSD matrices with a trace (sum of eigenvalues) of 1 can represent [**density matrices**](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/density-matrix-basics). They are a more general form of quantum state than the vectors we use here. The eigenvalues represent the probability of measuring a given vector, hence they must be positive, and sum to 1.
 </details>
 
 Putting my computer scientist hat on: having a data structure which naturally encodes the rules were working with, as opposed to manually enforcing them, can yield very powerful results.
@@ -308,6 +311,12 @@ With the ZX calculus, the steps look like this:
 
 Understanding these rules properly requires more information than is reasonable for a blog post.
 But hopefully you can see the beauty of the ZX-calculus, its value in providing an alternative to linear algebra, and could identify a ZX-diagram if you saw one in the wild!
+
+Here is a particularly wild diagram from a real academic paper:[^wan-zhong]
+
+[^wan-zhong]: Kwok Ho Wan and Zhenghao Zhong, "Cutting Stabiliser Decompositions of Magic State Cultivation with ZX-Calculus," preprint, submitted September 1, 2025, arXiv:2509.01224v3, <https://arxiv.org/abs/2509.01224>.
+
+![](img/magic-state-cultivation.png)
 
 ## Addendum
 
