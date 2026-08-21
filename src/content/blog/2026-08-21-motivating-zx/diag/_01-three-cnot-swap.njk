@@ -2,7 +2,7 @@
   {% zxDiagram %}
     {
       "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
         { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
         { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
         { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "Z" },
@@ -11,7 +11,7 @@
         { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
         { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
         { "id": 8, "qubit": 1, "col": 3, "type": "spider", "color": "X" },
-        { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
+        { "id": 9, "qubit": 1, "col": 4, "type": "output" }
       ],
       "edges": [
         { "src": 0, "tgt": 1 },
@@ -34,7 +34,7 @@
   {% zxDiagram "eq" %}
     {
       "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
         { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
         { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
         { "id": 3, "qubit": 1, "col": 3, "type": "spider", "color": "Z" },
@@ -43,7 +43,7 @@
         { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
         { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
         { "id": 8, "qubit": 0, "col": 3, "type": "spider", "color": "X" },
-        { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
+        { "id": 9, "qubit": 1, "col": 4, "type": "output" }
       ],
       "edges": [
         { "src": 0, "tgt": 1 },
@@ -66,14 +66,14 @@
   {% zxDiagram "propto", "sc" %}
     {
       "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
         { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
         { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
         { "id": 3, "qubit": 0, "col": 3, "type": "output", "ioId": 1 },
         { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
         { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
         { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
-        { "id": 7, "qubit": 1, "col": 3, "type": "input",  "ioId": 3 }
+        { "id": 7, "qubit": 1, "col": 3, "type": "output" }
       ],
       "edges": [
         { "src": 0, "tgt": 1 },
@@ -93,12 +93,12 @@
   {% zxDiagram "eq", "sp" %}
     {
       "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
         { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
         { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
         { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
         { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-        { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
+        { "id": 7, "qubit": 1, "col": 2, "type": "output" }
       ],
       "edges": [
         { "src": 0, "tgt": 1 },
@@ -116,12 +116,12 @@
   {% zxDiagram "propto", "sc" %}
     {
       "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
         { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
         { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
         { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
         { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-        { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
+        { "id": 7, "qubit": 1, "col": 2, "type": "output" }
       ],
       "edges": [
         { "src": 0, "tgt": 1 },
@@ -136,10 +136,10 @@
   {% zxDiagram "eq", "id" %}
     {
       "nodes": [
-        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 0, "qubit": 0, "col": 0, "type": "input" },
         { "id": 3, "qubit": 0, "col": 1, "type": "output", "ioId": 1 },
         { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-        { "id": 7, "qubit": 1, "col": 1, "type": "input",  "ioId": 3 }
+        { "id": 7, "qubit": 1, "col": 1, "type": "output" }
       ],
       "edges": [
         { "src": 0, "tgt": 7 },

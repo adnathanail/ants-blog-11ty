@@ -121,7 +121,7 @@ $\ket{1}$ is another example of Dirac notation.
 The minus sign is referred to as the **global phase**, and it is typically ignored because it can't be [detected physically](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.).
 So we put in $00$ and got out $11$.[^dirac-notation]
 
-[^dirac-notation]: It is not always possible to interpret vectors written in Dirac notation as binary (otherwise qubits would just be bits), but in this case it is valid to claim that $\ket{0} \times \ket{0}$ is equivalent to the binary string $00$, and similar for $11$.
+[^dirac-notation]: It is not always possible to interpret vectors written in Dirac notation as binary (otherwise qubits would just be bits), but in this case it is valid to claim that $\ket{0} \otimes \ket{0}$ is equivalent to the binary string $00$, and similar for $11$.
 
 That's not very quantum[^not-very-quantum], but it demonstrates the process of working through a quantum circuit with linear algebra.
 
@@ -146,10 +146,10 @@ In more complex circuits there will be a bit more variety, but there are fundame
 
   - [**Unitary** matrices](https://mathworld.wolfram.com/UnitaryMatrix.html) are square complex matrices whose inverse equal their conjugate transpose ($U U^{\dagger} = I$). Applying them to a vector doesn't change its length, and quantum states must be length 1 (normalized), so operations on quantum states (i.e. gates) are described by unitaries.
   - [**Hermitian** matrices](https://mathworld.wolfram.com/HermitianMatrix.html) are square matrices which equal their conjugate transpose ($H = H^\dagger$). These are guaranteed to have real eigenvalues, which allows them to accurately describe observables.
-  - [**Positive semi-definite** (**PSD**) matrices](https://mathworld.wolfram.com/PositiveSemidefiniteMatrix.html) are Hermitian matrices with positive eigenvalues. PSD matrices with a trace (sum of eigenvalues) of 1 can represent [**density matrices**](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/density-matrix-basics). They are a more general form of quantum state than the vectors we use here. The eigenvalues represent the probability of measuring a given vector, hence they must be positive, and sum to 1.
+  - [**Positive semi-definite** (**PSD**) matrices](https://mathworld.wolfram.com/PositiveSemidefiniteMatrix.html) are Hermitian matrices with non-negative eigenvalues. PSD matrices with a trace (sum of eigenvalues) of 1 can represent [**density matrices**](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/density-matrix-basics). They are a more general form of quantum state than the vectors we use here. The eigenvalues represent the probability of measuring a given vector, hence they cannot be negative and must sum to 1.
 </details>
 
-Putting my computer scientist hat on: having a data structure which naturally encodes the rules were working with, as opposed to manually enforcing them, can yield very powerful results.
+Putting my computer scientist hat on: having a data structure which naturally encodes the rules we're working with, as opposed to manually enforcing them, can yield very powerful results.
 
 Compare storing numerical data as a list versus a [binary search tree](https://www.geeksforgeeks.org/dsa/binary-search-tree-data-structure/).
 If we want to find the median value in the list, we first have to sort the data; in the tree the data is inherently sorted.
@@ -166,11 +166,11 @@ So, is there something we can replace our matrices with, which naturally follows
 > [!question]
 > Which famous quantum protocol is shown in the diagram above?
 
-The ZX-calculus is a pair of commutative special dagger Frobenius algebras, which together form a scaled bialgebra.[^coecke-duncan]
+The ZX-calculus is a graphical language built upon a strongly complementary pair of commutative special dagger Frobenius algebras, which together form a scaled bialgebra.[^coecke-duncan]
 
 [^coecke-duncan]: Bob Coecke and Ross Duncan, "Interacting Quantum Observables: Categorical Algebra and Diagrammatics," *New Journal of Physics* 13, no. 4 (2011): 043016, <https://doi.org/10.1088/1367-2630/13/4/043016>.
 
-Precisely understanding this statement requires a deep understanding of [category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) (which I absolutely do not posess), but in short: we have found the data structure that we are looking for.
+Precisely understanding this statement requires a deep understanding of [category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) (which I absolutely do not possess), but in short: we have found the data structure that we are looking for.
 We have identified the paradigm which naturally encodes the symmetries and rules which quantum processes follow.
 
 Luckily for us, we can happily use the ZX-calculus without any understanding of category theory.
@@ -191,7 +191,7 @@ Each spider, along with its phase and number of wires (**arity**), represents a 
 Wires can be joined together to make larger diagrams of spiders, and these larger diagrams have a matrix representation, which remains consistent with chunks that they were constructed from.
 This system of composing building blocks turns out to be expressive enough to fully represent any quantum circuit!
 
-[^linear-map-not-matrix]: Technically it represents a linear map, which can be writted as a matrix in a given basis.[^tensor-not-linear-map]
+[^linear-map-not-matrix]: Technically it represents a linear map, which can be written as a matrix in a given basis.[^tensor-not-linear-map]
 
 [^tensor-not-linear-map]: Technically technically it represents a tensor.
 
@@ -207,7 +207,9 @@ The starting $\ket{0}$ s have become **phaseless** X spiders.
 The Z and X gates have become corresponding Z and X spiders, with a phase of $\pi$.
 And the CNOT gate, has become a linked pair of phaseless Z and X spiders.
 
-If you interpretted each of those elements as a matrix/vector, you would get back exactly the matrices from earlier, and if you interpret the entire diagram you will get the result of our calculation.
+If you interpretted each of those elements as a matrix/vector, you would get back the matrices from earlier [^up-to-a-scalar-factor], and if you interpret the entire diagram you will get the result of our calculation.
+
+[^up-to-a-scalar-factor]: Up to a scalar factor
 
 > This is all very fun, but to be honest this might be harder to read, what's the point?
 
@@ -228,13 +230,12 @@ That was an example of an application of the **spider fusion** (**sp**) rule. [^
 
 [^spider-unfusion]: And then applying its inverse, colloquially 'unfusion'.
 
-Below are the 7 rules (spider fusion top-right) which form the standard rules of the ZX-calculus.
+Below are the 7 rules (spider fusion top-left) which form the standard rules of the ZX-calculus.
 
 ![](img/zx-rules.png)
 
 > [!info]
-> The yellow squares are called H-boxes.
-> They represent an important gate called the **Hadamard**.
+> The yellow squares represent an important gate called the **Hadamard**.
 > They ever so slightly marr our beautiful 2-coloured graphs, but the bottom right rule (**eu**) shows that they are actually representable as spiders.
 
 ### A real example
@@ -269,11 +270,11 @@ We can verify this using linear algebra, but why would we want to do that..!
   $$
 </details>
 
-With the ZX calculus, the steps look like this:
+With the ZX-calculus, the steps look like this:
 
 {% include "./diag/_01-three-cnot-swap.njk" %}
 
-1. Draw out our circuit as a ZX diagram.
+1. Draw out our circuit as a ZX-diagram.
 2. Just drag the diagram around a bit so that it looks more like the (**sc**) rule.
 
 > [!tip]
@@ -281,7 +282,7 @@ With the ZX calculus, the steps look like this:
 
 3. Apply the strong complementarity rule.
 4. Apply the spider fusion rule.
-5. Use something called the Hopf rule, which allows us to remove a pair of links between the same two nodes. This is derived from strong complementarity, so we have just called it (**sc**) here.
+5. Use something called the Hopf rule, which allows us to remove a pairs of links between two spiders of different colours. This is derived from strong complementarity, so we have just called it (**sc**) here.
 6. Apply the identity rule twice.
 
 <details>
@@ -298,14 +299,14 @@ With the ZX calculus, the steps look like this:
 </details>
 
 <details>
-  <summary>What are the symbols between the diagram about?</summary>
+  <summary>What are the symbols between the diagrams about?</summary>
 
-  Even once you've learned the rules of the ZX calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
+  Even once you've learned the rules of the ZX-calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
   To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between diagrams.
 
   Underneath the rule codes you will see either an equals sign or a 'proportional to' sign.
-  This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor' AKA a global phase.
-  You might recall from earlier that global phases are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.), so we can often ignore them.
+  This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor'.
+  These scalar factors are often global phases (which are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.)), or normalization factors (which usually work themselves out) so we can often ignore them.
 </details>
 
 Understanding these rules properly requires more information than is reasonable for a blog post.
@@ -313,7 +314,7 @@ But hopefully you can see the beauty of the ZX-calculus, its value in providing 
 
 Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 
-[^wan-zhong]: Kwok Ho Wan and Zhenghao Zhong, "Cutting Stabiliser Decompositions of Magic State Cultivation with ZX-Calculus," preprint, submitted September 1, 2025, arXiv:2509.01224v3, <https://arxiv.org/abs/2509.01224>.
+[^wan-zhong]: Kwok Ho Wan and Zhenghao Zhong, "Cutting Stabiliser Decompositions of Magic State Cultivation with ZX-Calculus," preprint, submitted September 20, 2025, arXiv:2509.01224v3, <https://arxiv.org/abs/2509.01224>.
 
 ![](img/magic-state-cultivation.png)
 
