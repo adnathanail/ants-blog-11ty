@@ -226,9 +226,9 @@ And, if you worked out the linear algebra, you'd see that those two circuits wer
 
 That was an example of an application of the **spider fusion** (**sp**) rule. [^spider-unfusion]
 
-[^spider-unfusion]: And then applying it in reverse, colloquially 'unfusion'.
+[^spider-unfusion]: And then applying its inverse, colloquially 'unfusion'.
 
-Below are 7 such rules (including spider fusion in the top right) which form the standard rules of the ZX-calculus.
+Below are the 7 rules (spider fusion top-right) which form the standard rules of the ZX-calculus.
 
 ![](img/zx-rules.png)
 
@@ -289,8 +289,9 @@ With the ZX calculus, the steps look like this:
 
   {% include "./diag/_02-deriving-hopf.njk" %}
 
-  Step 6 may look a little confusing: it says that it is using the (**π**) rule, but it doesn't really look like the (**π**) in the diagram.
-  The one shown in the diagram is a representative example of a class of rules called the **state-copy rules**, of which the **π-commutation** is a common variety.
+  Step 6 may look a little confusing: it says that it is using the (**π**) rule, but it doesn't really look like the (**π**) in the standard rules.
+  The standard rules show the **π-commutation**, which is a common example from a class of rules called the **state-copy rules**.
+  Above, we used another of the state-copy rules.
 
   Also some of the jumps between steps may be a little hard to see, because I have folded up the diagrams to try and keep them compact.
   If you drag them around yourself, you should hopefully see exactly what has happened!
@@ -310,7 +311,7 @@ With the ZX calculus, the steps look like this:
 Understanding these rules properly requires more information than is reasonable for a blog post.
 But hopefully you can see the beauty of the ZX-calculus, its value in providing an alternative to linear algebra, and could identify a ZX-diagram if you saw one in the wild!
 
-Here is a particularly wild diagram from a real academic paper:[^wan-zhong]
+Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 
 [^wan-zhong]: Kwok Ho Wan and Zhenghao Zhong, "Cutting Stabiliser Decompositions of Magic State Cultivation with ZX-Calculus," preprint, submitted September 1, 2025, arXiv:2509.01224v3, <https://arxiv.org/abs/2509.01224>.
 
