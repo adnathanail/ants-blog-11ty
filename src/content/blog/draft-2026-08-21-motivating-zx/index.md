@@ -161,6 +161,11 @@ So, is there something we can replace our matrices with, which naturally follows
 
 ## The ZX-calculus
 
+![](img/03-teleportation.png){.img-w-100}
+
+> [!question]
+> Which famous quantum protocol is shown in the diagram above?
+
 The ZX-calculus is a pair of commutative special dagger Frobenius algebras, which together form a scaled bialgebra.[^coecke-duncan]
 
 [^coecke-duncan]: Bob Coecke and Ross Duncan, "Interacting Quantum Observables: Categorical Algebra and Diagrammatics," *New Journal of Physics* 13, no. 4 (2011): 043016, <https://doi.org/10.1088/1367-2630/13/4/043016>.
@@ -171,11 +176,6 @@ We have identified the paradigm which naturally encodes the symmetries and rules
 Luckily for us, we can happily use the ZX-calculus without any understanding of category theory.
 
 ### ZX-diagrams
-
-![](img/03-teleportation.png)
-
-> [!question]
-> Which famous quantum protocol is shown in the diagram above?
 
 **ZX-diagrams** are the bread and butter of the ZX-calculus.
 They are composed (almost) entirely of green and red circles, called **Z spiders** and **X spiders** respectively.
@@ -207,7 +207,7 @@ The starting $\ket{0}$ s have become **phaseless** X spiders.
 The Z and X gates have become corresponding Z and X spiders, with a phase of $\pi$.
 And the CNOT gate, has become a linked pair of phaseless Z and X spiders.
 
-If you interpretted each of those elements as a matrix/vector, you would get back exactly what we were working with earlier, and if you interpret the entire diagram you will get the result of our calculation.
+If you interpretted each of those elements as a matrix/vector, you would get back exactly the matrices from earlier, and if you interpret the entire diagram you will get the result of our calculation.
 
 > This is all very fun, but to be honest this might be harder to read, what's the point?
 
@@ -233,7 +233,7 @@ Below are 7 such rules (including spider fusion in the top right) which form the
 ![](img/zx-rules.png)
 
 > [!info]
-> The yellow squares a called H-boxes.
+> The yellow squares are called H-boxes.
 > They represent an important gate called the **Hadamard**.
 > They ever so slightly marr our beautiful 2-coloured graphs, but the bottom right rule (**eu**) shows that they are actually representable as spiders.
 
