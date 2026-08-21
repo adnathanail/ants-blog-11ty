@@ -2,7 +2,7 @@
 title: Motivating the ZX-calculus
 description: A primer for my masters thesis
 author: alex
-heroImg: ./img/03-example-circuit-zx.png
+heroImg: ./img/03-teleportation.png
 date: 2026-08-21
 recommendNoRSS: true
 draft: true
@@ -175,7 +175,10 @@ Luckily for us, we can happily use the ZX-calculus without any understanding of 
 
 ### ZX-diagrams
 
-<!-- TODO insert example diagram -->
+![](img/03-teleportation.png)
+
+> [!question]
+> Which famous quantum protocol is shown in the diagram above?
 
 **ZX-diagrams** are the bread and butter of the ZX-calculus.
 They are composed (almost) entirely of green and red circles, called **Z spiders** and **X spiders** respectively.
@@ -203,7 +206,7 @@ Converting our example circuit to a ZX-diagram would look like this:
 <!-- TODO image layout -->
 
 ![](img/01a-example-circuit-no-slices.png)
-![](img/03-example-circuit-zx.png)
+![](img/04-example-circuit-zx.png)
 
 The starting $\ket{0}$ s have become **phaseless** X spiders.
 The Z and X gates have become corresponding Z and X spiders, with a phase of $\pi$.
@@ -221,7 +224,7 @@ It turns out that lots of different ZX-diagrams can represent the same quantum c
 
 For example, in the diagram above, we can move the top right green spider through the spider to its left, becoming the diagram below:
 
-![](img/03a-example-circuit-zx-modified.png)
+![](img/04a-example-circuit-zx-modified.png)
 
 If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
 And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
