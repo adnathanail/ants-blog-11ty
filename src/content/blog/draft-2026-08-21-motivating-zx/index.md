@@ -73,11 +73,11 @@ Looking at each time slice step by step:
   - Which side has the dot and which the plus is important!
 - $t_3$: top qubit had a Z gate applied, bottom qubit was left alone
 
-### Evaluating the effect of a quantum circuit
+### Evaluating a quantum circuit
 
 If we want to understand the effect that this circuit has on its starting state we need a few pieces of information:
 
-1. Vectors commonly used in quantum physics have a special shorthand called [Dirac notation](https://learn.microsoft.com/en-us/azure/quantum/concepts-dirac-notation). The starting state in the circuit above means:
+1. Some vectors commonly used in quantum physics have a special shorthand called [Dirac notation](https://learn.microsoft.com/en-us/azure/quantum/concepts-dirac-notation). The starting state in the circuit above means:
 
 $$
   \ket{0} = \left( \begin{array}{c} 1 \\ 0 \end{array} \right)
@@ -124,9 +124,9 @@ $\ket{1}$ is another example of Dirac notation.
 The minus sign is referred to as the **global phase**, and it is typically ignored because it can't be [detected physically](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.).
 So we put in $00$ and got out $11$.[^dirac-notation]
 
-[^dirac-notation]: It is not always simple to interpret vectors written Dirac notation as binary, but in this case it is valid to claim that $\ket{0} \times \ket{0}$ is equivalent to the binary string $00$, and similar for $11$.
+[^dirac-notation]: It is not always possible to interpret vectors written in Dirac notation as binary (otherwise qubits would just be bits), but in this case it is valid to claim that $\ket{0} \times \ket{0}$ is equivalent to the binary string $00$, and similar for $11$.
 
-That's not very quantum[^not-very-quantum], but it demonstrates the process involved in understanding quantum circuits with linear algebra.
+That's not very quantum[^not-very-quantum], but it demonstrates the process of working through a quantum circuit with linear algebra.
 
 [^not-very-quantum]: I felt like I should put a footnote here because that clause is horribly informal and imprecise, but there's nothing really to explain. I'm just acknowledging the laziness.
 
@@ -204,7 +204,7 @@ Converting our example circuit to a ZX-diagram would look like this:
 
 The starting $\ket{0}$ s have become **phaseless** X spiders.
 The Z and X gates have become corresponding Z and X spiders, with a phase of $\pi$.
-And the CNOT gate, has become a linked pair of a Z and an X spider.
+And the CNOT gate, has become a linked pair of phaseless Z and X spiders.
 
 If you interpretted each of those elements as a matrix/vector, you would get back exactly what we were working with earlier, and if you interpret the entire diagram you will get the result of our calculation.
 
@@ -280,18 +280,30 @@ With the ZX calculus, the steps look like this:
 
 3. Apply the strong complementarity rule.
 4. Apply the spider fusion rule.
-5. Use something called the Hopf rule, which allows us to remove a pair of links between the same two nodes. This is derived from strong complementarity, so we have just called it (sc) here.
+5. Use something called the Hopf rule, which allows us to remove a pair of links between the same two nodes. This is derived from strong complementarity, so we have just called it (**sc**) here.
 6. Apply the identity rule twice.
+
+<details>
+  <summary>Deriving the Hopf rule</summary>
+
+  {% include "./diag/_02-deriving-hopf.njk" %}
+
+  Step 6 may look a little confusing: it says that it is using the (**π**) rule, but it doesn't really look like the (**π**) in the diagram.
+  The one shown in the diagram is a representative example of a class of rules called the **state-copy rules**, of which the **π-commutation** is a common variety.
+
+  Also some of the jumps between steps may be a little hard to see, because I have folded up the diagrams to try and keep them compact.
+  If you drag them around yourself, you should hopefully see exactly what has happened!
+</details>
 
 <details>
   <summary>What are the symbols between the diagram about?</summary>
 
   Even once you've learned the rules of the ZX calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
-  To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between the two diagrams.
+  To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between diagrams.
 
   Underneath the rule codes you will see either an equals sign or a 'proportional to' sign.
-  This is because some rewrite rules return you a diagram which is equivalent _up to a scalar factor_.
-  In most cases we can ignore this because the factor is [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.).
+  This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor' AKA a global phase.
+  You might recall from earlier that global phases are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.), so we can often ignore them.
 </details>
 
 Understanding these rules properly requires more information than is reasonable for a blog post.
@@ -304,7 +316,7 @@ But hopefully you can see the beauty of the ZX-calculus, its value in providing 
 You might have noticed that the diagrams in the previous example are interactive: you can drag them into different arrangements.
 This doesn't change the semantics of the diagram because of course **only connectivity matters!**
 
-These diagram viewers are part of the first little stage of my thesis, and actually the impetus for this blog post.
+These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
 
 They are based on the [interactive viewer](https://github.com/zxcalc/pyzx/blob/master/pyzx/js/zx_viewer.js) built into [pyzx](https://github.com/zxcalc/pyzx). I [embedded that](https://github.com/adnathanail/LeanSpider/tree/a2a6cb0f0c755194b394058b9231575589a0c69b/zx_view_widget) into a React component in a [project working with the ZX-calculus in Lean](https://github.com/adnathanail/LeanSpider). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [zxcc](https://github.com/adnathanail/zxcc).
 
