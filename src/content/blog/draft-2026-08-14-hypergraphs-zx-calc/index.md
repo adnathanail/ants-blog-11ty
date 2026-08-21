@@ -4,6 +4,7 @@ description: Combining two niche things I'd never heard of
 author: alex
 heroImg: ./
 date: 2026-08-14
+recommendNoRSS: true
 draft: true
 ---
 
@@ -174,151 +175,169 @@ Below are 7 such rules (including spider fusion) which form the standard rules o
 
 ![](img/zx-rules.png)
 
-{% zxDiagram %}
-{
-  "nodes": [
-    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-    { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
-    { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "Z" },
-    { "id": 4, "qubit": 0, "col": 4, "type": "output", "ioId": 1 },
-    { "id": 5, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-    { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-    { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
-    { "id": 8, "qubit": 1, "col": 3, "type": "spider", "color": "X" },
-    { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
-  ],
-  "edges": [
-    { "src": 0, "tgt": 1 },
-    { "src": 1, "tgt": 2 },
-    { "src": 2, "tgt": 3 },
-    { "src": 3, "tgt": 4 },
+Understanding these rules properly requires a bit of effort, and isn't really the point of this blog post.
+But as an example, the second circuit from earlier showing 3 CNOTs equal SWAP is quite nice to see.
 
-    { "src": 5, "tgt": 6 },
-    { "src": 6, "tgt": 7 },
-    { "src": 7, "tgt": 8 },
-    { "src": 8, "tgt": 9 },
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "Z" },
+        { "id": 4, "qubit": 0, "col": 4, "type": "output", "ioId": 1 },
+        { "id": 5, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+        { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 8, "qubit": 1, "col": 3, "type": "spider", "color": "X" },
+        { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+        { "src": 3, "tgt": 4 },
 
-    { "src": 1, "tgt": 6 },
-    { "src": 2, "tgt": 7 },
-    { "src": 3, "tgt": 8 }
-  ]
-}
-{% endzxDiagram %}
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 },
+        { "src": 8, "tgt": 9 },
 
-{% zxDiagram %}
-{
-  "nodes": [
-    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-    { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
-    { "id": 3, "qubit": 1, "col": 3, "type": "spider", "color": "Z" },
-    { "id": 4, "qubit": 0, "col": 4, "type": "output", "ioId": 1 },
-    { "id": 5, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-    { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-    { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
-    { "id": 8, "qubit": 0, "col": 3, "type": "spider", "color": "X" },
-    { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
-  ],
-  "edges": [
-    { "src": 0, "tgt": 1 },
-    { "src": 1, "tgt": 2 },
-    { "src": 2, "tgt": 3 },
-    { "src": 3, "tgt": 4 },
+        { "src": 1, "tgt": 6 },
+        { "src": 2, "tgt": 7 },
+        { "src": 3, "tgt": 8 }
+      ]
+    }
+  {% endzxDiagram %}
 
-    { "src": 5, "tgt": 6 },
-    { "src": 6, "tgt": 7 },
-    { "src": 7, "tgt": 8 },
-    { "src": 8, "tgt": 9 },
+  {% zxDiagram "eq" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "X" },
+        { "id": 3, "qubit": 1, "col": 3, "type": "spider", "color": "Z" },
+        { "id": 4, "qubit": 0, "col": 4, "type": "output", "ioId": 1 },
+        { "id": 5, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+        { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 8, "qubit": 0, "col": 3, "type": "spider", "color": "X" },
+        { "id": 9, "qubit": 1, "col": 4, "type": "input",  "ioId": 3 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+        { "src": 3, "tgt": 4 },
 
-    { "src": 1, "tgt": 6 },
-    { "src": 2, "tgt": 7 },
-    { "src": 3, "tgt": 8 }
-  ]
-}
-{% endzxDiagram %}
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 },
+        { "src": 8, "tgt": 9 },
 
-{% zxDiagram %}
-{
-  "nodes": [
-    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-    { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
-    { "id": 3, "qubit": 0, "col": 3, "type": "output", "ioId": 1 },
-    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-    { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-    { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
-    { "id": 7, "qubit": 1, "col": 3, "type": "input",  "ioId": 3 }
-  ],
-  "edges": [
-    { "src": 0, "tgt": 1 },
-    { "src": 1, "tgt": 2 },
-    { "src": 2, "tgt": 7 },
+        { "src": 1, "tgt": 6 },
+        { "src": 2, "tgt": 7 },
+        { "src": 3, "tgt": 8 }
+      ]
+    }
+  {% endzxDiagram %}
 
-    { "src": 4, "tgt": 5 },
-    { "src": 5, "tgt": 6 },
-    { "src": 6, "tgt": 3 },
+  {% zxDiagram "eq", "sp" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "output", "ioId": 1 },
+        { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+        { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 6, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
+        { "id": 7, "qubit": 1, "col": 3, "type": "input",  "ioId": 3 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 7 },
 
-    { "src": 1, "tgt": 5 },
-    { "src": 2, "tgt": 6 }
-  ]
-}
-{% endzxDiagram %}
+        { "src": 4, "tgt": 5 },
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 3 },
 
-{% zxDiagram %}
-{
-  "nodes": [
-    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-    { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
-    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-    { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-    { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
-  ],
-  "edges": [
-    { "src": 0, "tgt": 1 },
-    { "src": 1, "tgt": 7 },
+        { "src": 1, "tgt": 5 },
+        { "src": 2, "tgt": 6 }
+      ]
+    }
+  {% endzxDiagram %}
 
-    { "src": 4, "tgt": 5 },
-    { "src": 5, "tgt": 3 },
+  {% zxDiagram "eq", "sp" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
+        { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+        { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 7 },
 
-    { "src": 1, "tgt": 5 },
-    { "src": 1, "tgt": 5 }
-  ]
-}
-{% endzxDiagram %}
+        { "src": 4, "tgt": 5 },
+        { "src": 5, "tgt": 3 },
 
-{% zxDiagram %}
-{
-  "nodes": [
-    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-    { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
-    { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
-    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-    { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
-    { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
-  ],
-  "edges": [
-    { "src": 0, "tgt": 1 },
-    { "src": 1, "tgt": 7 },
+        { "src": 1, "tgt": 5 },
+        { "src": 1, "tgt": 5 }
+      ]
+    }
+  {% endzxDiagram %}
 
-    { "src": 4, "tgt": 5 },
-    { "src": 5, "tgt": 3 }
-  ]
-}
-{% endzxDiagram %}
+  {% zxDiagram "eq", "sc" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 2, "type": "output", "ioId": 1 },
+        { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+        { "id": 5, "qubit": 1, "col": 1, "type": "spider", "color": "X" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "input",  "ioId": 3 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 7 },
 
-{% zxDiagram %}
-{
-  "nodes": [
-    { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
-    { "id": 3, "qubit": 0, "col": 1, "type": "output", "ioId": 1 },
-    { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
-    { "id": 7, "qubit": 1, "col": 1, "type": "input",  "ioId": 3 }
-  ],
-  "edges": [
-    { "src": 0, "tgt": 7 },
-    { "src": 4, "tgt": 3 }
-  ]
-}
-{% endzxDiagram %}
+        { "src": 4, "tgt": 5 },
+        { "src": 5, "tgt": 3 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq", "id" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "input",  "ioId": 0 },
+        { "id": 3, "qubit": 0, "col": 1, "type": "output", "ioId": 1 },
+        { "id": 4, "qubit": 1, "col": 0, "type": "input",  "ioId": 2 },
+        { "id": 7, "qubit": 1, "col": 1, "type": "input",  "ioId": 3 }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 7 },
+        { "src": 4, "tgt": 3 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}
+
+1. Draw out our circuit as a ZX diagram.
+2. Just drag the diagram around a bit so that it looks more like our (sc) rule.
+
+> [!info]
+> You can drag the elements of the diagram around to see that nothing actually changed!
+
+3. Apply the strong complementarity rule.
+4. Apply the spider fusion rule.
+5. Use something called the Hopf rule, which allows us to remove a pair of links between the same two nodes. This is derived from strong complementarity, so we have just called it (sc) here.
+6. Apply the identity rule twice.
+
+These little diagrams are part of the first little stage of my thesis.
