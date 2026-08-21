@@ -14,11 +14,12 @@ const styles = {
 	Prose: { color: "info", icon: "pen-fill", solid: false },
 	Theory: { color: "danger", icon: "calculator-fill", solid: false },
 	Tooling: { color: "warning", icon: "tools", solid: false },
+	Quantum: { color: "fun", icon: "gem", solid: false },
 };
 
-// Bootstrap theme colors that ship both `bg-{color}-subtle` and `border-{color}` utilities
+// Bootstrap theme (+custom) colors that ship both `bg-{color}-subtle` and `border-{color}` utilities
 const styleSchema = z.object({
-	color: z.enum(["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"]),
+	color: z.enum(["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "fun"]),
 	icon: z.string().min(1),
 	solid: z.boolean(),
 }).strict();

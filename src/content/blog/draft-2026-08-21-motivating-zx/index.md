@@ -5,10 +5,8 @@ author: alex
 heroImg: ./img/03-teleportation.png
 date: 2026-08-21
 recommendNoRSS: true
-draft: true
+tags: ['quantum', 'theory']
 ---
-
-<!-- TODO quantum tag bi-gem -->
 
 For the last year I've been doing a [Master's degree in Quantum Computer Science at the University of Amsterdam](https://www.uva.nl/shared-content/programmas/en/masters/quantum-computer-science/quantum-computer-science.html).
 The first year has been primarily lecture-based, looking at a lot of the maths underpinning quantum computation.
