@@ -43,6 +43,9 @@ export default async function(eleventyConfig) {
 
 	eleventyConfig.addPlugin(draftCollection);
 
+	// README.md files (e.g. notes alongside post assets) are documentation, not content
+	eleventyConfig.ignores.add("**/README.md");
+
 	// Copy asset folders to the output. SCSS is intentionally excluded — .scss
 	// files under src/assets/scss/ are either compiled via addTemplate (below)
 	// or inlined via {% include %}, never passed through raw.
