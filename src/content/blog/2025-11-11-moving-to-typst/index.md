@@ -53,7 +53,7 @@ Also, also, LaTeX is built on top of TeX. So there's sort of multiple ways to do
 
 Lastly, recently I've been using an editor called Texifier for macOS, which adds live reloading, so I can see the output in real-time as I type. And I've used it so much I now can't really live without it. Saving and reloading just feels annoying now.
 
-But this doesn't play well with everything (e.g. quantikz diagrams; see [previous post](./_2025-09-16-qzfr)). And it's started crashing with very long documents.
+But this doesn't play well with everything (e.g. quantikz diagrams; see [previous post](../2025-09-16-qzfr/)). And it's started crashing with very long documents.
 
 ## New kid on the block
 
