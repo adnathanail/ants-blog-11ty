@@ -285,6 +285,9 @@ With the ZX-calculus, the steps look like this:
 5. Use something called the Hopf rule, which allows us to remove a pairs of links between two spiders of different colours. This is derived from strong complementarity, so we have just called it (**sc**) here.
 6. Apply the identity rule twice.
 
+The diagram we end up with is exactly how the SWAP gate is represented in the ZX-calculus.
+The fact that it looks like a swapping operation is not an accident: this is a very nice example of how ZX-diagrams intuitively represent connectivity in quantum processes.
+
 <details>
   <summary>Deriving the Hopf rule</summary>
 
@@ -309,7 +312,7 @@ With the ZX-calculus, the steps look like this:
   These scalar factors are often global phases (which are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.)), or normalization factors (which usually work themselves out) so we can often ignore them.
 </details>
 
-Understanding these rules properly requires more information than is reasonable for a blog post.
+Understanding the ZX-calculus is an 8-week masters course, and understanding the quantum operations it represents is another 16 weeks, so I can't fit it all into a blog post.
 But hopefully you can see the beauty of the ZX-calculus, its value in providing an alternative to linear algebra, and could identify a ZX-diagram if you saw one in the wild!
 
 Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
@@ -322,12 +325,14 @@ Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 
 ### zxcc
 
+<!-- TODO only connectivity matters -->
+
 You might have noticed that the diagrams in the previous example are interactive: you can drag them into different arrangements.
-This doesn't change the semantics of the diagram because of course **only connectivity matters!**
+This doesn't change the meaning of the diagram because of course **only connectivity matters!**
 
 These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
 
-They are based on the [interactive viewer](https://github.com/zxcalc/pyzx/blob/master/pyzx/js/zx_viewer.js) built into [pyzx](https://github.com/zxcalc/pyzx). I [embedded that](https://github.com/adnathanail/LeanSpider/tree/a2a6cb0f0c755194b394058b9231575589a0c69b/zx_view_widget) into a React component in a [project working with the ZX-calculus in Lean](https://github.com/adnathanail/LeanSpider). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [zxcc](https://github.com/adnathanail/zxcc).
+They are based on the [interactive viewer](https://github.com/zxcalc/pyzx/blob/master/pyzx/js/zx_viewer.js) built into [pyzx](https://github.com/zxcalc/pyzx). I [embedded that](https://github.com/adnathanail/LeanSpider/tree/a2a6cb0f0c755194b394058b9231575589a0c69b/zx_view_widget) into a React component in a [project working with the ZX-calculus in Lean](https://github.com/adnathanail/LeanSpider). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [**zxcc**](https://github.com/adnathanail/zxcc).
 
 I wanted the ergonomics of components, without the bulk of something like React, so I rewrote it using a web components library called [Lit](https://lit.dev). I then realised the bundle was 500KB because of the D3 dependency, so I rewrote the renderer using raw SVGs.
 
