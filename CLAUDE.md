@@ -137,6 +137,23 @@ This is the same idea as a Django widget's `Media` class.
 
 `deferred_images.njk`, `gist-embed.njk`, and `zx-diagram.njk` all follow this.
 
+## Post fragments
+
+A chunk of markup that belongs to one post — a long diagram derivation, a bulky table — can live
+in its own file beside `index.md` and be pulled in with `{% include "./_name.njk" %}`. Posts are
+preprocessed by nunjucks, so shortcodes inside the fragment run exactly as if they were inline.
+
+**Name the fragment with a leading underscore.** `eleventyConfig.ignores.add("**/_*.njk")` keeps
+those files from building pages of their own, and an `addWatchTarget` puts them back in the
+watcher, since `ignores` also drops them from it.
+
+A fragment cannot opt out per-file with `permalink: false` instead: anything under `blog/`
+inherits `tags: posts`, which subjects it to the strict schema in
+`src/_data/eleventyDataSchema.js` — that schema is `.strict()` and knows nothing about Eleventy's
+own front matter keys, so any front matter at all fails the build. Fragments therefore carry no
+front matter, which is right anyway — nunjucks `include` reads the raw file, so a `---` block
+would land verbatim in the post.
+
 ## ZX-diagrams
 
 `{% zxDiagram %}` renders a [`zxcc`](https://github.com/adnathanail/zxcc) `<zx-diagram>` from a
@@ -180,5 +197,11 @@ handing the block to markdown-it, so the indentation is cosmetic and does not af
 - **Relations are named, not typed as symbols** — `"eq"` renders `=` and `"propto"` renders `∝`.
   They are plain characters in the output, not KaTeX. Add a key to `ZX_RELATIONS` in
   `src/_11ty/shortcodes/components.js` to introduce another; an unknown name fails the build.
+- **A long group can live in its own file.** Posts are preprocessed by nunjucks, so a
+  `{% zxGroup %}` block can be moved into a fragment beside the post and pulled back in with
+  `{% include "./_name.njk" %}`. Include paths resolve relative to the including template, or
+  from the project root (`{% include "src/assets/scss/post.css" %}`). Numbering still resets
+  per group — the counter is CSS, and the include is expanded before markdown ever sees it.
+  See "Post fragments" below for the naming rule.
 - **The rule argument is a bare abbreviation** — `"sp"`, not `"(sp)"`. The parens and bold italic
   are applied for you, matching `img/zx-rules.png`. Omit it for a step that is only a deformation.

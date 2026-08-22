@@ -11,3 +11,6 @@ playwright-report/
 _site_playwright/
 
 _site2/
+
+# Ignore TikZit style file in the root
+/circuits.tikzstyles

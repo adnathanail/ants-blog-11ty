@@ -46,6 +46,13 @@ export default async function(eleventyConfig) {
 
 	// README.md files (e.g. notes alongside post assets) are documentation, not content
 	eleventyConfig.ignores.add("**/README.md");
+	// Underscore-prefixed templates co-located with a post are fragments it {% include %}s,
+	// not pages of their own. They can't opt out per-file with `permalink: false` — anything
+	// under blog/ inherits tags: posts and is then held to the strict front matter schema in
+	// src/_data/eleventyDataSchema.js, which has no room for Eleventy's own keys.
+	eleventyConfig.ignores.add("**/_*.njk");
+	// ignores also drops them from the watcher, so add them back for the dev server.
+	eleventyConfig.addWatchTarget("src/content/**/_*.njk");
 
 	// Copy asset folders to the output. SCSS is intentionally excluded — .scss
 	// files under src/assets/scss/ are either compiled via addTemplate (below)
