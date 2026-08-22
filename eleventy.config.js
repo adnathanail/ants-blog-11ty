@@ -10,6 +10,7 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import markdownItAttrs from "markdown-it-attrs";
 import admonitions from "./src/_11ty/utils/admonitions.js";
 import footnotes from "./src/_11ty/utils/footnotes.js";
+import externalLinks from "./src/_11ty/utils/external-links.js";
 import videoMedia from "./src/_11ty/utils/video-media.js";
 import imagePlaceholders from "./src/_11ty/utils/image-placeholders.js";
 import "./src/_11ty/utils/prism-typst.js";
@@ -200,6 +201,7 @@ export default async function(eleventyConfig) {
 	eleventyConfig.amendLibrary("md", admonitions);
 	eleventyConfig.amendLibrary("md", footnotes);
 	eleventyConfig.amendLibrary("md", videoMedia);
+	eleventyConfig.amendLibrary("md", externalLinks);
 	eleventyConfig.amendLibrary("md", md => md.use(markdownItAttrs));
 	const { katex } = (await import("@mdit/plugin-katex"));
 	eleventyConfig.amendLibrary("md", md => md.use(katex, {output: "htmlAndMathml", macros: {
