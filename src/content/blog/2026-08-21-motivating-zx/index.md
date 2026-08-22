@@ -74,6 +74,10 @@ Looking at each time slice step by step:
 
 If we want to understand the effect that this circuit has on its starting state we need a few pieces of information:
 
+<details open class="new-spoilers">
+
+<summary></summary>
+
 1. Some vectors commonly used in quantum physics have a special shorthand called [**Dirac notation**](https://learn.microsoft.com/en-us/azure/quantum/concepts-dirac-notation). The starting state in the circuit above means:
 
 $$
@@ -90,6 +94,8 @@ $$
 4. A wire with no gate on it can be represented by the [identity matrix](https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:properties-of-matrix-multiplication/a/intro-to-identity-matrices).
 5. [Matrices are composed right to left](https://www.3blue1brown.com/lessons/matrix-multiplication/#composition-is-multiplication).
 6. We commonly use $\ket{\psi}$ to mean _'some unknown state'_.
+
+</details>
 
 Then it is just matrix multiplication:
 
