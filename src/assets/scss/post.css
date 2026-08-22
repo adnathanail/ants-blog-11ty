@@ -121,7 +121,8 @@
         > p:last-child {
             margin-bottom: 0;
         }
-        > ol:last-child {
+        > ol:last-child,
+        > ul:last-child {
             margin-bottom: 0.25rem;
         }
         > .card-admonition {
@@ -137,7 +138,6 @@
 	a.ha + details {
 		margin-top: 1em;
 	}
-
 
 	/* Inline code */
 	:not(pre) > code {
