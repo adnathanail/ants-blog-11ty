@@ -17,6 +17,22 @@ a:hover {
 a:hover img {
 	opacity: 0.7;
 }
+/* External links */
+/* Marks links that open in a new tab
+	Drawn from the bootstrap-icons font (bi-box-arrow-up-right) */
+a[target="_blank"]::after {
+	content: "\f1c5";
+	display: inline-block;
+	font-family: bootstrap-icons;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 0.85em;
+	line-height: 1;
+	/* vertical-align: 0.05em; */
+	margin-left: 0.2em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 
 /* Navbar links */
 .navbar-nav .nav-link.active {
