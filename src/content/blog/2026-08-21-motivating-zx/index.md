@@ -337,7 +337,9 @@ This doesn't change the meaning of the diagram because of course **only connecti
 
 These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
 
-They are originally based on the interactive viewer built into [pyzx](https://github.com/zxcalc/pyzx). I put that into a React component in the Lean InfoWindow for a [functional programming project](https://youtu.be/eGvnrGTpLqk). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [**zxcc**](https://github.com/adnathanail/zxcc).
+They are originally based on the interactive viewer built into [pyzx](https://github.com/zxcalc/pyzx). I put that into a React component in the Lean InfoWindow for a [functional programming project](https://youtu.be/eGvnrGTpLqk). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library called [zxcc](https://github.com/adnathanail/zxcc).
+
+{% cta "Check out zxcc", "https://github.com/adnathanail/zxcc", "github" %}
 
 I wanted the ergonomics of components, without the bulk of something like React, so I rewrote it using a web components library called [Lit](https://lit.dev). I then realised the bundle was still 500KB because of the D3 dependency, so I rewrote the renderer using raw SVGs.
 
