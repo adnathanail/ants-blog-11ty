@@ -330,10 +330,11 @@ Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 
 ### zxcc
 
-<!-- TODO only connectivity matters -->
-
 You might have noticed that the diagrams in the previous example are interactive: you can drag them into different arrangements (desktop only 😢).
-This doesn't change the meaning of the diagram because of course **only connectivity matters!**
+
+> [!info]
+> Rearranging the diagram doesn't change it's meaning.
+> This is a very handy, essentially definitional, feature of these types of diagrams, giving rise to the mantra: **only connectivity matters!**
 
 These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
 
