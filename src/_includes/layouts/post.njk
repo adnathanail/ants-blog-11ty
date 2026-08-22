@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 ---
 <style>{% include "src/assets/scss/post.css" %}</style>
+<style>{% include "src/assets/scss/new-spoilers.css" %}</style>
 {# Only include the syntax highlighter CSS on blog posts, included with the CSS per-page bundle #}
 <style>{% include "node_modules/prismjs/themes/prism-okaidia.css" %}</style>
 <style>{% include "src/assets/scss/prism-diff.css" %}</style>
@@ -23,6 +24,32 @@ layout: layouts/base.njk
 <div class="post-content">
 	{{ content | safe }}
 </div>
+
+{# The fold button belongs to the new-spoilers style, so only those get one.
+   A long spoiler is awkward to close, because its only control is the summary
+   back at the top. This gives each one a second control on its bottom rule.
+   Plain HTML cannot do it: a <details> is closed by nothing but its own first
+   <summary>. Adding it from script also leaves the blocks working with JS off. #}
+<script type="module">
+	{
+		for (const details of document.querySelectorAll(".post-content details.new-spoilers")) {
+			const fold = document.createElement("button");
+			fold.type = "button";
+			fold.className = "details-fold";
+			// The "−" is drawn by CSS, as the summary's marker is, so that it is not
+			// read out as a word.
+			fold.textContent = "Fold";
+			fold.addEventListener("click", () => {
+				details.open = false;
+				// Everything between the summary and the button just collapsed, so
+				// without this the viewport is left wherever that content used to end.
+				// "nearest" scrolls only if the block has gone out of view.
+				details.scrollIntoView({ block: "nearest" });
+			});
+			details.append(fold);
+		}
+	}
+</script>
 
 {%- if collections.posts %}
 {%- set previousPost = collections.posts | getPreviousCollectionItem %}
