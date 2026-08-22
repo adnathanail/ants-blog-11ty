@@ -180,10 +180,8 @@ Luckily for us, we can happily use the ZX-calculus without any understanding of 
 ### ZX-diagrams
 
 **ZX-diagrams** are the bread and butter of the ZX-calculus.
-They are composed (almost[^hadamards-keep-reading]) entirely of green and red circles, called **Z spiders** and **X spiders** respectively.
+They are composed (almost^[Hadamard boxes; keep reading.]) entirely of green and red circles, called **Z spiders** and **X spiders** respectively.
 They sometimes have numbers attached (**phases**), and are connected with **wires**.
-
-[^hadamards-keep-reading]: Hadamard boxes; keep reading.
 
 The names Z and X (and hence ZX) comes from the corresponding [quantum observables](https://en.wikipedia.org/wiki/Pauli_matrices).
 The reason for the green and red colours was availability of whiteboard markers as the formalism was being developed.[^red-and-green-markers]
@@ -195,9 +193,7 @@ Each spider, along with its phase and number of wires (**arity**), represents a 
 Wires can be joined together to make larger diagrams of spiders, and these larger diagrams have a matrix representation, which remains consistent with chunks that they were constructed from.
 This system of composing building blocks turns out to be expressive enough to fully represent any quantum circuit!
 
-[^linear-map-not-matrix]: Technically it represents a linear map, which can be written as a matrix in a given basis.[^tensor-not-linear-map]
-
-[^tensor-not-linear-map]: Technically technically it represents a tensor.
+[^linear-map-not-matrix]: Technically it represents a linear map, which can be written as a matrix in a given basis.^[Technically technically it represents a tensor.]
 
 Converting our example circuit to a ZX-diagram would look like this:
 
@@ -210,9 +206,7 @@ The starting $\ket{0}$ s have become **phaseless** X spiders.
 The Z and X gates have become corresponding Z and X spiders, with a phase of $\pi$.
 And the CNOT gate, has become a linked pair of phaseless Z and X spiders.
 
-If you interpretted each of those elements as a matrix/vector, you would get back the matrices from earlier [^up-to-a-scalar-factor], and if you interpret the entire diagram you will get the result of our calculation.
-
-[^up-to-a-scalar-factor]: Up to a scalar factor.
+If you interpretted each of those elements as a matrix/vector, you would get back the matrices from earlier ^[Up to a scalar factor], and if you interpret the entire diagram you will get the result of our calculation.
 
 > This is all very fun, but to be honest this might be harder to read, what's the point?
 
@@ -226,9 +220,7 @@ Taking our example, we can move the top right green spider through the spider to
 
 ![](img/04a-example-circuit-zx-modified.png)
 
-That was an example of an application of the **spider fusion** (**sp**) rule. [^spider-unfusion]
-
-[^spider-unfusion]: And then applying its inverse, colloquially: 'unfusion'.
+That was an example of an application of the **spider fusion** (**sp**) rule. ^[And then applying its inverse, colloquially: 'unfusion'.]
 
 If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
 And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
