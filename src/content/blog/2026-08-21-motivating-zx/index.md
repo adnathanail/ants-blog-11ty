@@ -117,6 +117,8 @@ $$
   \end{aligned}
 $$
 
+This tells us that our circuit transformed our starting state ($\ket{0} \otimes \ket{0}$) into the state $- \ket{1} \otimes \ket{1}$.
+
 $\ket{1}$ is another example of Dirac notation.
 The minus sign is referred to as the **global phase**, and it is typically ignored because it can't be [detected physically](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.).
 So we put in $00$ and got out $11$.[^dirac-notation]
@@ -222,18 +224,18 @@ One quantum circuit can be represented by lots of different ZX-diagrams, and the
 
 Taking our example, we can move the top right green spider through the spider to its left:
 
-<!-- TODO replace with zxcc -->
-
 ![](img/04a-example-circuit-zx-modified.png)
 
 That was an example of an application of the **spider fusion** (**sp**) rule. [^spider-unfusion]
 
-[^spider-unfusion]: And then applying its inverse, colloquially 'unfusion'.
+[^spider-unfusion]: And then applying its inverse, colloquially: 'unfusion'.
 
 If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
 And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
 
-Below are the 7 rules (spider fusion top-left) which form the standard rules of the ZX-calculus.
+This was a toy example, but these rewrite rules can be helpful for simplifying a circuit, or swapping the gates that it uses for ones better suited to our hardware.
+
+Below are the 7 standard rules of the ZX-calculus:
 
 ![](img/zx-rules.png)
 
@@ -241,16 +243,25 @@ Below are the 7 rules (spider fusion top-left) which form the standard rules of 
 > The yellow squares represent an important gate called the **Hadamard**.
 > They ever so slightly marr our beautiful 2-coloured graphs, but the bottom right rule (**eu**) shows that they are actually representable as spiders.
 
-This was a toy example, but these rewrite rules can be helpful for simplifying a circuit, or swapping the gates that it uses for ones better suited to our hardware.
+<details>
+  <summary>What are the symbols between the diagrams about?</summary>
+
+  Even once you've learned the rules of the ZX-calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
+  To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between diagrams.
+
+  Underneath the rule codes you will see either an equals sign or a 'proportional to' sign.
+  This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor'.
+  These scalar factors are often global phases (which are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.)), or normalization factors (which usually work themselves out) so we can often ignore them.
+</details>
 
 ### A real example
 
-For a more proper example of what using the ZX-calculus looks like, we will prove that 3 CNOT gates (with the middle one flipped) are equivalent to a single SWAP gate, as shown in the diagram below.
+For a more proper example of what using the ZX-calculus looks like, we will prove that 3 CNOT gates (with the middle one flipped) are equivalent to a single SWAP gate:
+
+![](img/02-three-cnot-swap.png)
 
 > [!note]
 > Don't worry about what those gates do, but finding a way to represent the same operations with fewer gates can make our circuits run faster!
-
-![](img/02-three-cnot-swap.png)
 
 We can verify this using linear algebra, but why would we want to do that..!
 
@@ -306,17 +317,6 @@ The fact that it looks like a swapping operation is not an accident: this is a v
   If you drag them around yourself (desktop only 😢), you should hopefully see exactly what has happened!
 </details>
 
-<details>
-  <summary>What are the symbols between the diagrams about?</summary>
-
-  Even once you've learned the rules of the ZX-calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
-  To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between diagrams.
-
-  Underneath the rule codes you will see either an equals sign or a 'proportional to' sign.
-  This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor'.
-  These scalar factors are often global phases (which are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.)), or normalization factors (which usually work themselves out) so we can often ignore them.
-</details>
-
 Understanding the ZX-calculus is an 8-week masters course, and understanding the quantum operations it represents is another 16 weeks, so I can't fit it all into a blog post.
 But hopefully you can see the beauty of the ZX-calculus, its value in providing an alternative to linear algebra, and could identify a ZX-diagram if you saw one in the wild!
 
@@ -337,9 +337,9 @@ This doesn't change the meaning of the diagram because of course **only connecti
 
 These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
 
-They are based on the [interactive viewer](https://github.com/zxcalc/pyzx/blob/master/pyzx/js/zx_viewer.js) built into [pyzx](https://github.com/zxcalc/pyzx). I [embedded that](https://github.com/adnathanail/LeanSpider/tree/a2a6cb0f0c755194b394058b9231575589a0c69b/zx_view_widget) into a React component in a [project working with the ZX-calculus in Lean](https://github.com/adnathanail/LeanSpider). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [**zxcc**](https://github.com/adnathanail/zxcc).
+They are originally based on the interactive viewer built into [pyzx](https://github.com/zxcalc/pyzx). I put that into a React component in the Lean InfoWindow for a [functional programming project](https://youtu.be/eGvnrGTpLqk). I'm now continuing that project for my thesis, and I decided to extract the functionality out into a separate library: [**zxcc**](https://github.com/adnathanail/zxcc).
 
-I wanted the ergonomics of components, without the bulk of something like React, so I rewrote it using a web components library called [Lit](https://lit.dev). I then realised the bundle was 500KB because of the D3 dependency, so I rewrote the renderer using raw SVGs.
+I wanted the ergonomics of components, without the bulk of something like React, so I rewrote it using a web components library called [Lit](https://lit.dev). I then realised the bundle was still 500KB because of the D3 dependency, so I rewrote the renderer using raw SVGs.
 
 In an effort to maintain visual and functional parity with the original viewer, I created a [Storybook](https://main--6a7e12985acc92e6ec37bdaa.chromatic.com/) displaying various types of diagrams. This is fed into a tool called [Chromatic](https://www.chromatic.com), which visually compares each part of the Storybook whenever I push new code, so I can that confirm changes are working as intended and that no regressions are introduced.
 
