@@ -129,6 +129,16 @@
         }
 	}
 
+	/* A heading's bottom margin is smaller than a paragraph's, so a spoiler ends
+	   up tighter against a heading than it does against text. heading-anchors
+	   moves its link in between the two with heading.after(anchor), so both
+	   selectors are needed for the spacing to survive that component upgrading. */
+	:is(h1, h2, h3, h4, h5, h6) + details,
+	a.ha + details {
+		margin-top: 1em;
+	}
+
+
 	/* Inline code */
 	:not(pre) > code {
 		background-color: var(--bs-tertiary-bg);
