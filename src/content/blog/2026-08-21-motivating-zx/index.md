@@ -49,9 +49,9 @@ In quantum computing, they can be used to see what a quantum circuit does.
 
 A **quantum circuit** is one way that the 'code' for a quantum computer can be written.
 
-They have rows which represent [**qubits**](https://www.ibm.com/think/topics/qubit), which are given a starting **state** (often $\ket{0}$).
+They have rows which represent **qubits**, which are given a starting **state** (often $\ket{0}$).
 
-Along each row are placed [**gates**](https://quantum.cloud.ibm.com/learning/en/courses/utility-scale-quantum-computing/bits-gates-and-circuits), which represent operations being done on the state.
+Along each row are placed **gates**, which represent operations being done on the state.
 Gates act sequentially from left to right, and gates placed vertically above each other can act at the same time.
 You can sort of read them like sheet music.
 
