@@ -115,6 +115,9 @@ export default function(eleventyConfig) {
 	eleventyConfig.addShortcode("youtube", (id) =>
 		componentEnv.render("youtube.njk", { id })
 	);
+	eleventyConfig.addShortcode("cta", (text, url, icon) =>
+		componentEnv.render("cta.njk", { text, url, icon })
+	);
 
 	// Read rather than {% include %}d, so the stylesheet is never parsed as a nunjucks
 	// template. Re-read per render so edits are picked up by the dev server's rebuild.
