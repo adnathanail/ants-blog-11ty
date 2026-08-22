@@ -1,0 +1,229 @@
+/* The reworked spoiler style, opted into with class="new-spoilers" on a
+   <details>. layouts/post.njk inlines this after post.css, whose plain <details>
+   rules it overrides.
+
+   Nested under .post-content as post.css is, so these selectors win on
+   specificity rather than on source order. The heading-spacing rule is repeated
+   from post.css because the margin-block below would otherwise outrank it. */
+.post-content {
+	details.new-spoilers {
+		/* The brace SVGs share a 14-unit-wide viewBox with a 2-unit stroke centred
+		   at x=8, so every other brace measurement scales off the width. */
+		--brace-width: 10px;
+		--brace-stroke: calc(var(--brace-width) * 2 / 14);
+		--brace-curl: var(--brace-width);
+		--brace-nub: calc(var(--brace-width) * 2);
+		/* Clearance between the rules and what sits between them. Closed, this puts
+		   the block at exactly the brace's minimum height. */
+		--block-pad: 0.5rem;
+		/* Below md there is no margin to hang the brace in, so it sits in a gutter
+		   of the block's own. */
+		--brace-gutter: 1.25rem;
+
+		/* The rules are backgrounds rather than dashed borders: CSS derives a dashed
+		   border's dash length from its width and offers no way to set it, so at 1px
+		   the dashes come out about 3px long. */
+		--rule-dash: 10px;
+		--rule-gap: 6px;
+		--rule-period: calc(var(--rule-dash) + var(--rule-gap));
+		--rule-thickness: var(--brace-stroke);
+		--rule: repeating-linear-gradient(
+			to right,
+			var(--bs-border-color) 0 var(--rule-dash),
+			transparent var(--rule-dash) var(--rule-period)
+		);
+		/* Below md the rules have to start clear of the brace in the gutter. Rounding
+		   to a whole dash period rather than using the width itself keeps the pattern
+		   on the same positions — any other shift of a repeating gradient's origin
+		   slides every dash along with it. */
+		--rule-inset: round(up, var(--brace-width), var(--rule-period));
+
+		/* post.css styles every <details> as a bordered box. */
+		border: 0;
+		border-radius: 0;
+
+		position: relative;
+		padding: var(--block-pad) 0 var(--block-pad) var(--brace-gutter);
+		/* The negative top margin collapses against the previous paragraph's 1rem,
+		   halving the gap rather than adding to it. */
+		margin-block: -0.5rem 0.5rem;
+		/* The brace's three shaped parts are a fixed height, so the block never
+		   shrinks below their total or they would overlap. */
+		min-height: calc(var(--brace-curl) * 2 + var(--brace-nub));
+
+		background-image: var(--rule), var(--rule);
+		background-repeat: no-repeat;
+		/* Left full width and clipped at the right edge rather than shortened by the
+		   inset, which keeps --rule-inset out of background-size. Its initial value
+		   is `auto`, and for a gradient with no intrinsic size that fills the whole
+		   block — turning the rules into full-height stripes if the variable ever
+		   fails to resolve. */
+		background-size: 100% var(--rule-thickness);
+		background-position-x: var(--rule-inset, 0px);
+		background-position-y: top, bottom;
+
+		> summary {
+			list-style: none;
+			cursor: pointer;
+			font-style: italic;
+			&::-webkit-details-marker {
+				display: none;
+			}
+			&::before {
+				content: "+";
+				font-weight: bold;
+				/* post.css makes this an inline-block, which is an atomic inline
+				   and so takes no underline from the summary. */
+				display: inline;
+				/* Padding on a plain inline rather than width on an inline-block: an
+				   inline-block is an atomic inline, which the summary's underline
+				   would skip over. */
+				padding-right: 0.45rem;
+				/* Gives the marker an underline of its own, whose inherited
+				   currentcolor resolves against the marker rather than the summary. */
+				text-decoration: inherit;
+			}
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		&[open] > summary {
+			/* post.css underlines an open summary permanently; here it is a
+			   hover affordance only. */
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+			margin-bottom: 0.75rem;
+			&:not(:empty)::before {
+				content: "−";
+				color: var(--bs-primary);
+			}
+			&:empty::before {
+				content: "";
+				padding-right: 0;
+			}
+		}
+
+		/* The fold button is appended after the content, so it takes the :last-child
+		   these were written for. */
+		> p:last-child,
+		> p:has(+ .details-fold),
+		> ol:last-child,
+		> ol:has(+ .details-fold),
+		> ul:last-child,
+		> ul:has(+ .details-fold) {
+			margin-bottom: 0.5rem;
+		}
+		> .card-admonition {
+			margin-bottom: 0.5rem !important;
+		}
+		/* Added by the script in layouts/post.njk. Centred on the bottom rule with
+		   its background breaking the dashes around the label, and hidden along with
+		   the rest of the content while the block is closed. */
+		> .details-fold {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 50%);
+			padding-inline: 0.75rem;
+			border: 0;
+			background-color: var(--bs-body-bg);
+			color: var(--bs-primary);
+			font-family: inherit;
+			font-size: 0.875rem;
+			font-style: italic;
+			line-height: 1.4;
+			cursor: pointer;
+			&::before {
+				content: "−";
+				font-weight: bold;
+				margin-right: 0.35rem;
+			}
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	details.new-spoilers[open] {
+		/* The fold button straddles the bottom rule and hangs about 12px below it,
+		   so this cannot come down much further without it colliding with whatever
+		   follows. */
+		margin-bottom: 1rem;
+	}
+
+	/* A heading's bottom margin is smaller than a paragraph's, so the negative top
+	   margin above all but cancels it. heading-anchors moves its link in between
+	   the two with heading.after(anchor), so both selectors are needed for the
+	   spacing to survive that component upgrading. */
+	:is(h1, h2, h3, h4, h5, h6) + details.new-spoilers,
+	a.ha + details.new-spoilers {
+		margin-top: 1em;
+	}
+
+	/* The brace, broken into parts — a curl pinned to each end, the nub centred
+	   between them, and a dashed stem bridging each gap — as five mask layers over
+	   a solid fill. The three shaped parts are a fixed size, so they keep their
+	   proportions however tall the block is and only the stems take up the slack. */
+	details.new-spoilers::before {
+		--brace-stem-length: calc(50% - var(--brace-curl) - var(--brace-nub) / 2);
+		/* Each stem runs from a curl towards the nub and leads with a gap, so it
+		   clears the curl it grows out of. The two are equal in length, so running
+		   one down and one up makes the dashes symmetric about the nub. */
+		--brace-stem-down: repeating-linear-gradient(
+			to bottom,
+			transparent 0 var(--rule-gap),
+			black var(--rule-gap) var(--rule-period)
+		);
+		--brace-stem-up: repeating-linear-gradient(
+			to top,
+			transparent 0 var(--rule-gap),
+			black var(--rule-gap) var(--rule-period)
+		);
+
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: var(--brace-width);
+		background-color: var(--bs-border-color);
+		mask-image:
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M13 1 Q8 1 8 7 L8 14' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"),
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M13 13 Q8 13 8 7 L8 0' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"),
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 28'%3E%3Cpath d='M8 0 L8 7 Q8 13 1 14 Q8 15 8 21 L8 28' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+			var(--brace-stem-down),
+			var(--brace-stem-up);
+		mask-repeat: no-repeat;
+		mask-size:
+			var(--brace-width) var(--brace-curl),
+			var(--brace-width) var(--brace-curl),
+			var(--brace-width) var(--brace-nub),
+			var(--brace-stroke) var(--brace-stem-length),
+			var(--brace-stroke) var(--brace-stem-length);
+		mask-position:
+			left top,
+			left bottom,
+			left center,
+			left calc(var(--brace-width) / 2) top var(--brace-curl),
+			left calc(var(--brace-width) / 2) bottom var(--brace-curl);
+	}
+
+	@media (min-width: 768px) {
+		details.new-spoilers {
+			/* There is margin beside the column to hang the brace in, so the gutter
+			   only has to hold the text off it, and the rules start at the block's
+			   own edge. */
+			--brace-gutter: 0.5rem;
+			--rule-inset: 0px;
+		}
+		/* Its own width plus a little clearance: 14px at the default brace width,
+		   against the 28px the narrowest container leaves beside the column at
+		   exactly 992px, so it still clears the viewport edge. */
+		details.new-spoilers::before {
+			left: calc(-1 * (var(--brace-width) + 0.25rem));
+		}
+	}
+
+}
