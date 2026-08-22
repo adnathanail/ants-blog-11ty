@@ -278,7 +278,7 @@ With the ZX-calculus, the steps look like this:
 2. Just drag the diagram around a bit so that it looks more like the (**sc**) rule.
 
 > [!tip]
-> You can drag the elements of the diagram above around to see that nothing actually changed!
+> You can drag the elements of the diagram above around (desktop only 😢) to see that nothing actually changed!
 
 3. Apply the strong complementarity rule.
 4. Apply the spider fusion rule.
@@ -298,7 +298,7 @@ The fact that it looks like a swapping operation is not an accident: this is a v
   Above, we used another of the state-copy rules.
 
   Also some of the jumps between steps may be a little hard to see, because I have folded up the diagrams to try and keep them compact.
-  If you drag them around yourself, you should hopefully see exactly what has happened!
+  If you drag them around yourself (desktop only 😢), you should hopefully see exactly what has happened!
 </details>
 
 <details>
@@ -327,7 +327,7 @@ Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 
 <!-- TODO only connectivity matters -->
 
-You might have noticed that the diagrams in the previous example are interactive: you can drag them into different arrangements.
+You might have noticed that the diagrams in the previous example are interactive: you can drag them into different arrangements (desktop only 😢).
 This doesn't change the meaning of the diagram because of course **only connectivity matters!**
 
 These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
