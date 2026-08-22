@@ -17,6 +17,9 @@ a:hover {
 a:hover img {
 	opacity: 0.7;
 }
+a.ha {
+	color: var(--bs-primary);
+}
 /* External links */
 /* Marks links that open in a new tab
 	Drawn from the bootstrap-icons font (bi-box-arrow-up-right) */
