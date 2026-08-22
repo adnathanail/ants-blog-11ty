@@ -43,7 +43,7 @@ $$
 $$
 
 These are some of the tools of linear algebra, which are applied in a wide range of fields.
-In quantum computing, one thing they are used for is to see what a quantum circuit does.
+In quantum computing, they can be used to see what a quantum circuit does.
 
 ### Quantum circuits
 
@@ -51,16 +51,16 @@ A **quantum circuit** is one way that the 'code' for a quantum computer can be w
 
 They have rows which represent [**qubits**](https://www.ibm.com/think/topics/qubit), which are given a starting **state** (often $\ket{0}$).
 
-Along each row are placed [**gates**](https://quantum.cloud.ibm.com/learning/en/courses/utility-scale-quantum-computing/bits-gates-and-circuits) which represent operations being done on the state.
+Along each row are placed [**gates**](https://quantum.cloud.ibm.com/learning/en/courses/utility-scale-quantum-computing/bits-gates-and-circuits), which represent operations being done on the state.
 Gates act sequentially from left to right, and gates placed vertically above each other can act at the same time.
 You can sort of read them like sheet music.
 
-Here is an example (useless) quantum circuit:
+Here is an example quantum circuit:
 
 ![](img/01-example-circuit.png)
 
 > [!note]
-> The red dashed lines (**time slices**) are for ease of reference to the diagram, they don't have any impact on the circuit itself.
+> The red dashed lines (**time slices**) are for ease of reference to the diagram, they don't have any meaning in the circuit itself.
 
 Looking at each time slice step by step:
 - $t_0$: 2 qubits initialized to the $\ket{0}$ state
@@ -74,13 +74,13 @@ Looking at each time slice step by step:
 
 If we want to understand the effect that this circuit has on its starting state we need a few pieces of information:
 
-1. Some vectors commonly used in quantum physics have a special shorthand called [Dirac notation](https://learn.microsoft.com/en-us/azure/quantum/concepts-dirac-notation). The starting state in the circuit above means:
+1. Some vectors commonly used in quantum physics have a special shorthand called [**Dirac notation**](https://learn.microsoft.com/en-us/azure/quantum/concepts-dirac-notation). The starting state in the circuit above means:
 
 $$
   \ket{0} = \left( \begin{array}{c} 1 \\ 0 \end{array} \right)
 $$
 
-2. Matrices and vectors stacked vertically in our diagram are combined using the [Kronecker product](https://learn.microsoft.com/en-us/azure/quantum/concepts-vectors-and-matrices#tensor-product). Our starting state would therefore be:
+2. Matrices and vectors stacked vertically in our diagram are combined using the [**Kronecker product**](https://learn.microsoft.com/en-us/azure/quantum/concepts-vectors-and-matrices#tensor-product). Our starting state would therefore be:
 
 $$
   \ket{0} \otimes \ket{0} = \left( \begin{array}{c} 1 \\ 0 \end{array} \right) \otimes \left( \begin{array}{c} 1 \\ 0 \end{array} \right) = \left( \begin{array}{c} 1 \\ 0 \\ 0 \\ 0 \end{array} \right)
@@ -89,7 +89,7 @@ $$
 3. The effect of a gate can be described as a matrix. Common gates can be seen in [this handy reference image](https://upload.wikimedia.org/wikipedia/commons/e/e0/Quantum_Logic_Gates.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original).
 4. A wire with no gate on it can be represented by the [identity matrix](https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:properties-of-matrix-multiplication/a/intro-to-identity-matrices).
 5. [Matrices are composed right to left](https://www.3blue1brown.com/lessons/matrix-multiplication/#composition-is-multiplication).
-6. We commonly use $\ket{\psi}$ to mean _'some unknown state'_
+6. We commonly use $\ket{\psi}$ to mean _'some unknown state'_.
 
 Then it is just matrix multiplication:
 
@@ -178,14 +178,16 @@ Luckily for us, we can happily use the ZX-calculus without any understanding of 
 ### ZX-diagrams
 
 **ZX-diagrams** are the bread and butter of the ZX-calculus.
-They are composed (almost) entirely of green and red circles, called **Z spiders** and **X spiders** respectively.
+They are composed (almost[^hadamards-keep-reading]) entirely of green and red circles, called **Z spiders** and **X spiders** respectively.
 They sometimes have numbers attached (**phases**), and are connected with **wires**.
 
-Z and X (and hence ZX) comes from the corresponding [quantum observables](https://en.wikipedia.org/wiki/Pauli_matrices).
+[^hadamards-keep-reading]: Hadamard boxes; keep reading.
+
+The names Z and X (and hence ZX) comes from the corresponding [quantum observables](https://en.wikipedia.org/wiki/Pauli_matrices).
 The reason for the green and red colours was availability of whiteboard markers as the formalism was being developed.[^red-and-green-markers]
 And the term 'spider' is used because blobs with lines sort of look like little spiders!
 
-[^red-and-green-markers]: See footnote 5 in [ZX-calculus for the working quantum computer scientist](https://arxiv.org/html/2012.13966v1#footnote5)
+[^red-and-green-markers]: See footnote 5 in [ZX-calculus for the working quantum computer scientist](https://arxiv.org/html/2012.13966v1#footnote5).
 
 Each spider, along with its phase and number of wires (**arity**), represents a matrix.[^linear-map-not-matrix]
 Wires can be joined together to make larger diagrams of spiders, and these larger diagrams have a matrix representation, which remains consistent with chunks that they were constructed from.
@@ -195,7 +197,6 @@ This system of composing building blocks turns out to be expressive enough to fu
 
 [^tensor-not-linear-map]: Technically technically it represents a tensor.
 
-Every element of a quantum circuit has a way to write it as a ZX-diagram.
 Converting our example circuit to a ZX-diagram would look like this:
 
 <!-- TODO image layout -->
@@ -209,7 +210,7 @@ And the CNOT gate, has become a linked pair of phaseless Z and X spiders.
 
 If you interpretted each of those elements as a matrix/vector, you would get back the matrices from earlier [^up-to-a-scalar-factor], and if you interpret the entire diagram you will get the result of our calculation.
 
-[^up-to-a-scalar-factor]: Up to a scalar factor
+[^up-to-a-scalar-factor]: Up to a scalar factor.
 
 > This is all very fun, but to be honest this might be harder to read, what's the point?
 
@@ -217,18 +218,20 @@ This is where the rules of the ZX-calculus comes in!
 
 ### Rewriting
 
-It turns out that lots of different ZX-diagrams can represent the same quantum circuit, and the ZX-calculus provides **rewrite rules** which allow us to move between them.
+One quantum circuit can be represented by lots of different ZX-diagrams, and the ZX-calculus provides **rewrite rules** which allow us to move between them.
 
-For example, in the diagram above, we can move the top right green spider through the spider to its left, becoming the diagram below:
+Taking our example, we can move the top right green spider through the spider to its left:
+
+<!-- TODO replace with zxcc -->
 
 ![](img/04a-example-circuit-zx-modified.png)
-
-If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
-And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
 
 That was an example of an application of the **spider fusion** (**sp**) rule. [^spider-unfusion]
 
 [^spider-unfusion]: And then applying its inverse, colloquially 'unfusion'.
+
+If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
+And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
 
 Below are the 7 rules (spider fusion top-left) which form the standard rules of the ZX-calculus.
 
@@ -237,6 +240,8 @@ Below are the 7 rules (spider fusion top-left) which form the standard rules of 
 > [!info]
 > The yellow squares represent an important gate called the **Hadamard**.
 > They ever so slightly marr our beautiful 2-coloured graphs, but the bottom right rule (**eu**) shows that they are actually representable as spiders.
+
+This was a toy example, but these rewrite rules can be helpful for simplifying a circuit, or swapping the gates that it uses for ones better suited to our hardware.
 
 ### A real example
 
