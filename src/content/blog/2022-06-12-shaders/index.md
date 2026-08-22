@@ -15,7 +15,7 @@ A shader is a function that takes pixel coordinates (and some other context data
 
 This may seem like an odd way to generate an image on a screen, but it means that each pixel can be calculated independently, and therefore in parallel. GPUs (Graphics Processing Units) have thousands of processing cores, so an entire screen's worth of pixels can be calculated in one clock cycle.
 
-There is a handy website called [Shadertoy](shadertoy.com) which allows you to write and share shaders online in a consistent format.
+There is a handy website called [Shadertoy](https://shadertoy.com) which allows you to write and share shaders online in a consistent format.
 
 [This is a demo provided by the person running the workshop](https://www.shadertoy.com/view/sdVczz).
 
