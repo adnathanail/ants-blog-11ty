@@ -25,13 +25,13 @@ function cardShellClasses(color) {
 function renderCardShellOpen({ tokens, idx, options, slf, icon, header = '' }) {
 	return `${slf.renderToken(tokens, idx, options)}
 		<div class="row g-0">
-			<div class="col-auto d-flex align-items-center ms-1 py-2">
-				<i class="bi bi-${icon} fs-2 ms-2"></i>
+			<div class="col-12 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start ms-md-1 pt-2 pb-0 py-md-2">
+				<i class="bi bi-${icon} fs-2 ms-md-2"></i>
 			</div>
-			<div class="col d-flex align-items-center">
-				<div>
+			<div class="col-12 col-md d-flex align-items-center">
+				<div class="w-100">
 					${header}
-					<div class="card-body pb-0 pt-2">`;
+					<div class="card-body pb-0 pt-2 text-center text-md-start">`;
 }
 
 function renderCardShellClose({ tokens, idx, options, slf }) {

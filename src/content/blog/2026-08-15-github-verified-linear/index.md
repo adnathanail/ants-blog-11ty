@@ -93,8 +93,11 @@ But that feels like one of those aphorisms like _'functions should be 20 lines m
 
 > [!tip]
 > Fun fact!
+> 
 > If you have any merge commits in your repository's history, you can **never** push to a new branch with `Require linear history`.
+>
 > You might say that you only need that enabled on your main branch, but it's helpful for developers to discover as early as possible that they are creating a problem.
+>
 > If they have accidentally created a merge commit in their branch with some Git mess-up, it's quite painful to only be told when you try to merge in 2 weeks time that your history is unacceptable.
 
 ## A plea

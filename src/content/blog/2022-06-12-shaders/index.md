@@ -37,10 +37,14 @@ You write a function called `mainImage` which takes 2 arguments.
 The second argument (typically called `fragCoord` but this is up to you) is a `vec2` which means it is a two element vector (a bit like an array). This vector contains the coordinates of the pixel whose colour you are calculating.
 
 > [!info]
-> The first argument may be a bit confusing if you're not used to C-like languages, but this is actually the output (the colour of the pixel). It is a `vec4` which should contain an RGBA value. The reason the output variable is passed as an input is that you can't return vectors as values from functions, you can only return primitive types (integers, booleans, chars etc.).
+> The first argument may be a bit confusing if you're not used to C-like languages, but this is actually the output (the colour of the pixel). It is a `vec4` which should contain an RGBA value.
+>
+> The reason the output variable is passed as an input is that you can't return vectors as values from functions, you can only return primitive types (integers, booleans, chars etc.).
 
 > [!info]
-> You could return a "pointer" which is a number that tells the program where you have stored a vector, or you could do what we see here, which is to simply have the function accept a vector as an argument. We can then edit this vector within the body of the function, and then, when the function finishes, all our changes to the vector will have been stored and whatever code that is calling our shader can receive this output.
+> You could return a "pointer" which is a number that tells the program where you have stored a vector, or you could do what we see here, which is to simply have the function accept a vector as an argument.
+> 
+> We can then edit this vector within the body of the function, and then, when the function finishes, all our changes to the vector will have been stored and whatever code that is calling our shader can receive this output.
 
 In the very short shader I have written above, I don't look at `fragCoord` at all. I simply set `fragColor` to `(0, 1, 0, 1)` for every pixel. That list of numbers represents the colour green, as the first three values code for red, green, and blue (between `0` and `1`) and the last value codes for "alpha" or transparency. For the scope of this blog post, we will leave alpha as `1`.
 
@@ -65,7 +69,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 The first thing you'll notice is this new variable `uv`. UV coordinates (or texture coordinates) are a coordinates that have been normalised onto some different coordinate scale than your input. In this case, we normalise the coordinates between `[0, 1]` (meaning the top left of the screen will have coordinates `0,0` and the bottom right will have coordinates `1,1`.
 
 > [!info]
-> The name UV comes from the letters commonly used to refer to the axes of a plane, as `x, y, z` are used to refer to points in 3D space
+> The name UV comes from the letters commonly used to refer to the axes of a plane, as `x, y, z` are used to refer to points in 3D space.
 
 There is more than one way to normalise coordinates, in fact the person running the workshop at EMF chose to normalise between `[-.5, .5]` for `y` and `[-.88, .88]` for `x`. It depends on whatever makes the maths you would like to do easy!
 
@@ -84,7 +88,9 @@ Try the code for yourself, by pasting it here: [https://www.shadertoy.com/new](h
 A very useful tool in shader creation is the `sin` function. What if we replace `uv.x` with `sin(uv.x)` in the previous example? The gradient shifts a bit... not very interesting. What *is* interesting is if you replace it with `sin(uv.x * 100.)`: you get a bunch of stripes!
 
 > [!info]
-> What is the `.` doing at the end of `100.`? `uv.x` is a `float` which means that it can have a decimal point. You can't multiply a `float` with an `int` in this language so even though the value we want has no decimal part, the `.` forces it to take the `float` type. It is really shorthand for `100.0`
+> What is the `.` doing at the end of `100.`? `uv.x` is a `float` which means that it can have a decimal point.
+> 
+> You can't multiply a `float` with an `int` in this language so even though the value we want has no decimal part, the `.` forces it to take the `float` type. It is really shorthand for `100.0`.
 
 Why have we got stripes? If we just returned `uv.x * 100.` the value would soon become more than `1` and you would just see a big block of green (as values greater than `1` are just interpreted as `1`).
 
@@ -139,7 +145,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 ## A sphere
 
 > [!info]
-> Raymarching is a technique which involves sending out an imaginary beam of light and finding the first surface it intersects with. It is a more approximate, and more versatile, form of a technique called raytracing, which involves doing precise intersection calculations as opposed to trial and error
+> Raymarching is a technique which involves sending out an imaginary beam of light and finding the first surface it intersects with.
+>
+> It is a more approximate, and more versatile, form of a technique called raytracing, which involves doing precise intersection calculations as opposed to trial and error
 
 The core of raymarching are SDFs (Signed Distance Functions). These functions take a point as an input, and return the shortest distance between that point and a surface that you are trying to represent with this function.
 

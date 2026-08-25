@@ -249,8 +249,10 @@ This was a decent start as, with minimal effort from me, I had a list of notes t
 > [!note]
 > One small note, for some reason the MIDI file I had had a random empty track on it.
 > A **track** seems to be a bit of a modern invention on top of the original system of **channels**.
+>
 > A MIDI file/device/instrument can (normally) only have 16 output channels, as a holdover from when data was being sent down physical 16-wite cables.
 > The ability to subdivide things further (e.g. each different drum in a kit having a separate track, but the same channel) can be useful during the editing process.
+>
 > My understanding is that I should be playing all tracks and all channels simultaneously.
 
 The next thing to do was to try actually playing this, which means I need to convert MIDI `note` values to frequencies.

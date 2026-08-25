@@ -84,8 +84,16 @@ a[target="_blank"]::after {
 }
 
 /* Admonitions */
-.card-admonition p, .card-blockquote p, .card-admonition ul, .card-blockquote ul, .card-admonition ol, .card-blockquote ol {
-	margin-bottom: 0.5rem;
+.card-admonition, .card-blockquote {
+	p, ul, ol {
+		margin-bottom: 0.5rem;
+	}
+	ul, ol {
+		padding-left: 1em !important;
+	}
+	.card-body:has(ul, ol) {
+		text-align: left !important;
+	}
 }
 
 /* Aspect ratio */
