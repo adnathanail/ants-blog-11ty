@@ -7,13 +7,6 @@ date: 2025-12-07
 tags: project
 ---
 
-## Links
-
-- [Demo](https://github.com/adnathanail/adnathanail-blog-tina) (requires Raindrop account)
-- [Code](https://github.com/adnathanail/raindrop-new-tab-page)
-
-## Background
-
 I've been browser-hopping a lot recently.
 I loved Arc for a while, then it got abandoned for their weird AI project.
 I spent a while with Edge!?
@@ -88,3 +81,6 @@ RAINDROP_AUTOCOMPLETE_GROUP_NAME=Autocomplete URLs
 > You can change the name of the groups it pulls from with the `RAINDROP_GROUP_NAME` and `RAINDROP_AUTOCOMPLETE_GROUP_NAME` variables if you like
 
 8. Then visit the page, login with Raindrop, and it should pull through your bookmarks from your `New Tab` group, split out by folder!
+
+{% cta "Check out the code", "https://github.com/adnathanail/raindrop-new-tab-page", "github" %}
+{% cta "Check out the demo (requires Raindrop account)", "https://newtab.adnathanail.dev", "laptop" %}
