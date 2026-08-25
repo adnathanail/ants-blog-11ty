@@ -65,9 +65,7 @@ Breaking this down:
 - `test1.tex` tells the container which LaTeX file it should process
 - `--rm` tells Docker to delete the container after it has finished, so everything is neat and tidy!
 
-### Code
-
-Check out my [code on GitHub](https://github.com/adnathanail/qzfr)!
+{% cta "Check out qzfr", "https://github.com/adnathanail/qzfr", "github" %}
 
 ### Update 2026 - ZX-calculus diagrams
 
