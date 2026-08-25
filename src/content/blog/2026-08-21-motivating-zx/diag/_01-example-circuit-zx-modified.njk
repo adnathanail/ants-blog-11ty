@@ -1,0 +1,86 @@
+{% zxGroup %}
+  {% zxDiagram %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "spider", "color": "X" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "X", "phase": "π" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "Z", "phase": "π" },
+        { "id": 4, "qubit": 0, "col": 4, "type": "output" },
+        { "id": 5, "qubit": 1, "col": 0, "type": "spider", "color": "X" },
+        { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "Z", "phase": "π" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
+        { "id": 8, "qubit": 1, "col": 4, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+        { "src": 3, "tgt": 4 },
+
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 },
+        { "src": 8, "tgt": 9 },
+
+        { "src": 2, "tgt": 7 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq", "sp" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "spider", "color": "X" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "X", "phase": "π" },
+        { "id": 3, "qubit": 0, "col": 2, "type": "spider", "color": "Z", "phase": "π" },
+        { "id": 4, "qubit": 0, "col": 3, "type": "output" },
+        { "id": 5, "qubit": 1, "col": 0, "type": "spider", "color": "X" },
+        { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "Z", "phase": "π" },
+        { "id": 7, "qubit": 1, "col": 2, "type": "spider", "color": "X" },
+        { "id": 8, "qubit": 1, "col": 3, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 3 },
+        { "src": 3, "tgt": 4 },
+
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 },
+        { "src": 8, "tgt": 9 },
+
+        { "src": 3, "tgt": 7 }
+      ]
+    }
+  {% endzxDiagram %}
+
+  {% zxDiagram "eq", "sp" %}
+    {
+      "nodes": [
+        { "id": 0, "qubit": 0, "col": 0, "type": "spider", "color": "X" },
+        { "id": 1, "qubit": 0, "col": 1, "type": "spider", "color": "X", "phase": "π" },
+        { "id": 2, "qubit": 0, "col": 2, "type": "spider", "color": "Z", "phase": "π" },
+        { "id": 3, "qubit": 0, "col": 3, "type": "spider", "color": "Z" },
+        { "id": 4, "qubit": 0, "col": 4, "type": "output" },
+        { "id": 5, "qubit": 1, "col": 0, "type": "spider", "color": "X" },
+        { "id": 6, "qubit": 1, "col": 1, "type": "spider", "color": "Z", "phase": "π" },
+        { "id": 7, "qubit": 1, "col": 3, "type": "spider", "color": "X" },
+        { "id": 8, "qubit": 1, "col": 4, "type": "output" }
+      ],
+      "edges": [
+        { "src": 0, "tgt": 1 },
+        { "src": 1, "tgt": 2 },
+        { "src": 2, "tgt": 3 },
+        { "src": 3, "tgt": 4 },
+
+        { "src": 5, "tgt": 6 },
+        { "src": 6, "tgt": 7 },
+        { "src": 7, "tgt": 8 },
+        { "src": 8, "tgt": 9 },
+
+        { "src": 3, "tgt": 7 }
+      ]
+    }
+  {% endzxDiagram %}
+{% endzxGroup %}

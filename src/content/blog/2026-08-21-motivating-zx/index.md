@@ -135,37 +135,21 @@ That's not very quantum[^not-very-quantum], but it demonstrates the process of w
 
 [^not-very-quantum]: I felt like I should put a footnote here because that clause is horribly informal and imprecise, but there's nothing really to explain. I'm just acknowledging the laziness.
 
+These $\ket{0}$ s and $\ket{1}$ s may still seem a bit random.
+There is usually some work done before and after the quantum part which translates the problem that is being solved into this format the the quantum computer can work with.
+Similarly to how classical computers do everything in binary, which is then processed into a human-friendly interface for writing emails etc.
+
 ### No-one likes matrices
 
 For larger circuits this can become quite tedious.
 Of course computers can do these operations very quickly, but eventually even they will struggle, and having a computer do all the work for you can prevent you from developing intuitions that might take you somewhere interesting.
 
-Also, we're not really using matrices to their fullest extent.
-They're very general, powerful, and expressive structures, but we seem to just be filling them with zeroes and ones.
+Also, matrices seem quite inefficient for this job.
+An operation on a single qubit requires a $2 \times 2$ matrix; but combining these matrices multiplies their size instead of adding them.
+So a circuit on 10 qubits would be represented by a $2^{10} \times 2^{10} = 1024 \times 1024$ matrix!
 
-In more complex circuits there will be a bit more variety, but there are fundamental rules that matrices must abide by in order to accurately describe the quantum world.
-
-<details>
-  <summary>Types of matrices used in quantum</summary>
-
-  Most of the matrices (that I have come across) in quantum are [**normal**](https://mathworld.wolfram.com/NormalMatrix.html), which means that they have an orthonormal eigenbasis, which essentially means that the axes of the coordinates that they are built with are at right angles to each other.
-
-  Within normal matrices, different subcategories are used for different quantum objects:
-
-  - [**Unitary** matrices](https://mathworld.wolfram.com/UnitaryMatrix.html) are square complex matrices whose inverse equal their conjugate transpose ($U U^{\dagger} = I$). Applying them to a vector doesn't change its length, and quantum states must be length 1 (normalized), so operations on quantum states (i.e. gates) are described by unitaries.
-  - [**Hermitian** matrices](https://mathworld.wolfram.com/HermitianMatrix.html) are square matrices which equal their conjugate transpose ($H = H^\dagger$). These are guaranteed to have real eigenvalues, which allows them to accurately describe observables.
-  - [**Positive semi-definite** (**PSD**) matrices](https://mathworld.wolfram.com/PositiveSemidefiniteMatrix.html) are Hermitian matrices with non-negative eigenvalues. PSD matrices with a trace (sum of eigenvalues) of 1 can represent [**density matrices**](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/density-matrix-basics). They are a more general form of quantum state than the vectors we use here. The eigenvalues represent the probability of measuring a given vector, hence they cannot be negative and must sum to 1.
-</details>
-
-Putting my computer scientist hat on: having a data structure which naturally encodes the rules we're working with, as opposed to manually enforcing them, can yield very powerful results.
-
-Compare storing numerical data as a list versus a [binary search tree](https://www.geeksforgeeks.org/dsa/binary-search-tree-data-structure/).
-If we want to find the median value in the list, we first have to sort the data; in the tree the data is inherently sorted.
-Of course we can say that we will just keep the list ordered from the start, but, with the tree, the ordering is _inherent_ to the data structure.
-
-Finding the right structure for the job reduces bookkeeping, and removes entire classes of errors.
-
-So, is there something we can replace our matrices with, which naturally follows the symmetries and patterns of quantum processes?
+Putting my computer scientist hat on: having to use a data structure which scales exponentially with what it is representing seems inefficient.
+Is there something we can replace our matrices with, which allows us to reason about quantum processes?
 
 ## The ZX-calculus
 
@@ -178,8 +162,14 @@ The ZX-calculus is a graphical language built upon a strongly complementary pair
 
 [^coecke-duncan]: Bob Coecke and Ross Duncan, "Interacting Quantum Observables: Categorical Algebra and Diagrammatics," *New Journal of Physics* 13, no. 4 (2011): 043016, <https://doi.org/10.1088/1367-2630/13/4/043016>.
 
-Precisely understanding this statement requires a deep understanding of [category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) (which I absolutely do not possess), but in short: we have found the data structure that we are looking for.
-We have identified the paradigm which naturally encodes the symmetries and rules which quantum processes follow.
+Precisely understanding this statement requires a deep understanding of [category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) (which I absolutely do not possess), but in short: we have found a 'tighter', more intuitive, data structure.
+
+The components of a quantum circuit map (almost) one-to-one ^[Two for CNOT, 25 for TOFFOLI but there are [workarounds](https://pennylane.ai/demos/tutorial_zx_calculus#the-zxh-calculus) for this..!] with elements in a ZX-diagram, and (can) look quite similar to the quantum circuits which they represent.
+
+It also naturally encodes things like rules around matrix composition, like $(A \otimes B)(C \otimes D) = (AC \otimes BD)$, because the precise locations of the spiders on the page is not important in the same way as terms in matrix algebra.
+It's the the wires joining them up which counts, giving rise to the mantra:
+
+> Only connectivity matters!
 
 Luckily for us, we can happily use the ZX-calculus without any understanding of category theory.
 
@@ -221,17 +211,9 @@ This is where the rules of the ZX-calculus comes in!
 ### Rewriting
 
 One quantum circuit can be represented by lots of different ZX-diagrams, and the ZX-calculus provides **rewrite rules** which allow us to move between them.
+This is what makes them useable as an alternative to matrices, for reasoning about and simplifying circuits.
 
-Taking our example, we can move the top right green spider through the spider to its left:
-
-![](img/04a-example-circuit-zx-modified.png)
-
-That was an example of an application of the **spider fusion** (**sp**) rule. ^[And then applying its inverse, colloquially: 'unfusion'.]
-
-If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
-And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
-
-This was a toy example, but these rewrite rules can be helpful for simplifying a circuit, or swapping the gates that it uses for ones better suited to our hardware.
+Each rewrite rule changes the diagram, without changing its meaning as a quantum process/state/linear map.
 
 Below are the 7 standard rules of the ZX-calculus:
 
@@ -241,81 +223,35 @@ Below are the 7 standard rules of the ZX-calculus:
 > The yellow squares represent an important gate called the **Hadamard**.
 > They ever so slightly marr our beautiful 2-coloured graphs, but the bottom right rule (**eu**) shows that they are actually representable as spiders.
 
-<details>
-  <summary>What are the symbols between the diagrams about?</summary>
+Even once you've learned the rules of the ZX-calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
+To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between diagrams.
 
-  Even once you've learned the rules of the ZX-calculus, it's not necessarily instantly obvious what has been changed between two diagrams.
-  To make it clearer, its a common convention to write an abbreviation for the rule(s) applied between diagrams.
+Underneath the rule codes you will see either an equals sign or a 'proportional to' sign ($\propto$).
+This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor'.
+These scalar factors are often global phases (which are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.)), or normalization factors (which usually work themselves out) so we can often ignore them.
 
-  Underneath the rule codes you will see either an equals sign or a 'proportional to' sign.
-  This is because some rewrite rules return you a diagram which is equivalent 'up to a scalar factor'.
-  These scalar factors are often global phases (which are [physically indistinguishable](https://qubit.guide/2.6-phase-gates-galore#:~:text=In%20general%2C%20states%20differing%20only%20by%20a%20global%20phase%20are%20physically%20indistinguishable%2C%20and%20so%20it%20is%20physical%20experimentation%20that%20leads%20us%20to%20this%20mathematical%20choice%20of%20only%20defining%20things%20up%20to%20a%20global%20phase.)), or normalization factors (which usually work themselves out) so we can often ignore them.
-</details>
+Taking our example, we can move the top right green spider through the spider to its left:
 
-### A real example
+{% include "./diag/_01-example-circuit-zx-modified.njk" %}
 
-For a more proper example of what using the ZX-calculus looks like, we will prove that 3 CNOT gates (with the middle one flipped) are equivalent to a single SWAP gate:
+That was an example of an application of the **spider fusion** (**sp**) rule, and then applying it in reverse (colloquially: 'unfusion').
 
-![](img/02-three-cnot-swap.png)
+If you reference the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
+And, if you worked out the linear algebra, you'd see that those two circuits were entirely equivalent operations!
 
-> [!note]
-> Don't worry about what those gates do, but finding a way to represent the same operations with fewer gates can make our circuits run faster!
+![](./img/05-example-circuit-rewritten.png){.img-w-100}
 
-We can verify this using linear algebra, but why would we want to do that..!
+We can also use the rules to simplify the diagram:
 
-<details>
-  <summary>Linear algebra: DO NOT OPEN</summary>
+{% include "./diag/_02-example-circuit-zx-simplified.njk" %}
 
-  _Note that the middle CNOT has a `2 → 1` subscript, to indicate that the dot and plus are the opposite way around._
-  _It also has a slightly different matrix representation._
-  $$
-    \begin{aligned}
-      \operatorname{CNOT} \cdot \operatorname{CNOT}_{2 \rightarrow 1} \cdot \operatorname{CNOT} &=
-        \operatorname{CNOT} \cdot
-        \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array} \right)
-        \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{array} \right) \\
-      &=
-        \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{array} \right)
-        \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \end{array} \right) \\
-      &=
-        \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{array} \right) \\
-      &= \operatorname{SWAP}
-    \end{aligned}
-  $$
-</details>
+A $\pi$-phase spider with 1 wire is exactly how we represent the $\ket{1}$ state, so we have ended up with $\ket{1} \otimes \ket{1}$, exactly the same answer as the linear algebra (up to a scalar factor!)
 
-With the ZX-calculus, the steps look like this:
+This was a toy example, but these rewrite rules can be helpful for simplifying a circuit, reasoning about error correction, and lots more.
 
-{% include "./diag/_01-three-cnot-swap.njk" %}
+## Epilogue
 
-1. Draw out our circuit as a ZX-diagram.
-2. Just drag the diagram around a bit so that it looks more like the (**sc**) rule.
-
-> [!tip]
-> You can drag the elements of the diagram above around (desktop only 😢) to see that nothing actually changed!
-
-3. Apply the strong complementarity rule.
-4. Apply the spider fusion rule.
-5. Use something called the Hopf rule, which allows us to remove a pairs of links between two spiders of different colours. This is derived from strong complementarity, so we have just called it (**sc**) here.
-6. Apply the identity rule twice.
-
-The diagram we end up with is exactly how the SWAP gate is represented in the ZX-calculus.
-The fact that it looks like a swapping operation is not an accident: this is a very nice example of how ZX-diagrams intuitively represent connectivity in quantum processes.
-
-<details>
-  <summary>Deriving the Hopf rule</summary>
-
-  {% include "./diag/_02-deriving-hopf.njk" %}
-
-  Step 6 may look a little confusing: it says that it is using the (**π**) rule, but it doesn't really look like the (**π**) in the standard rules.
-  The standard rules show the **π-commutation**, which is a common example from a class of rules called the **state-copy rules**.
-  Above, we used another of the state-copy rules.
-
-  Also some of the jumps between steps may be a little hard to see, because I have folded up the diagrams to try and keep them compact.
-  If you drag them around yourself (desktop only 😢), you should hopefully see exactly what has happened!
-</details>
-
-Understanding the ZX-calculus is an 8-week masters course, and understanding the quantum operations it represents is another 16 weeks, so I can't fit it all into a blog post.
+Understanding the basics of the ZX-calculus is an 8-week master's course, and (somewhat) understanding the quantum operations it represents took another 16 weeks, so I can't fit it all into a blog post.
 But hopefully you can see the beauty of the ZX-calculus, its value in providing an alternative to linear algebra, and could identify a ZX-diagram if you saw one in the wild!
 
 Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
@@ -324,15 +260,15 @@ Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 
 ![](img/magic-state-cultivation.png)
 
+> [!info]
+> Further reading:
+> - [Quantum in pictures](https://www.quantinuum.com/blog/quantum-in-pictures) was my first introduction to the ZX-calculus, after a talk by the author. It's sort of styled as a kids book, and tries to demonstrate the mechanics of working with the diagrams, without worrying too much about the quantum behind it.
+> - [Picturing quantum software](https://github.com/zxcalc/book) is excellent if you're really committed: it takes you through the quantum maths that you will need, and then goes through a very large chunk of the approaches in modern ZX-calculus (and other Z*-calculi), and was co-written by my master's supervisor [John van de Wetering](https://vdwetering.name)!
+
 ## Addendum
 
-### zxcc
-
 You might have noticed that the diagrams in the previous example are interactive: you can drag them into different arrangements (desktop only 😢).
-
-> [!info]
-> Rearranging the diagram doesn't change it's meaning.
-> This is a very handy, essentially definitional, feature of these types of diagrams, giving rise to the mantra: **only connectivity matters!**
+This doesn't change the meaning of the diagram because of course **only connectivity matters!**
 
 These diagram viewers are part of the first stages of my thesis, and actually the impetus for this blog post, so I could show them off.
 
