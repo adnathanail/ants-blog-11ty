@@ -38,6 +38,7 @@
 	}
 
 	const fmt = (p) => `${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
+	const lerp = (a, b, t) => ({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
 
 	class NecklaceSimulator extends HTMLElement {
 		connectedCallback() {
@@ -139,24 +140,24 @@
 			if (e === null || n < 2) return { pos: slots, marker: slots[0] };
 			if (this.fold === 1) {
 				// Folded, a shunt is a rigid rotation of the whole necklace by one
-				// slot, and the ring hangs in the air at the first slot while the
-				// beads travel underneath it.
+				// slot. The ring goes to meet the bead it is about to hold: it runs
+				// along the edge joining the two — an edge that is itself turning
+				// under it, so interpolating between the beads' current positions
+				// keeps it on the drawn line — reaching that bead halfway through,
+				// and from there it simply is that bead, riding round to the top.
 				const a = (-e * 2 * Math.PI) / n;
 				const c = Math.cos(a);
 				const s = Math.sin(a);
-				return {
-					pos: slots.map((p) => ({ x: p.x * c - p.y * s, y: p.x * s + p.y * c })),
-					marker: slots[0],
-				};
+				const pos = slots.map((p) => ({ x: p.x * c - p.y * s, y: p.x * s + p.y * c }));
+				return { pos, marker: lerp(pos[0], pos[1], Math.min(1, 2 * e)) };
 			}
 			// Unfolded there is nothing to rotate about, so each bead slides to its
-			// neighbour's slot, the first bead runs the length of the string to the
-			// far end, and the ring rides along with the bead coming into the front.
-			const pos = slots.map((p, i) => {
-				const q = slots[(i - 1 + n) % n];
-				return { x: p.x + (q.x - p.x) * e, y: p.y + (q.y - p.y) * e };
-			});
-			return { pos, marker: pos[1] };
+			// neighbour's slot and the first bead runs the length of the string to
+			// the far end. The ring makes the same trip out as it does folded, but
+			// the line it travels along is not itself moving, so it reaches out from
+			// the front slot rather than from the bead that is leaving it.
+			const pos = slots.map((p, i) => lerp(p, slots[(i - 1 + n) % n], e));
+			return { pos, marker: lerp(slots[0], pos[1], Math.min(1, 2 * e)) };
 		}
 
 		_render() {
@@ -183,9 +184,9 @@
 				c.setAttribute('fill', this.bits[i] === '1' ? 'black' : 'white');
 				c.setAttribute('stroke', 'black');
 			});
-			// The ring is its own element drawn over the beads, so it can stay put
-			// while they move under it. Same radius and width as a bead outline, so
-			// at rest it covers the outline of whichever bead it sits on.
+			// The ring is its own element drawn over the beads, so it can move
+			// independently of them. Same radius and width as a bead outline, so at
+			// rest it covers the outline of whichever bead it sits on.
 			this.$marker.setAttribute('visibility', 'visible');
 			this.$marker.setAttribute('cx', marker.x.toFixed(2));
 			this.$marker.setAttribute('cy', marker.y.toFixed(2));
