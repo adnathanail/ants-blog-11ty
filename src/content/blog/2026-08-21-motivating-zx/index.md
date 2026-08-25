@@ -264,6 +264,7 @@ Below is a particularly wild diagram from a real academic paper...[^wan-zhong]
 > Further reading:
 > - [Quantum in pictures](https://www.quantinuum.com/blog/quantum-in-pictures) was my first introduction to the ZX-calculus, after a talk by the author. It's sort of styled as a kids' book, and tries to demonstrate the mechanics of working with the diagrams, without worrying too much about the quantum behind it.
 > - [Picturing quantum software](https://github.com/zxcalc/book) is excellent if you're really committed: it takes you through the quantum maths that you will need, and then goes through a very large chunk of the approaches in modern ZX-calculus (and other Z*-calculi), and was co-written by my master's supervisor [John van de Wetering](https://vdwetering.name)!
+> - [zxlive](https://github.com/zxcalc/zxlive) (also developed by John) is a brilliant tool for working with ZX-diagrams digitally.
 
 ## Addendum
 
