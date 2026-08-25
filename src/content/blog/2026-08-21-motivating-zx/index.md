@@ -232,6 +232,9 @@ Taking our example, we can move the top-right green spider through the spider to
 
 {% include "./diag/_01-example-circuit-zx-modified.njk" %}
 
+> [!tip]
+> You can drag around the spiders diagrams about; this doesn't change their meaning because of course: **Only connectivity matters!**
+
 That was an application of the **spider fusion** (**sp**) rule, and then applying it in reverse (colloquially: 'unfusion').
 
 If you refer to the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
