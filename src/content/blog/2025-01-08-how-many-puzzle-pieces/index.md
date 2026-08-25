@@ -350,6 +350,9 @@ $$
 \end{aligned}
 $$
 
+> [!tip]
+> We can read this as _'the sum of the size of the stabilizer for each bitstring $x$, equals the number of operations times the sum of one over the size of the orbit for each $x$'_.
+
 For a given orbit $O_{x}$, each $x \in O_{x}$ will contribute $\nicefrac{1}{|O|}$ to the sum, and there are exactly $|O|$ elements in $O$, so each orbit contributes $|O| \times \nicefrac{1}{|O|} = 1$ to the sum.
 
 So
