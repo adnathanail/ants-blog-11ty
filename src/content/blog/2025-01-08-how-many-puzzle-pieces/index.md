@@ -217,8 +217,6 @@ Moving a bit from the start to the end of the string still represents the same p
 
 {% necklaceSimulator %}
 
-_The bit-string starts from the purple outlined circle_
-
 ## Lots of maths
 
 Now we have a foothold in established maths, we can work towards a better formula for $f(n)$.

@@ -56,7 +56,7 @@
 
 		_buildDom() {
 			this.innerHTML = `
-				<div class="d-flex flex-column align-items-center gap-3 p-3">
+				<div class="d-flex flex-column align-items-center gap-3">
 					<div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
 						<label class="mb-0">Binary string:</label>
 						<input type="text" pattern="[01]+" class="form-control form-control-sm font-monospace" style="width:8rem">

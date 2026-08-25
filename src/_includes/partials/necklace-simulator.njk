@@ -1,5 +1,23 @@
-<necklace-simulator></necklace-simulator>
-<script src="/js/necklace-simulator.js" defer></script>
-<noscript>
-	<p class="text-danger fst-italic">You have JavaScript disabled so the simulator cannot be rendered.</p>
-</noscript>
+<style>
+	.necklace-sim {
+		/* The tinted panel images and KaTeX blocks sit on, so a simulator reads as
+		the same kind of figure. */
+		--bs-bg-opacity: 1;
+		background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+		padding: 1rem !important;
+		margin-bottom: 1rem;
+	}
+	.necklace-sim-caption {
+		margin: 0.5rem 0 0;
+		text-align: center;
+		font-style: italic;
+	}
+</style>
+<div class="necklace-sim">
+	<necklace-simulator></necklace-simulator>
+	<script src="/js/necklace-simulator.js" defer></script>
+	<noscript>
+		<p class="text-danger fst-italic">You have JavaScript disabled so the simulator cannot be rendered.</p>
+	</noscript>
+	<p class="necklace-sim-caption">The bit-string starts from the purple outlined circle</p>
+</div>
