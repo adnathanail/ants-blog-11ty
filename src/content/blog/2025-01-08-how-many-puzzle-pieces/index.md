@@ -4,6 +4,7 @@ description: There's 6
 author: alex
 heroImg: ./05_necklace.png
 date: 2025-01-08
+updatedDate: 2026-08-25
 tags: theory
 recommendNoRSS: true
 ---
@@ -42,7 +43,7 @@ That could have been the end of it, but **P** then had to ask
 
 > "Why?"
 
-Was it $1 + 2 + 3$? That's a neat-ish sum, maybe its $\sum_{x=1}^{4 - 1} x$?
+Was it $1 + 2 + 3$? That's a neat-ish sum, maybe its $\sum_{x=1}^{n - 1} x$ for $n$ sides?
 
 ## Other cases
 
@@ -81,21 +82,21 @@ So can we see any patterns if we break it down like this? Let $g(n, o)$ be the n
 
 It's looking a bit neater!
 
-Firstly, we can see that each line is symmetrical, i.e. the first and last items the same, second and second to last, etc.
-
 #### Lemma 1
+
+Firstly, we can see that each line is symmetrical, i.e. the first and last items the same, second and second to last, etc.
 
 $$g(n, a) = g(n, n - a)$$
 
-When we have no *outs* and all *outs*, any puzzle piece with any number of sides will be entirely rotatable because none of the sides are distinguishable.
-
 #### Lemma 2
+
+When we have no *outs* and all *outs*, any puzzle piece with any number of sides will be entirely rotatable because none of the sides are distinguishable.
 
 $$g(n, 0) = g(n, n) = 1$$
 
-Similarly, when we have 1 *out* and all-but-one *outs* (which is the same as just 1 *in*), all pieces can be rotated onto each other.
-
 #### Lemma 3
+
+Similarly, when we have 1 *out* and all-but-one *outs* (which is the same as just 1 *in*), all pieces can be rotated onto each other.
 
 $$g(n, 1) = g(n, n - 1) = 1$$
 
@@ -146,11 +147,11 @@ This produced the following output:
 ```
 
 Now we can clearly see that the third items (and third to last), form a pattern of numbers increasing by 1 for every 2 increases of $n$.
-So when $n=4$ the third value is 2, when $n=9$ the third value is 7.
+So when $n \in \{4, 5\}$ the third value ($a = 2$) is 2, when $n \in \{6, 7\}$ the third value is 3, etc.
 
 #### Lemma 4
 
-$$g(n, 3) = g(n, n - 3) = \left \lfloor{\frac{n}{2}}\right \rfloor$$
+$$g(n, 2) = g(n, n - 2) = \left \lfloor{\frac{n}{2}}\right \rfloor$$
 
 ## Lost in the fourth item
 
@@ -164,7 +165,7 @@ The next pattern is a little less clear, but if we look at the differences betwe
 
 But, to my knowledge, that's not a simple polynomial of the form $a + bn + cn^{2} + \dots$, because of the repeating nature of the 2nd order (and all higher) nth term(s).
 
-Entering [that sequence in the OEIS](https://oeis.org/search?q=7+10+12+15+19+22+26+31+35+40+46+51+57&language=english&go=Search) ($g(n, 4), n > 7$) gives 3 results:
+Entering [that sequence in the OEIS](https://oeis.org/search?q=7+10+12+15+19+22+26+31+35+40+46+51+57&language=english&go=Search) ($g(n, 3), n > 7$) gives 3 results:
 
 - $a(n) = \left \lceil{\frac{(n-3)(n-4)}{6}}\right \rceil$
 - $a(n) = 1 + \left \lfloor{\frac{n(n-3)}{6}}\right \rfloor$
@@ -173,7 +174,7 @@ Entering [that sequence in the OEIS](https://oeis.org/search?q=7+10+12+15+19+22+
 Both of the first sequences are identical except the second has an extra $0$ at the start, and they also match the earlier terms of the sequence which I ignored in case they messed up the results ($1 1 2 4 5$).
 All 3 sequences are identical from $7$ onwards.
 
-Entering the [fifth term into the OEIS](https://oeis.org/search?q=22+30+43+55+73+91+116+140+172+204+245&language=english&go=Search), starting from $22$ to avoid the centering issue ($g(n, 5), n > 9$), gives just 1 result:
+Entering the [fifth term into the OEIS](https://oeis.org/search?q=22+30+43+55+73+91+116+140+172+204+245&language=english&go=Search), starting from $22$ to avoid the centering issue ($g(n, 4), n > 9$), gives just 1 result:
 
 - Molien series of 4-dimensional representation of cyclic group of order 4 over GF(2) (not Cohen-Macaulay).
 
@@ -220,17 +221,17 @@ _The bit-string starts from the red outlined circle_
 
 ## Lots of maths
 
-Now we have a foothold in established maths, we can work towards a better formula for $f(n)$
+Now we have a foothold in established maths, we can work towards a better formula for $f(n)$.
 
 ### Definitions
 
 We need to do some organisation, and give some things names.
 
-Let $G$ be our set of rotation operations
+Let $G$ be our set of rotation operations:
 
 $$G = \{90^{\circ}, 180^{\circ}, 270^{\circ}, 360^{\circ}\}$$
 
-For each bit string $x$ let's consider the operations that have no effect on it
+For each bit string $x$ let's consider the operations that have no effect on it:
 
 | x    |  90° | 180° | 270° | 360° |
 | ---- | --- | --- | --- | --- |
