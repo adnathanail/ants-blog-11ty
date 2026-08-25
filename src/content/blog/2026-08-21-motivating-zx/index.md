@@ -162,9 +162,7 @@ The ZX-calculus is a graphical language built upon a strongly complementary pair
 
 [^coecke-duncan]: Bob Coecke and Ross Duncan, "Interacting Quantum Observables: Categorical Algebra and Diagrammatics," *New Journal of Physics* 13, no. 4 (2011): 043016, <https://doi.org/10.1088/1367-2630/13/4/043016>.
 
-Precisely understanding this statement requires a deep understanding of [category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) (which I absolutely do not possess), but in short: we have found a 'tighter', more intuitive data structure.
-
-The components of a quantum circuit map (almost) one-to-one^[Two for CNOT, 25 for TOFFOLI but there are [workarounds](https://pennylane.ai/demos/tutorial_zx_calculus#the-zxh-calculus) for this..!] with elements in a ZX-diagram, and (can) look quite similar to the quantum circuits which they represent.
+Precisely understanding this statement requires a deep understanding of [category theory](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) (which I absolutely do not possess), but in short: we have found a 'tighter', more intuitive data structure. The components of a quantum circuit map (almost) one-to-one^[Two for CNOT, 25 for TOFFOLI but there are [workarounds](https://pennylane.ai/demos/tutorial_zx_calculus#the-zxh-calculus) for this..!] with elements in a ZX-diagram, and (can) look quite similar to the quantum circuits which they represent.
 
 It also naturally encodes things like rules around matrix composition, e.g. $(A \otimes B)(C \otimes D) = (AC \otimes BD)$, because the precise locations of the spiders on the page are not important in the same way as terms in matrix algebra.
 It's the wires joining them up which counts, giving rise to the mantra:
