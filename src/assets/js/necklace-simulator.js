@@ -66,6 +66,7 @@
 						<path stroke="black" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round" data-role="chain"/>
 						<path stroke="black" stroke-width="2" fill="none" stroke-linecap="round" data-role="clasp"/>
 						<g data-role="circles"></g>
+						<circle r="8" stroke-width="2" fill="none" stroke="var(--bs-primary)" data-role="marker"/>
 					</svg>
 				</div>
 			`;
@@ -75,6 +76,7 @@
 			this.$chain = this.querySelector('[data-role="chain"]');
 			this.$clasp = this.querySelector('[data-role="clasp"]');
 			this.$circles = this.querySelector('[data-role="circles"]');
+			this.$marker = this.querySelector('[data-role="marker"]');
 			this.$input.value = this.bits;
 			this.$input.addEventListener('input', (e) => this._onInput(e));
 			this.$fold.addEventListener('click', () => this._toggleFold());
@@ -126,26 +128,35 @@
 			this.fold = Math.round(this.fold);
 		}
 
-		// Where each bead sits right now: the canonical slots for the current
-		// fold, displaced by a shunt in progress. Folded, a shunt is a rigid
-		// rotation of the whole necklace by one slot; unfolded there is nothing
-		// to rotate about, so each bead slides to its neighbour's slot and the
-		// first bead runs the length of the string to the far end.
-		_beadPositions() {
+		// Where each bead sits right now, plus where the ring marking the start of
+		// the reading frame goes: the canonical slots for the current fold,
+		// displaced by a shunt in progress. Idle, the ring is simply over the
+		// first bead.
+		_frame() {
 			const n = this.bits.length;
 			const slots = layout(n, this.fold);
-			if (this.shunt === null || n < 2) return slots;
 			const e = this.shunt;
+			if (e === null || n < 2) return { pos: slots, marker: slots[0] };
 			if (this.fold === 1) {
+				// Folded, a shunt is a rigid rotation of the whole necklace by one
+				// slot, and the ring hangs in the air at the first slot while the
+				// beads travel underneath it.
 				const a = (-e * 2 * Math.PI) / n;
 				const c = Math.cos(a);
 				const s = Math.sin(a);
-				return slots.map((p) => ({ x: p.x * c - p.y * s, y: p.x * s + p.y * c }));
+				return {
+					pos: slots.map((p) => ({ x: p.x * c - p.y * s, y: p.x * s + p.y * c })),
+					marker: slots[0],
+				};
 			}
-			return slots.map((p, i) => {
+			// Unfolded there is nothing to rotate about, so each bead slides to its
+			// neighbour's slot, the first bead runs the length of the string to the
+			// far end, and the ring rides along with the bead coming into the front.
+			const pos = slots.map((p, i) => {
 				const q = slots[(i - 1 + n) % n];
 				return { x: p.x + (q.x - p.x) * e, y: p.y + (q.y - p.y) * e };
 			});
+			return { pos, marker: pos[1] };
 		}
 
 		_render() {
@@ -154,9 +165,10 @@
 			if (n === 0) {
 				this.$chain.setAttribute('d', '');
 				this.$clasp.setAttribute('d', '');
+				this.$marker.setAttribute('visibility', 'hidden');
 				return;
 			}
-			const pos = this._beadPositions();
+			const { pos, marker } = this._frame();
 			this.$chain.setAttribute(
 				'd',
 				pos.map((p, i) => `${i === 0 ? 'M' : 'L'} ${fmt(p)}`).join(' ')
@@ -165,15 +177,18 @@
 			// out early — squaring makes it all but gone by the halfway point.
 			this.$clasp.setAttribute('d', n > 1 ? `M ${fmt(pos[n - 1])} L ${fmt(pos[0])}` : '');
 			this.$clasp.setAttribute('stroke-opacity', (this.fold * this.fold).toFixed(3));
-			// Mid-shunt the reading frame has already moved on, so the marker
-			// sits on the bead travelling into the first slot.
-			const first = this.shunt === null ? 0 : 1 % n;
 			this.$circles.querySelectorAll('circle').forEach((c, i) => {
 				c.setAttribute('cx', pos[i].x.toFixed(2));
 				c.setAttribute('cy', pos[i].y.toFixed(2));
 				c.setAttribute('fill', this.bits[i] === '1' ? 'black' : 'white');
-				c.setAttribute('stroke', i === first ? 'var(--bs-primary)' : 'black');
+				c.setAttribute('stroke', 'black');
 			});
+			// The ring is its own element drawn over the beads, so it can stay put
+			// while they move under it. Same radius and width as a bead outline, so
+			// at rest it covers the outline of whichever bead it sits on.
+			this.$marker.setAttribute('visibility', 'visible');
+			this.$marker.setAttribute('cx', marker.x.toFixed(2));
+			this.$marker.setAttribute('cy', marker.y.toFixed(2));
 		}
 
 		_onInput(e) {
