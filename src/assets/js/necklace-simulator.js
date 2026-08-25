@@ -60,7 +60,7 @@
 						<label class="mb-0">Binary string:</label>
 						<input type="text" pattern="[01]+" class="form-control form-control-sm font-monospace" style="width:8rem">
 						<button type="button" class="btn btn-primary btn-sm" data-role="fold">Unfold</button>
-						<button type="button" class="btn btn-success btn-sm" data-role="shunt">Shunt</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-role="shunt">Shunt</button>
 					</div>
 					<svg width="300" height="300" viewBox="-110 -110 220 220">
 						<path stroke="black" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round" data-role="chain"/>
@@ -85,7 +85,7 @@
 			while (this.$circles.children.length < n) {
 				const c = document.createElementNS(SVG_NS, 'circle');
 				c.setAttribute('r', '8');
-				c.setAttribute('stroke-width', '1');
+				c.setAttribute('stroke-width', '2');
 				this.$circles.appendChild(c);
 			}
 			while (this.$circles.children.length > n) {
@@ -172,7 +172,7 @@
 				c.setAttribute('cx', pos[i].x.toFixed(2));
 				c.setAttribute('cy', pos[i].y.toFixed(2));
 				c.setAttribute('fill', this.bits[i] === '1' ? 'black' : 'white');
-				c.setAttribute('stroke', i === first ? 'red' : 'black');
+				c.setAttribute('stroke', i === first ? 'var(--bs-primary)' : 'black');
 			});
 		}
 

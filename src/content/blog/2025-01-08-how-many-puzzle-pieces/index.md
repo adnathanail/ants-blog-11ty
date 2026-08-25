@@ -217,7 +217,7 @@ Moving a bit from the start to the end of the string still represents the same p
 
 {% necklaceSimulator %}
 
-_The bit-string starts from the red outlined circle_
+_The bit-string starts from the purple outlined circle_
 
 ## Lots of maths
 
