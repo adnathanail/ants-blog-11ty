@@ -106,6 +106,12 @@ export default function(eleventyConfig) {
 	const componentEnv = new nunjucks.Environment(
 		new nunjucks.FileSystemLoader("src/_includes/partials")
 	);
+
+	// Component stylesheets are read rather than {% include %}d, so they are never
+	// parsed as nunjucks templates. Re-read per render so edits are picked up by the
+	// dev server's rebuild.
+	const componentCss = (name) => fs.readFileSync(`src/assets/scss/${name}.css`, "utf8");
+
 	eleventyConfig.addShortcode("gistEmbed", (embedCode, directLink) =>
 		componentEnv.render("gist-embed.njk", { embedCode, directLink })
 	);
@@ -118,10 +124,6 @@ export default function(eleventyConfig) {
 	eleventyConfig.addShortcode("cta", (text, url, icon) =>
 		componentEnv.render("cta.njk", { text, url, icon })
 	);
-
-	// Read rather than {% include %}d, so the stylesheet is never parsed as a nunjucks
-	// template. Re-read per render so edits are picked up by the dev server's rebuild.
-	const zxCss = () => fs.readFileSync("src/assets/scss/zx.css", "utf8");
 
 	// `rel`/`rule` render a rewrite step's justification to the LEFT of the diagram,
 	// e.g. {% zxDiagram "eq", "sp" %}. Keeping it inside the diagram's own wrapper means
@@ -146,7 +148,7 @@ export default function(eleventyConfig) {
 			relation: rel ? zxRelation(rel, rule) : null,
 			attrs,
 			edgeColors,
-			css: zxCss(),
+			css: componentCss("zx"),
 		}));
 	});
 
