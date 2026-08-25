@@ -153,7 +153,9 @@ Such a cool problem; maybe my favourite. I feel like I basically followed the ex
 I also think it really lent itself to giving non-coders quite a deep insight into the problem. Explaining lines of code can only go so far, but being able to show people the visualisation I used, and hopefully understand exactly how I found the dodgy wires, felt really satisfying.
 
 > [!info]
-> The software I used here, and in lots of the graph manipulation problems, to visualise graphs is called [GraphViz](https://graphviz.org/) and it's fantastically useful. Lots of things will output their graph representations in GraphViz (AKA dot), including the Python graph manipulation library networkx. And [this handy website](https://dreampuf.github.io/GraphvizOnline/) visualises the graphs for you online without having to setup any software.
+> The software I used here, and in lots of the graph manipulation problems, to visualise graphs is called [GraphViz](https://graphviz.org/) and it's fantastically useful.
+> 
+> Lots of things will output their graph representations in GraphViz (AKA dot), including the Python graph manipulation library networkx. And [this handy website](https://dreampuf.github.io/GraphvizOnline/) visualises the graphs for you online without having to setup any software.
 
 ![](./day%2024/day%2024%201.jpg){.img-w-20}
 ![](./day%2024/day%2024%202.jpg){.img-w-20}

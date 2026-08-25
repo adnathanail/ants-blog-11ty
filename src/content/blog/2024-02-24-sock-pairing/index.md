@@ -38,6 +38,7 @@ If I pick up socks in the order $A, B, B, C, C, D, D, E, E, A$, I will have to g
 
 > [!note]
 > This is not necessarily the most efficient algorithm.
+>
 > You could argue that after I saw 2 Bs in a row I could stop.
 > But if you scale this up to 100 socks, if the third sock you pulled was pattern F, and then the thirty-third had pattern F, would you remember where you'd put it?
 </details>
