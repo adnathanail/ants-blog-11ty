@@ -19,7 +19,7 @@ In our brave new world of LLMs this type of thing would be trivial for anyone to
 
 I read everything I could find online, settled on a LAMP stack (Linux + Apache + MySQL + PHP), and put together the first version in a few months:
 
-![VecTive 1.0](./vective1.png)
+![VecTive 1.0](./vective1.png){.img-w-100}
 
 We then began a working arrangement which would continue indefinitely, where my 2 bosses would promise functionality to people and I would figure it out.
 At first I found this deeply frustrating, as I felt an enormous pressure to create the impossible, but over time it developed in me a certainty that <span class="text-primary">**I can figure out basically anything**</span>.
@@ -37,7 +37,7 @@ I completely agree that you shouldn't create features that you don't know your u
 But foreseeing a need, particularly needs relating to scaling, and particularly when you are in full control of a project, can save a lot of time and effort!
 It's a subtle art.
 
-![The first commit on what would become the longest running project I've ever created (it's still going!)](./first_commit.png)
+![The first commit on what would become the longest running project I've ever created (it's still going!)](./first_commit.png){.img-w-100}
 
 Of course this was a double-edged sword for me.
 I had reduced the work required for me to keep these sites running, which meant I was being paid for fewer hours.
@@ -69,7 +69,7 @@ This turned out to be an excellent decision, as he came back full time after fin
 My main design skill lies in user experience, not visual design, but I've definitely developed a strong sense of what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
 So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made.
 
-![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png)
+![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png){.img-w-100}
 
 It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but in my eyes it was a big step in the professionalisation of our growing company.
 And I think that one of the most important skills that I've plied over the years is to <span class="text-primary">**fight for what I believe in**</span>; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
