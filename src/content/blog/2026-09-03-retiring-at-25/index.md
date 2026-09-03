@@ -67,9 +67,9 @@ This turned out to be an excellent decision, as he came back full time after fin
 ## 2020
 
 My main design skill lies in user experience, not visual design, but I've definitely developed a strong sense of what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
-So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made:
+So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made.
 
-![Vectare's new (2020) brand identity](./Vectare-Logo-Master-RGB.png){.img-w-60}
+![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png)
 
 It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but in my eyes it was a big step in the professionalisation of our growing company.
 And I think that one of the most important skills that I've plied over the years is to <span class="text-primary">**fight for what I believe in**</span>; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
