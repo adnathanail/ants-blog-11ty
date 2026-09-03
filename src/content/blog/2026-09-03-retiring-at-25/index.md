@@ -89,12 +89,12 @@ This was a major step-change from the relative simplicity of 5-10 routes, all ce
 
 ## 2022-2024
 
-My team of developers grew to 7, the customer service team grew to about 10, and our client list grew to 150.
+My team of developers grew to 7, the customer service team grew to more than 10, and our client list grew to 150.
 We built functionality to help schools with managing sports trips, allowed parents to track the location of the bus through an app, and created deep links with other school management software.
 
-I stepped into my absolute favourite role that I've had so far, of essentially greasing the wheels.
-My team worked with schools to fulfil their needs, and I worked to improve processes and introduce automation to help my team work better.
-We massively increased test coverage, started type-checking, linting, and auto-formatting.
+I stepped into my absolute favourite role that I've had in my career so far: greasing the wheels.
+My team worked with schools to fulfil their needs, and I worked to fulfil my team's, by improving processes and introducing automation.
+We massively increased test coverage, and started type-checking, linting, and auto-formatting.
 We added a CDN, caches, auto-scaling, infrastructure as code, and instrumentation to provide insights into our running systems.
 
 ![A smorgasbord of tooling](./tooling.png)
@@ -106,15 +106,17 @@ All of these things are completely standard in industry, but this codebase was e
 Last summer, it became clear that our two diverging arms (school transport software, and our internal fleet) were splitting people's attention, and so the schools business was [sold to an EdTech company](https://www.faria.org/about-us/faria-news/faria-education-group-acquires-vectare-to-expand-global-school-transport-innovation/).
 It was sad to say goodbye to my team, but it was great to know that this thing that I'd been building for so long was going to be well looked after.
 
-I kept working on the software for the bus company.
-Over the last year, I worked with an excellent developer who added a whole new suite of functionality to support the now unfathomable fleet of over 250 vehicles.
-
 ## 2026
+
+I kept working on the software for the bus company.
+This year I worked with a fantastic developer, who brought in a radical new suite of functionality, to support the needs of our growing fleet.
 
 I also started a two year Master's in Quantum Computer Science in Amsterdam, so again my attention was split.
 
+## What now?
+
 At the half-way point of my degree, staring down my thesis project, I realised that I couldn't keep all the plates spinning.
-I'd been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
+I've been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
 As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I've worked with along the way.
 
 ![My commit history on our longest running repo](./commit_history.png){.img-w-60}
