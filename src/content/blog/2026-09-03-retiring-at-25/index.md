@@ -22,7 +22,7 @@ I read everything I could find online, settled on a LAMP stack (Linux + Apache +
 ![VecTive 1.0](./vective1.png)
 
 We then began a working arrangement which would continue indefinitely, where my 2 bosses would promise functionality to people and I would figure it out.
-At first I found this deeply frustrating, as I felt an enourmous pressure to create the impossible, but over time it developed in me a certainty that **I can figure out basically anything**.
+At first I found this deeply frustrating, as I felt an enormous pressure to create the impossible, but over time it developed in me a certainty that **I can figure out basically anything**.
 
 ## 2017
 
@@ -33,7 +33,7 @@ This is not a groundbreaking concept in the world of the modern SaaS, but this w
 This decision meant that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
 
 This was the beginning of another learning: **you Are gonna need it** (yAgni).
-This is a direct contravention of the common coding wisdom that [you aren’t gonna need it](https://martinfowler.com/bliki/Yagni.html).
+This is a direct contravention of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
 I completely agree that you shouldn't create features that you don't know your users need.
 But foreseeing a need, particularly needs relating to scaling, and particularly when you are in full control of a project, can save a lot of time and effort!
 It's a subtle art.
@@ -42,22 +42,22 @@ It's a subtle art.
 
 Of course this was a double-edged sword for me.
 I had reduced the work required for me to keep these sites running, which meant I was being paid for fewer hours.
-To make my goals align with the businesses I realized that **I should get a slice of the pie**, and so I entered into my first serious business negotiation.
+To make my goals align with the business's I realised that **I should get a slice of the pie**, and so I entered into my first serious business negotiation.
 
 It was tough, but I had my grandfather as legal counsel, and we came to a revenue share arrangement that meant that I was invested in making a high quality sustainable product.
 
-# 2018
+## 2018
 
 A year or two in, we started doing some consultancy for some real bus companies.
 I was tasked with pulling as much data as possible out of their ticketing system (I was contacted by their IT team and told off for overloading them), and answering various different questions using the data.
-In the 3 days leading up to the biggest deadline I put my bed next to my desk, and would start analysis running, nap until it was done, and then start the next stage.
-I don’t think I slept more than 30 minutes continuously for the whole 72 hours!
+In the 3 days leading up to the biggest deadline, I put my bed next to my desk, and would start analysis running, nap until it was done, and then start the next stage.
+I don't think I slept more than 30 minutes continuously for the whole 72 hours!
 
 > [!note]
 > I'm pretty sure I didn't mind; it was interesting work, it made me feel very important, and I didn't really need much sleep.
 > The joys of being young.
 
-I also remember sitting in my parents kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the parents of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
+I also remember sitting in my parents' kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the parents of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
 
 ## 2019
 
@@ -73,12 +73,12 @@ This turned out to be an excellent decision, as he came back full time after fin
 
 ## 2020
 
-I think my main design skill lies in user experience not visual design, but I've definitely developed a strong taste for what I think is and isn't good, and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
-So I managed to convince the master of coin that we should spend (what seemed at the time) an enourmous sum of money on getting one professionally made:
+I think my main design skill lies in user experience, not visual design, but I've definitely developed a strong taste for what I think is and isn't good, and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
+So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made:
 
 ![Vectare's new (2020) brand identity](./Vectare-Logo-Master-RGB.png){.img-w-60}
 
-It's impossible to tell whether anyone was ever put off by our old logo, or convinved by our new one, but I think it was a big step in the professionalisation of our growing company.
+It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but I think it was a big step in the professionalisation of our growing company.
 And I think that one of the most important skills that I've plied is to **fight for what I believe in**; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
 
 ## 2021
@@ -86,7 +86,7 @@ And I think that one of the most important skills that I've plied is to **fight 
 Alongside all this, the company had branched out into running public service vehicles on the roads.
 Coach hire, bus services, rail replacement, you name it.
 As this fleet grew, its management became more complex, and so we started creating software to assist.
-This was a major step-change from the relative simplicity of 5-10 routes, all centering on a school, running just twice a day, and over time the system was involved in everything from payroll to vehicle maintenance.
+This was a major step-change from the relative simplicity of 5-10 routes, all centring on a school, running just twice a day, and over time the system was involved in everything from payroll to vehicle maintenance.
 
 ## 2022-2024
 
@@ -102,21 +102,21 @@ All of these things are completely standard in industry, but this codebase was e
 
 ## 2025
 
-Last summer, it became clear that the two diverging aims of the business were splitting people’s attention, and so the schools business was [sold to an EdTech company](https://www.faria.org/about-us/faria-news/faria-education-group-acquires-vectare-to-expand-global-school-transport-innovation/).
-It was sad to say goodbye to my team, but it was great to know that this thing that I’d been building for so long was going to be well looked after.
+Last summer, it became clear that the two diverging aims of the business were splitting people's attention, and so the schools business was [sold to an EdTech company](https://www.faria.org/about-us/faria-news/faria-education-group-acquires-vectare-to-expand-global-school-transport-innovation/).
+It was sad to say goodbye to my team, but it was great to know that this thing that I'd been building for so long was going to be well looked after.
 
 I kept working on the software for the bus company.
 Over the last year, I worked with an excellent developer who added a whole new suite of functionality to support the now unfathomable fleet of over 250 vehicles.
 
 ## 2026
 
-I also started a two year Master’s in Quantum Computer Science in Amsterdam, so again my attention was split.
+I also started a two year Master's in Quantum Computer Science in Amsterdam, so again my attention was split.
 
-At the half-way point of my degree, staring down my thesis project, it became clear that I couldn’t keep all the plates spinning.
-I’d been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor’s degree, but it seems that a Master’s is just too much.
-As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I’ve worked with along the way.
+At the half-way point of my degree, staring down my thesis project, it became clear that I couldn't keep all the plates spinning.
+I'd been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
+As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I've worked with along the way.
 
-I’m very excited to now apply all these years of experience to my next projects, starting with an internship at a quantum simulation company, followed by my Master’s thesis working with formal proof assistants.
+I'm very excited to now apply all these years of experience to my next projects, starting with an internship at a quantum simulation company, followed by my Master's thesis working with formal proof assistants.
 
 My life would be vastly different without this opportunity, and I cannot imagine the trust it took to offer it to my 15 year old self.
 I cannot thank Peter and Dominic enough.
