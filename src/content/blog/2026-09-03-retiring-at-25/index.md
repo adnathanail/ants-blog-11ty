@@ -103,7 +103,7 @@ All of these things are completely standard in industry, but this codebase was e
 
 ## 2025
 
-Last summer, it became clear that our two diverging arms (school transport software, and our internal fleet) were splitting people's attention, and so the schools business was [sold to an EdTech company](https://www.faria.org/about-us/faria-news/faria-education-group-acquires-vectare-to-expand-global-school-transport-innovation/).
+Last summer, it became clear that our two diverging arms (school transport software, and our internal fleet) were splitting people's attention, and so the schools business was sold to an EdTech company.
 It was sad to say goodbye to my team, but it was great to know that this thing that I'd been building for so long was going to be well looked after.
 
 ## 2026
@@ -117,7 +117,7 @@ I also started a two year Master's in Quantum Computer Science in Amsterdam, so 
 
 At the half-way point of my degree, staring down my thesis project, I realised that I couldn't keep all the plates spinning.
 I've been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
-As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I've worked with along the way.
+As such, after over 10 years, it is time to say goodbye to the company, and all the wonderful people that I've worked with along the way.
 
 ![My commit history on our longest running repo](./commit_history.png){.img-w-60}
 
