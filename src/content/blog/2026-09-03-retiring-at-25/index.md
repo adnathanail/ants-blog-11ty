@@ -1,6 +1,6 @@
 ---
 title: Retiring at 25
-description: Things I remember from the first decade of my career
+description: Memories and learnings from the first decade of my career
 author: alex
 heroImg: ./first_commit.png
 date: 2026-09-03
@@ -22,7 +22,7 @@ I read everything I could find online, settled on a LAMP stack (Linux + Apache +
 ![VecTive 1.0](./vective1.png)
 
 We then began a working arrangement which would continue indefinitely, where my 2 bosses would promise functionality to people and I would figure it out.
-At first I found this deeply frustrating, as I felt an enormous pressure to create the impossible, but over time it developed in me a certainty that **I can figure out basically anything**.
+At first I found this deeply frustrating, as I felt an enormous pressure to create the impossible, but over time it developed in me a certainty that <span class="text-primary">**I can figure out basically anything**</span>.
 
 ## 2017
 
@@ -32,7 +32,7 @@ I realised this was untenable, and decided to create a single system which could
 Not a groundbreaking concept in the world of the modern SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
 The result was that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
 
-This was the beginning of another learning: **you Are gonna need it** (yAgni); a direct contravention of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
+This was the beginning of another learning: <span class="text-primary">**you Are gonna need it**</span> (yAgni); a direct contravention of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
 I completely agree that you shouldn't create features that you don't know your users need.
 But foreseeing a need, particularly needs relating to scaling, and particularly when you are in full control of a project, can save a lot of time and effort!
 It's a subtle art.
@@ -41,7 +41,7 @@ It's a subtle art.
 
 Of course this was a double-edged sword for me.
 I had reduced the work required for me to keep these sites running, which meant I was being paid for fewer hours.
-To make my goals align with the company's I realised that **I should get a slice of the pie**, and so I entered into my first serious business negotiation.
+To make my goals align with the company's I realised that <span class="text-primary">**I should get a slice of the pie**</span>, and so I entered into my first serious business negotiation.
 
 It was tough, but I had my grandfather as legal counsel, and we came to a revenue share arrangement that meant that I was invested in making a high quality sustainable product.
 
@@ -64,21 +64,15 @@ As the system grew, and I approached my A levels, it became clear that we were g
 So in mid-2019 we hired a placement student for a year.
 This turned out to be an excellent decision, as he came back full time after finishing university, and grew into a fantastic developer, providing great leadership and mentorship to the team.
 
-<!-- I applied yAgni in a major way several more times:
-- Packaging up the environment into a Docker container as soon as I was working with someone else, making collaboration and deployment very simple forever onwards.
-- Creating an automated mapping tool, allowing our transport professionals to do data analyses themselves without needing developer input.
-- Building automations to remove the hassle of manual deployment, and catching bugs early as a result of updates going out almost as soon as they were ready.
-- Obsessively adding more and more tools for automate testing, linting, type checking, etc. to remove as many opportunities for human error to cause problems. -->
-
 ## 2020
 
-My main design skill lies in user experience, not visual design, but I've definitely developed a strong taste for what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
+My main design skill lies in user experience, not visual design, but I've definitely developed a strong sense of what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
 So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made:
 
 ![Vectare's new (2020) brand identity](./Vectare-Logo-Master-RGB.png){.img-w-60}
 
 It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but in my eyes it was a big step in the professionalisation of our growing company.
-And I think that one of the most important skills that I've plied over the years is to **fight for what I believe in**; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
+And I think that one of the most important skills that I've plied over the years is to <span class="text-primary">**fight for what I believe in**</span>; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
 
 ## 2021
 
