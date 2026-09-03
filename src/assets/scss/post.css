@@ -3,7 +3,7 @@
 	img, video {
 		vertical-align: top;
 	}
-	p:has(img) {
+	p:has(img), figure:has(img), figure:has(video) {
 		overflow-x: auto;
 		text-align: center;
 
@@ -13,11 +13,21 @@
 	}
 	/* .post-content img sizing lives in content/css/bootstrap.scss so it can use
 	Bootstrap breakpoint mixins. */
-	p:has(.no-center) {
+	p:has(.no-center), figure:has(.no-center) {
 		text-align: left;
 	}
-	p:has(.img-w-20), p:has(.img-w-25), p:has(.img-w-30), p:has(.img-w-40), p:has(.img-w-60), p:has(.img-w-100), p:has(.no-center) {
+	p:has(.img-w-20), p:has(.img-w-25), p:has(.img-w-30), p:has(.img-w-40), p:has(.img-w-60), p:has(.img-w-100), p:has(.no-center),
+	figure:has(.img-w-20), figure:has(.img-w-25), figure:has(.img-w-30), figure:has(.img-w-40), figure:has(.img-w-60), figure:has(.img-w-100), figure:has(.no-center) {
 		font-size: 0;
+	}
+	/* Captions — image-captions.js wraps a lone captioned image/video in
+	<figure>/<figcaption>. figcaption resets its own font-size since an
+	ancestor figure above may have zeroed it out for the width-class trick. */
+	figcaption {
+		font-size: 0.85rem;
+		font-style: italic;
+		color: var(--bs-secondary-color);
+		margin-top: 0.5rem;
 	}
 	.img-w-20, .img-w-25, .img-w-30, .img-w-40, .img-w-60, .img-w-100 {
 		height: auto;

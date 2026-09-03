@@ -12,6 +12,7 @@ import admonitions from "./src/_11ty/utils/admonitions.js";
 import footnotes from "./src/_11ty/utils/footnotes.js";
 import externalLinks from "./src/_11ty/utils/external-links.js";
 import videoMedia from "./src/_11ty/utils/video-media.js";
+import imageCaptions from "./src/_11ty/utils/image-captions.js";
 import imagePlaceholders from "./src/_11ty/utils/image-placeholders.js";
 import "./src/_11ty/utils/prism-typst.js";
 
@@ -203,6 +204,7 @@ export default async function(eleventyConfig) {
 	eleventyConfig.amendLibrary("md", admonitions);
 	eleventyConfig.amendLibrary("md", footnotes);
 	eleventyConfig.amendLibrary("md", videoMedia);
+	eleventyConfig.amendLibrary("md", imageCaptions);
 	eleventyConfig.amendLibrary("md", externalLinks);
 	eleventyConfig.amendLibrary("md", md => md.use(markdownItAttrs));
 	const { katex } = (await import("@mdit/plugin-katex"));
