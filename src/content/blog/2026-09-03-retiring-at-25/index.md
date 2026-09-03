@@ -29,12 +29,12 @@ At first I found this deeply frustrating, as I felt an enormous pressure to crea
 We started gaining clients, and soon I was maintaining 5 copies of roughly the same codebase, with minor tweaks for each school.
 I realised this was untenable, and decided to create a single system which could manage as many websites as we wanted, with different features available with settings.
 
-Not a groundbreaking concept in the world of the modern SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
+Not a groundbreaking concept, now that every man and his dog has built a SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
 The result was that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
 
-This was the beginning of another learning: <span class="text-primary">**you Are gonna need it**</span> (yAgni); a direct contravention of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
+This was the beginning of another learning: <span class="text-primary">**you Are gonna need it**</span> (yAgni); a direct contradiction of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
 I completely agree that you shouldn't create features that you don't know your users need.
-But foreseeing a need, particularly needs relating to scaling, and particularly when you are in full control of a project, can save a lot of time and effort!
+But foreseeing a need, particularly needs relating to scaling, and particularly when you have full oversight and control of a project, can save a lot of time and effort!
 It's a subtle art.
 
 ![The first commit on what would become the longest running project I've ever created (it's still going!)](./first_commit.png){.img-w-100}
@@ -62,12 +62,12 @@ I also remember sitting in my parents' kitchen stuffing about 500 envelopes twic
 
 As the system grew, and I approached my A levels, it became clear that we were going to need more dev resource than just me.
 So in mid-2019 we hired a placement student for a year.
-This turned out to be an excellent decision, as he came back full time after finishing university, and grew into a fantastic developer, providing great leadership and mentorship to the team.
+This turned out to be an excellent decision, as he came back full-time after finishing university, and grew into a fantastic developer, providing invaluable leadership and mentorship to the team.
 
 ## 2020
 
 My main design skill lies in user experience, not visual design, but I've definitely developed a strong sense of what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
-So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made.
+So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on having one professionally produced.
 
 ![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png){.img-w-100}
 
@@ -102,8 +102,7 @@ It was sad to say goodbye to my team, but it was great to know that this thing t
 
 ## 2026
 
-I kept working on the software for the bus company.
-This year I worked with a fantastic developer, who brought in a radical new suite of functionality, to support the needs of our growing fleet.
+I kept working on the software for the bus company, and got to work with a fantastic developer, who brought in a radical new suite of functionality, to support the needs of our growing fleet.
 
 I also started a two year Master's in Quantum Computer Science in Amsterdam, so again my attention was split.
 
