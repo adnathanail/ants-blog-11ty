@@ -28,12 +28,11 @@ At first I found this deeply frustrating, as I felt an enormous pressure to crea
 
 We started gaining clients, and soon I was maintaining 5 copies of roughly the same codebase, with minor tweaks for each school.
 I realised this was untenable, and decided to create a single system which could manage as many websites as we wanted, with different features available with settings.
-This is not a groundbreaking concept in the world of the modern SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
 
-This decision meant that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
+Not a groundbreaking concept in the world of the modern SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
+The result was that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
 
-This was the beginning of another learning: **you Are gonna need it** (yAgni).
-This is a direct contravention of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
+This was the beginning of another learning: **you Are gonna need it** (yAgni); a direct contravention of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
 I completely agree that you shouldn't create features that you don't know your users need.
 But foreseeing a need, particularly needs relating to scaling, and particularly when you are in full control of a project, can save a lot of time and effort!
 It's a subtle art.
@@ -42,7 +41,7 @@ It's a subtle art.
 
 Of course this was a double-edged sword for me.
 I had reduced the work required for me to keep these sites running, which meant I was being paid for fewer hours.
-To make my goals align with the business's I realised that **I should get a slice of the pie**, and so I entered into my first serious business negotiation.
+To make my goals align with the company's I realised that **I should get a slice of the pie**, and so I entered into my first serious business negotiation.
 
 It was tough, but I had my grandfather as legal counsel, and we came to a revenue share arrangement that meant that I was invested in making a high quality sustainable product.
 
@@ -57,7 +56,7 @@ I don't think I slept more than 30 minutes continuously for the whole 72 hours!
 > I'm pretty sure I didn't mind; it was interesting work, it made me feel very important, and I didn't really need much sleep.
 > The joys of being young.
 
-I also remember sitting in my parents' kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the parents of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
+I also remember sitting in my parents' kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the pupils of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
 
 ## 2019
 
@@ -73,13 +72,13 @@ This turned out to be an excellent decision, as he came back full time after fin
 
 ## 2020
 
-I think my main design skill lies in user experience, not visual design, but I've definitely developed a strong taste for what I think is and isn't good, and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
+My main design skill lies in user experience, not visual design, but I've definitely developed a strong taste for what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
 So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on getting one professionally made:
 
 ![Vectare's new (2020) brand identity](./Vectare-Logo-Master-RGB.png){.img-w-60}
 
-It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but I think it was a big step in the professionalisation of our growing company.
-And I think that one of the most important skills that I've plied is to **fight for what I believe in**; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
+It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but in my eyes it was a big step in the professionalisation of our growing company.
+And I think that one of the most important skills that I've plied over the years is to **fight for what I believe in**; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
 
 ## 2021
 
@@ -102,7 +101,7 @@ All of these things are completely standard in industry, but this codebase was e
 
 ## 2025
 
-Last summer, it became clear that the two diverging aims of the business were splitting people's attention, and so the schools business was [sold to an EdTech company](https://www.faria.org/about-us/faria-news/faria-education-group-acquires-vectare-to-expand-global-school-transport-innovation/).
+Last summer, it became clear that our two diverging arms (school transport software, and our internal fleet) were splitting people's attention, and so the schools business was [sold to an EdTech company](https://www.faria.org/about-us/faria-news/faria-education-group-acquires-vectare-to-expand-global-school-transport-innovation/).
 It was sad to say goodbye to my team, but it was great to know that this thing that I'd been building for so long was going to be well looked after.
 
 I kept working on the software for the bus company.
@@ -112,7 +111,7 @@ Over the last year, I worked with an excellent developer who added a whole new s
 
 I also started a two year Master's in Quantum Computer Science in Amsterdam, so again my attention was split.
 
-At the half-way point of my degree, staring down my thesis project, it became clear that I couldn't keep all the plates spinning.
+At the half-way point of my degree, staring down my thesis project, I realised that I couldn't keep all the plates spinning.
 I'd been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
 As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I've worked with along the way.
 
