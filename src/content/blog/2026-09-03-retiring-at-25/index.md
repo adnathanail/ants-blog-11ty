@@ -2,7 +2,7 @@
 title: Retiring at 25
 description: Things I remember from the first decade of my career
 author: alex
-heroImg: ./img/03-teleportation.png
+heroImg: ./first_commit.png
 date: 2026-09-03
 tags: ['prose']
 ---
