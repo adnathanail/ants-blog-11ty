@@ -13,7 +13,7 @@ Just before my 15th birthday, my brother asked me a question:
 
 > Do you think you can build a bus booking website?
 
-He'd just started a company with his friend to provide consultancy for school bus service, assisting with network routing and scheduling.
+He'd just started a company with his friend to provide consultancy for school bus services, assisting with network routing and scheduling.
 Their first client was the school I was still attending (he had just graduated), and they wanted to digitise their paper booking form.
 In our brave new world of LLMs this type of thing would be trivial for anyone to produce in an afternoon, but a decade ago they had to seek out the next best thing: a teenager with a passion for coding.
 
@@ -26,9 +26,9 @@ At first I found this deeply frustrating, as I felt an enourmous pressure to cre
 
 ## 2017
 
-We then started gaining clients, and soon I was maintaining 5 copies of roughly the same codebase, with minor tweaks for each school.
+We started gaining clients, and soon I was maintaining 5 copies of roughly the same codebase, with minor tweaks for each school.
 I realised this was untenable, and decided to create a single system which could manage as many websites as we wanted, with different features available with settings.
-This is not a groundbreaking concept in the world of the modern SaaS, but this was almost 10 years ago, and I was 16, so I was quite please with the idea.
+This is not a groundbreaking concept in the world of the modern SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
 
 This decision meant that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
 
@@ -57,7 +57,7 @@ I don’t think I slept more than 30 minutes continuously for the whole 72 hours
 > I'm pretty sure I didn't mind; it was interesting work, it made me feel very important, and I didn't really need much sleep.
 > The joys of being young.
 
-I also remember sitting in my parents kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the parents of our biggest client at the time, and really feel like we were having the _startup experience_™️.
+I also remember sitting in my parents kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the parents of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
 
 ## 2019
 
@@ -73,20 +73,20 @@ This turned out to be an excellent decision, as he came back full time after fin
 
 ## 2020
 
-I think my main design skill lies in user experience not visual design, but I've definitely developed a strong taste for what I think is and isn't good, and I started to feel that our logo wasn't up to scratch for the company I felt like we were becoming.
-So I managed to convince the master of coin that we  should spend (what seemed at the time) an enourmous sum of money on getting one professionally made:
+I think my main design skill lies in user experience not visual design, but I've definitely developed a strong taste for what I think is and isn't good, and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
+So I managed to convince the master of coin that we should spend (what seemed at the time) an enourmous sum of money on getting one professionally made:
 
 ![Vectare's new (2020) brand identity](./Vectare-Logo-Master-RGB.png){.img-w-60}
 
 It's impossible to tell whether anyone was ever put off by our old logo, or convinved by our new one, but I think it was a big step in the professionalisation of our growing company.
-I think one of the most important skills that I've plied is to **fight for what I believe in**; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided.
+And I think that one of the most important skills that I've plied is to **fight for what I believe in**; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
 
 ## 2021
 
 Alongside all this, the company had branched out into running public service vehicles on the roads.
 Coach hire, bus services, rail replacement, you name it.
 As this fleet grew, its management became more complex, and so we started creating software to assist.
-This was a major step-change from the relative simplicity of 5-10 routes, all centering on a school, running just twice a day, and over time the system became useful for payroll, vehicle maintenance, and everything in between.
+This was a major step-change from the relative simplicity of 5-10 routes, all centering on a school, running just twice a day, and over time the system was involved in everything from payroll to vehicle maintenance.
 
 ## 2022-2024
 
@@ -106,8 +106,11 @@ Last summer, it became clear that the two diverging aims of the business were sp
 It was sad to say goodbye to my team, but it was great to know that this thing that I’d been building for so long was going to be well looked after.
 
 I kept working on the software for the bus company.
-Over the last year, I worked with an excellent developer who landed a series of very useful functionalities to support the now unfathomable fleet of over 250 vehicles.
-But I also started a two year Master’s in Quantum Computer Science in Amsterdam, so again my attention was split.
+Over the last year, I worked with an excellent developer who added a whole new suite of functionality to support the now unfathomable fleet of over 250 vehicles.
+
+## 2026
+
+I also started a two year Master’s in Quantum Computer Science in Amsterdam, so again my attention was split.
 
 At the half-way point of my degree, staring down my thesis project, it became clear that I couldn’t keep all the plates spinning.
 I’d been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor’s degree, but it seems that a Master’s is just too much.
