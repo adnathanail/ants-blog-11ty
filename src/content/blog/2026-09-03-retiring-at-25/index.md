@@ -95,7 +95,9 @@ We built functionality to help schools with managing sports trips, allowed paren
 I stepped into my absolute favourite role that I've had so far, of essentially greasing the wheels.
 My team worked with schools to fulfil their needs, and I worked to improve processes and introduce automation to help my team work better.
 We massively increased test coverage, started type-checking, linting, and auto-formatting.
-We added a CDN, caches, auto-scaling, and instrumentation to provide insights into our running systems.
+We added a CDN, caches, auto-scaling, infrastructure as code, and instrumentation to provide insights into our running systems.
+
+![A smorgasbord of tooling](./tooling.png)
 
 All of these things are completely standard in industry, but this codebase was essentially my learning environment, and so every 'best practice' I rolled out felt like another step on my journey to becoming a professional developer.
 
@@ -114,6 +116,8 @@ I also started a two year Master's in Quantum Computer Science in Amsterdam, so 
 At the half-way point of my degree, staring down my thesis project, I realised that I couldn't keep all the plates spinning.
 I'd been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
 As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I've worked with along the way.
+
+![My commit history on our longest running repo](./commit_history.png){.img-w-60}
 
 I'm very excited to now apply all these years of experience to my next projects, starting with an internship at a quantum simulation company, followed by my Master's thesis working with formal proof assistants.
 
