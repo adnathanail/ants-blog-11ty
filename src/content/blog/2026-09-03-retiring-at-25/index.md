@@ -15,7 +15,7 @@ After he graduated, they missed his inputs, and so asked if he would like to kee
 A few months into this endeavour someone (whom precisely is lost to time) came up with the idea of having a web-based booking system created, to replace the paper forms that they were currently using.
 With the advent of modern LLMs still almost a decade away, which would eventually precipitate the ability for anyone to make such a simple system, they sought out the next best thing: 15-year old me.
 
-<!-- TODO booking system -->
+![](./vective1.png)
 
 Whilst that may sound young, this wasn’t actually my first coding job.
 I’d cut my teeth a year or two earlier building a recycling bin collection management system, for the environmental team my brother setup at our school.
@@ -25,7 +25,7 @@ I learned a few lessons from that first deal: most importantly **define your sco
 We had just agreed a price for 'a booking system', and so as the features were dreamt up I had no real recourse to request additional payment.
 I think eventually it must have been deemed satisfactory because in my email archive I’ve got records of me submitting hours worked; to which I received pushback about time spent fixing bugs as they felt they shouldn’t have to pay for my errors!
 
-![](bugs_email.png)
+![](./bugs_email.png)
 
 A year or two in, we started doing some consultancy for some real bus companies.
 I was tasked with pulling as much data as possible out of their ticketing system (I was contacted by their IT team and told off for overloading them), and answering various different questions using the data.
@@ -68,14 +68,22 @@ I also decided that I didn't like our logo, and managed to convince the holder o
 
 ![](./Vectare-Logo-Master-RGB.png){.img-w-60}
 
-Alongside all this, the company had branched out into running public service vehicles on the roads. Coach hire, bus services, rail replacement, you name it. As this fleet grew, its management became more complex, and so we started creating software to help manage that. This was a major step-change from the relative simplicity of 5-10 routes, all centering on a school, running just twice a day, and over time the system was able to assist with everything from payroll to vehicle maintenance.
+Alongside all this, the company had branched out into running public service vehicles on the roads.
+Coach hire, bus services, rail replacement, you name it.
+As this fleet grew, its management became more complex, and so we started creating software to help manage that.
+This was a major step-change from the relative simplicity of 5-10 routes, all centering on a school, running just twice a day, and over time the system was able to assist with everything from payroll to vehicle maintenance.
 
-Last summer, it became clear that the two diverging aims of the business were splitting people’s attention, and so the schools business was sold to an EdTech company. It was sad to say goodbye to my team, which had grown to around 10 people, but it was great to know that this thing that I’d been building for so long was going to be well looked after.
+Last summer, it became clear that the two diverging aims of the business were splitting people’s attention, and so the schools business was sold to an EdTech company.
+It was sad to say goodbye to my team, which had grown to around 10 people, but it was great to know that this thing that I’d been building for so long was going to be well looked after.
 
-I kept working on the software for the bus company, but I was also starting a two year Master’s in Quantum Computer Science in Amsterdam, so again my attention was split. Over the last year, I worked with an excellent developer who landed a series of very useful functionalities to support the now unfathomable fleet of over 250 vehicles.
+I kept working on the software for the bus company, but I was also starting a two year Master’s in Quantum Computer Science in Amsterdam, so again my attention was split.
+Over the last year, I worked with an excellent developer who landed a series of very useful functionalities to support the now unfathomable fleet of over 250 vehicles.
 
-At the half-way point of my degree, staring down my thesis project, it became clear that I couldn’t keep all the plates spinning. I’d been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor’s degree, but it seems that a Master’s was just too much. As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I’ve worked with along the way.
+At the half-way point of my degree, staring down my thesis project, it became clear that I couldn’t keep all the plates spinning.
+I’d been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor’s degree, but it seems that a Master’s was just too much.
+As such, after over 10 years, it is time to say goodbye to Transport Made Simple, and all the wonderful people that I’ve worked with along the way.
 
-I’m very excited to now apply all these years of coding, project management, and interpersonal skills to my next projects: starting with an internship at a quantum simulation company, followed by my Master’s thesis about working with formal proof assistants.
+I’m very excited to now apply all these years of coding and management experience to my next projects: starting with an internship at a quantum simulation company, followed by my Master’s thesis about working with formal proof assistants.
 
-My life would be vastly different without this opportunity, and I cannot imagine the trust it took to offer it to my 15 year old self. I cannot thank Peter and Dominic enough.
+My life would be vastly different without this opportunity, and I cannot imagine the trust it took to offer it to my 15 year old self.
+I cannot thank Peter and Dominic enough.
