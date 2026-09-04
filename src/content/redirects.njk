@@ -4,7 +4,7 @@ layout: false
 eleventyExcludeFromCollections: true
 ---
 {%- for post in collections.posts %}
-{%- if post.data.shortUrl %}
-/{{ post.data.shortUrl }} {{ post.url }} 301
+{%- if post.data.shortUrl and shortUrlDomain %}
+{{ shortUrlDomain }}/{{ post.data.shortUrl }} {{ post.url }} 301
 {%- endif %}
 {%- endfor %}
