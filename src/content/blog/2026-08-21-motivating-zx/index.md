@@ -6,6 +6,7 @@ heroImg: ./img/03-teleportation.png
 date: 2026-08-21
 recommendNoRSS: true
 tags: ['quantum', 'theory']
+shortUrl: motivating-zx
 ---
 
 For the last year I've been doing a [Master's degree in Quantum Computer Science at the University of Amsterdam](https://www.uva.nl/shared-content/programmas/en/masters/quantum-computer-science/quantum-computer-science.html).

@@ -38,6 +38,8 @@ const postFrontMatterSchema = z.object({
 	recommendNoRSS: z.boolean().optional(),
 	draft: z.boolean().optional(),
 	tags: tagsSchema.optional(),
+	// Redirects from /<shortUrl> to the post, generated into _redirects (see src/content/_redirects.njk)
+	shortUrl: z.string().regex(/^[a-z0-9-]+$/, "shortUrl must be lowercase letters, numbers and hyphens only").optional(),
 }).strict();
 
 export default function() {
