@@ -124,6 +124,9 @@ export default function(eleventyConfig) {
 	eleventyConfig.addShortcode("cta", (text, url, icon) =>
 		componentEnv.render("cta.njk", { text, url, icon })
 	);
+	eleventyConfig.addShortcode("shareButton", () =>
+		collapseBlankLines(componentEnv.render("share-button.njk", { css: componentCss("share-button") }))
+	);
 
 	// `rel`/`rule` render a rewrite step's justification to the LEFT of the diagram,
 	// e.g. {% zxDiagram "eq", "sp" %}. Keeping it inside the diagram's own wrapper means
