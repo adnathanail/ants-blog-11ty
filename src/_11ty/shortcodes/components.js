@@ -2,6 +2,8 @@ import { VIEW_MODES } from "@adnathanail/zxcc/constants";
 import fs from "node:fs";
 import nunjucks from "nunjucks";
 
+import shortUrlDomain from "../../_data/shortUrlDomain.js";
+
 // Relation symbols a ZX rewrite step can be justified by. Keyed by what an author
 // types in the shortcode, so the awkward-to-type characters have a word spelling too.
 const ZX_RELATIONS = {
@@ -124,9 +126,17 @@ export default function(eleventyConfig) {
 	eleventyConfig.addShortcode("cta", (text, url, icon) =>
 		componentEnv.render("cta.njk", { text, url, icon })
 	);
-	eleventyConfig.addShortcode("shareButton", () =>
-		collapseBlankLines(componentEnv.render("share-button.njk", { css: componentCss("share-button") }))
-	);
+	// When the post has a shortUrl and SHORT_URL is configured (see src/content/redirects.njk,
+	// which gates on the same two conditions), the button copies that instead of the canonical
+	// long URL.
+	eleventyConfig.addShortcode("shareButton", (postShortUrl) => {
+		const shortLink = postShortUrl && shortUrlDomain ? `${shortUrlDomain}/${postShortUrl}` : null;
+		return collapseBlankLines(componentEnv.render("share-button.njk", {
+			css: componentCss("share-button"),
+			// Embedded into a <script>, so a closing tag inside it must not end it early.
+			shortLink: JSON.stringify(shortLink).replace(/</g, "\\u003c"),
+		}));
+	});
 
 	// `rel`/`rule` render a rewrite step's justification to the LEFT of the diagram,
 	// e.g. {% zxDiagram "eq", "sp" %}. Keeping it inside the diagram's own wrapper means

@@ -12,7 +12,7 @@ layout: layouts/base.njk
 {% include "partials/deferred_images.njk" %}
 
 <h1>{{ title }}</h1>
-{% shareButton %}
+{% shareButton shortUrl %}
 
 {%- set date = page.date %}
 {% include "partials/post-date.njk" %}
