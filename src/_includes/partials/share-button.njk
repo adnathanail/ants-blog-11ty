@@ -1,10 +1,8 @@
-<style>
-.share-button {
-	vertical-align: middle;
-}
-</style>
-<a href="#" class="share-button ms-2 text-primary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy link" aria-label="Copy link to this post"><i class="bi bi-share"></i></a>
-<script>
+{#- Rendered inline inside a post's <h1>, so any whitespace between these three
+    tags would become a literal text node there and render as a visible space
+    once the <style>/<script> are plucked into the page's bundles — hence no
+    line breaks between </style>, the <a>, and <script>. #}
+<style>{{ css | safe }}</style><a href="#" class="share-button ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy link" aria-label="Copy link to this post"><i class="bi bi-share"></i></a><script>
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelectorAll(".share-button").forEach((link) => {
 		const tooltip = new bootstrap.Tooltip(link);

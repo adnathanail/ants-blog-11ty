@@ -1,0 +1,13 @@
+/* Matches the heading-anchors "#" links (see index.css's a.ha rule): full
+   opacity and primary colour only on hover, faded to the ambient text
+   colour otherwise, rather than a distinct grey. */
+.share-button {
+	vertical-align: middle;
+	font-size: 1.25rem;
+	color: var(--bs-body-color);
+	opacity: .3;
+}
+.share-button:hover {
+	opacity: 1;
+	color: var(--bs-primary);
+}
