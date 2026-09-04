@@ -25,7 +25,6 @@ a.ha {
 	Drawn from the bootstrap-icons font (bi-box-arrow-up-right) */
 a[target="_blank"]::after {
 	content: "\f1c5";
-	display: inline-block;
 	font-family: bootstrap-icons;
 	font-style: normal;
 	font-weight: normal;
