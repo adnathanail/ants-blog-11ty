@@ -1,17 +1,25 @@
-{#- Rendered inline inside a post's <h1>, so any whitespace between these three
-    tags would become a literal text node there and render as a visible space
-    once the <style>/<script> are plucked into the page's bundles — hence no
-    line breaks between </style>, the <a>, and <script>. #}
-<style>{{ css | safe }}</style><a href="#" class="share-button ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy link" aria-label="Copy link to this post"><i class="bi bi-share"></i></a><script>
+<style>{{ css | safe }}</style>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-	document.querySelectorAll(".share-button").forEach((link) => {
-		const tooltip = new bootstrap.Tooltip(link);
-		link.addEventListener("click", async (e) => {
-			e.preventDefault();
-			await navigator.clipboard.writeText(location.href);
-			tooltip.setContent({ ".tooltip-inner": "Copied!" });
-			setTimeout(() => tooltip.setContent({ ".tooltip-inner": "Copy link" }), 1500);
-		});
+	const heading = document.querySelector("main h1");
+	if (!heading) return;
+
+	const link = document.createElement("a");
+	link.href = "#";
+	link.className = "share-button ms-2";
+	link.setAttribute("data-bs-toggle", "tooltip");
+	link.setAttribute("data-bs-placement", "top");
+	link.setAttribute("data-bs-title", "Copy link");
+	link.setAttribute("aria-label", "Copy link to this post");
+	link.innerHTML = '<i class="bi bi-share"></i>';
+	heading.append(link);
+
+	const tooltip = new bootstrap.Tooltip(link);
+	link.addEventListener("click", async (e) => {
+		e.preventDefault();
+		await navigator.clipboard.writeText(location.href);
+		tooltip.setContent({ ".tooltip-inner": "Copied!" });
+		setTimeout(() => tooltip.setContent({ ".tooltip-inner": "Copy link" }), 1500);
 	});
 });
 </script>
