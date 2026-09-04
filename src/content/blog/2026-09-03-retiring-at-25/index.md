@@ -5,6 +5,7 @@ author: alex
 heroImg: ./first_commit.png
 date: 2026-09-03
 tags: ['prose']
+shortUrl: retiring-at-25
 ---
 
 ## 2016
@@ -30,9 +31,11 @@ We started gaining clients, and soon I was maintaining 5 copies of roughly the s
 I realised this was untenable, and decided to create a single system which could manage as many websites as we wanted, with different features available with settings.
 
 Not a groundbreaking concept, now that every man and his dog has built a SaaS, but this was almost 10 years ago, and I was 16, so I was quite pleased with the idea.
+Pre-LLM, finding the right technical word to search for was sometimes the key to a good solution, and here the word was 'multitenancy'.
+
 The result was that the marginal developer time cost of doubling the number of sites over the next year was basically zero!
 
-This was the beginning of another learning: <span class="text-primary">**you Are gonna need it**</span> (yAgni); a direct contradiction of the common coding wisdom that [you aren't gonna need it](https://martinfowler.com/bliki/Yagni.html).
+This was the beginning of another learning: <span class="text-primary">**you Are gonna need it**</span> (yAgni); a direct contradiction of the common coding wisdom that [you aren't gonna need it.](https://martinfowler.com/bliki/Yagni.html)
 I completely agree that you shouldn't create features that you don't know your users need.
 But foreseeing a need, particularly needs relating to scaling, and particularly when you have full oversight and control of a project, can save a lot of time and effort!
 It's a subtle art.
@@ -68,6 +71,8 @@ This turned out to be an excellent decision, as he came back full-time after fin
 
 My main design skill lies in user experience, not visual design, but I've definitely developed a strong sense of what looks good to me^[LGTM!], and I started to feel that our logo wasn't up to scratch for the company that I saw us becoming.
 So I managed to convince the master of coin that we should spend (what seemed at the time) an enormous sum of money on having one professionally produced.
+
+We hired a real design firm, and created brand guidelines which were rolled out across all of our marketing, and are still in use today!
 
 ![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png){.img-w-100}
 
