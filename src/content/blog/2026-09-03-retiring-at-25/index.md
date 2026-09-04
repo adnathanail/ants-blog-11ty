@@ -21,7 +21,7 @@ I read everything I could find online, settled on a LAMP stack (Linux + Apache +
 
 ![VecTive 1.0](./vective1.png){.img-w-100}
 
-We then began a working arrangement which would continue indefinitely, where my 2 bosses would promise functionality to people and I would figure it out.
+We then began a working arrangement which would continue indefinitely, where my 2 bosses would promise functionality to people and I would figure out how to deliver it.
 At first I found this deeply frustrating, as I felt an enormous pressure to create the impossible, but over time it developed in me a certainty that <span class="text-primary">**I can figure out basically anything**</span>.
 
 ## 2017
@@ -108,7 +108,7 @@ I also started a two year Master's in Quantum Computer Science in Amsterdam, so 
 
 ## What now?
 
-At the half-way point of my degree, staring down my thesis project, I realised that I couldn't keep all the plates spinning.
+At the half-way point of my degree, with my thesis project looming, I realised that I couldn't keep all the plates spinning.
 I've been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
 As such, after over 10 years, it is time to say goodbye to the company, and all the wonderful people that I've worked with along the way.
 
