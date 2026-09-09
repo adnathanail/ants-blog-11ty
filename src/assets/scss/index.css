@@ -21,9 +21,8 @@ a.ha {
 	color: var(--bs-primary);
 }
 /* External links */
-/* Marks links that open in a new tab
-	Drawn from the bootstrap-icons font (bi-box-arrow-up-right) */
-a[target="_blank"]::after {
+/* Drawn from the bootstrap-icons font (bi-box-arrow-up-right) */
+a.external-link::after {
 	content: "\f1c5";
 	font-family: bootstrap-icons;
 	font-style: normal;

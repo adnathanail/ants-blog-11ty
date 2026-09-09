@@ -15,6 +15,7 @@ export default function externalLinks(mdLib) {
 			if (!token.attrGet('rel')) {
 				token.attrSet('rel', 'noopener noreferrer');
 			}
+			token.attrJoin('class', 'external-link');
 		}
 		return defaultLinkRenderer(tokens, idx, options, env, slf);
 	};
