@@ -11,6 +11,13 @@ export default function(eleventyConfig) {
 		return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat('yyyy-LL-dd');
 	});
 
+	eleventyConfig.addFilter("isWithinLastMonth", (dateObj) => {
+		if (!dateObj) {
+			return false;
+		}
+		return DateTime.fromJSDate(dateObj, { zone: "utc" }) >= DateTime.utc().minus({ months: 1 });
+	});
+
 	// Get the first `n` elements of a collection.
 	eleventyConfig.addFilter("head", (array, n) => {
 		if(!Array.isArray(array) || array.length === 0) {

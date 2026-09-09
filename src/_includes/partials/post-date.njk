@@ -1,6 +1,7 @@
 <p class="text-body-tertiary small d-flex justify-content-between mb-2 fst-italic">
     <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
     {%- if updatedDate %}
-    <span>Updated <time datetime="{{ updatedDate | htmlDateString }}">{{ updatedDate | readableDate }}</time></span>
+    {%- set recentlyUpdated = updatedDate | isWithinLastMonth %}
+    <span{% if recentlyUpdated %} class="border border-primary border-dashed rounded px-1"{% endif %}>Updated <time datetime="{{ updatedDate | htmlDateString }}">{{ updatedDate | readableDate }}</time></span>
     {%- endif %}
 </p>
