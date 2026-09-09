@@ -112,3 +112,8 @@ a.external-link h4::after {
 .mh-30vh {
 	max-height: 30vh !important;
 }
+
+/* Recently-updated post cards */
+.border-dashed {
+	border-style: dashed !important;
+}
