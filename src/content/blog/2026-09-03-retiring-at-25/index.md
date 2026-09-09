@@ -3,7 +3,7 @@ title: Retiring at 25
 description: Memories and learnings from the first decade of my career
 author: alex
 heroImg: ./first_commit.png
-date: 2026-09-03
+date: 2026-08-01
 tags: ['prose']
 shortUrl: retiring-at-25
 ---
@@ -59,7 +59,7 @@ I don't think I slept more than 30 minutes continuously for the whole 72 hours!
 > I'm pretty sure I didn't mind; it was interesting work, it made me feel very important, and I didn't really need much sleep.
 > The joys of being young.
 
-I also remember sitting in my parents' kitchen stuffing about 500 envelopes twice (we messed up the first time), to send to the pupils of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
+I also remember sitting in my parents' kitchen stuffing about 500 envelopes twice(!!) (we messed up the first time), to send to the pupils of our biggest client at the time, and it really felt like we were having the _startup experience_™️.
 
 ## 2019
 
