@@ -4,6 +4,7 @@ description: I sat down, took my meds to do some work, and ended up organising m
 author: alex
 heroImg: ./new_tab_page.png
 date: 2025-12-07
+updatedDate: 2026-09-09
 tags: project
 ---
 
@@ -81,6 +82,34 @@ RAINDROP_AUTOCOMPLETE_GROUP_NAME=Autocomplete URLs
 > You can change the name of the groups it pulls from with the `RAINDROP_GROUP_NAME` and `RAINDROP_AUTOCOMPLETE_GROUP_NAME` variables if you like
 
 8. Then visit the page, login with Raindrop, and it should pull through your bookmarks from your `New Tab` group, split out by folder!
+
+## Update September 2026
+
+I found myself maintaining an ever growing list of bookmarks to my various git repos, and realised that was maybe unnecessary, as GitHub itself has a search API.
+
+I didn't want the results to appear in the main search box, as I have a lot of repos, and most of them I don't want accidentally matching partial searches that I make.
+So I added a separate search box just to the right.
+
+The point of this project is speed of navigation, so when you load the page your cursor lands right in the main search, and then a single press of the tab key jumps to the GitHub search.
+
+![](./update_github_search.png){.img-w-100}
+
+GitHub has tight permission controls, so each organization's repos has to have permission specifically granted.
+You can do this when you first sign in, but if you missed one, or create a new one, you need a way to fix this.
+So if a GitHub search turns up no results, you get the option to `Grant more access` which takes you to the OAuth app's management page.
+
+![](./update_github_no_results.png){.img-w-40}
+
+Also, the GitHub results are cached to prevent hammering their servers, but sometimes you want to be able to force it, so I also added an option to pull fresh results.
+
+I then realised that I often find myself spamming refresh to force the bookmarks cache to update, so I added a refresh button for that, in the place where the loading icon sits.
+
+![](./update_refresh_bookmarks.png){.img-w-40}
+
+This then fixed part of the layout jumping as the spinner shows and hides, and I realised that the last thing still causing that was the icons taking a moment to load in.
+So I replaced the Font Awesome kit JS, which dynamically loads CSS, with a direct CSS link which the browser can cache.
+
+The whole point of this page is that it's used rapidly, and constantly, so the page itself is cached with a service worker, the data is cached in LocalStorage, and now the layout (should) be perfectly static!
 
 {% cta "Check out the code", "https://github.com/adnathanail/raindrop-new-tab-page", "github" %}
 {% cta "Check out the demo (requires Raindrop account)", "https://newtab.adnathanail.dev", "laptop" %}
