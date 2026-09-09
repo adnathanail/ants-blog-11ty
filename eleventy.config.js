@@ -19,6 +19,7 @@ import "./src/_11ty/utils/prism-typst.js";
 import pluginFilters from "./src/_11ty/filters/filters.js";
 import draftCollection from "./src/_11ty/collections/draft.js";
 import shortUrlCollection from "./src/_11ty/collections/shortUrl.js";
+import postsByActivityCollection from "./src/_11ty/collections/postsByActivity.js";
 import dateShortcodes from "./src/_11ty/shortcodes/dates.js";
 import componentShortcodes from "./src/_11ty/shortcodes/components.js";
 
@@ -47,6 +48,7 @@ export default async function(eleventyConfig) {
 
 	eleventyConfig.addPlugin(draftCollection);
 	eleventyConfig.addPlugin(shortUrlCollection);
+	eleventyConfig.addPlugin(postsByActivityCollection);
 
 	// README.md files (e.g. notes alongside post assets) are documentation, not content
 	eleventyConfig.ignores.add("**/README.md");

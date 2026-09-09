@@ -68,5 +68,5 @@ const eleventyNavigation = {
 
 <h3>Latest blog posts</h3>
 
-{%- set postslist = collections.posts.slice(-2).reverse() %}
+{%- set postslist = collections.postsByActivity.slice(0, 2) %}
 {% include "partials/postslist.njk" %}
