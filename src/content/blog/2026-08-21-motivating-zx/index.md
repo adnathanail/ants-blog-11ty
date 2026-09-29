@@ -159,7 +159,7 @@ Is there something we can replace our matrices with, which allows us to reason a
 > [!question]
 > Which famous quantum protocol is shown in the diagram above?
 
-The ZX-calculus is a graphical language built upon a strongly complementary pair of commutative special dagger Frobenius algebras, which together form a scaled bialgebra.[^coecke-duncan]
+The ZX-calculus is a graphical language built upon a strongly complementary pair of *commutative special dagger-Frobenius algebras*, which together form a *scaled bialgebra*.[^coecke-duncan]
 
 [^coecke-duncan]: Bob Coecke and Ross Duncan, "Interacting Quantum Observables: Categorical Algebra and Diagrammatics," *New Journal of Physics* 13, no. 4 (2011): 043016, <https://doi.org/10.1088/1367-2630/13/4/043016>.
 
