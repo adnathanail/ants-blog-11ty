@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Preview blog",
+            "type": "editor-browser",
+            "request": "launch",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/_site",
+            "preLaunchTask": "Eleventy dev server"
+        }
+    ]
+}
