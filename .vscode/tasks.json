@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Eleventy dev server",
+            "type": "npm",
+            "script": "start",
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "eleventy",
+                "pattern": { "regexp": "^__never_matches__$" },
+                "background": {
+                    "activeBegins": true,
+                    "beginsPattern": "^\\[11ty\\]",
+                    "endsPattern": "\\[11ty\\] Server at "
+                }
+            }
+        }
+    ]
+}
