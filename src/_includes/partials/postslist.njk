@@ -28,7 +28,7 @@
 						{%- set imgClasses = "blog-post-img-rounding h-100 w-100 mh-30vh" %}
 						<span class="placeholder position-absolute top-0 start-0 {{ imgClasses }} deferred-img-placeholder" style="visibility: hidden" aria-hidden="true"></span>
 						<a href="{{ post.url }}">
-							<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid {{ imgClasses }} object-fit-cover deferred-img" alt="...">
+							<img src="{{ post.page.url }}{{ post.data.heroImg }}" class="img-fluid {{ imgClasses }} object-fit-cover deferred-img" alt="..." sizes="auto">
 						</a>
 					</div>
 				</div>

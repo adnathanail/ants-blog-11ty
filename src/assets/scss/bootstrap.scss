@@ -128,8 +128,14 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 // ################
 // (Using Bootstrap mixins/variables)
 
+// --natural-w is written onto each image by src/_11ty/utils/image-natural-width.js,
+//   so an image never renders wider than its source file.
+// height: auto is required: eleventy-img writes a height attribute, which would
+//   otherwise fix the height while max-width shrinks the width, distorting the image.
 .post-content img, .post-content video {
 	width: auto;
+	height: auto;
+	max-width: min(100%, var(--natural-w, 100%));
 	max-height: 40vh;
 
 	@include media-breakpoint-up(md) {

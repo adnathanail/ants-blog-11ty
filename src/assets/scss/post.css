@@ -4,7 +4,6 @@
 		vertical-align: top;
 	}
 	p:has(img), figure:has(img), figure:has(video) {
-		overflow-x: auto;
 		text-align: center;
 
 		--bs-bg-opacity: 1;
@@ -62,24 +61,25 @@
         height: auto;
     } */
 	/*  */
-	/* (100/width_perc - 1)*(width_perc/100) */
+	/* (100/width_perc - 1)*(width_perc/100)
+	   --natural-w (see image-natural-width.js) stops these enlarging small images. */
 	.img-w-20 {
-		max-width: calc(20% - 0.8rem) !important;
+		max-width: min(calc(20% - 0.8rem), var(--natural-w, 100%)) !important;
 	}
 	.img-w-25 {
-		max-width: calc(25% - 0.75rem) !important;
+		max-width: min(calc(25% - 0.75rem), var(--natural-w, 100%)) !important;
 	}
 	.img-w-30 {
-		max-width: calc(30% - 0.7rem) !important;
+		max-width: min(calc(30% - 0.7rem), var(--natural-w, 100%)) !important;
 	}
 	.img-w-40 {
-		max-width: calc(40% - 0.6rem) !important;
+		max-width: min(calc(40% - 0.6rem), var(--natural-w, 100%)) !important;
 	}
 	.img-w-60 {
-		max-width: calc(60% - 0.4rem) !important;
+		max-width: min(calc(60% - 0.4rem), var(--natural-w, 100%)) !important;
 	}
 	.img-w-100 {
-		max-width: calc(100% - 0.4rem) !important;
+		max-width: min(calc(100% - 0.4rem), var(--natural-w, 100%)) !important;
 	}
 
 	/* Code blocks */
