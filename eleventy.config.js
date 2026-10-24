@@ -14,6 +14,7 @@ import externalLinks from "./src/_11ty/utils/external-links.js";
 import videoMedia from "./src/_11ty/utils/video-media.js";
 import imageCaptions from "./src/_11ty/utils/image-captions.js";
 import imagePlaceholders from "./src/_11ty/utils/image-placeholders.js";
+import imageNaturalWidth from "./src/_11ty/utils/image-natural-width.js";
 import "./src/_11ty/utils/prism-typst.js";
 
 import pluginFilters from "./src/_11ty/filters/filters.js";
@@ -171,6 +172,13 @@ export default async function(eleventyConfig) {
 				// e.g. <img loading decoding> assigned on the HTML tag will override these values.
 				loading: "lazy",
 				decoding: "async",
+				// The width of the post column's image slot at each Bootstrap breakpoint
+				// (container minus gutters, minus the 1rem padding on p:has(img)).
+				// Without this eleventy-img emits sizes="auto", which makes the browser
+				// lay every image out as a 300x150 box and always pick the 640w file.
+				// Templates whose images have a definite CSS width (e.g. postslist.njk)
+				// can set sizes="auto" on the tag to override this.
+				sizes: "(min-width: 1200px) 1084px, (min-width: 992px) 904px, (min-width: 768px) 664px, (min-width: 576px) 484px, calc(100vw - 56px)",
 			}
 		},
 
@@ -201,6 +209,9 @@ export default async function(eleventyConfig) {
 
 	// Wraps <picture> elements in blog posts with placeholder-glow markup.
 	eleventyConfig.addPlugin(imagePlaceholders);
+
+	// Caps blog post images at their real pixel width (see the file for why).
+	eleventyConfig.addPlugin(imageNaturalWidth);
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);
