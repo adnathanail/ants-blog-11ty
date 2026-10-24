@@ -41,6 +41,18 @@ On a built post (`npm run build-dev`), e.g. `2024-12-26-advent-of-code-2024` and
 - check whether `contain: size` is applied from the UA stylesheet;
 - toggle `sizes` to an explicit value and see whether the vh cap starts working.
 
+### Result (headless Chromium, 390px and 1400px viewports)
+
+- Every post `<img>` computes `contain: size; contain-intrinsic-size: 300px 150px`, from the UA
+  stylesheet, because of `sizes="auto"`. Setting an explicit `sizes` removes it.
+- At 1400px, `.img-w-30` images in the Typst post render at exactly 300px wide, where the class
+  allows ~335px: the 300px intrinsic width is the binding limit, not the CSS.
+- The 640w candidate is chosen for every image at both viewports, because `sizes="auto"`
+  resolves against that 300px box. Desktop readers get the smallest file.
+- With `w` descriptors in `srcset`, an image's natural width is the `sizes` value, not the file's
+  pixel width. Before the responsive widths were added there was no `srcset`, so `width: auto`
+  meant "the file's own size". That is the behaviour change behind "it stopped working".
+
 ## Step 1 — a single base rule
 
 Replace the rule in `bootstrap.scss` with:
@@ -78,6 +90,12 @@ Measure the actual column width at each Bootstrap breakpoint before settling the
 that eleventy-img uses a configured `sizes` instead of emitting `auto` when `loading="lazy"`.
 Images inside a gallery (step 4) are narrower, so the gallery transform can override `sizes` on
 its children.
+
+Small sources get upscaled once `sizes` is explicit: a 400px screenshot whose only candidate is
+`400w`, with `sizes` resolving to 720px, has a natural width of 720px, and `width: auto` renders it
+at that. Cap each image at its real width: a transform (or the image plugin's `imgAttributes`)
+writes `style="--natural-w: <width>px"` from the `width` attribute, and the base rule uses
+`max-width: min(100%, var(--natural-w, 100%))`.
 
 ## Step 3 — remove the placeholder wrapper span
 
