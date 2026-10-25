@@ -48,8 +48,10 @@
 	"dependencies": {
 		"@adnathanail/zxcc": "^0.6.0",
 		"@zachleat/heading-anchors": "^1.0.5",
+		"gray-matter": "npm:@11ty/gray-matter@^1.0.0",
 		"markdown-it-admonitions": "^0.3.0",
 		"markdown-it-attrs": "^5.0.1",
-		"markdown-it-footnote": "^4.0.0"
+		"markdown-it-footnote": "^4.0.0",
+		"nunjucks": "npm:@11ty/nunjucks@^3.3.0"
 	}
 }
