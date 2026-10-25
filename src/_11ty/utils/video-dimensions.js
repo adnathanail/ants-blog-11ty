@@ -13,46 +13,46 @@
 // metadata loads.
 import fs from "node:fs";
 
+// Parse the box header at `offset`. A size of 1 means a 64-bit size follows the
+// type, and 0 means the box runs to the end of its container, which is
+// `remaining` bytes away. Returns null for a size too small to hold the header.
+function readBoxHeader(buffer, offset, remaining) {
+	let size = buffer.readUInt32BE(offset);
+	const type = buffer.toString("latin1", offset + 4, offset + 8);
+	let header = 8;
+	if (size === 1) {
+		size = Number(buffer.readBigUInt64BE(offset + 8));
+		header = 16;
+	} else if (size === 0) {
+		size = remaining;
+	}
+	return size < header ? null : { type, size, header };
+}
+
 function readBoxes(buffer, start, end, visit) {
 	let offset = start;
 	while (offset + 8 <= end) {
-		let size = buffer.readUInt32BE(offset);
-		const type = buffer.toString("latin1", offset + 4, offset + 8);
-		let header = 8;
-		if (size === 1) {
-			size = Number(buffer.readBigUInt64BE(offset + 8));
-			header = 16;
-		} else if (size === 0) {
-			size = end - offset;
-		}
-		if (size < header || offset + size > end) return;
-		if (visit(type, offset + header, offset + size) === false) return;
-		offset += size;
+		const box = readBoxHeader(buffer, offset, end - offset);
+		if (!box || offset + box.size > end) return;
+		if (visit(box.type, offset + box.header, offset + box.size) === false) return;
+		offset += box.size;
 	}
 }
 
 // Find the moov box by reading only the headers of the boxes before it.
 function readMoov(fd, fileSize) {
-	const header = Buffer.alloc(16);
+	const headerBuffer = Buffer.alloc(16);
 	let offset = 0;
 	while (offset + 8 <= fileSize) {
-		fs.readSync(fd, header, 0, 16, offset);
-		let size = header.readUInt32BE(0);
-		const type = header.toString("latin1", 4, 8);
-		let headerSize = 8;
-		if (size === 1) {
-			size = Number(header.readBigUInt64BE(8));
-			headerSize = 16;
-		} else if (size === 0) {
-			size = fileSize - offset;
-		}
-		if (size < headerSize) return null;
-		if (type === "moov") {
-			const moov = Buffer.alloc(size - headerSize);
-			fs.readSync(fd, moov, 0, moov.length, offset + headerSize);
+		fs.readSync(fd, headerBuffer, 0, 16, offset);
+		const box = readBoxHeader(headerBuffer, 0, fileSize - offset);
+		if (!box) return null;
+		if (box.type === "moov") {
+			const moov = Buffer.alloc(box.size - box.header);
+			fs.readSync(fd, moov, 0, moov.length, offset + box.header);
 			return moov;
 		}
-		offset += size;
+		offset += box.size;
 	}
 	return null;
 }
