@@ -16,6 +16,11 @@
 	gap: 0.5rem;
 }
 
+/* .no-center on the images left-aligns the row, as it does a lone image (post.css). */
+.post-content .gallery > p:has(.no-center) {
+	justify-content: flex-start;
+}
+
 /* On a phone, a row of several images shrunk to one line would leave each a thumbnail,
    so the row wraps instead, at a lower height so that two portrait images share a line. */
 @media (max-width: 767.98px) {

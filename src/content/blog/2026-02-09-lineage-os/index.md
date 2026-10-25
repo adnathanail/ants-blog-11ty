@@ -83,10 +83,12 @@ The new battery cost me €25!
 
 So I melted the screen adhesive with an [iOpener](https://www.ifixit.com/en-eu/products/iopener) (not sponsored), pried off the back cover, popped out the battery, popped the new one in, put on some new adhesive patches, and put it all back together!
 
-![](./01_iopener.jpg){.img-w-25}
-![](./02_case_off.jpg){.img-w-25}
-![](./03_battery_out.jpg){.img-w-25}
-![](./04_battery_back_in.jpg){.img-w-25}
+{% gallery %}
+	![](./01_iopener.jpg)
+	![](./02_case_off.jpg)
+	![](./03_battery_out.jpg)
+	![](./04_battery_back_in.jpg)
+{% endgallery %}
 
 I think there was one screw.
 The only really difficult parts are feeling like you're going to break it.

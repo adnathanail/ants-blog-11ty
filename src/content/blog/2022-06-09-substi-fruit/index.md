@@ -71,4 +71,4 @@ I also squished things around more and added a nice background.
 
 I also added a live updating stats block including the most connected fruit, both by number of unique links and total cumulative links, and by both metrics Orange is the most substitutable fruit. The graph is undirected, so it is not completely clear whether people are happy with it in either direction, but I'd imagine so.
 
-![](./substi-fruit-stats_bwded7.png){.img-w-60}
+![](./substi-fruit-stats_bwded7.png)

@@ -1,5 +1,5 @@
 // Render ![](foo.mov) as a <video> instead of an <img>. Any classes from
-// markdown-it-attrs (e.g. `.img-w-20`) are passed through.
+// markdown-it-attrs (e.g. `.no-center`) are passed through.
 export default function videoMedia(mdLib) {
 	const defaultImageRenderer = mdLib.renderer.rules.image;
 	mdLib.renderer.rules.image = (tokens, idx, options, env, slf) => {

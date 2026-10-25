@@ -13,7 +13,7 @@ I have a problem, which very well may be simply due to my old messy LaTeX instal
 That problem is that I like to use the LaTeX editor [Texifier](https://www.texifier.com/), which has a lovely speedy "live" typesetter.
 However, it doesn't seem to play well with a library called [quantikz](https://mirrors.ibiblio.org/CTAN/graphics/pgf/contrib/quantikz/quantikz.pdf) which I use to generate pretty drawings of quantum circuits, like this one of the [Deutsch-Josza algorithm](https://en.wikipedia.org/wiki/Deutsch%E2%80%93Jozsa_algorithm):
 
-![](./test1.png){.img-w-30}
+![](./test1.png)
 
 Previously, I just used an external non-"live" typesetter for my quantum notes, which was fine because that was a small amount of my classes.
 But I've just started an [MSc in Quantum Computer Science at UvA](https://www.uva.nl/shared-content/programmas/en/masters/quantum-computer-science/quantum-computer-science.html), so now all my courses are quantum!

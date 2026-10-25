@@ -20,7 +20,7 @@ In our brave new world of LLMs this type of thing would be trivial for anyone to
 
 I read everything I could find online, settled on a LAMP stack (Linux + Apache + MySQL + PHP), and put together the first version in a few months:
 
-![VecTive 1.0](./vective1.png){.img-w-100}
+![VecTive 1.0](./vective1.png)
 
 We then began a working arrangement which would continue indefinitely, where my 2 bosses would promise functionality to people and I would figure out how to deliver it.
 At first I found this deeply frustrating, as I felt an enormous pressure to create the impossible, but over time it developed in me a certainty that <span class="text-primary">**I can figure out basically anything**</span>.
@@ -40,7 +40,7 @@ I completely agree that you shouldn't create features that you don't know your u
 But foreseeing a need, particularly needs relating to scaling, and particularly when you have full oversight and control of a project, can save a lot of time and effort!
 It's a subtle art.
 
-![The first commit on what would become the longest running project I've ever created (it's still going!)](./first_commit.png){.img-w-100}
+![The first commit on what would become the longest running project I've ever created (it's still going!)](./first_commit.png)
 
 Of course this was a double-edged sword for me.
 I had reduced the work required for me to keep these sites running, which meant I was being paid for fewer hours.
@@ -74,7 +74,7 @@ So I managed to convince the master of coin that we should spend (what seemed at
 
 We hired a real design firm, and created brand guidelines which were rolled out across all of our marketing, and are still in use today!
 
-![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png){.img-w-100}
+![It also took a lot of convincing to pay for the premium Font Awesome icons, which I applied liberally](./iconography.png)
 
 It's impossible to tell whether anyone was ever put off by our old logo, or convinced by our new one, but in my eyes it was a big step in the professionalisation of our growing company.
 And I think that one of the most important skills that I've plied over the years is to <span class="text-primary">**fight for what I believe in**</span>; pushing for ideas that I felt were valuable, and not being steamrolled into accepting ones which I felt were misguided, even by people more senior than me.
@@ -117,7 +117,7 @@ At the half-way point of my degree, with my thesis project looming, I realised t
 I've been managing the development of software in various capacities alongside my GCSEs, A levels, and Bachelor's degree, but it seems that a Master's is just too much.
 As such, after over 10 years, it is time to say goodbye to the company, and all the wonderful people that I've worked with along the way.
 
-![My commit history on our longest running repo](./commit_history.png){.img-w-60}
+![My commit history on our longest running repo](./commit_history.png)
 
 I'm very excited to now apply all these years of experience to my next projects, starting with an internship at a quantum simulation company, followed by my Master's thesis working with formal proof assistants.
 

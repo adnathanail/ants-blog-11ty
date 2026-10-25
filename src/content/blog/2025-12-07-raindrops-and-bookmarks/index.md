@@ -52,9 +52,11 @@ Lastly, loading the page took maybe a second, which is just annoying for a new t
 
 3. Create a Raindrop integration in the [integrations page](https://app.raindrop.io/settings/integrations)
 
-![](./02a_create_new_app.png){.img-w-25}
-![](./02b_give_app_name.png){.img-w-25}
-![](./02c_set_app_settings.png){.img-w-25}
+{% gallery %}
+	![](./02a_create_new_app.png)
+	![](./02b_give_app_name.png)
+	![](./02c_set_app_settings.png)
+{% endgallery %}
 
 4. Set Site to wherever your app will be hosted, and the Redirect URI to
 ```html
@@ -92,19 +94,19 @@ So I added a separate search box just to the right.
 
 The point of this project is speed of navigation, so when you load the page your cursor lands right in the main search, and then a single press of the tab key jumps to the GitHub search.
 
-![](./update_github_search.png){.img-w-100}
+![](./update_github_search.png)
 
 GitHub has tight permission controls, so each organization's repos has to have permission specifically granted.
 You can do this when you first sign in, but if you missed one, or create a new one, you need a way to fix this.
 So if a GitHub search turns up no results, you get the option to `Grant more access` which takes you to the OAuth app's management page.
 
-![](./update_github_no_results.png){.img-w-40}
+![](./update_github_no_results.png)
 
 Also, the GitHub results are cached to prevent hammering their servers, but sometimes you want to be able to force it, so I also added an option to pull fresh results.
 
 I then realised that I often find myself spamming refresh to force the bookmarks cache to update, so I added a refresh button for that, in the place where the loading icon sits.
 
-![](./update_refresh_bookmarks.png){.img-w-40}
+![](./update_refresh_bookmarks.png)
 
 This then fixed part of the layout jumping as the spinner shows and hides, and I realised that the last thing still causing that was the icons taking a moment to load in.
 So I replaced the Font Awesome kit JS, which dynamically loads CSS, with a direct CSS link which the browser can cache.
