@@ -28,6 +28,12 @@
 // them, and a gallery's flex layout needs them on the <picture>, its flex item.
 const PLACEHOLDER_CLASSES = ["deferred-img", "deferred-img-glow"];
 
+// The inline style that carries a media element's size to the post CSS
+// (bootstrap.scss and gallery.css). Also used by video-media.js.
+export function mediaSizeStyle(width, height) {
+	return `--natural-w: ${width}px; --ratio: ${+(width / height).toFixed(4)};`;
+}
+
 export default function postMedia(eleventyConfig) {
 	eleventyConfig.addTransform("post-media", function (content) {
 		if (!this.page?.outputPath?.endsWith?.(".html")) return content;
@@ -59,6 +65,5 @@ function addSize(picture) {
 	const width = imgAttrs.match(/\swidth\s*=\s*"(\d+)"/)?.[1];
 	const height = imgAttrs.match(/\sheight\s*=\s*"(\d+)"/)?.[1];
 	if (!width || !height) return picture;
-	const style = `--natural-w: ${width}px; --ratio: ${+(width / height).toFixed(4)};`;
-	return picture.replace(/^<picture\b/, `<picture style="${style}"`);
+	return picture.replace(/^<picture\b/, `<picture style="${mediaSizeStyle(width, height)}"`);
 }

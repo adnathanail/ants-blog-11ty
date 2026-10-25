@@ -6,6 +6,7 @@
 // the post CSS can size it before it loads. A video that cannot be read gets
 // neither, and is sized once its metadata loads instead.
 import path from "node:path";
+import { mediaSizeStyle } from "./post-media.js";
 import videoDimensions from "./video-dimensions.js";
 
 function sizeStyle(src, env) {
@@ -19,8 +20,7 @@ function sizeStyle(src, env) {
 	}
 	const dimensions = videoDimensions(filePath);
 	if (!dimensions) return null;
-	const { width, height } = dimensions;
-	return `--natural-w: ${width}px; --ratio: ${+(width / height).toFixed(4)};`;
+	return mediaSizeStyle(dimensions.width, dimensions.height);
 }
 
 export default function videoMedia(mdLib) {
