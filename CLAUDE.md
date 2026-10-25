@@ -153,7 +153,7 @@ styled by `src/assets/scss/gallery.css`). Indentation inside is optional:
   width** at each Bootstrap breakpoint. Update it if the post layout changes. Do not drop it:
   eleventy-img then emits `sizes="auto"`, which makes the browser lay every image out as 300×150.
 - **Post image width is computed in CSS** from `--natural-w` and `--ratio`, which
-  `src/_11ty/utils/image-natural-width.js` writes onto each `<picture>`. That keeps the box, and
+  `src/_11ty/utils/post-media.js` writes onto each `<picture>`. That keeps the box, and
   its loading placeholder, at its final size before the image loads.
 
 ## Post styles

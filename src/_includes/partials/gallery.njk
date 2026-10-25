@@ -1,7 +1,7 @@
 {#- Identical for every gallery, so the bundle plugin hoists these into this page's
     css/js bundles once, and not at all on pages with no galleries.
 
-    --ratio is written at build time, for images by image-natural-width.js and for
+    --ratio is written at build time, for images by post-media.js and for
     videos by video-media.js. A video whose header could not be read there has none,
     so the script gives it one once its metadata loads. Until then, or if the browser
     cannot decode it (it then reports a 0x0 size), it is laid out as square.

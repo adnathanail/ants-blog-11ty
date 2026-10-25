@@ -2,7 +2,7 @@
 // markdown-it-attrs (e.g. `.no-center`) are passed through.
 //
 // A video beside the post also gets its pixel width (--natural-w) and aspect
-// ratio (--ratio), the same properties image-natural-width.js gives images, so
+// ratio (--ratio), the same properties post-media.js gives images, so
 // the post CSS can size it before it loads. A video that cannot be read gets
 // neither, and is sized once its metadata loads instead.
 import path from "node:path";

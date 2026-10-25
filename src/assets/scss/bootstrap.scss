@@ -130,7 +130,7 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 
 // Post images are as wide as the smallest of: the column, the source file, and
 //   the width at which they hit the height cap. --natural-w and --ratio are written
-//   onto each image's <picture> by src/_11ty/utils/image-natural-width.js, and onto
+//   onto each image's <picture> by src/_11ty/utils/post-media.js, and onto
 //   each <video> by src/_11ty/utils/video-media.js, so this width is known before
 //   the media loads and its box (and loading placeholder) never shifts.
 // Media without those properties (a video whose header could not be read) makes
