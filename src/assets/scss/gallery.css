@@ -59,9 +59,11 @@
 	max-height: none;
 }
 
+/* The video is the flex item itself, so capping its width at its own pixel size also
+   frees its share of the row; its height follows the width via aspect-ratio. */
 .post-content .gallery > p > video {
 	width: auto;
-	max-width: none;
+	max-width: var(--natural-w, none);
 	max-height: none;
 	aspect-ratio: var(--ratio, 1);
 }
