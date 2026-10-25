@@ -119,11 +119,11 @@ Part 2 was such a unique and interesting problem! I solved it very simply, visua
 This is where problems started taking a very long time this year. It took me at least 4 hours, the only problem where I ended up using Rust to try to achieve some speed gains, only to eventually solve it practically by hand by just thinking more carefully about the problem.
 
 {% gallery %}
-	![](./day%2017/day%2017%201.jpg)
-	![](./day%2017/day%2017%202.jpg)
-	![](./day%2017/day%2017%203.jpg)
-	![](./day%2017/day%2017%204.jpg)
-	![](./day%2017/day%2017%205.jpg)
+	![](./day%2017/day%2017%201.jpg){.no-center}
+	![](./day%2017/day%2017%202.jpg){.no-center}
+	![](./day%2017/day%2017%203.jpg){.no-center}
+	![](./day%2017/day%2017%204.jpg){.no-center}
+	![](./day%2017/day%2017%205.jpg){.no-center}
 {% endgallery %}
 
 ## Day 18: RAM Run [Problem](https://adventofcode.com/2024/day/18) [Solution](https://github.com/adnathanail/aoc/tree/master/2024/day18)
@@ -172,11 +172,11 @@ I also think it really lent itself to giving non-coders quite a deep insight int
 > Lots of things will output their graph representations in GraphViz (AKA dot), including the Python graph manipulation library networkx. And [this handy website](https://dreampuf.github.io/GraphvizOnline/) visualises the graphs for you online without having to setup any software.
 
 {% gallery %}
-	![](./day%2024/day%2024%201.jpg)
-	![](./day%2024/day%2024%202.jpg)
-	![](./day%2024/day%2024%203.jpg)
-	![](./day%2024/day%2024%204.mp4)
-	![](./day%2024/day%2024%205.jpg)
+	![](./day%2024/day%2024%201.jpg){.no-center}
+	![](./day%2024/day%2024%202.jpg){.no-center}
+	![](./day%2024/day%2024%203.jpg){.no-center}
+	![](./day%2024/day%2024%204.mp4){.no-center}
+	![](./day%2024/day%2024%205.jpg){.no-center}
 {% endgallery %}
 
 {% gallery %}
