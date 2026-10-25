@@ -5,9 +5,9 @@
 //
 // Placeholders: each gets the classes that make it show a glowing placeholder
 // until it has loaded (see src/_includes/partials/deferred_images.njk). The
-// placeholder is drawn by the media element itself rather than by a wrapper, so
-// sizing classes on it (typically added via markdown-it-attrs) resolve against
-// the surrounding <p> as normal.
+// placeholder is drawn by the media element itself, so sizing classes on it
+// (typically added via markdown-it-attrs) resolve against the surrounding <p>
+// as normal.
 //
 // Sizes: each <picture> gets its image's real pixel width (--natural-w) and
 // aspect ratio (--ratio) as custom properties, so the post CSS can size it
