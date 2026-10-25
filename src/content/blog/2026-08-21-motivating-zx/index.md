@@ -192,8 +192,6 @@ This system of composing building blocks turns out to be expressive enough to fu
 
 Converted to a ZX-diagram, our example circuit would look like this:
 
-<!-- TODO image layout -->
-
 {% gallery %}
 	![](img/01a-example-circuit-no-slices.png)
 	![](img/04-example-circuit-zx.png)
