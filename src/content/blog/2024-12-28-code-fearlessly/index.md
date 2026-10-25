@@ -37,9 +37,7 @@ There was absolutely no way for him to break anything.
 I decided that "Coding Fearlessly" was critical to being an extremely productive programmer by watching [Nat Friedman](https://nat.org/).
 Nat is one of the best programmers I know, and he truly loves working on software.
 
-![](./01_nat_friedman.jpg)
-
-*Fearlesss Nat, staring down some code*
+![Fearlesss Nat, staring down some code](./01_nat_friedman.jpg)
 
 One day I watched Nat deleting and changing a lot of code that people had obviously spent a lot of time writing.
 Some people might feel scared to even save the file after deleting so much code.
@@ -58,9 +56,7 @@ However, he was smart enough to know that it was a bad idea to start sticking wi
 So, Thomas hatched a plan. He figured out that he could scotch-tape photo sensors to the computer screen and write programs that turned portions of the screen either on full brightness or full darkness.
 That way, he could write programs that controlled motors, without electrically connecting anything to the computer itself.
 
-![](./02_young_thomas_massie.png)
-
-*Young Thomas Massie, and his robot arm*
+![Young Thomas Massie, and his robot arm](./02_young_thomas_massie.png)
 
 Many years later, at MIT, Thomas realized that as young child, he had re-invented the [Opto-isolator](https://en.wikipedia.org/wiki/Opto-isolator), a device that gave him the freedom to work fearlessly with a computer.
 
