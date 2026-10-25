@@ -18,6 +18,10 @@ Use the development build command which includes the `.env.dev` variables with
 npm run build-dev
 ```
 
+A running `eleventy --serve` rewrites `_site` with on-demand `/.11ty/image/` URLs that only the
+dev server can answer. To inspect a static build while it runs, build elsewhere with
+`npx env-cmd -f .env.dev npx @11ty/eleventy --output=<dir>`.
+
 ## Footnotes
 
 Footnotes are provided by [`markdown-it-footnote`](https://github.com/markdown-it/markdown-it-footnote),
@@ -105,6 +109,46 @@ first note the full citation and any later ones the short form, with the locator
   for authors and title, and `https://api.crossref.org/works/<DOI>` to confirm the DOI, journal,
   volume, issue, and year resolve to the right paper.
 
+## Images
+
+Write post images as plain markdown, `![](./file.png)`, with no size classes. eleventy-img
+generates the responsive widths, and the post CSS centres each image at the smallest of the
+column width, its own pixel width, and a height cap that grows with the viewport (`--img-cap` in
+`src/assets/scss/bootstrap.scss`). A lone image with alt text gets the alt as a caption
+(`src/_11ty/utils/image-captions.js`).
+
+- **`{.no-center}`** left-aligns an image, or a gallery row whose images carry it.
+- **`{style="--max-h: 25vh"}`** overrides the height cap for one image.
+- **Prefer H.264 `.mp4` for video.** Phone `.mov`s are often HEVC, which Firefox cannot play.
+
+### Side by side
+
+Wrap consecutive images in `{% gallery %}` (registered in `src/_11ty/shortcodes/components.js`,
+styled by `src/assets/scss/gallery.css`). Indentation inside is optional:
+
+```markdown
+{% gallery %}
+	![](./before.png)
+	![](./after.png)
+{% endgallery %}
+```
+
+- **Every image in a row renders at the same height**, the full height cap if the row fits, or
+  shrunk together if it does not. Below the `md` breakpoint the row wraps instead.
+- **One very wide image makes the whole row short**, since the others shrink to match its height.
+  Split such a row, or leave the wide image out of the gallery.
+- **Images never enlarge past their own pixel width**, so a small source in a row can come out
+  shorter than its neighbours.
+
+### Sizing internals
+
+- **`sizes` in the image plugin options in `eleventy.config.js` is the measured post column
+  width** at each Bootstrap breakpoint. Update it if the post layout changes. Do not drop it:
+  eleventy-img then emits `sizes="auto"`, which makes the browser lay every image out as 300×150.
+- **Post image width is computed in CSS** from `--natural-w` and `--ratio`, which
+  `src/_11ty/utils/image-natural-width.js` writes onto each `<picture>`. That keeps the box, and
+  its loading placeholder, at its final size before the image loads.
+
 ## Post styles
 
 `src/_includes/layouts/post.njk` inlines the post stylesheets with `{% include %}` (`post.css`,
@@ -142,8 +186,12 @@ This is the same idea as a Django widget's `Media` class.
 - **Strip blank lines from a shortcode's output** (`collapseBlankLines` in
   `src/_11ty/shortcodes/components.js`). Inlined CSS usually contains them, and markdown-it ends
   an HTML block at the first blank line, which would render the rest of the component as markdown.
+- **Keep `</style>` and `<script>` on separate lines.** markdown-it ends a `<style>` HTML block at
+  the line holding `</style>`, so a script starting on that line is parsed as a markdown paragraph,
+  which leaves a syntax error in the page's JS bundle and stops all of its scripts. Watch for
+  nunjucks whitespace control (`-%}`, `-#}`) between them, which joins the lines.
 
-`deferred_images.njk`, `gist-embed.njk`, and `zx-diagram.njk` all follow this.
+`deferred_images.njk`, `gallery.njk`, `gist-embed.njk`, and `zx-diagram.njk` all follow this.
 
 ## Post fragments
 
