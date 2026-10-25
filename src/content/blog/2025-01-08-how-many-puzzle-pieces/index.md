@@ -11,9 +11,7 @@ recommendNoRSS: true
 
 *We picked at a mathematical thread and unravelled a whole jumper*
 
-![](https://imgs.xkcd.com/comics/nerd_sniping.png)
-
-*[XKCD 356: Nerd sniping](https://xkcd.com/356/)*
+![[XKCD 356: Nerd sniping](https://xkcd.com/356/)](https://imgs.xkcd.com/comics/nerd_sniping.png)
 
 ## Introduction
 

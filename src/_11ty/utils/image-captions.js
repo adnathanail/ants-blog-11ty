@@ -1,6 +1,9 @@
 // Wrap a paragraph that contains nothing but a single image (or video, see
 // video-media.js — both parse as an "image" token) in <figure>/<figcaption>
 // when it has alt text, e.g. `![The lighthouse at dusk](lighthouse.png)`.
+// The caption is rendered as inline markdown, so it can hold links, emphasis
+// etc. (`![[XKCD 356](https://xkcd.com/356/)](comic.png)`); the alt attribute
+// is still the plain-text version.
 // Images with no alt text keep rendering as a plain <p><img></p>, so existing
 // posts are unaffected.
 export default function imageCaptions(mdLib) {
@@ -18,19 +21,19 @@ export default function imageCaptions(mdLib) {
 		const caption = captionFor(tokens, idx - 2, mdLib, options, env);
 		return caption === null
 			? defaultParagraphClose(tokens, idx, options, env, slf)
-			: `<figcaption>${mdLib.utils.escapeHtml(caption)}</figcaption></figure>`;
+			: `<figcaption>${slf.renderInline(caption, options, env)}</figcaption></figure>`;
 	};
 
 	return mdLib;
 }
 
-// Returns the caption text for the paragraph opening at `openIdx`, or null if
-// that paragraph isn't a lone captioned image/video.
+// Returns the caption's inline tokens for the paragraph opening at `openIdx`,
+// or null if that paragraph isn't a lone image/video with non-empty alt text.
 function captionFor(tokens, openIdx, mdLib, options, env) {
 	const inline = tokens[openIdx + 1];
 	if (!inline || inline.type !== 'inline') return null;
 	const children = inline.children;
 	if (!children || children.length !== 1 || children[0].type !== 'image') return null;
 	const alt = mdLib.renderer.renderInlineAsText(children[0].children, options, env).trim();
-	return alt || null;
+	return alt ? children[0].children : null;
 }
