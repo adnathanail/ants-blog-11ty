@@ -180,9 +180,15 @@ export default function(eleventyConfig) {
 	// as usual. Each line is dedented (indentation would make a code block) and blank
 	// lines are dropped so they form one paragraph, while the blank lines around them
 	// end the <div> HTML block so markdown-it parses them at all.
-	eleventyConfig.addPairedShortcode("gallery", (content) => {
+	//
+	// An optional caption for the whole row, {% gallery "Before and after" %}, makes it a
+	// <figure> with a <figcaption> under the images. The caption is markdown, set off by
+	// blank lines so markdown-it parses it rather than passing it through as HTML. The
+	// images' own alt text is never shown as a caption (see image-captions.js).
+	eleventyConfig.addPairedShortcode("gallery", (content, caption) => {
 		const images = content.split("\n").map(line => line.trim()).filter(Boolean).join("\n");
 		const assets = collapseBlankLines(componentEnv.render("gallery.njk", { css: componentCss("gallery") }));
-		return `${assets}\n<div class="gallery">\n\n${images}\n\n</div>`;
+		if (!caption?.trim()) return `${assets}\n<div class="gallery">\n\n${images}\n\n</div>`;
+		return `${assets}\n<figure class="gallery">\n\n${images}\n\n<figcaption>\n\n${caption.trim()}\n\n</figcaption>\n</figure>`;
 	});
 };

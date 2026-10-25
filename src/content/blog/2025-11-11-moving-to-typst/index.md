@@ -208,9 +208,7 @@ Compared to LaTeX:
 
 They're not doing the same thing, but they're comparably complex circuits. And I think that the `\` and `&` style is just harder to read, particularly for a brain used to languages like Python?
 
-{% gallery %}
+{% gallery "First: typst, second: LaTeX" %}
 	![](./typst_quantum_circuit.png)
 	![](./latex_quantum_circuit.png)
 {% endgallery %}
-
-First: typst, second: LaTeX

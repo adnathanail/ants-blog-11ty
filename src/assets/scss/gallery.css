@@ -20,6 +20,18 @@
 	gap: 0.5rem;
 }
 
+/* A captioned gallery is a <figure>, which post.css already pads and shades as it does
+   a lone captioned image, so the row and its caption sit in one box. The row's own <p>
+   would otherwise be padded again. The caption is markdown, so it arrives as a <p> too. */
+.post-content figure.gallery > p {
+	padding: 0 !important;
+	margin: 0;
+}
+
+.post-content figure.gallery > figcaption > p {
+	margin: 0;
+}
+
 /* .no-center on the images left-aligns the row, as it does a lone image (post.css). */
 .post-content .gallery > p:has(.no-center) {
 	justify-content: flex-start;

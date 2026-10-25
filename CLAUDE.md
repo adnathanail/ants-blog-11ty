@@ -146,6 +146,11 @@ styled by `src/assets/scss/gallery.css`). Indentation inside is optional:
   Split such a row, or leave the wide image out of the gallery.
 - **Images never enlarge past their own pixel width**, so a small source in a row can come out
   shorter than its neighbours.
+- **Caption the whole row with an argument**, `{% gallery "First: typst, second: LaTeX" %}`. The
+  caption is markdown, so it can hold links, and the gallery renders as a `<figure>` with it in
+  a `<figcaption>` under the images.
+- **Alt text on a gallery image is never shown as a caption**, unlike on a lone image. It is only
+  the image's `alt` attribute, so still write it for screen readers.
 
 ### Sizing internals
 
