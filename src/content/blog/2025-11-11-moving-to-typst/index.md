@@ -15,9 +15,11 @@ So, on January 20th 2021, half-way through my Formal Logic homework, I pivoted a
 
 These are from my first LaTeX document (note the shoddy handwriting in the table I couldn't be bothered to LaTeX-ify):
 
-![](./first_latex_1.png){.img-w-30}
-![](./first_latex_2.png){.img-w-30}
-![](./first_latex_3.png){.img-w-40}
+{% gallery %}
+	![](./first_latex_1.png)
+	![](./first_latex_2.png)
+	![](./first_latex_3.png)
+{% endgallery %}
 
 That third image was the key: the light-bulb moment. That big complex expression, that actually almost looks wrong in the way that it's rendered, except it's not.
 
@@ -25,9 +27,11 @@ I'd never have produced that by hand.
 
 I think it's so pretty, I'm just going to show you more of what I produced over the last few years of uni.
 
-![](./more_latex_1.png){.img-w-30}
-![](./more_latex_2.png){.img-w-30}
-![](./more_latex_3.png){.img-w-40}
+{% gallery %}
+	![](./more_latex_1.png)
+	![](./more_latex_2.png)
+	![](./more_latex_3.png)
+{% endgallery %}
 
 And, don't get my wrong, this is nothing special that I'm doing. This is LaTeX itself being wonderful.
 
@@ -204,7 +208,9 @@ Compared to LaTeX:
 
 They're not doing the same thing, but they're comparably complex circuits. And I think that the `\` and `&` style is just harder to read, particularly for a brain used to languages like Python?
 
-![](./typst_quantum_circuit.png){.img-w-30}
-![](./latex_quantum_circuit.png){.img-w-30}
+{% gallery %}
+	![](./typst_quantum_circuit.png)
+	![](./latex_quantum_circuit.png)
+{% endgallery %}
 
 Left: typst, right: LaTeX

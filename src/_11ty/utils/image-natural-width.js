@@ -13,6 +13,8 @@
 //
 // The `width`/`height` attributes eleventy-img writes are those of the largest
 // generated width, i.e. the source size (capped at the largest configured width).
+// The properties go on the <picture> rather than the <img>: the <img> inherits
+// them, and a gallery's flex layout needs them on the <picture>, its flex item.
 export default function imageNaturalWidth(eleventyConfig) {
 	eleventyConfig.addTransform("image-natural-width", function (content) {
 		if (!this.page?.outputPath?.endsWith?.(".html")) return content;
@@ -24,16 +26,12 @@ export default function imageNaturalWidth(eleventyConfig) {
 			/<(script|style)\b[^>]*>[\s\S]*?<\/\1>|<picture\b[\s\S]*?<\/picture>/g,
 			(match, styleOrScript) => {
 				if (styleOrScript) return match;
-				return match.replace(/<img\b([^>]*)>/, (img, attrs) => {
-					const width = attrs.match(/\swidth\s*=\s*"(\d+)"/)?.[1];
-					const height = attrs.match(/\sheight\s*=\s*"(\d+)"/)?.[1];
-					if (!width || !height) return img;
-					const prop = `--natural-w: ${width}px; --ratio: ${+(width / height).toFixed(4)};`;
-					const styled = /\sstyle\s*=\s*"/.test(attrs)
-						? attrs.replace(/\sstyle\s*=\s*"/, (s) => `${s}${prop} `)
-						: `${attrs} style="${prop}"`;
-					return `<img${styled}>`;
-				});
+				const imgAttrs = match.match(/<img\b([^>]*)>/)?.[1] ?? "";
+				const width = imgAttrs.match(/\swidth\s*=\s*"(\d+)"/)?.[1];
+				const height = imgAttrs.match(/\sheight\s*=\s*"(\d+)"/)?.[1];
+				if (!width || !height) return match;
+				const style = `--natural-w: ${width}px; --ratio: ${+(width / height).toFixed(4)};`;
+				return match.replace(/^<picture\b/, `<picture style="${style}"`);
 			}
 		);
 	});

@@ -150,6 +150,25 @@ filling the width.
 Below the `md` breakpoint, allow wrapping, or stack images, so a row of three does not become
 three thumbnails on a phone. Possibly a `cols=` argument to choose the wrap point per gallery.
 
+### As built
+
+- `{% gallery %}` in `components.js`, `gallery.njk`, `gallery.css`. The shortcode emits
+  `<div class="gallery">`, a blank line, the dedented image lines, a blank line, `</div>`, so
+  markdown-it parses the images into one `<p>` and the usual pipeline applies.
+- Items are `flex: 0 1 calc(var(--ratio) * var(--gallery-h))` with no grow: a row that fits sits
+  at the height cap, one that doesn't shrinks proportionally, so heights stay equal. No height
+  cap applies inside the row, but images still never exceed `--natural-w`.
+- `--natural-w`/`--ratio` moved from the `<img>` to the `<picture>` (the flex item); the `<img>`
+  inherits them. The height ladder moved to `--img-cap` on `.post-content`, shared by both.
+- Below `md` the row wraps at `--gallery-h: 25vh`, giving two portrait screenshots per line.
+- Videos get `--ratio` from `videoWidth`/`videoHeight` on `loadedmetadata`, and are square until
+  then, or for good where the browser cannot decode them (the AoC `.mov`s are HEVC, which
+  Firefox and Playwright's Chromium cannot play).
+- No `sizes` override for gallery items yet, so they download the column-width candidate.
+- A row mixing one very wide image with narrower ones comes out short (Typst post, first row:
+  91px tall at 800px). Split such rows, or keep the wide image out of the gallery.
+- Converted so far: the Typst post (3 rows) and AoC days 17 and 24.
+
 ## Step 5 — one per-image override
 
 Instead of the width classes, use the `--max-h` custom property from step 1 for the rare image

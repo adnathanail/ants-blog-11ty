@@ -1,0 +1,21 @@
+{#- Identical for every gallery, so the bundle plugin hoists these into this page's
+    css/js bundles once, and not at all on pages with no galleries.
+
+    An image's --ratio is written at build time (image-natural-width.js), but a video's
+    dimensions are only known once its metadata loads, so the script gives it its
+    --ratio. Until then, or if the browser cannot decode it (it then reports a 0x0
+    size), it is laid out as square.
+
+    The <style> and <script> must stay on separate lines: markdown-it ends a <style>
+    HTML block at the line holding </style>, so anything after it on that line would
+    end up parsed as markdown. -#}
+<style>{{ css | safe }}</style>
+<script type="module">
+	for (const video of document.querySelectorAll(".gallery video")) {
+		const setRatio = () => {
+			if (video.videoWidth && video.videoHeight) video.style.setProperty("--ratio", video.videoWidth / video.videoHeight);
+		};
+		if (video.readyState >= 1 /* HAVE_METADATA */) setRatio();
+		else video.addEventListener("loadedmetadata", setRatio, { once: true });
+	}
+</script>
