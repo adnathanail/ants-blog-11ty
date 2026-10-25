@@ -213,4 +213,4 @@ They're not doing the same thing, but they're comparably complex circuits. And I
 	![](./latex_quantum_circuit.png)
 {% endgallery %}
 
-Left: typst, right: LaTeX
+First: typst, second: LaTeX
