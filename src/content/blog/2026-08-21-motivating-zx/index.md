@@ -154,7 +154,7 @@ Is there something we can replace our matrices with, which allows us to reason a
 
 ## The ZX-calculus
 
-![](img/03-teleportation.png){.img-w-100}
+![](img/03-teleportation.png)
 
 > [!question]
 > Which famous quantum protocol is shown in the diagram above?
@@ -194,8 +194,10 @@ Converted to a ZX-diagram, our example circuit would look like this:
 
 <!-- TODO image layout -->
 
-![](img/01a-example-circuit-no-slices.png)
-![](img/04-example-circuit-zx.png)
+{% gallery %}
+	![](img/01a-example-circuit-no-slices.png)
+	![](img/04-example-circuit-zx.png)
+{% endgallery %}
 
 The starting $\ket{0}$ s have become **phaseless** X spiders.
 The Z and X gates have become corresponding Z and X spiders, with a phase of $\pi$.
@@ -241,7 +243,7 @@ That was an application of the **spider fusion** (**sp**) rule, and then applyin
 If you refer to the quantum circuit diagram, you'll see that what we did was move the Z gate to before the CNOT gate.
 And, if you worked out the linear algebra, you'd see that those two circuits represent entirely equivalent operations!
 
-![](./img/05-example-circuit-rewritten.png){.img-w-100}
+![](./img/05-example-circuit-rewritten.png)
 
 We can also use the rules to simplify the diagram:
 

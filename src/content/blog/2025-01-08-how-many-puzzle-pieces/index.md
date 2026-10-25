@@ -37,7 +37,7 @@ I said it wasn't that, it was $2^{4}$, because you have 4 sides, each with 2 pos
 
 But a quick scribble determined that the case with 2 *outs* had 2 options that couldn't be rotated to each other, so the answer was $6$!
 
-![](./02_four_case.png){.img-w-40}
+![](./02_four_case.png)
 
 That could have been the end of it, but **P** then had to ask
 
@@ -49,8 +49,10 @@ Was it $1 + 2 + 3$? That's a neat-ish sum, maybe its $\sum_{x=1}^{n - 1} x$ for 
 
 We needed to work out some other cases (ignoring the fact that you can't tessellate 2D shapes which aren't triangles, squares, or hexagons).
 
-![](./03_my_scribbles_1.png){.img-w-30}
-![](./04_my_scribbles_2.png){.img-w-30}
+{% gallery %}
+	![](./03_my_scribbles_1.png)
+	![](./04_my_scribbles_2.png)
+{% endgallery %}
 
 By hand, we calculated cases $n=1 \ldots 9$ (and got it right for $n=1 \ldots 7$) (where $n$ is the number of sides the shape has).
 
@@ -188,7 +190,7 @@ Why is it talking about necklaces?
 
 ## Necklace numbers
 
-![](./05_necklace.png){.img-w-40}
+![](./05_necklace.png)
 
 The mathematical study of **necklaces** looks at how many ways there are to order different coloured beads on a string.
 If we imagine a four-sided puzzle piece with *in*, *out*, *in*, *out* this is equivalent to a 2-coloured necklace with four beads: white, black, white, black.

@@ -17,7 +17,7 @@ I also like 'granular' commits, i.e. not squashing PRs ([Pull Requests](https://
 Sometimes a PR is necessarily quite large, and keeping the commit history of a piece of development before it hit main is quite handy.
 You see the story of how someone worked on an issue, you see how designs changed and decisions were made, you see pitfalls hit and worked around.
 
-![](large_pr.png){.img-w-100}
+![](large_pr.png)
 
 I quite like verified commits.
 In the spaces I'm working (mostly proprietary code, or technically open-source but tiny and irrelevant) they're maybe not an enourmous concern.

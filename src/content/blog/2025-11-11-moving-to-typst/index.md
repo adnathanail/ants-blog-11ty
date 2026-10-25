@@ -135,7 +135,7 @@ The outputted formulas are subtly differently laid out. This is reasonable and t
 
 But one thing that is definitely wrong (in my opinion) is the kerning on ellipses in formulas
 
-![](./typst_kerning_bad.png){.img-w-30}
+![](./typst_kerning_bad.png)
 
 There should be spaces around that.
 
