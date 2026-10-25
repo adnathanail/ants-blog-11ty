@@ -49,7 +49,7 @@ const makeCardRenderer = (type, mdLib) => {
 			const header = title
 				? `<div class="card-header bg-transparent border-0 pb-0">
 							<h6 class="mb-0 fst-italic" data-ha-exclude>
-								${mdLib.utils.escapeHtml(title)}
+								${mdLib.renderInline(title, env)}
 							</h6>
 						</div>`
 				: '';
