@@ -190,6 +190,16 @@ If a named class reads better in posts, add at most two (e.g. `.small`, `.full`)
   (`grep` templates as well as content).
 - Check every touched post at phone, tablet and desktop widths.
 
+### As built
+
+- All 17 multi-image rows are galleries, and every `.img-w-*` class is gone from content and CSS,
+  along with the `font-size: 0` and margin rules.
+- `.no-center` stays: it left-aligns a lone image (`post.css`) and a gallery row (`gallery.css`).
+  Formerly width-classed single images now take the default size.
+- `.mh-30vh` stays in `index.css`: `postslist.njk` uses it for the post card images.
+- When testing, build into a separate `--output` directory if `eleventy --serve` is running: it
+  rewrites `_site` with on-demand `/.11ty/image/` URLs, which a static server cannot serve.
+
 ## Step 7 — full-screen viewing with PhotoSwipe
 
 [PhotoSwipe v5](https://photoswipe.com/) — MIT, no dependencies, pinch-zoom, swiping between
