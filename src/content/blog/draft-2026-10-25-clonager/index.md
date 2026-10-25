@@ -15,7 +15,7 @@ So I love Django's migration system, producing documents with LaTeX, [OpenTofu](
 The promise is a beautiful one: your whole device configuration lives in version controlled text files.
 User interface, installed software, app configuration, everything.
 
-![The classic demo everyone seems to show of their NixOS config - NixOS for the impatient](./01_nixos_for_the_impatient.jpg)
+![The classic demo everyone seems to show of their NixOS config - [NixOS for the impatient](https://borretti.me/article/nixos-for-the-impatient)](./01_nixos_for_the_impatient.jpg)
 
 I gave it a shot for a month or so, but unfortunately I just wasn't ready for Linux yet.
 There were some macOS apps and niceties which I couldn't find a replacement for quick enough to make the change stick.
