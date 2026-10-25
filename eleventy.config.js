@@ -13,8 +13,7 @@ import footnotes from "./src/_11ty/utils/footnotes.js";
 import externalLinks from "./src/_11ty/utils/external-links.js";
 import videoMedia from "./src/_11ty/utils/video-media.js";
 import imageCaptions from "./src/_11ty/utils/image-captions.js";
-import imagePlaceholders from "./src/_11ty/utils/image-placeholders.js";
-import imageNaturalWidth from "./src/_11ty/utils/image-natural-width.js";
+import postMedia from "./src/_11ty/utils/post-media.js";
 import "./src/_11ty/utils/prism-typst.js";
 
 import pluginFilters from "./src/_11ty/filters/filters.js";
@@ -207,11 +206,9 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(dateShortcodes);
 	eleventyConfig.addPlugin(componentShortcodes);
 
-	// Gives blog post images and videos a loading placeholder.
-	eleventyConfig.addPlugin(imagePlaceholders);
-
-	// Lets the post CSS size blog post images before they load (see the file for why).
-	eleventyConfig.addPlugin(imageNaturalWidth);
+	// Gives blog post images and videos a loading placeholder, and lets the post
+	// CSS size images before they load (see the file for why).
+	eleventyConfig.addPlugin(postMedia);
 
 	// markdown-it plugins
 	eleventyConfig.amendLibrary("md", admonitions);

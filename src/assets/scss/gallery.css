@@ -7,7 +7,7 @@
  *
  * The row height is the post's image height cap, --img-cap (bootstrap.scss), or 25vh on a
  * phone. The per-image --max-h override does not apply inside a gallery.
- * --ratio and --natural-w come from image-natural-width.js, or for a video, from
+ * --ratio and --natural-w come from post-media.js, or for a video, from
  * video-media.js (falling back to the script in gallery.njk).
  *
  * Gallery images keep the column-width `sizes` from eleventy.config.js, so they download a
