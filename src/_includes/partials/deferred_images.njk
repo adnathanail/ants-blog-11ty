@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	// image well before it scrolls in (Chrome's threshold is over 1000px), so
 	// anything this counts as on-screen is genuinely already in flight.
 	const MARGIN = 200;
+	// How long a batch waits for its slowest member. An autoplay <video> Chrome
+	// has deferred, or a slow remote image, would otherwise hold back everything
+	// else on screen. After this, each one reveals as soon as it is ready.
+	const BATCH_TIMEOUT = 1000;
+
 	const nearViewport = (el) => {
 		const rect = el.getBoundingClientRect();
 		const height = window.innerHeight || document.documentElement.clientHeight;
@@ -61,7 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			[[], []]
 		);
 
-		Promise.all(loading.map(whenReady)).then(() => reveal(loading));
+		const deadline = new Promise((resolve) => setTimeout(resolve, BATCH_TIMEOUT));
+		Promise.race([Promise.all(loading.map(whenReady)), deadline])
+			.then(() => loading.forEach((el) => whenReady(el).then(() => reveal([el]))));
 		pending.forEach((el) => whenReady(el).then(() => reveal([el])));
 	});
 });
