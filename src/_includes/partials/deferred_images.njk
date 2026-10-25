@@ -1,7 +1,21 @@
 <style>
+	/* Two ways to show a placeholder until an image is revealed:
+	   - a .deferred-img-placeholder span laid over a hidden .deferred-img
+	     (the card layouts, which already have a positioned wrapper);
+	   - .deferred-img-glow on the media element itself (blog post images, see
+	     image-placeholders.js). Its pixels are pushed out of its own box with
+	     object-position, so the box shows only its background, glowing like a
+	     Bootstrap .placeholder. No wrapper, so CSS sizing applies to it directly. */
 	@media (scripting: enabled) {
 		.deferred-img-placeholder { visibility: visible !important; }
 		.deferred-img { visibility: hidden; }
+		.deferred-img.deferred-img-glow {
+			visibility: visible;
+			object-position: -100vw 0;
+			background-color: currentcolor;
+			opacity: .5;
+			animation: placeholder-glow 2s ease-in-out infinite;
+		}
 	}
 </style>
 <script>
@@ -16,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const reveal = (els) => els.forEach((el) => {
 		el.style.visibility = "visible";
+		el.classList.remove("deferred-img-glow");
 		el.closest(".placeholder-glow")?.querySelector(".deferred-img-placeholder")?.remove();
 	});
 

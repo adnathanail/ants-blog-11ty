@@ -112,6 +112,18 @@ shimmer, which can move onto the media element itself:
   off the gallery container (step 4) or the parent paragraph instead.
 - Delete the `TEMP` skip branches and `hoistClasses`.
 
+### As built
+
+- The placeholder is drawn by the element: `.deferred-img-glow` (in `deferred_images.njk`) pushes
+  the pixels out of the box with `object-position` and glows the background. The reveal script
+  removes the class. `.post-content` is the batch.
+- `width: auto; height: auto` gives a pending `alt=""` image a 0×0 box in Chrome, so neither
+  the placeholder nor the reserved space appeared. `image-natural-width.js` now also writes
+  `--ratio`, and the base rule computes the width outright:
+  `min(100%, var(--natural-w), var(--img-max-h) * var(--ratio))`. The box is final before load.
+- The `--max-h` override from step 5 is already wired into that rule.
+- The card layouts (`postslist.njk`, `project_links.njk`) keep their wrapper-based placeholder.
+
 ## Step 4 — `{% gallery %}` for side-by-side images
 
 A paired shortcode, following the `zxGroup` pattern in `src/_11ty/shortcodes/components.js`
