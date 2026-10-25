@@ -5,14 +5,15 @@
  * height, and a row that doesn't shrinks every item by the same factor, which keeps
  * their heights equal. Items never grow, so a short row is centred rather than stretched.
  *
- * --img-cap is the post's image height cap (bootstrap.scss); --max-h overrides it.
+ * The row height is the post's image height cap, --img-cap (bootstrap.scss), or 25vh on a
+ * phone. The per-image --max-h override does not apply inside a gallery.
  * --ratio and --natural-w come from image-natural-width.js, or for a video, from the
  * script in gallery.njk.
  *
  * Gallery images keep the column-width `sizes` from eleventy.config.js, so they download a
  * larger candidate than their rendered width needs. */
 .post-content .gallery > p {
-	--gallery-h: var(--max-h, var(--img-cap));
+	--gallery-h: var(--img-cap);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -28,7 +29,7 @@
    so the row wraps instead, at a lower height so that two portrait images share a line. */
 @media (max-width: 767.98px) {
 	.post-content .gallery > p {
-		--gallery-h: var(--max-h, 25vh);
+		--gallery-h: 25vh;
 		flex-wrap: wrap;
 	}
 }

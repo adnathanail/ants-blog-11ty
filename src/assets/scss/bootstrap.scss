@@ -137,7 +137,8 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 // height: auto follows the aspect ratio the browser derives from the width/height
 //   attributes; without it the height attribute would fix the height.
 // --img-cap is the height cap; --max-h overrides it for one image,
-//   e.g. ![](x.png){style="--max-h: 25vh"}. src/assets/scss/gallery.css reads both too.
+//   e.g. ![](x.png){style="--max-h: 25vh"}. src/assets/scss/gallery.css uses --img-cap
+//   for its row height, but --max-h has no effect inside a gallery.
 .post-content {
 	--img-cap: 40vh;
 

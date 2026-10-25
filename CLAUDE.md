@@ -118,7 +118,8 @@ column width, its own pixel width, and a height cap that grows with the viewport
 (`src/_11ty/utils/image-captions.js`).
 
 - **`{.no-center}`** left-aligns an image, or a gallery row whose images carry it.
-- **`{style="--max-h: 25vh"}`** overrides the height cap for one image.
+- **`{style="--max-h: 25vh"}`** overrides the height cap for one image. It has no effect on an
+  image inside a `{% gallery %}`, whose row height is set by `src/assets/scss/gallery.css`.
 - **Prefer H.264 `.mp4` for video.** Phone `.mov`s are often HEVC, which Firefox cannot play.
   Videos always play muted, so drop the audio. 720px wide is plenty at post sizes:
 
