@@ -1,5 +1,5 @@
-// Render ![](foo.mov) as a <video> instead of an <img>. Any classes from
-// markdown-it-attrs (e.g. `.no-center`) are passed through.
+// Render ![](foo.mov) as a <video> instead of an <img>. Attributes from
+// markdown-it-attrs (e.g. `.no-center`, `style="--max-h: 25vh"`) are passed through.
 //
 // A video beside the post also gets its pixel width (--natural-w) and aspect
 // ratio (--ratio), the same properties post-media.js gives images, so
@@ -29,12 +29,15 @@ export default function videoMedia(mdLib) {
 		const token = tokens[idx];
 		const src = token.attrGet('src') || '';
 		if (/\.(mov|mp4|webm|m4v)$/i.test(src)) {
-			const classAttr = token.attrGet('class');
-			const style = sizeStyle(src, env);
+			const passthrough = (token.attrs || [])
+				.filter(([name]) => !['src', 'alt', 'style'].includes(name))
+				.map(([name, value]) => `${name}="${mdLib.utils.escapeHtml(value)}"`);
+			// The author's style goes last so it wins over the generated properties.
+			const style = [sizeStyle(src, env), token.attrGet('style')].filter(Boolean).join(' ');
 			const attrs = [
 				`src="${mdLib.utils.escapeHtml(src)}"`,
-				classAttr && `class="${mdLib.utils.escapeHtml(classAttr)}"`,
-				style && `style="${style}"`,
+				...passthrough,
+				style && `style="${mdLib.utils.escapeHtml(style)}"`,
 				'autoplay', 'playsinline', 'muted', 'loop',
 			].filter(Boolean).join(' ');
 			return `<video ${attrs}></video>`;
