@@ -11,7 +11,12 @@
 // Returns { width, height }, or null if the file cannot be read or is not an
 // MP4/QuickTime file. Rendering then falls back to sizing the video once its
 // metadata loads.
+//
+// Results are cached per path, keyed on the file's size and modification time, so
+// a rebuild under `eleventy --serve` only re-reads a video that has changed.
 import fs from "node:fs";
+
+const cache = new Map();
 
 // Parse the box header at `offset`. A size of 1 means a 64-bit size follows the
 // type, and 0 means the box runs to the end of its container, which is
@@ -80,6 +85,20 @@ function readTkhd(buffer, start) {
 }
 
 export default function videoDimensions(filePath) {
+	let stats;
+	try {
+		stats = fs.statSync(filePath);
+	} catch {
+		return null;
+	}
+	const cached = cache.get(filePath);
+	if (cached?.size === stats.size && cached.mtimeMs === stats.mtimeMs) return cached.dimensions;
+	const dimensions = readDimensions(filePath);
+	cache.set(filePath, { size: stats.size, mtimeMs: stats.mtimeMs, dimensions });
+	return dimensions;
+}
+
+function readDimensions(filePath) {
 	let fd;
 	try {
 		fd = fs.openSync(filePath, "r");
