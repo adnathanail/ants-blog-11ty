@@ -22,7 +22,8 @@ layout: layouts/base.njk
 	{% include "partials/tags-and-author.njk" %}
 </div>
 
-<div class="post-content">
+{# deferred-img-batch: images on screen at load reveal together (see deferred_images.njk) #}
+<div class="post-content deferred-img-batch">
 	{{ content | safe }}
 </div>
 

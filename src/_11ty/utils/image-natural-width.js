@@ -1,11 +1,18 @@
-// Record each blog post image's real pixel width as a --natural-w custom
-// property, so the post CSS can stop an image growing past it.
+// Record each blog post image's real pixel width (--natural-w) and aspect
+// ratio (--ratio) as custom properties, so the post CSS can size it without
+// waiting for it to load.
 //
-// eleventy-img emits srcset with `w` descriptors, and with those the browser
-// takes an image's natural width from `sizes` rather than from the file. A
-// 400px screenshot under sizes="… 1084px" would therefore render at 1084px.
-// The `width` attribute eleventy-img writes is the largest generated width,
-// i.e. the source width (capped at the largest configured width).
+// - eleventy-img emits srcset with `w` descriptors, and with those the browser
+//   takes an image's natural width from `sizes` rather than from the file. A
+//   400px screenshot under sizes="… 1084px" would render at 1084px unless
+//   capped at --natural-w.
+// - Until an image loads it has no natural size at all, and Chrome draws a
+//   pending alt="" image as 0x0. A width computed from these properties gives
+//   it its final box straight away, so the loading placeholder is visible and
+//   nothing shifts when it arrives.
+//
+// The `width`/`height` attributes eleventy-img writes are those of the largest
+// generated width, i.e. the source size (capped at the largest configured width).
 export default function imageNaturalWidth(eleventyConfig) {
 	eleventyConfig.addTransform("image-natural-width", function (content) {
 		if (!this.page?.outputPath?.endsWith?.(".html")) return content;
@@ -19,8 +26,9 @@ export default function imageNaturalWidth(eleventyConfig) {
 				if (styleOrScript) return match;
 				return match.replace(/<img\b([^>]*)>/, (img, attrs) => {
 					const width = attrs.match(/\swidth\s*=\s*"(\d+)"/)?.[1];
-					if (!width) return img;
-					const prop = `--natural-w: ${width}px;`;
+					const height = attrs.match(/\sheight\s*=\s*"(\d+)"/)?.[1];
+					if (!width || !height) return img;
+					const prop = `--natural-w: ${width}px; --ratio: ${+(width / height).toFixed(4)};`;
 					const styled = /\sstyle\s*=\s*"/.test(attrs)
 						? attrs.replace(/\sstyle\s*=\s*"/, (s) => `${s}${prop} `)
 						: `${attrs} style="${prop}"`;

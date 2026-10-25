@@ -128,22 +128,28 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 // ################
 // (Using Bootstrap mixins/variables)
 
-// --natural-w is written onto each image by src/_11ty/utils/image-natural-width.js,
-//   so an image never renders wider than its source file.
-// height: auto is required: eleventy-img writes a height attribute, which would
-//   otherwise fix the height while max-width shrinks the width, distorting the image.
+// Post images are as wide as the smallest of: the column, the source file, and
+//   the width at which they hit the height cap. --natural-w and --ratio are written
+//   onto each image by src/_11ty/utils/image-natural-width.js, so this width is known
+//   before the image loads and its box (and loading placeholder) never shifts.
+// Media without those properties (videos) makes the width declaration invalid,
+//   which falls back to auto, so the max-width/max-height caps size it instead.
+// height: auto follows the aspect ratio the browser derives from the width/height
+//   attributes; without it the height attribute would fix the height.
+// --max-h overrides the height cap for one image, e.g. ![](x.png){style="--max-h: 25vh"}.
 .post-content img, .post-content video {
-	width: auto;
+	--img-max-h: var(--max-h, 40vh);
+	width: min(100%, var(--natural-w), var(--img-max-h) * var(--ratio));
 	height: auto;
 	max-width: min(100%, var(--natural-w, 100%));
-	max-height: 40vh;
+	max-height: var(--img-max-h);
 
 	@include media-breakpoint-up(md) {
-		max-height: 50vh;
+		--img-max-h: var(--max-h, 50vh);
 	}
 
 	@include media-breakpoint-up(xl) {
-		max-height: 60vh;
+		--img-max-h: var(--max-h, 60vh);
 	}
 }
 

@@ -207,10 +207,10 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(dateShortcodes);
 	eleventyConfig.addPlugin(componentShortcodes);
 
-	// Wraps <picture> elements in blog posts with placeholder-glow markup.
+	// Gives blog post images and videos a loading placeholder.
 	eleventyConfig.addPlugin(imagePlaceholders);
 
-	// Caps blog post images at their real pixel width (see the file for why).
+	// Lets the post CSS size blog post images before they load (see the file for why).
 	eleventyConfig.addPlugin(imageNaturalWidth);
 
 	// markdown-it plugins
