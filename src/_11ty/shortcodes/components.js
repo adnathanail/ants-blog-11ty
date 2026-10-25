@@ -3,6 +3,7 @@ import fs from "node:fs";
 import nunjucks from "nunjucks";
 
 import shortUrlDomain from "../../_data/shortUrlDomain.js";
+import { GALLERY_ROW_CLASS } from "../utils/image-captions.js";
 
 // Relation symbols a ZX rewrite step can be justified by. Keyed by what an author
 // types in the shortcode, so the awkward-to-type characters have a word spelling too.
@@ -179,14 +180,17 @@ export default function(eleventyConfig) {
 	// The images are handed back to markdown-it, so they go through the image pipeline
 	// as usual. Each line is dedented (indentation would make a code block) and blank
 	// lines are dropped so they form one paragraph, while the blank lines around them
-	// end the <div> HTML block so markdown-it parses them at all.
+	// end the <div> HTML block so markdown-it parses them at all. A trailing
+	// markdown-it-attrs line puts GALLERY_ROW_CLASS on that paragraph, which is how
+	// image-captions.js knows not to caption the images.
 	//
 	// An optional caption for the whole row, {% gallery "Before and after" %}, makes it a
 	// <figure> with a <figcaption> under the images. The caption is markdown, set off by
 	// blank lines so markdown-it parses it rather than passing it through as HTML. The
 	// images' own alt text is never shown as a caption (see image-captions.js).
 	eleventyConfig.addPairedShortcode("gallery", (content, caption) => {
-		const images = content.split("\n").map(line => line.trim()).filter(Boolean).join("\n");
+		const lines = content.split("\n").map(line => line.trim()).filter(Boolean);
+		const images = [...lines, `{.${GALLERY_ROW_CLASS}}`].join("\n");
 		const assets = collapseBlankLines(componentEnv.render("gallery.njk", { css: componentCss("gallery") }));
 		if (!caption?.trim()) return `${assets}\n<div class="gallery">\n\n${images}\n\n</div>`;
 		return `${assets}\n<figure class="gallery">\n\n${images}\n\n<figcaption>\n\n${caption.trim()}\n\n</figcaption>\n</figure>`;

@@ -9,6 +9,11 @@
 // A gallery's images are left alone even with alt text: their alt is only alt
 // text, and a gallery takes one caption for the whole row instead (see the
 // gallery shortcode in src/_11ty/shortcodes/components.js).
+
+// The gallery shortcode marks the paragraph holding its images with this class,
+// through a trailing markdown-it-attrs `{.gallery-row}` line.
+export const GALLERY_ROW_CLASS = 'gallery-row';
+
 export default function imageCaptions(mdLib) {
 	const defaultParagraphOpen = mdLib.renderer.rules.paragraph_open ||
 		((tokens, idx, options, env, slf) => slf.renderToken(tokens, idx, options));
@@ -33,7 +38,7 @@ export default function imageCaptions(mdLib) {
 // Returns the caption's inline tokens for the paragraph opening at `openIdx`,
 // or null if that paragraph isn't a lone image/video with non-empty alt text.
 function captionFor(tokens, openIdx, mdLib, options, env) {
-	if (isGalleryContent(tokens, openIdx)) return null;
+	if (isGalleryRow(tokens[openIdx])) return null;
 	const inline = tokens[openIdx + 1];
 	if (!inline || inline.type !== 'inline') return null;
 	const children = inline.children;
@@ -42,9 +47,6 @@ function captionFor(tokens, openIdx, mdLib, options, env) {
 	return alt ? children[0].children : null;
 }
 
-// The gallery shortcode emits its opening tag as the end of the HTML block just
-// before the paragraph holding its images.
-function isGalleryContent(tokens, openIdx) {
-	const prev = tokens[openIdx - 1];
-	return prev?.type === 'html_block' && /<(div|figure) class="gallery">\s*$/.test(prev.content);
+function isGalleryRow(paragraphOpen) {
+	return (paragraphOpen?.attrGet('class') || '').split(/\s+/).includes(GALLERY_ROW_CLASS);
 }
