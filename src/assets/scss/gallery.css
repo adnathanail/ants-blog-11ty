@@ -7,7 +7,10 @@
  *
  * --img-cap is the post's image height cap (bootstrap.scss); --max-h overrides it.
  * --ratio and --natural-w come from image-natural-width.js, or for a video, from the
- * script in gallery.njk. */
+ * script in gallery.njk.
+ *
+ * Gallery images keep the column-width `sizes` from eleventy.config.js, so they download a
+ * larger candidate than their rendered width needs. */
 .post-content .gallery > p {
 	--gallery-h: var(--max-h, var(--img-cap));
 	display: flex;
