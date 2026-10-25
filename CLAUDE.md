@@ -120,6 +120,12 @@ column width, its own pixel width, and a height cap that grows with the viewport
 - **`{.no-center}`** left-aligns an image, or a gallery row whose images carry it.
 - **`{style="--max-h: 25vh"}`** overrides the height cap for one image.
 - **Prefer H.264 `.mp4` for video.** Phone `.mov`s are often HEVC, which Firefox cannot play.
+  Videos always play muted, so drop the audio. 720px wide is plenty at post sizes:
+
+  ```bash
+  ffmpeg -i in.mov -vf "scale=720:-2" -c:v libx264 -preset slow -crf 23 -profile:v high \
+    -pix_fmt yuv420p -an -movflags +faststart out.mp4
+  ```
 
 ### Side by side
 
