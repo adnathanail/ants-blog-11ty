@@ -4,7 +4,6 @@ description: AI does it all for me
 author: alex
 heroImg: ./03_clonager_demo.png
 date: 2026-10-25
-draft: true
 ---
 
 ## NixOS
