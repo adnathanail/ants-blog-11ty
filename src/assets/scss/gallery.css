@@ -1,0 +1,46 @@
+/* The gallery shortcode: a row of images at a common height.
+ *
+ * Each item's flex-basis is its width at the row height (--ratio x --gallery-h), and
+ * flex shrinks items in proportion to their basis. So a row that fits sits at the full
+ * height, and a row that doesn't shrinks every item by the same factor, which keeps
+ * their heights equal. Items never grow, so a short row is centred rather than stretched.
+ *
+ * --img-cap is the post's image height cap (bootstrap.scss); --max-h overrides it.
+ * --ratio and --natural-w come from image-natural-width.js, or for a video, from the
+ * script in gallery.njk. */
+.post-content .gallery > p {
+	--gallery-h: var(--max-h, var(--img-cap));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+/* On a phone, a row of several images shrunk to one line would leave each a thumbnail,
+   so the row wraps instead, at a lower height so that two portrait images share a line. */
+@media (max-width: 767.98px) {
+	.post-content .gallery > p {
+		--gallery-h: var(--max-h, 25vh);
+		flex-wrap: wrap;
+	}
+}
+
+.post-content .gallery > p > :is(picture, video) {
+	flex: 0 1 calc(var(--ratio, 1) * var(--gallery-h));
+	min-width: 0;
+}
+
+/* The item already has the right width; the image fills it, without enlarging past
+   its own pixel size. */
+.post-content .gallery > p > picture > img {
+	width: 100%;
+	max-width: var(--natural-w, 100%);
+	max-height: none;
+}
+
+.post-content .gallery > p > video {
+	width: auto;
+	max-width: none;
+	max-height: none;
+	aspect-ratio: var(--ratio, 1);
+}

@@ -170,4 +170,19 @@ export default function(eleventyConfig) {
 	eleventyConfig.addPairedShortcode("zxGroup", (content) =>
 		`<div class="zx-group">${collapseBlankLines(content)}</div>`
 	);
+
+	// Lays a run of markdown images out side by side at a common height, e.g.
+	//   {% gallery %}
+	//     ![](./a.png)
+	//     ![](./b.png)
+	//   {% endgallery %}
+	// The images are handed back to markdown-it, so they go through the image pipeline
+	// as usual. Each line is dedented (indentation would make a code block) and blank
+	// lines are dropped so they form one paragraph, while the blank lines around them
+	// end the <div> HTML block so markdown-it parses them at all.
+	eleventyConfig.addPairedShortcode("gallery", (content) => {
+		const images = content.split("\n").map(line => line.trim()).filter(Boolean).join("\n");
+		const assets = collapseBlankLines(componentEnv.render("gallery.njk", { css: componentCss("gallery") }));
+		return `${assets}\n<div class="gallery">\n\n${images}\n\n</div>`;
+	});
 };
