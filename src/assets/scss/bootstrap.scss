@@ -161,6 +161,13 @@ $bootstrap-icons-font-dir: "/fonts/bootstrap-icons";
 	max-height: var(--img-max-h);
 }
 
+// A <video> has no width/height attributes to derive a ratio from, so it would lay
+//   out at the default 2:1 until its metadata loads. Without --ratio this declaration
+//   is invalid and falls back to auto.
+.post-content video {
+	aspect-ratio: var(--ratio);
+}
+
 iframe.youtube-video {
 	width: 100%;
 	@include media-breakpoint-up(md) {
