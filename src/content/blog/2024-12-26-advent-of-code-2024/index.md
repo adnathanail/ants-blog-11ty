@@ -175,7 +175,7 @@ I also think it really lent itself to giving non-coders quite a deep insight int
 	![](./day%2024/day%2024%201.jpg)
 	![](./day%2024/day%2024%202.jpg)
 	![](./day%2024/day%2024%203.jpg)
-	![](./day%2024/day%2024%204.mov)
+	![](./day%2024/day%2024%204.mp4)
 	![](./day%2024/day%2024%205.jpg)
 {% endgallery %}
 
@@ -188,9 +188,9 @@ I also think it really lent itself to giving non-coders quite a deep insight int
 ## Day 25: Code Chronicle [Problem](https://adventofcode.com/2024/day/25) [Solution](https://github.com/adnathanail/aoc/tree/master/2024/day25)
 
 {% gallery %}
-	![](./day%2025/day%2025%201.mov){.no-center}
+	![](./day%2025/day%2025%201.mp4){.no-center}
 	![](./day%2025/day%2025%202.jpg){.no-center}
-	![](./day%2025/day%2025%203.mov){.no-center}
+	![](./day%2025/day%2025%203.mp4){.no-center}
 {% endgallery %}
 
 _There was no part 2 for this problem, it just said I'd got enough stars to "Deliver The Chronicle", took me to the end of the story (below), and gave me the 50th for free!_
